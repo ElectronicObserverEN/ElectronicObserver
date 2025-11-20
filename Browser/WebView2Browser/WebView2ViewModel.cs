@@ -654,7 +654,9 @@ public class WebView2ViewModel : BrowserViewModel
 
 			if (screenshotMode is ScreenshotMode.Browser)
 			{
-				Bitmap? image = await MakeBrowserScreenshot(Configuration.ScreenShotFormat);
+				// the image stream from browser screenshot needs to be kept alive until the processing is done
+				await using MemoryStream memoryStream = new();
+				using Bitmap? image = await MakeBrowserScreenshot(Configuration.ScreenShotFormat, memoryStream);
 
 				if (image is not null)
 				{
@@ -721,7 +723,7 @@ public class WebView2ViewModel : BrowserViewModel
 				{
 					string dataurl = stringElement.GetString() ?? "";
 
-					Bitmap? image = ConvertToImage(dataurl);
+					using Bitmap? image = ConvertToImage(dataurl);
 
 					if (image is not null)
 					{
@@ -749,11 +751,10 @@ public class WebView2ViewModel : BrowserViewModel
 		return bitmap;
 	}
 
-	private async Task<Bitmap?> MakeBrowserScreenshot(int format)
+	private async Task<Bitmap?> MakeBrowserScreenshot(int format, MemoryStream memoryStream)
 	{
 		if (WebView2 is null) return null;
 
-		await using MemoryStream memoryStream = new();
 		await WebView2.CoreWebView2.CapturePreviewAsync(GetImageFormat(format), memoryStream);
 
 		return (Bitmap)Image.FromStream(memoryStream, true);
@@ -774,23 +775,23 @@ public class WebView2ViewModel : BrowserViewModel
 		string folderPath = Configuration.ScreenShotPath;
 		bool is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
 
+		(ImageFormat imageFormat, string ext) = format switch
+		{
+			1 => (ImageFormat.Jpeg, "jpg"),
+			_ => (ImageFormat.Png, "png"),
+		};
+
 		try
 		{
 			image = TwitterDeteriorationBypass(image, is32bpp);
 
-			await App.Current.Dispatcher.BeginInvoke(() => LastScreenshot = image.ToBitmapSource());
+			await App.Current.Dispatcher.BeginInvoke(() => LastScreenshot = image.ToBitmapSource(imageFormat));
 
 			if (savemode is 1 or 3)
 			{
 				try
 				{
 					Directory.CreateDirectory(folderPath);
-
-					(ImageFormat imageFormat, string ext) = format switch
-					{
-						1 => (ImageFormat.Jpeg, "jpg"),
-						_ => (ImageFormat.Png, "png"),
-					};
 
 					string path = Path.Join(folderPath, $"{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}");
 
@@ -808,7 +809,7 @@ public class WebView2ViewModel : BrowserViewModel
 			{
 				try
 				{
-					App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(image.ToBitmapSource()));
+					await App.Current.Dispatcher.BeginInvoke(() => Clipboard.SetImage(image.ToBitmapSource(imageFormat)));
 					AddLog(2, string.Format(FormBrowser.ScreenshotCopiedToClipboard));
 				}
 				catch (Exception ex)

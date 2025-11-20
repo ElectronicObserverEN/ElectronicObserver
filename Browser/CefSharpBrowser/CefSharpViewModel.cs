@@ -418,17 +418,24 @@ public class CefSharpViewModel : BrowserViewModel
 		string folderPath = Configuration.ScreenShotPath;
 		bool is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
 
+		(ImageFormat imageFormat, string ext) = format switch
+		{
+			1 => (ImageFormat.Jpeg, "jpg"),
+			_ => (ImageFormat.Png, "png"),
+		};
+
 		Bitmap? image = null;
 		try
 		{
-			image = await TakeScreenShot();
-
+			// the image stream from browser screenshot needs to be kept alive until the processing is done
+			await using MemoryStream memoryStream = new();
+			image = await TakeScreenShot(memoryStream);
 
 			if (image == null) return;
 
 			image = TwitterDeteriorationBypass(image, is32bpp);
 
-			App.Current.Dispatcher.Invoke(() => LastScreenshot = image.ToBitmapSource());
+			App.Current.Dispatcher.Invoke(() => LastScreenshot = image.ToBitmapSource(imageFormat));
 
 			// to file
 			if ((savemode & 1) != 0)
@@ -436,12 +443,6 @@ public class CefSharpViewModel : BrowserViewModel
 				try
 				{
 					Directory.CreateDirectory(folderPath);
-
-					(ImageFormat imageFormat, string ext) = format switch
-					{
-						1 => (ImageFormat.Jpeg, "jpg"),
-						_ => (ImageFormat.Png, "png"),
-					};
 
 					string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
 					image.Save(path, imageFormat);
@@ -462,7 +463,7 @@ public class CefSharpViewModel : BrowserViewModel
 				{
 					App.Current.Dispatcher.Invoke(() =>
 					{
-						Clipboard.SetImage(image.ToBitmapSource());
+						Clipboard.SetImage(image.ToBitmapSource(imageFormat));
 
 						if ((savemode & 3) != 3)
 							AddLog(2, FormBrowser.ScreenshotCopiedToClipboard);
@@ -487,7 +488,7 @@ public class CefSharpViewModel : BrowserViewModel
 	/// <summary>
 	/// スクリーンショットを撮影します。
 	/// </summary>
-	private async Task<Bitmap?> TakeScreenShot()
+	private async Task<Bitmap?> TakeScreenShot(MemoryStream memoryStream)
 	{
 		if (CefSharp is not { IsBrowserInitialized: true }) return null;
 		if (Configuration is null) return null;
@@ -513,7 +514,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 		if (screenshotMode is ScreenshotMode.Browser)
 		{
-			return await MakeBrowserScreenshot(Configuration.ScreenShotFormat);
+			return await MakeBrowserScreenshot(Configuration.ScreenShotFormat, memoryStream);
 		}
 
 		return null;
@@ -563,12 +564,12 @@ public class CefSharpViewModel : BrowserViewModel
 		}
 	}
 
-	private async Task<Bitmap?> MakeBrowserScreenshot(int format)
+	private async Task<Bitmap?> MakeBrowserScreenshot(int format, MemoryStream memoryStream)
 	{
 		if (CefSharp is not { IsBrowserInitialized: true }) return null;
 
 		byte[] screenshotData = await CefSharp.CaptureScreenshotAsync(GetImageFormat(format));
-		await using MemoryStream memoryStream = new(screenshotData);
+		await memoryStream.WriteAsync(screenshotData);
 
 		return (Bitmap)Image.FromStream(memoryStream, true);
 
