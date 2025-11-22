@@ -230,12 +230,12 @@ public static class GameDataExtensions
 		BaseDistance = ab.BaseDistance,
 		ActionKind = ab.ActionKind,
 		StrikePoints = ab.StrikePoints,
-		Squadrons = ab.Squadrons.ToDictionary(kvp => kvp.Key, kvp => DeepClone(kvp.Value)),
+		Squadrons = ab.Squadrons.ToDictionary(kvp => kvp.Key, kvp => (IBaseAirCorpsSquadron)DeepClone(kvp.Value)),
 		ID = ab.ID,
 		IsAvailable = ab.IsAvailable,
 		HPCurrent = ab.HPCurrent,
 		HPMax = ab.HPMax,
 	};
 
-	private static IBaseAirCorpsSquadron DeepClone(this IBaseAirCorpsSquadron sq) => new BaseAirCorpsSquadronMock(sq);
+	private static BaseAirCorpsSquadronMock DeepClone(this IBaseAirCorpsSquadron sq) => new(sq);
 }
