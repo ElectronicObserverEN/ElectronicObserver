@@ -8,7 +8,7 @@ public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 	public int SquadronID { get; set; }
 	public int State { get; set; }
 	public int EquipmentMasterID { get; set; }
-	public IEquipmentData? EquipmentInstance { get; init; }
+	public IEquipmentData? EquipmentInstance { get; }
 	public int EquipmentID => (int?)EquipmentInstance?.EquipmentId ?? 0;
 	public IEquipmentDataMaster? EquipmentInstanceMaster => EquipmentInstance?.MasterEquipment;
 	public int AircraftCurrent { get; set; }
@@ -29,6 +29,23 @@ public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 		EquipmentInstance = equipment;
 		AircraftCurrent = equipment.MasterEquipment.AirBaseAircraftCount();
 		AircraftMax = equipment.MasterEquipment.AirBaseAircraftCount();
+	}
+
+	/// <summary>
+	/// Clone.
+	/// </summary>
+	public BaseAirCorpsSquadronMock(IBaseAirCorpsSquadron sq)
+	{
+		SquadronID = sq.SquadronID;
+		State = sq.State;
+		EquipmentMasterID = sq.EquipmentMasterID;
+		EquipmentInstance = sq.EquipmentInstance;
+		AircraftCurrent = sq.AircraftCurrent;
+		AircraftMax = sq.AircraftMax;
+		Condition = sq.Condition;
+		RelocatedTime = sq.RelocatedTime;
+		ID = sq.ID;
+		IsAvailable = sq.IsAvailable;
 	}
 
 	public void LoadFromResponse(string apiname, object elem)

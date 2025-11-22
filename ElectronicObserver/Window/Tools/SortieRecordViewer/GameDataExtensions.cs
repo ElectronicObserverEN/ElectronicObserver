@@ -237,17 +237,5 @@ public static class GameDataExtensions
 		HPMax = ab.HPMax,
 	};
 
-	private static IBaseAirCorpsSquadron DeepClone(this IBaseAirCorpsSquadron sq) => new BaseAirCorpsSquadronMock
-	{
-		SquadronID = sq.SquadronID,
-		State = sq.State,
-		EquipmentMasterID = sq.EquipmentMasterID,
-		EquipmentInstance = sq.EquipmentInstance,
-		AircraftCurrent = sq.AircraftCurrent,
-		AircraftMax = sq.AircraftMax,
-		Condition = sq.Condition,
-		RelocatedTime = sq.RelocatedTime,
-		ID = sq.ID,
-		IsAvailable = sq.IsAvailable,
-	};
+	private static IBaseAirCorpsSquadron DeepClone(this IBaseAirCorpsSquadron sq) => new BaseAirCorpsSquadronMock(sq);
 }
