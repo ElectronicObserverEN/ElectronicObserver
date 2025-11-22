@@ -143,16 +143,22 @@ public static class GameDataExtensions
 		_ => null,
 	};
 
-	private static IBaseAirCorpsSquadron MakeAirBaseSquadron(SortieAirBaseSquadron? squadron)
+	private static BaseAirCorpsSquadronMock MakeAirBaseSquadron(SortieAirBaseSquadron? squadron)
 	{
-		BaseAirCorpsSquadronMock abSlot = new()
+		if (squadron is null) return new();
+
+		BaseAirCorpsSquadronMock abSlot = MakeEquipment(squadron.EquipmentSlot.Equipment) switch
 		{
-			Condition = squadron?.Condition ?? 0,
-			EquipmentInstance = MakeEquipment(squadron?.EquipmentSlot.Equipment),
+			IEquipmentData equipment => new(equipment),
+			_ => new(),
 		};
 
-		abSlot.AircraftMax = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
-		abSlot.AircraftCurrent = squadron?.AircraftCurrent ?? abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
+		abSlot.Condition = squadron.Condition;
+
+		if (squadron.AircraftCurrent is int aircraft)
+		{
+			abSlot.AircraftCurrent = aircraft;
+		}
 
 		return abSlot;
 	}
@@ -237,7 +243,6 @@ public static class GameDataExtensions
 		State = sq.State,
 		EquipmentMasterID = sq.EquipmentMasterID,
 		EquipmentInstance = sq.EquipmentInstance,
-		EquipmentInstanceMaster = sq.EquipmentInstanceMaster,
 		AircraftCurrent = sq.AircraftCurrent,
 		AircraftMax = sq.AircraftMax,
 		Condition = sq.Condition,
