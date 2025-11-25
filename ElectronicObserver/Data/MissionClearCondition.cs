@@ -772,7 +772,7 @@ public static class MissionClearCondition
 			int escortAircraftCarrier = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && s.ASWBase > 0);
 
 			Assert(
-				(lightCruiser + escortAircraftCarrier >= 1 && destroyer >= 3) ||
+				(lightCruiser >= 1 && destroyer >= 3) ||
 				(escortAircraftCarrier >= 1 && (destroyer >= 2 || escort >= 2)) ||
 				(destroyer >= 1 && escort >= 3) ||
 				(trainingCruiser + lightCruiser >= 1 && escort >= 2),
