@@ -128,7 +128,7 @@ public static class MissionClearCondition
 				.CheckFlagshipLevel(55)
 				.CheckLevelSum(290)
 				.CheckShipCount(6)
-				.CheckEscortFleetDD5()
+				.CheckEscortFleetDD3()
 				.CheckFirepower(330)
 				.CheckAA(300)
 				.CheckASW(270)
@@ -732,7 +732,7 @@ public static class MissionClearCondition
 			int escortAircraftCarrier = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && s.ASWBase > 0);
 
 			Assert(
-				(lightCruiser >= 1 && (destroyer + escort) >= 3) ||
+				(lightCruiser >= 1 && destroyer >= 3) ||
 				(lightCruiser >= 1 && escort >= 2) ||
 				(escortAircraftCarrier >= 1 && (destroyer >= 2 || escort >= 2)) ||
 				(destroyer >= 1 && escort >= 3) ||
@@ -759,24 +759,6 @@ public static class MissionClearCondition
 				(trainingCruiser >= 1 && escort >= 2),
 				//() => "[軽巡+(駆逐+海防)4 or 軽巡+海防2 or 護衛空母+(駆逐2 or 海防2) or 駆逐+海防3 or 練巡+海防2]"       // 厳密だけど長いので
 				() => "護衛隊(軽巡1駆逐4他)"
-			);
-			return this;
-		}
-
-		public MissionClearConditionResult CheckEscortFleetDD5()
-		{
-			int lightCruiser = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightCruiser);
-			int destroyer = Members.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer);
-			int trainingCruiser = Members.Count(s => s.MasterShip.ShipType == ShipTypes.TrainingCruiser);
-			int escort = Members.Count(s => s.MasterShip.ShipType == ShipTypes.Escort);
-			int escortAircraftCarrier = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && s.ASWBase > 0);
-
-			Assert(
-				(lightCruiser >= 1 && destroyer >= 3) ||
-				(escortAircraftCarrier >= 1 && (destroyer >= 2 || escort >= 2)) ||
-				(destroyer >= 1 && escort >= 3) ||
-				(trainingCruiser + lightCruiser >= 1 && escort >= 2),
-				() => DataRes.MissionClearEscortFleetDD3
 			);
 			return this;
 		}
