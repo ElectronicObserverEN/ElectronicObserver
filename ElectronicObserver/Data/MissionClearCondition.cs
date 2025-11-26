@@ -96,7 +96,7 @@ public static class MissionClearCondition
 				.CheckFlagshipLevel(35)
 				.CheckLevelSum(185)
 				.CheckShipCount(5)
-				.CheckEscortFleetDD3()
+				.CheckEscortFleetDD3(true)
 				.CheckAA(59)
 				.CheckASW(280)
 				.CheckLOS(60),
@@ -117,7 +117,7 @@ public static class MissionClearCondition
 				.CheckFlagshipLevel(45)
 				.CheckLevelSum(230)
 				.CheckShipCount(5)
-				.CheckEscortFleetDD3()
+				.CheckEscortFleetDD3(false)
 				.CheckFirepower(280)
 				.CheckAA(220)
 				.CheckASW(240)
@@ -128,7 +128,7 @@ public static class MissionClearCondition
 				.CheckFlagshipLevel(55)
 				.CheckLevelSum(290)
 				.CheckShipCount(6)
-				.CheckEscortFleetDD3()
+				.CheckEscortFleetDD3(false)
 				.CheckFirepower(330)
 				.CheckAA(300)
 				.CheckASW(270)
@@ -723,7 +723,7 @@ public static class MissionClearCondition
 			return this;
 		}
 
-		public MissionClearConditionResult CheckEscortFleetDD3()
+		public MissionClearConditionResult CheckEscortFleetDD3(bool includeDEsInBaseRequirement)
 		{
 			int lightCruiser = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightCruiser);
 			int destroyer = Members.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer);
@@ -731,8 +731,14 @@ public static class MissionClearCondition
 			int escort = Members.Count(s => s.MasterShip.ShipType == ShipTypes.Escort);
 			int escortAircraftCarrier = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && s.ASWBase > 0);
 
+			bool baseRequirementMet = includeDEsInBaseRequirement switch
+			{
+				true => (destroyer + escort) >= 3,
+				_ => destroyer >= 3,
+			} && lightCruiser >= 1;
+
 			Assert(
-				(lightCruiser >= 1 && destroyer >= 3) ||
+				baseRequirementMet ||
 				(lightCruiser >= 1 && escort >= 2) ||
 				(escortAircraftCarrier >= 1 && (destroyer >= 2 || escort >= 2)) ||
 				(destroyer >= 1 && escort >= 3) ||
