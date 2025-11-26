@@ -32,7 +32,7 @@ public static class MissionClearCondition
 		return result;
 	}
 
-	private static MissionClearConditionResult CheckMissionCondition(MissionClearConditionResult result, 
+	private static MissionClearConditionResult CheckMissionCondition(MissionClearConditionResult result,
 		int missionId) => missionId switch
 		{
 			// 練習航海
@@ -96,7 +96,7 @@ public static class MissionClearCondition
 				.CheckFlagshipLevel(35)
 				.CheckLevelSum(185)
 				.CheckShipCount(5)
-				.CheckEscortFleetDD3()
+				.CheckEscortFleetDD3(true)
 				.CheckAA(59)
 				.CheckASW(280)
 				.CheckLOS(60),
@@ -117,7 +117,7 @@ public static class MissionClearCondition
 				.CheckFlagshipLevel(45)
 				.CheckLevelSum(230)
 				.CheckShipCount(5)
-				.CheckEscortFleetDD3()
+				.CheckEscortFleetDD3(false)
 				.CheckFirepower(280)
 				.CheckAA(220)
 				.CheckASW(240)
@@ -128,7 +128,7 @@ public static class MissionClearCondition
 				.CheckFlagshipLevel(55)
 				.CheckLevelSum(290)
 				.CheckShipCount(6)
-				.CheckEscortFleetDD3()
+				.CheckEscortFleetDD3(false)
 				.CheckFirepower(330)
 				.CheckAA(300)
 				.CheckASW(270)
@@ -723,7 +723,7 @@ public static class MissionClearCondition
 			return this;
 		}
 
-		public MissionClearConditionResult CheckEscortFleetDD3()
+		public MissionClearConditionResult CheckEscortFleetDD3(bool includeDEsInBaseRequirement)
 		{
 			int lightCruiser = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightCruiser);
 			int destroyer = Members.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer);
@@ -731,8 +731,16 @@ public static class MissionClearCondition
 			int escort = Members.Count(s => s.MasterShip.ShipType == ShipTypes.Escort);
 			int escortAircraftCarrier = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && s.ASWBase > 0);
 
+			int baseRequirementDestoyerAndEscortCount = includeDEsInBaseRequirement switch
+			{
+				true => destroyer + escort,
+				_ => destroyer,
+			};
+
+			bool baseRequirementMet = baseRequirementDestoyerAndEscortCount >= 3 && lightCruiser >= 1;
+
 			Assert(
-				(lightCruiser >= 1 && (destroyer + escort) >= 3) ||
+				baseRequirementMet ||
 				(lightCruiser >= 1 && escort >= 2) ||
 				(escortAircraftCarrier >= 1 && (destroyer >= 2 || escort >= 2)) ||
 				(destroyer >= 1 && escort >= 3) ||
@@ -787,7 +795,9 @@ public static class MissionClearCondition
 			var percentage = (double)actualSum / leastSum;
 			string isStatExceeded = "★";
 
-			if (percentage < 2.17)
+			// https://wikiwiki.jp/kancolle/%E9%81%A0%E5%BE%81#monthlyensei
+			// https://twitter.com/yktd708/status/1880477339030888754
+			if (percentage < 2.2)
 			{
 				SuccessType = BattleExpeditionSuccessType.Success;
 				isStatExceeded = "";

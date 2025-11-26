@@ -139,16 +139,10 @@ public static class Extensions
 		_ => null,
 	};
 
-	private static IBaseAirCorpsSquadron ToBaseAirCorpsSquadron(DeckBuilderEquipment? deckBuilderEquipment)
-	{
-		BaseAirCorpsSquadronMock abSlot = new()
+	private static BaseAirCorpsSquadronMock ToBaseAirCorpsSquadron(DeckBuilderEquipment? deckBuilderEquipment)
+		=> ToEquipmentData(deckBuilderEquipment) switch
 		{
-			EquipmentInstance = ToEquipmentData(deckBuilderEquipment),
+			IEquipmentData eq => new(eq),
+			_ => new(),
 		};
-
-		abSlot.AircraftMax = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
-		abSlot.AircraftCurrent = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
-
-		return abSlot;
-	}
 }

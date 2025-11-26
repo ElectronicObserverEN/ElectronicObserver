@@ -183,4 +183,118 @@ public class AirPowerTests
 
 		Assert.Equal(121, Calculator.GetAirSuperiority(airbase));
 	}
+
+	[Fact(DisplayName = "High Altitude with normal planes")]
+	public void HighAltitudeTest1()
+	{
+		EquipmentDataMock eq1 = new(Db.MasterEquipment[EquipmentId.ASPatrol_Type3CommandLiaisonAircraft_ASW])
+		{
+			AircraftLevel = 7,
+		};
+
+		EquipmentDataMock eq2 = new(Db.MasterEquipment[EquipmentId.Interceptor_Type1FighterHayabusaModelIIIA_54thSquadron])
+		{
+			AircraftLevel = 7,
+		};
+
+		EquipmentDataMock eq3 = new(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron])
+		{
+			Level = 10,
+			AircraftLevel = 7,
+		};
+
+		BaseAirCorpsDataMock airbase1 = new()
+		{
+			ActionKind = AirBaseActionKind.AirDefense,
+			Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>
+			{
+				{ 1, new BaseAirCorpsSquadronMock(eq1) },
+				{ 2, new BaseAirCorpsSquadronMock(eq2) },
+			},
+		};
+
+		BaseAirCorpsDataMock airbase2 = new()
+		{
+			ActionKind = AirBaseActionKind.AirDefense,
+			Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>
+			{
+				{ 1, new BaseAirCorpsSquadronMock(eq3) },
+			},
+		};
+
+		Assert.Equal(40, Calculator.GetHighAltitudeAirSuperiority(airbase1, [airbase1, airbase2], true));
+		Assert.Equal(21, Calculator.GetHighAltitudeAirSuperiority(airbase2, [airbase1, airbase2], true));
+	}
+
+	[Fact(DisplayName = "High Altitude with HA planes")]
+	public void HighAltitudeTest2()
+	{
+		EquipmentDataMock eq1 = new(Db.MasterEquipment[EquipmentId.ASPatrol_Type3CommandLiaisonAircraft_ASW])
+		{
+			AircraftLevel = 7,
+		};
+
+		EquipmentDataMock eq2 = new(Db.MasterEquipment[EquipmentId.Interceptor_Type1FighterHayabusaModelIIIA_54thSquadron])
+		{
+			AircraftLevel = 7,
+		};
+
+		EquipmentDataMock eq3 = new(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron])
+		{
+			Level = 10,
+			AircraftLevel = 7,
+		};
+
+		EquipmentDataMock eq4 = new(Db.MasterEquipment[EquipmentId.Interceptor_PrototypeShuusui])
+		{
+			AircraftLevel = 7,
+		};
+
+		EquipmentDataMock eq5 = new(Db.MasterEquipment[EquipmentId.Interceptor_Shuusui])
+		{
+			AircraftLevel = 7,
+		};
+
+		BaseAirCorpsDataMock airbase1 = new()
+		{
+			ActionKind = AirBaseActionKind.AirDefense,
+			Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>
+			{
+				{ 1, new BaseAirCorpsSquadronMock(eq1) },
+				{ 2, new BaseAirCorpsSquadronMock(eq2) },
+			},
+		};
+
+		BaseAirCorpsDataMock airbase2 = new()
+		{
+			ActionKind = AirBaseActionKind.AirDefense,
+			Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>
+			{
+				{ 1, new BaseAirCorpsSquadronMock(eq3) },
+				{ 2, new BaseAirCorpsSquadronMock(eq4) },
+				{ 3, new BaseAirCorpsSquadronMock(eq5) },
+			},
+		};
+
+		Assert.Equal(88, Calculator.GetHighAltitudeAirSuperiority(airbase1, [airbase1, airbase2], true));
+		Assert.Equal(283, Calculator.GetHighAltitudeAirSuperiority(airbase2, [airbase1, airbase2], true));
+	}
+
+	[Fact(DisplayName = "AB with empty plane slot")]
+	public void HighAltitudeTest3()
+	{
+		EquipmentDataMock eq1 = new(Db.MasterEquipment[EquipmentId.FlyingBoat_Type2LargeFlyingBoat]);
+
+		BaseAirCorpsDataMock airbase1 = new()
+		{
+			ActionKind = AirBaseActionKind.AirDefense,
+			Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>
+			{
+				{ 1, new BaseAirCorpsSquadronMock(eq1) },
+				{ 2, new BaseAirCorpsSquadronMock() },
+			},
+		};
+
+		Assert.Equal(0, Calculator.GetHighAltitudeAirSuperiority(airbase1, [airbase1], true));
+	}
 }

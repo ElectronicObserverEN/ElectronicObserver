@@ -143,16 +143,22 @@ public static class GameDataExtensions
 		_ => null,
 	};
 
-	private static IBaseAirCorpsSquadron MakeAirBaseSquadron(SortieAirBaseSquadron? squadron)
+	private static BaseAirCorpsSquadronMock MakeAirBaseSquadron(SortieAirBaseSquadron? squadron)
 	{
-		BaseAirCorpsSquadronMock abSlot = new()
+		if (squadron is null) return new();
+
+		BaseAirCorpsSquadronMock abSlot = MakeEquipment(squadron.EquipmentSlot.Equipment) switch
 		{
-			Condition = squadron?.Condition ?? 0,
-			EquipmentInstance = MakeEquipment(squadron?.EquipmentSlot.Equipment),
+			IEquipmentData equipment => new(equipment),
+			_ => new(),
 		};
 
-		abSlot.AircraftMax = abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
-		abSlot.AircraftCurrent = squadron?.AircraftCurrent ?? abSlot.EquipmentInstance?.MasterEquipment.AirBaseAircraftCount() ?? 0;
+		abSlot.Condition = squadron.Condition;
+
+		if (squadron.AircraftCurrent is int aircraft)
+		{
+			abSlot.AircraftCurrent = aircraft;
+		}
 
 		return abSlot;
 	}
@@ -224,25 +230,12 @@ public static class GameDataExtensions
 		BaseDistance = ab.BaseDistance,
 		ActionKind = ab.ActionKind,
 		StrikePoints = ab.StrikePoints,
-		Squadrons = ab.Squadrons.ToDictionary(kvp => kvp.Key, kvp => DeepClone(kvp.Value)),
+		Squadrons = ab.Squadrons.ToDictionary(kvp => kvp.Key, kvp => (IBaseAirCorpsSquadron)DeepClone(kvp.Value)),
 		ID = ab.ID,
 		IsAvailable = ab.IsAvailable,
 		HPCurrent = ab.HPCurrent,
 		HPMax = ab.HPMax,
 	};
 
-	private static IBaseAirCorpsSquadron DeepClone(this IBaseAirCorpsSquadron sq) => new BaseAirCorpsSquadronMock
-	{
-		SquadronID = sq.SquadronID,
-		State = sq.State,
-		EquipmentMasterID = sq.EquipmentMasterID,
-		EquipmentInstance = sq.EquipmentInstance,
-		EquipmentInstanceMaster = sq.EquipmentInstanceMaster,
-		AircraftCurrent = sq.AircraftCurrent,
-		AircraftMax = sq.AircraftMax,
-		Condition = sq.Condition,
-		RelocatedTime = sq.RelocatedTime,
-		ID = sq.ID,
-		IsAvailable = sq.IsAvailable,
-	};
+	private static BaseAirCorpsSquadronMock DeepClone(this IBaseAirCorpsSquadron sq) => new(sq);
 }

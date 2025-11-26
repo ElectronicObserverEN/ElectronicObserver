@@ -7,12 +7,13 @@ namespace Browser;
 
 public static class Interop
 {
-	public static BitmapSource ToBitmapSource(this Bitmap bitmap)
+	public static BitmapSource ToBitmapSource(this Bitmap bitmap, ImageFormat format)
 	{
 		using MemoryStream memory = new();
 
-		bitmap.Save(memory, ImageFormat.Bmp);
+		bitmap.Save(memory, format);
 		memory.Position = 0;
+
 		BitmapImage bitmapimage = new();
 		bitmapimage.BeginInit();
 		bitmapimage.StreamSource = memory;

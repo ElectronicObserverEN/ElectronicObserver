@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -78,6 +79,8 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 		}
 		else
 		{
+			List<IBaseAirCorpsData> allCorps = db.BaseAirCorps.Values.Where(ab => ab.MapAreaID == corps.MapAreaID).OfType<IBaseAirCorpsData>().ToList();
+
 			MapAreaId = corps.MapAreaID;
 			Name.Text = string.Format("#{0} - {1}", corps.MapAreaID, corps.Name);
 			Name.Tag = corps.MapAreaID;
@@ -133,8 +136,8 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 			}
 
 			sb.AppendLine(string.Format(FormBaseAirCorps.AirControlSummary,
-				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == AirBaseActionKind.AirDefense).Select(c => Calculator.GetAirSuperiority(c)).DefaultIfEmpty(0).Sum(),
-				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == AirBaseActionKind.AirDefense).Select(c => Calculator.GetAirSuperiority(c, isHighAltitude: true)).DefaultIfEmpty(0).Sum()
+				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == AirBaseActionKind.AirDefense).Select(Calculator.GetAirSuperiority).DefaultIfEmpty(0).Sum(),
+				db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == AirBaseActionKind.AirDefense).Select(c => Calculator.GetHighAltitudeAirSuperiority(c, allCorps, false)).DefaultIfEmpty(0).Sum()
 			));
 
 			Name.ToolTip = sb.ToString();
@@ -166,8 +169,8 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 
 				if (corps.ActionKind == AirBaseActionKind.AirDefense)
 				{
-					int airSuperiorityHighAltitude = Calculator.GetAirSuperiority(corps, isHighAltitude: true);
-					int airSuperiorityHighAltitudeMax = Calculator.GetAirSuperiority(corps, isAircraftLevelMaximum: true, isHighAltitude: true);
+					int airSuperiorityHighAltitude = Calculator.GetHighAltitudeAirSuperiority(corps, allCorps, false);
+					int airSuperiorityHighAltitudeMax = Calculator.GetHighAltitudeAirSuperiority(corps, allCorps, true);
 
 					tip.AppendFormat(GeneralRes.HighAltitudeAirState,
 						Utility.Configuration.Config.FormFleet.ShowAirSuperiorityRange && airSuperiorityHighAltitude != airSuperiorityHighAltitudeMax ?
