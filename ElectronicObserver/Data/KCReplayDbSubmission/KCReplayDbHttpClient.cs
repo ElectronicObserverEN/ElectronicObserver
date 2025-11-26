@@ -28,9 +28,10 @@ public class KCReplayDbHttpClient
 	{
 		HttpClient client = new()
 		{
-			BaseAddress = new("https://kcrdb.hitomaru.dev/")
+			BaseAddress = new("https://kcrdb.hitomaru.dev/"),
 		};
 
+		client.DefaultRequestHeaders.UserAgent.Add(new(SofwareName, SoftwareInformation.VersionEnglish));
 		client.DefaultRequestHeaders.Add("x-origin", SofwareName);
 		client.DefaultRequestHeaders.Add("x-version", SoftwareInformation.VersionEnglish);
 
@@ -44,6 +45,12 @@ public class KCReplayDbHttpClient
 		{
 			string requestBody = await content.ReadAsStringAsync();
 			Logger.Add(3, requestBody);
+		}
+
+		if (response.Content is HttpContent httpResponse)
+		{
+			string responseBody = await httpResponse.ReadAsStringAsync();
+			Logger.Add(3, $"Code {(int)response.StatusCode} : " + responseBody);
 		}
 #endif
 
