@@ -81,7 +81,7 @@ public class KCReplayDbQuestItemsSubmissionService(
 		{
 			KCReplayDbQuestItemsSubmissionData submissionData = new()
 			{
-				ItemSelection = ItemSelection,
+				ItemSelection = ItemSelection.Count > 0 ? ItemSelection : null,
 				QuestId = questId,
 				RewardData = QuestReward,
 			};

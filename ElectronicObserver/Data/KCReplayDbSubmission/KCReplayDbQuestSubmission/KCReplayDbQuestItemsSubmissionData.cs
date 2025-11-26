@@ -11,7 +11,7 @@ public class KCReplayDbQuestItemsSubmissionData
 	public required int QuestId { get; init; }
 
 	[JsonPropertyName("api_select_no")]
-	public required List<int> ItemSelection { get; init; }
+	public required List<int>? ItemSelection { get; init; }
 
 	/// <summary>
 	/// Should be <see cref="ApiReqQuestClearitemgetResponse" /> but we're skipping deserialization to avoid data loss.
