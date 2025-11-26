@@ -731,11 +731,13 @@ public static class MissionClearCondition
 			int escort = Members.Count(s => s.MasterShip.ShipType == ShipTypes.Escort);
 			int escortAircraftCarrier = Members.Count(s => s.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && s.ASWBase > 0);
 
-			bool baseRequirementMet = includeDEsInBaseRequirement switch
+			int baseRequirementDestoyerAndEscortCount = includeDEsInBaseRequirement switch
 			{
-				true => (destroyer + escort) >= 3,
-				_ => destroyer >= 3,
-			} && lightCruiser >= 1;
+				true => destroyer + escort,
+				_ => destroyer,
+			};
+
+			bool baseRequirementMet = baseRequirementDestoyerAndEscortCount >= 3 && lightCruiser >= 1;
 
 			Assert(
 				baseRequirementMet ||
