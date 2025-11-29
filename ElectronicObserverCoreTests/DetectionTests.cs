@@ -121,4 +121,28 @@ public class DetectionTests(DatabaseFixture db)
 		Assert.DoesNotContain(DetectionType.SuccessNoPlane, detectionProbabilities.Keys);
 		Assert.DoesNotContain(DetectionType.FailureNoPlane, detectionProbabilities.Keys);
 	}
+
+	[Fact(DisplayName = "Ignore escaped ships")]
+	public void DetectionTests6()
+	{
+		ShipDataMock tama = new(Db.MasterShips[ShipId.TamaKaiNi])
+		{ 
+			Level = 128,
+		};
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new([tama, null, null, null, null, null, null]),
+		};
+
+		Dictionary<DetectionType, double> detectionProbabilities = fleet.GetDetectionProbabilities();
+
+		Assert.NotEmpty(detectionProbabilities);
+
+		Assert.Contains(DetectionType.SuccessNoPlane, detectionProbabilities.Keys);
+		Assert.Equal(0.85, detectionProbabilities[DetectionType.SuccessNoPlane], 3);
+
+		Assert.Contains(DetectionType.FailureNoPlane, detectionProbabilities.Keys);
+		Assert.Equal(0.15, detectionProbabilities[DetectionType.FailureNoPlane], 3);
+	}
 }

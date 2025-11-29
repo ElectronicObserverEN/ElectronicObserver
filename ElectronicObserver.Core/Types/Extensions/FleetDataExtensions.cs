@@ -255,7 +255,7 @@ public static class FleetDataExtensions
 		}
 
 		int finalPower = basePower
-			+ ShipCountBonus(fleet.MembersWithoutEscaped.Count)
+			+ ShipCountBonus(fleet.MembersWithoutEscaped.OfType<IShipData>().Count())
 			- baseValue
 			+ (int)Math.Sqrt(attack * 10.0);
 
@@ -295,7 +295,7 @@ public static class FleetDataExtensions
 
 		static int ShipCountBonus(int count) => count switch
 		{
-			6 => 4,
+			>= 6 => 4,
 			5 => 3,
 			4 => 2,
 			3 => 1,
