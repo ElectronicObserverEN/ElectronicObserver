@@ -282,4 +282,7 @@ Range: {20} / Speed: {21}
   <data name="SmokeScreen" xml:space="preserve">
     <value>Smoke screen</value>
   </data>
+  <data name="SearchingPhase" xml:space="preserve">
+    <value>Searching phase</value>
+  </data>
 </root>

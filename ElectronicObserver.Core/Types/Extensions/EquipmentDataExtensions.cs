@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.Core.Types.Extensions;
+﻿using System.Collections.Generic;
+
+namespace ElectronicObserver.Core.Types.Extensions;
 
 public static class EquipmentDataExtensions
 {
@@ -243,4 +245,17 @@ public static class EquipmentDataExtensions
 
 		_ => 18,
 	};
+
+	/// <summary>
+	/// 艦載機熟練度の内部値テーブル(仮)
+	/// </summary>
+	private static List<int> AircraftExpTable { get; } = [0, 10, 25, 40, 55, 70, 85, 100, 120];
+
+	public static int GetAircraftExp(int aircraftLevel) => aircraftLevel switch
+	{
+		< 8 => AircraftExpTable[aircraftLevel],
+		_ => AircraftExpTable[^1],
+	};
+
+	public static int GetAircraftExp(this IEquipmentData equipment) => GetAircraftExp(equipment.AircraftLevel);
 }

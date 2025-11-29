@@ -282,4 +282,7 @@
   <data name="SmokeScreen" xml:space="preserve">
     <value>煙幕</value>
   </data>
+  <data name="SearchingPhase" xml:space="preserve">
+    <value>索敵フェイズ</value>
+  </data>
 </root>

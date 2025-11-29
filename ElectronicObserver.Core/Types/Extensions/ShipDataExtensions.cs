@@ -701,4 +701,7 @@ public static class ShipDataExtensions
 			masterShip = masterShip.RemodelAfterShip;
 		}
 	}
+
+	public static bool IsEscaped(this IShipData ship, IFleetData fleet)
+		=> fleet.EscapedShipList.Contains(ship.MasterID);
 }

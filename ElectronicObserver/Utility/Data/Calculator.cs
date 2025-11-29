@@ -57,15 +57,6 @@ public static class Calculator
 	};
 
 	/// <summary>
-	/// 艦載機熟練度の内部値テーブル(仮)
-	/// </summary>
-	private static readonly List<int> AircraftExpTable = new List<int>() {
-		0, 10, 25, 40, 55, 70, 85, 100, 120
-	};
-
-
-
-	/// <summary>
 	/// 制空戦力を求めます。
 	/// </summary>
 	/// <param name="equipmentID">装備ID。</param>
@@ -105,19 +96,11 @@ public static class Calculator
 			};
 		}
 
-		int aircraftExp;
-		if (isAircraftExpMaximum)
+		int aircraftExp = isAircraftExpMaximum switch
 		{
-			aircraftExp = aircraftLevel switch
-			{
-				< 7 => AircraftExpTable[aircraftLevel + 1] - 1,
-				_ => AircraftExpTable.Last(),
-			};
-		}
-		else
-		{
-			aircraftExp = AircraftExpTable[aircraftLevel];
-		}
+			true => EquipmentDataExtensions.GetAircraftExp(aircraftLevel + 1) - 1,
+			_ => EquipmentDataExtensions.GetAircraftExp(aircraftLevel),
+		};
 
 		int aircraftLevelBonus = AircraftLevelBonus(eq) switch
 		{
@@ -129,7 +112,6 @@ public static class Calculator
 					 + Math.Sqrt(aircraftExp / 10.0)
 					 + aircraftLevelBonus);
 	}
-
 
 
 	/// <summary>
