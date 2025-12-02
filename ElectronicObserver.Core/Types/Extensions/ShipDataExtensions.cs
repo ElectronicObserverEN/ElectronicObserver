@@ -704,4 +704,19 @@ public static class ShipDataExtensions
 
 	public static bool IsEscaped(this IShipData ship, IFleetData fleet)
 		=> fleet.EscapedShipList.Contains(ship.MasterID);
+
+	/// <summary>
+	/// HP を 1 回復するために必要な入渠時間を求めます。
+	/// </summary>
+	public static TimeSpan CalculateDockingUnitTime(this IShipData ship)
+	{
+		int damage = ship.HPMax - ship.HPCurrent;
+
+		if (damage == 0)
+		{
+			return TimeSpan.Zero;
+		}
+
+		return new TimeSpan(DateTimeHelper.FromAPITimeSpan(ship.RepairTime).Add(TimeSpan.FromSeconds(-30)).Ticks / damage);
+	}
 }

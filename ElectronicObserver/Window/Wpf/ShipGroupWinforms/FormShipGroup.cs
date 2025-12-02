@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
@@ -432,7 +433,7 @@ public partial class FormShipGroup: Form
 			ship.IsLocked ? 1 : ship.IsLockedByEquipment ? 2 : 0,
 			ship.SallyArea,
 			ship.MasterShip.SortID,
-			(int)Calculator.CalculateDockingUnitTime(ship).TotalMilliseconds
+			(int)ship.RepairTimeUnit.TotalMilliseconds
 		);
 
 

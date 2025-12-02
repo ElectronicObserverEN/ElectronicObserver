@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Resource.Record;

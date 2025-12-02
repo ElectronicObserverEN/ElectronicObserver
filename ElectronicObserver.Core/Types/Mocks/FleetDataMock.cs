@@ -71,35 +71,17 @@ public class FleetDataMock : IFleetData
 		EscapedShipList = new(EscapedShipList.Append(index - 1).ToList());
 	}
 
-	public int GetAirSuperiority()
-	{
-		throw new NotImplementedException();
-	}
+	public int GetAirSuperiority() => 0;
 
-	public string GetAirSuperiorityString()
-	{
-		throw new NotImplementedException();
-	}
+	public string GetAirSuperiorityString() => "";
 
-	public double GetSearchingAbility()
-	{
-		throw new NotImplementedException();
-	}
+	public double GetSearchingAbility() => 0;
 
-	public string GetSearchingAbilityString(int branchWeight = 1)
-	{
-		throw new NotImplementedException();
-	}
+	public string GetSearchingAbilityString(int branchWeight = 1) => "";
 
-	public double GetContactProbability()
-	{
-		throw new NotImplementedException();
-	}
+	public double GetContactProbability() => 0;
 
-	public Dictionary<int, double> GetContactSelectionProbability()
-	{
-		throw new NotImplementedException();
-	}
+	public Dictionary<int, double> GetContactSelectionProbability() => [];
 
 	public void UpdateConditionTime()
 	{

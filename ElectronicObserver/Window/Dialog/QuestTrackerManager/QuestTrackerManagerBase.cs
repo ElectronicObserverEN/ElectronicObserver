@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;

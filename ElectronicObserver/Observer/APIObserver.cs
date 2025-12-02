@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Controls;
 using DynaJson;
+using ElectronicObserver.Core;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services.ApiFileService;
 using ElectronicObserver.Utility;

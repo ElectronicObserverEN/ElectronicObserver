@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Core.Types.Attacks;
@@ -40,7 +41,7 @@ public class FleetItemViewModel : ObservableObject
 
 	public Dictionary<SpecialAttack, List<SpecialAttackHit>> SpecialAttackHitList { get; set; } = new();
 
-	public ShipData? Ship { get; private set; }
+	public IShipData? Ship { get; private set; }
 	private bool CanSink { get; set; }
 	private bool IsInSortie { get; set; }
 	private bool BlinkAtDamaged { get; set; }
@@ -96,32 +97,27 @@ public class FleetItemViewModel : ObservableObject
 		BlinkAtDamaged = Configuration.Config.FormFleet.BlinkAtDamaged;
 	}
 
-	public void Update(int shipMasterID)
+	public void Update(IShipData? ship, IFleetData fleet)
 	{
-		KCDatabase db = KCDatabase.Instance;
-		Ship = db.Ships[shipMasterID];
+		Ship = ship;
+		UpdateShip(ship, fleet);
 
-		UpdateShip(shipMasterID);
-
-		Visible = shipMasterID != -1;
+		Visible = ship is not null;
 	}
 
-	private void UpdateShip(int shipMasterID)
+	private void UpdateShip(IShipData? ship, IFleetData fleet)
 	{
-		if (Ship is null)
+		if (ship is null)
 		{
 			Name.Tag = -1;
 			return;
 		}
 
-		KCDatabase db = KCDatabase.Instance;
-
-		IFleetData fleet = db.Fleet[Parent.FleetId];
-		bool isEscaped = db.Fleet[Parent.FleetId].EscapedShipList.Contains(shipMasterID);
-		IEnumerable<IEquipmentData> equipments = Ship.AllSlotInstance
+		bool isEscaped = ship.IsEscaped(fleet);
+		IEnumerable<IEquipmentData> equipments = ship.AllSlotInstance
 			.Where(eq => eq != null);
 
-		CanSink = Ship.CanSink(fleet);
+		CanSink = ship.CanSink(fleet);
 		IsInSortie = fleet.IsInSortie;
 
 		UpdateShipName(equipments);
@@ -132,11 +128,11 @@ public class FleetItemViewModel : ObservableObject
 
 		UpdateCondition();
 
-		ShipResource.SetResources(Ship.Fuel, Ship.FuelMax, Ship.Ammo, Ship.AmmoMax);
+		ShipResource.SetResources(ship.Fuel, ship.FuelMax, ship.Ammo, ship.AmmoMax);
 		ShipResource.IsEscaped = isEscaped;
 
-		Equipments.SetSlotList(Ship);
-		Equipments.ToolTip = GetEquipmentString(Ship);
+		Equipments.SetSlotList(ship);
+		Equipments.ToolTip = GetEquipmentString(ship, fleet);
 	}
 
 	private void UpdateCondition()
@@ -181,7 +177,6 @@ public class FleetItemViewModel : ObservableObject
 			HP.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.Invisible;
 		}
 
-		HP.Tag = (Ship.RepairingDockID == -1 && 0.5 < Ship.HPRate && Ship.HPRate < 1.0) ? DateTimeHelper.FromAPITimeSpan(Ship.RepairTime).TotalSeconds : 0.0;
 		HP.BackColor = isEscaped switch
 		{
 			true => Utility.Configuration.Config.UI.SubBackColor,
@@ -214,7 +209,7 @@ public class FleetItemViewModel : ObservableObject
 			TimeSpan span = DateTimeHelper.FromAPITimeSpan(Ship.RepairTime);
 			sb.AppendFormat(GeneralRes.DockTime + ": {0} @ {1}",
 				DateTimeHelper.ToTimeRemainString(span),
-				DateTimeHelper.ToTimeRemainString(Calculator.CalculateDockingUnitTime(Ship)));
+				DateTimeHelper.ToTimeRemainString(Ship.RepairTimeUnit));
 		}
 
 		HP.ToolTip = sb.ToString();
@@ -402,7 +397,7 @@ public class FleetItemViewModel : ObservableObject
 		_ => $"{rate:P1}",
 	};
 
-	private string GetEquipmentString(IShipData ship)
+	private string GetEquipmentString(IShipData ship, IFleetData fleet)
 	{
 		StringBuilder sb = new();
 
@@ -424,7 +419,6 @@ public class FleetItemViewModel : ObservableObject
 		}
 
 		EngagementType engagement = (EngagementType)Configuration.Config.Control.PowerEngagementForm;
-		IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetId];
 
 		if (SpecialAttackHitList.Any())
 		{

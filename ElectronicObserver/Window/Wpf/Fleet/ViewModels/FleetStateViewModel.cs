@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
@@ -47,7 +48,7 @@ public class FleetStateViewModel : ObservableObject
 		return StateLabels[index];
 	}
 
-	public void UpdateFleetState(FleetData fleet)
+	public void UpdateFleetState(IFleetData fleet)
 	{
 		KCDatabase db = KCDatabase.Instance;
 
@@ -165,7 +166,7 @@ public class FleetStateViewModel : ObservableObject
 					if (ship != null && ship.HPRate < 1.0)
 					{
 						var totaltime = DateTimeHelper.FromAPITimeSpan(ship.RepairTime);
-						var unittime = Calculator.CalculateDockingUnitTime(ship);
+						var unittime = ship.RepairTimeUnit;
 						sb.AppendFormat(FormFleet.RepairTimeDetail,
 							i + 1,
 							DateTimeHelper.ToTimeRemainString(totaltime),
@@ -329,7 +330,7 @@ public class FleetStateViewModel : ObservableObject
 		}
 	}
 
-	private void TryAddChuuhaState(FleetData fleet, ref int index)
+	private void TryAddChuuhaState(IFleetData fleet, ref int index)
 	{
 		if (fleet.IsInSortie) return;
 		if (fleet.MembersInstance is null) return;
@@ -344,7 +345,7 @@ public class FleetStateViewModel : ObservableObject
 		index++;
 	}
 
-	private void TryAddShouhaState(FleetData fleet, ref int index)
+	private void TryAddShouhaState(IFleetData fleet, ref int index)
 	{
 		if (fleet.IsInSortie) return;
 		if (fleet.MembersInstance is null) return;

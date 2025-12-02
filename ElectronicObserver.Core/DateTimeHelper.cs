@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ElectronicObserver.Utility.Mathematics;
+namespace ElectronicObserver.Core;
 
 /// <summary>
 /// 日時データを扱うためのメソッド群です。

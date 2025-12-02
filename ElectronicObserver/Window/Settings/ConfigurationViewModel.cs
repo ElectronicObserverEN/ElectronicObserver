@@ -7,6 +7,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
@@ -88,7 +89,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 	private void UpdatePlayTime()
 	{
 		double elapsed = (DateTime.Now - ShownTime).TotalSeconds;
-		Log_PlayTime = Utility.Mathematics.DateTimeHelper.ToTimeElapsedString(TimeSpan.FromSeconds(PlayTimeCache + elapsed));
+		Log_PlayTime = DateTimeHelper.ToTimeElapsedString(TimeSpan.FromSeconds(PlayTimeCache + elapsed));
 	}
 
 	private bool TrySaveConfigurations()

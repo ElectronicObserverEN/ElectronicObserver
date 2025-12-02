@@ -1,5 +1,6 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;

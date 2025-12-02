@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Window.Control;

@@ -1,4 +1,5 @@
 ﻿using System;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Window.Dialog;

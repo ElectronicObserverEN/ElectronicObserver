@@ -212,6 +212,68 @@ public static class FleetDataExtensions
 		};
 	}
 
+	/// <summary>
+	/// Returns the maximum amount of ships that can be repaired, regardless if the ships in fleet can actually be repaired.
+	/// </summary>
+	public static int GetAnchorageRepairCount(this IFleetData fleet)
+	{
+		if (fleet.ExpeditionState is not ExpeditionState.NotDeployed) return 0;
+		if (fleet.MembersInstance.FirstOrDefault() is not IShipData flagship) return 0;
+		if (flagship.MasterShip.ShipType is not ShipTypes.RepairShip) return 0;
+		if (flagship.DamageState <= DamageState.Medium) return 0;
+		if (flagship.RepairingDockID is not -1) return 0;
+
+		int repairCount = flagship.MasterShip.ShipId switch
+		{
+			ShipId.Akashi or ShipId.AkashiKai => 2,
+			_ => 0,
+		};
+
+		List<IShipData> repairShips = fleet.MembersInstance
+			.Take(2)
+			.OfType<IShipData>()
+			.Where(s => s.MasterShip.ShipType is ShipTypes.RepairShip)
+			.Where(s => s.DamageState > DamageState.Medium)
+			.ToList();
+
+		if (repairShips.Count > 1)
+		{
+			repairCount++;
+		}
+
+		repairCount += repairShips
+			.SelectMany(s => s.AllSlotInstance)
+			.Count(e => e?.EquipmentId is EquipmentId.RepairFacility_ShipRepairFacility);
+
+		return repairCount;
+	}
+
+	public static bool CanAnchorageRepair(this IFleetData fleet)
+	{
+		int count = fleet.GetAnchorageRepairCount();
+
+		return fleet.MembersInstance
+			.Take(count)
+			.OfType<IShipData>()
+			.Where(s => s.RepairingDockID == -1)
+			.Any(s => s is { DamageState: > DamageState.Medium, HPRate: < 1 });
+	}
+
+	public static double GetAnchorageRepairTimeMultiplier(this IFleetData fleet)
+	{
+		List<IShipData> repairShips = fleet.MembersInstance
+			.Take(2)
+			.OfType<IShipData>()
+			.Where(s => s.MasterShip.ShipType is ShipTypes.RepairShip)
+			.Where(s => s.DamageState > DamageState.Medium)
+			.ToList();
+
+		if (repairShips.Count < 2) return 1;
+		if (!repairShips[1].AllSlotInstance.Any(e => e?.EquipmentId is EquipmentId.RepairFacility_ShipRepairFacility)) return 1;
+
+		return 0.85;
+	}
+
 	public static Dictionary<DetectionType, double> GetDetectionProbabilities(this IFleetData fleet)
 	{
 		if (fleet.MembersWithoutEscaped is null) return [];

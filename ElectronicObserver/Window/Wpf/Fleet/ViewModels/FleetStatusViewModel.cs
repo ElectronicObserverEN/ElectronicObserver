@@ -56,9 +56,9 @@ public partial class FleetStatusViewModel : ObservableObject
 		Update(KCDatabase.Instance.Fleet[FleetId]);
 	}
 
-	public void Update(FleetData? fleet)
+	public void Update(IFleetData fleet)
 	{
-		if (fleet?.MembersInstance is null) return;
+		if (fleet.MembersInstance is null) return;
 
 		List<IShipData> members = [.. fleet.MembersInstance!.OfType<IShipData>()];
 

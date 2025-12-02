@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Data.ShipGroup;

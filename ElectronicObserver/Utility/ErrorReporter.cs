@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;
