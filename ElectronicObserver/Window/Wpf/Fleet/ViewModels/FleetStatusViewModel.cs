@@ -58,9 +58,10 @@ public partial class FleetStatusViewModel : ObservableObject
 
 	public void Update(IFleetData fleet)
 	{
+		if (fleet.Members is null) return;
 		if (fleet.MembersInstance is null) return;
 
-		List<IShipData> members = [.. fleet.MembersInstance!.OfType<IShipData>()];
+		List<IShipData> members = [.. fleet.MembersInstance.OfType<IShipData>()];
 
 		int speed = members.Select(s => s.Speed).DefaultIfEmpty(20).Min();
 
