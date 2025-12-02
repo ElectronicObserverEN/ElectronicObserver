@@ -188,7 +188,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		if (elapsed.TotalMinutes < 20 || AnchorageRepairBound <= 0) return;
 		
-		double anchorageRepairTimeMultiplier = fleet.GetAnchorageRepairTimeMultiplier();
+		double repairTimeMod = fleet.GetAnchorageRepairTimeModifier();
 
 		foreach (FleetItemViewModel control in ControlMember.Take(AnchorageRepairBound))
 		{
@@ -205,10 +205,10 @@ public partial class FleetViewModel : AnchorableViewModel
 				hpbar.ShowDifference = true;
 			}
 
-			double dockingSeconds = anchorageRepairTimeMultiplier switch
+			double dockingSeconds = repairTimeMod switch
 			{
 				1 => DateTimeHelper.FromAPITimeSpan(ship.RepairTime).TotalSeconds,
-				double mod => (ship.RepairTimeUnit * mod * (ship.HPMax - ship.HPCurrent) + TimeSpan.FromSeconds(30)).TotalSeconds,
+				_ => (ship.RepairTimeUnit * repairTimeMod * (ship.HPMax - ship.HPCurrent) + TimeSpan.FromSeconds(30)).TotalSeconds,
 			};
 
 			int damage = hpbar.HPBar.MaximumValue - hpbar.PrevValue;

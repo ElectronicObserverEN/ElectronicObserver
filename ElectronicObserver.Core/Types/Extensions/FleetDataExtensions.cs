@@ -259,7 +259,7 @@ public static class FleetDataExtensions
 			.Any(s => s is { DamageState: > DamageState.Medium, HPRate: < 1 });
 	}
 
-	public static double GetAnchorageRepairTimeMultiplier(this IFleetData fleet)
+	public static double GetAnchorageRepairTimeModifier(this IFleetData fleet)
 	{
 		List<IShipData> repairShips = fleet.MembersInstance
 			.Take(2)

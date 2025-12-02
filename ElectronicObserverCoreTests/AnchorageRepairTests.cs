@@ -118,7 +118,7 @@ public class AnchorageRepairTests(DatabaseFixture db)
 			]),
 		};
 
-		Assert.Equal(0.85, fleet.GetAnchorageRepairTimeMultiplier(), 2);
+		Assert.Equal(0.85, fleet.GetAnchorageRepairTimeModifier(), 2);
 	}
 
 	[Fact(DisplayName = "Second repair ship must have a crane for repair speedup")]
@@ -139,6 +139,6 @@ public class AnchorageRepairTests(DatabaseFixture db)
 			]),
 		};
 
-		Assert.Equal(1, fleet.GetAnchorageRepairTimeMultiplier(), 2);
+		Assert.Equal(1, fleet.GetAnchorageRepairTimeModifier(), 2);
 	}
 }
