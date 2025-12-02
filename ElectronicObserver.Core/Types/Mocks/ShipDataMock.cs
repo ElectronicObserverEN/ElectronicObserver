@@ -55,7 +55,7 @@ public class ShipDataMock : IShipData
 	public int Range { get; set; }
 	public IList<int> Slot { get; } = [];
 	public IList<int> SlotMaster { get; } = [];
-	public IList<IEquipmentData?> SlotInstance { get; set; } = [];
+	public IList<IEquipmentData?> SlotInstance { get; set; }
 	public IList<IEquipmentDataMaster?> SlotInstanceMaster { get; } = [];
 	public int ExpansionSlot { get; }
 	public int ExpansionSlotMaster { get; }
