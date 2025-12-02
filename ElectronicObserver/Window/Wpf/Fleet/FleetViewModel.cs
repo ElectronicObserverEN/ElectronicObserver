@@ -176,46 +176,50 @@ public partial class FleetViewModel : AnchorableViewModel
 			fleetItem.HP.ResumeUpdate();
 		}
 
-		// anchorage repairing
 		if (fleet is not null && Configuration.Config.FormFleet.ReflectAnchorageRepairHealing)
 		{
-			TimeSpan elapsed = DateTime.Now - anchorageRepairingTimer;
-			double anchorageRepairTimeMultiplier = fleet.GetAnchorageRepairTimeMultiplier();
+			UpdateAnchorageRepair(fleet, anchorageRepairingTimer);
+		}
+	}
+	
+	private void UpdateAnchorageRepair(IFleetData fleet, DateTime anchorageRepairingTimer)
+	{
+		TimeSpan elapsed = DateTime.Now - anchorageRepairingTimer;
 
-			if (elapsed.TotalMinutes >= 20 && AnchorageRepairBound > 0)
+		if (elapsed.TotalMinutes < 20 || AnchorageRepairBound <= 0) return;
+		
+		double anchorageRepairTimeMultiplier = fleet.GetAnchorageRepairTimeMultiplier();
+
+		foreach (FleetItemViewModel control in ControlMember.Take(AnchorageRepairBound))
+		{
+			if (control.Ship is not IShipData ship) continue;
+			if (ship.RepairingDockID > -1) continue;
+			if (ship.HPRate < 0.5) continue;
+			if (ship.RepairTime is 0) continue;
+
+			FleetHpViewModel hpbar = control.HP;
+
+			if (!hpbar.UsePrevValue)
 			{
-				foreach (FleetItemViewModel control in ControlMember.Take(AnchorageRepairBound))
-				{
-					if (control.Ship is not IShipData ship) continue;
-					if (ship.RepairingDockID > -1) continue;
-					if (ship.HPRate < 0.5) continue;
-					if (ship.RepairTime is 0) continue;
-
-					FleetHpViewModel hpbar = control.HP;
-
-					if (!hpbar.UsePrevValue)
-					{
-						hpbar.UsePrevValue = true;
-						hpbar.ShowDifference = true;
-					}
-
-					double dockingSeconds = anchorageRepairTimeMultiplier switch
-					{
-						1 => DateTimeHelper.FromAPITimeSpan(ship.RepairTime).TotalSeconds,
-						double mod => (ship.RepairTimeUnit * mod * (ship.HPMax - ship.HPCurrent) + TimeSpan.FromSeconds(30)).TotalSeconds,
-					};
-
-					int damage = hpbar.HPBar.MaximumValue - hpbar.PrevValue;
-					int healAmount = Math.Min(Calculator.CalculateAnchorageRepairHealAmount(damage, dockingSeconds, elapsed), damage);
-
-					hpbar.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.MouseOver;
-					hpbar.RepairTime = anchorageRepairingTimer + Calculator.CalculateAnchorageRepairTime(damage, dockingSeconds, Math.Min(healAmount + 1, damage));
-					hpbar.AkashiRepairBar.Value = hpbar.PrevValue + healAmount;
-
-					// todo Akashi repair HP bar changes
-					hpbar.ResumeUpdate();
-				}
+				hpbar.UsePrevValue = true;
+				hpbar.ShowDifference = true;
 			}
+
+			double dockingSeconds = anchorageRepairTimeMultiplier switch
+			{
+				1 => DateTimeHelper.FromAPITimeSpan(ship.RepairTime).TotalSeconds,
+				double mod => (ship.RepairTimeUnit * mod * (ship.HPMax - ship.HPCurrent) + TimeSpan.FromSeconds(30)).TotalSeconds,
+			};
+
+			int damage = hpbar.HPBar.MaximumValue - hpbar.PrevValue;
+			int healAmount = Math.Min(Calculator.CalculateAnchorageRepairHealAmount(damage, dockingSeconds, elapsed), damage);
+
+			hpbar.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.MouseOver;
+			hpbar.RepairTime = anchorageRepairingTimer + Calculator.CalculateAnchorageRepairTime(damage, dockingSeconds, Math.Min(healAmount + 1, damage));
+			hpbar.AkashiRepairBar.Value = hpbar.PrevValue + healAmount;
+
+			// todo Akashi repair HP bar changes
+			hpbar.ResumeUpdate();
 		}
 	}
 
