@@ -187,7 +187,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// Time needed to repair 1 HP
 	/// </summary>
-	public TimeSpan RepairTimeUnit => Calculator.CalculateDockingUnitTime(this);
+	public TimeSpan RepairTimeUnit => this.CalculateDockingUnitTime();
 
 	/// <summary>
 	/// 入渠にかかる鋼材

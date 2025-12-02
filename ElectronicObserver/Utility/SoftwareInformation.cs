@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using DynaJson;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;

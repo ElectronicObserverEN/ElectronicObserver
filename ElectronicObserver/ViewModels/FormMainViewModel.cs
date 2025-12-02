@@ -76,6 +76,7 @@ using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Avalonia.ExpeditionCalculator;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 using AvalonDock.Controls;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 
 
@@ -1758,7 +1759,7 @@ public partial class FormMainViewModel : ObservableObject
 		SystemEvents.OnUpdateTimerTick();
 
 		// 東京標準時
-		DateTime now = Utility.Mathematics.DateTimeHelper.GetJapanStandardTimeNow();
+		DateTime now = DateTimeHelper.GetJapanStandardTimeNow();
 
 		MaintenanceText = GetMaintenanceText(FormMain, now);
 		UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestVersion.BuildDate;

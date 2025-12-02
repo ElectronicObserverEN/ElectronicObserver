@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Core;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Mxltvkpyuklh;

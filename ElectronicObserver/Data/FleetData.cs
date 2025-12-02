@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Data;
 
@@ -438,24 +439,26 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// <summary>
 	/// 泊地修理が発動可能か
 	/// </summary>
-	public bool CanAnchorageRepair
-	{
-		get
-		{
-			// 流石に資源チェックまではしない
-			return CanAnchorageRepairWithMember(MembersInstance);
-		}
-	}
+	public bool CanAnchorageRepair => CanAnchorageRepairWithMember(MembersInstance);
 
-	public static bool CanAnchorageRepairWithMember(IEnumerable<IShipData> membersInstance)
+	// 流石に資源チェックまではしない
+	public static bool CanAnchorageRepairWithMember(IEnumerable<IShipData?>? membersInstance)
 	{
-		var flagship = membersInstance.FirstOrDefault();
-		return flagship?.MasterShip?.ShipType == ShipTypes.RepairShip &&
-			   flagship.HPRate > 0.5 &&
-			   flagship.RepairingDockID == -1 &&
-			   membersInstance.All(s => s == null || (KCDatabase.Instance.Fleet[s.Fleet]?.ExpeditionState ?? 0) == 0) &&
-			   membersInstance.Take(2 + flagship.SlotInstance.Count(eq => eq?.MasterEquipment?.CategoryType == EquipmentTypes.RepairFacility))
-				   .Any(ship => ship?.RepairingDockID == -1 && 0.5 < ship.HPRate && ship.HPRate < 1.0);
+		if (membersInstance == null) return false;
+
+		bool anyShipOnExpedition = membersInstance
+			.OfType<IShipData>()
+			.Any(s => KCDatabase.Instance.Fleet[s.Fleet]?.ExpeditionState is not ExpeditionState.NotDeployed);
+
+		if (anyShipOnExpedition) return false;
+
+		FleetDataMock fleet = new()
+		{
+			ExpeditionState = ExpeditionState.NotDeployed,
+			MembersInstance = new([.. membersInstance]),
+		};
+
+		return fleet.CanAnchorageRepair();
 	}
 
 

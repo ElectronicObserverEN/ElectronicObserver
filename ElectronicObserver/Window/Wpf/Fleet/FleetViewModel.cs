@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core;
+using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Attacks.Specials;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Tools.AirDefense;
-using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
-using ElectronicObserver.Database;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Tools.EventLockPlanner;
-using System.Drawing;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
-using ElectronicObserver.Core.Types.Extensions;
-using ElectronicObserver.Core.Types.Attacks.Specials;
-using ElectronicObserver.Core.Types;
+using ElectronicObserver.Window.Tools.AirDefense;
+using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
 
@@ -34,12 +35,12 @@ public partial class FleetViewModel : AnchorableViewModel
 	private DataSerializationService DataSerializationService { get; }
 
 	public FleetStatusViewModel ControlFleet { get; }
-	public List<FleetItemViewModel> ControlMember { get; } = new();
+	public List<FleetItemViewModel> ControlMember { get; } = [];
 
 	public int FleetId { get; }
 	public int AnchorageRepairBound { get; set; }
 
-	public List<SpecialAttack> SpecialsAttacks { get; set; } = new();
+	public List<SpecialAttack> SpecialsAttacks { get; set; } = [];
 
 	public List<Color> ShipTagColors { get; set; } = GetShipTagColorList();
 
@@ -132,9 +133,14 @@ public partial class FleetViewModel : AnchorableViewModel
 		FleetData fleet = db.Fleet.Fleets[FleetId];
 		if (fleet == null) return;
 
+		Updated(fleet);
+	}
+
+	public void Updated(IFleetData fleet)
+	{
 		ControlFleet.Update(fleet);
 
-		AnchorageRepairBound = fleet.CanAnchorageRepair ? 2 + fleet.MembersInstance[0].SlotInstance.Count(eq => eq != null && eq.MasterEquipment.CategoryType == EquipmentTypes.RepairFacility) : 0;
+		AnchorageRepairBound = fleet.GetAnchorageRepairCount();
 
 		SpecialsAttacks = fleet.GetSpecialAttacks();
 
@@ -144,9 +150,9 @@ public partial class FleetViewModel : AnchorableViewModel
 				.Where(specialAttack => specialAttack.GetHitsPerShip(i).Any())
 				.ToDictionary(specialAttack => specialAttack, specialAttack => specialAttack.GetHitsPerShip(i));
 
-			ControlMember[i].Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
+			ControlMember[i].Update(fleet.MembersInstance?.Skip(i).FirstOrDefault(), fleet);
 		}
-		
+
 		Icon = ControlFleet.State.GetIcon();
 	}
 
@@ -154,6 +160,11 @@ public partial class FleetViewModel : AnchorableViewModel
 	{
 		FleetData? fleet = KCDatabase.Instance.Fleet.Fleets[FleetId];
 
+		UpdateTimerTick(fleet, KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
+	}
+
+	public void UpdateTimerTick(IFleetData? fleet, DateTime anchorageRepairingTimer)
+	{
 		if (fleet is not null)
 		{
 			ControlFleet.Refresh();
@@ -165,38 +176,50 @@ public partial class FleetViewModel : AnchorableViewModel
 			fleetItem.HP.ResumeUpdate();
 		}
 
-		// anchorage repairing
 		if (fleet is not null && Configuration.Config.FormFleet.ReflectAnchorageRepairHealing)
 		{
-			TimeSpan elapsed = DateTime.Now - KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
+			UpdateAnchorageRepair(fleet, anchorageRepairingTimer);
+		}
+	}
+	
+	private void UpdateAnchorageRepair(IFleetData fleet, DateTime anchorageRepairingTimer)
+	{
+		TimeSpan elapsed = DateTime.Now - anchorageRepairingTimer;
 
-			if (elapsed.TotalMinutes >= 20 && AnchorageRepairBound > 0)
+		if (elapsed.TotalMinutes < 20 || AnchorageRepairBound <= 0) return;
+		
+		double repairTimeMod = fleet.GetAnchorageRepairTimeModifier();
+
+		foreach (FleetItemViewModel control in ControlMember.Take(AnchorageRepairBound))
+		{
+			if (control.Ship is not IShipData ship) continue;
+			if (ship.RepairingDockID > -1) continue;
+			if (ship.HPRate < 0.5) continue;
+			if (ship.RepairTime is 0) continue;
+
+			FleetHpViewModel hpbar = control.HP;
+
+			if (!hpbar.UsePrevValue)
 			{
-				for (int i = 0; i < AnchorageRepairBound; i++)
-				{
-					FleetHpViewModel hpbar = ControlMember[i].HP;
-
-					double dockingSeconds = hpbar.Tag as double? ?? 0.0;
-
-					if (dockingSeconds <= 0.0) continue;
-
-					if (!hpbar.UsePrevValue)
-					{
-						hpbar.UsePrevValue = true;
-						hpbar.ShowDifference = true;
-					}
-
-					int damage = hpbar.HPBar.MaximumValue - hpbar.PrevValue;
-					int healAmount = Math.Min(Calculator.CalculateAnchorageRepairHealAmount(damage, dockingSeconds, elapsed), damage);
-
-					hpbar.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.MouseOver;
-					hpbar.RepairTime = KCDatabase.Instance.Fleet.AnchorageRepairingTimer + Calculator.CalculateAnchorageRepairTime(damage, dockingSeconds, Math.Min(healAmount + 1, damage));
-					hpbar.AkashiRepairBar.Value = hpbar.PrevValue + healAmount;
-
-					// todo Akashi repair HP bar changes
-					hpbar.ResumeUpdate();
-				}
+				hpbar.UsePrevValue = true;
+				hpbar.ShowDifference = true;
 			}
+
+			double dockingSeconds = repairTimeMod switch
+			{
+				1 => DateTimeHelper.FromAPITimeSpan(ship.RepairTime).TotalSeconds,
+				_ => (ship.RepairTimeUnit * repairTimeMod * (ship.HPMax - ship.HPCurrent) + TimeSpan.FromSeconds(30)).TotalSeconds,
+			};
+
+			int damage = hpbar.HPBar.MaximumValue - hpbar.PrevValue;
+			int healAmount = Math.Min(Calculator.CalculateAnchorageRepairHealAmount(damage, dockingSeconds, elapsed), damage);
+
+			hpbar.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.MouseOver;
+			hpbar.RepairTime = anchorageRepairingTimer + Calculator.CalculateAnchorageRepairTime(damage, dockingSeconds, Math.Min(healAmount + 1, damage));
+			hpbar.AkashiRepairBar.Value = hpbar.PrevValue + healAmount;
+
+			// todo Akashi repair HP bar changes
+			hpbar.ResumeUpdate();
 		}
 	}
 
@@ -257,8 +280,11 @@ public partial class FleetViewModel : AnchorableViewModel
 				member.ShipResource.BarAmmo.SetBarColorScheme(colorScheme);
 
 				member.ConfigurationChanged();
-				if (fleet != null)
-					member.Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
+
+				if (fleet is not null)
+				{
+					member.Update(fleet.MembersInstance?.Skip(i).FirstOrDefault(), fleet);
+				}
 			}
 		}
 	}
@@ -288,7 +314,7 @@ public partial class FleetViewModel : AnchorableViewModel
 				.Select(eventLock => Color.FromArgb(eventLock.A, eventLock.R, eventLock.G, eventLock.B))
 				.ToList();
 
-			List<Color> allColors = new List<Color>();
+			List<Color> allColors = [];
 
 			// First color isn't used
 			if (defaultColors.Any())
@@ -433,7 +459,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 			if (!shiplist.ContainsKey(shipId))
 			{
-				shiplist.Add(shipId, new List<ShipData> { ship });
+				shiplist.Add(shipId, [ship]);
 			}
 			else
 			{
@@ -530,18 +556,18 @@ public partial class FleetViewModel : AnchorableViewModel
 	}
 
 	/// <summary>
-	/// <see cref="https://docs.google.com/spreadsheets/d/1ppbOl9MR_8g_CPDpgMVDdRnhEMRTjg4x78bCg8uLzdg"/>
+	/// <see href="https://docs.google.com/spreadsheets/d/1ppbOl9MR_8g_CPDpgMVDdRnhEMRTjg4x78bCg8uLzdg"/>
 	/// </summary>
 	/// <param name="allShips"></param>
 	private void GenerateShipListShort(bool allShips)
 	{
 		KCDatabase db = KCDatabase.Instance;
-		List<string> ships = new List<string>();
+		List<string> ships = [];
 
 		foreach (ShipData ship in db.Ships.Values.Where(s => allShips || s.IsLocked))
 		{
 			int[] apiKyouka =
-			{
+			[
 				ship.FirepowerModernized,
 				ship.TorpedoModernized,
 				ship.AAModernized,
@@ -549,7 +575,7 @@ public partial class FleetViewModel : AnchorableViewModel
 				ship.LuckModernized,
 				ship.HPMaxModernized,
 				ship.ASWModernized,
-			};
+			];
 
 			int expProgress = 0;
 			if (ExpTable.ShipExp.ContainsKey(ship.Level + 1) && ship.Level != 99)
@@ -557,14 +583,14 @@ public partial class FleetViewModel : AnchorableViewModel
 				expProgress = (ExpTable.ShipExp[ship.Level].Next - ship.ExpNext) / ExpTable.ShipExp[ship.Level].Next;
 			}
 
-			int[] apiExp = { ship.ExpTotal, ship.ExpNext, expProgress };
+			int[] apiExp = [ship.ExpTotal, ship.ExpNext, expProgress];
 
 			string shipId = $"\"id\":{ship.ShipID}";
 			string level = $"\"lv\":{ship.Level}";
 			string kyouka = $"\"st\":[{string.Join(",", apiKyouka)}]";
 			string exp = $"\"exp\":[{string.Join(",", apiExp)}]";
 
-			string[] analysisData = { shipId, level, kyouka, exp };
+			string[] analysisData = [shipId, level, kyouka, exp];
 
 			ships.Add($"{{{string.Join(",", analysisData)}}}");
 		}
@@ -575,7 +601,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	}
 
 	/// <summary>
-	/// <see cref="https://docs.google.com/spreadsheets/d/1ppbOl9MR_8g_CPDpgMVDdRnhEMRTjg4x78bCg8uLzdg"/>
+	/// <see href="https://docs.google.com/spreadsheets/d/1ppbOl9MR_8g_CPDpgMVDdRnhEMRTjg4x78bCg8uLzdg"/>
 	/// </summary>
 	/// <param name="allEquipment"></param>
 	private void GenerateEquipListShort(bool allEquipment)

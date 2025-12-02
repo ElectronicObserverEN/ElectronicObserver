@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;

@@ -1,4 +1,5 @@
 ﻿using System;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility.Mathematics;
 using Xunit;
 

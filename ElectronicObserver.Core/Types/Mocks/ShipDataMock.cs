@@ -55,7 +55,7 @@ public class ShipDataMock : IShipData
 	public int Range { get; set; }
 	public IList<int> Slot { get; } = [];
 	public IList<int> SlotMaster { get; } = [];
-	public IList<IEquipmentData?> SlotInstance { get; set; } = [];
+	public IList<IEquipmentData?> SlotInstance { get; set; }
 	public IList<IEquipmentDataMaster?> SlotInstanceMaster { get; } = [];
 	public int ExpansionSlot { get; }
 	public int ExpansionSlotMaster { get; }
@@ -70,8 +70,8 @@ public class ShipDataMock : IShipData
 	public int Fuel { get; set; }
 	public int Ammo { get; set; }
 	public int SlotSize { get; }
-	public int RepairTime { get; }
-	public TimeSpan RepairTimeUnit => TimeSpan.Zero;
+	public int RepairTime => CalculateRepairTime(this) * 1000;
+	public TimeSpan RepairTimeUnit => this.CalculateDockingUnitTime();
 	public int RepairSteel { get; }
 	public int RepairFuel { get; }
 	public int Condition { get; set; }
@@ -192,6 +192,7 @@ public class ShipDataMock : IShipData
 
 		SlotSize = MasterShip.SlotSize;
 		Aircraft = MasterShip.Aircraft;
+		SlotInstance = [.. Enumerable.Range(0, SlotSize).Select(i => null as IEquipmentData)];
 
 		Fuel = ship.Fuel;
 		FuelMax = ship.Fuel;
@@ -239,4 +240,48 @@ public class ShipDataMock : IShipData
 	};
 
 	public override string ToString() => NameWithLevel;
+
+	/// <summary>
+	/// Repair time in seconds.
+	/// </summary>
+	private static int CalculateRepairTime(ShipDataMock ship) => ship.HPRate switch
+	{
+		< 1 => (int)((ship.HPMax - ship.HPCurrent) * BaseRepairTime(ship) * ShipTypeRepairMultiplier(ship) + 30),
+		_ => 0,
+	};
+
+	private static int BaseRepairTime(ShipDataMock ship) => ship.Level switch
+	{
+		< 12 => ship.Level * 10,
+		_ => ship.Level * 5 + (int)Math.Sqrt(ship.Level - 11) * 10 + 50,
+	};
+
+	private static double ShipTypeRepairMultiplier(ShipDataMock ship) => ship.MasterShip.ShipType switch
+	{
+		ShipTypes.Submarine or
+		ShipTypes.Escort => 0.5,
+
+		ShipTypes.Destroyer or
+		ShipTypes.LightCruiser or
+		ShipTypes.TorpedoCruiser or
+		ShipTypes.TrainingCruiser or
+		ShipTypes.SeaplaneTender or
+		ShipTypes.SubmarineAircraftCarrier or
+		ShipTypes.AmphibiousAssaultShip or
+		ShipTypes.FleetOiler => 1.0,
+
+		ShipTypes.HeavyCruiser or
+		ShipTypes.AviationCruiser or
+		ShipTypes.Battlecruiser or
+		ShipTypes.LightAircraftCarrier or
+		ShipTypes.SubmarineTender => 1.5,
+
+		ShipTypes.Battleship or
+		ShipTypes.AviationBattleship or
+		ShipTypes.AircraftCarrier or
+		ShipTypes.ArmoredAircraftCarrier or
+		ShipTypes.RepairShip => 2,
+
+		_ => 2,
+	};
 }

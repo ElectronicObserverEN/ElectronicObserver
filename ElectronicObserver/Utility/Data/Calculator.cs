@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Core.Types.Attacks;
@@ -1402,22 +1403,6 @@ public static class Calculator
 				return 0;
 		}
 	}
-
-
-
-	/// <summary>
-	/// HP を 1 回復するために必要な入渠時間を求めます。
-	/// </summary>
-	public static TimeSpan CalculateDockingUnitTime(IShipData ship)
-	{
-		int damage = ship.HPMax - ship.HPCurrent;
-		if (damage == 0)
-			return TimeSpan.Zero;
-
-		return new TimeSpan(DateTimeHelper.FromAPITimeSpan(ship.RepairTime).Add(TimeSpan.FromSeconds(-30)).Ticks / damage);
-	}
-
-
 
 	/// <summary>
 	/// 泊地修理において、指定時間修理したときの回復量を求めます。

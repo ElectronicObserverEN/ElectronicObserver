@@ -5,12 +5,11 @@ using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 
@@ -47,7 +46,7 @@ public class FleetStateViewModel : ObservableObject
 		return StateLabels[index];
 	}
 
-	public void UpdateFleetState(FleetData fleet)
+	public void UpdateFleetState(IFleetData fleet)
 	{
 		KCDatabase db = KCDatabase.Instance;
 
@@ -71,7 +70,7 @@ public class FleetStateViewModel : ObservableObject
 		Color colorInExpeditionBG = Colors.Transparent;
 
 		//所属艦なし
-		if (fleet == null || fleet.Members.All(id => id == -1))
+		if (fleet?.Members == null || fleet.Members.All(id => id == -1))
 		{
 			var state = GetStateLabel(index);
 
@@ -165,7 +164,7 @@ public class FleetStateViewModel : ObservableObject
 					if (ship != null && ship.HPRate < 1.0)
 					{
 						var totaltime = DateTimeHelper.FromAPITimeSpan(ship.RepairTime);
-						var unittime = Calculator.CalculateDockingUnitTime(ship);
+						var unittime = ship.RepairTimeUnit;
 						sb.AppendFormat(FormFleet.RepairTimeDetail,
 							i + 1,
 							DateTimeHelper.ToTimeRemainString(totaltime),
@@ -329,7 +328,7 @@ public class FleetStateViewModel : ObservableObject
 		}
 	}
 
-	private void TryAddChuuhaState(FleetData fleet, ref int index)
+	private void TryAddChuuhaState(IFleetData fleet, ref int index)
 	{
 		if (fleet.IsInSortie) return;
 		if (fleet.MembersInstance is null) return;
@@ -344,7 +343,7 @@ public class FleetStateViewModel : ObservableObject
 		index++;
 	}
 
-	private void TryAddShouhaState(FleetData fleet, ref int index)
+	private void TryAddShouhaState(IFleetData fleet, ref int index)
 	{
 		if (fleet.IsInSortie) return;
 		if (fleet.MembersInstance is null) return;

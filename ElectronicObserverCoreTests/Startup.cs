@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Mocks;
@@ -14,11 +14,16 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.TestData;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
+using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
+using ElectronicObserverCoreTests.Mocks;
+using Jot;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using static ElectronicObserver.Utility.Configuration.ConfigurationData;
@@ -67,6 +72,9 @@ public class Startup
 			.AddSingleton<AutoRefreshTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			.AddSingleton<EquipmentUpgradePlannerTranslationViewModel>()
+			.AddSingleton<FormFleetTranslationViewModel>()
+			.AddSingleton<FormFleetOverviewTranslationViewModel>()
+			.AddSingleton<ShipTrainingPlannerTranslationViewModel>()
 			.AddSingleton<PhaseFactory>()
 			.AddSingleton<BattleFactory>()
 			.AddSingleton<DataSerializationService>()
@@ -80,6 +88,9 @@ public class Startup
 			.AddSingleton<ImageLoadService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<IClipboardService, ClipboardService>()
+			.AddSingleton<ITransportGaugeService, TransportGaugeService>()
+			.AddSingleton<ShipTrainingPlanViewerViewModel>()
+			.AddSingleton(new Tracker(new TestStore()))
 			.BuildServiceProvider());
 
 		Directory.CreateDirectory("Record");

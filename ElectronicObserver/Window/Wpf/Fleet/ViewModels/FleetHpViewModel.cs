@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
@@ -23,7 +24,6 @@ public partial class FleetHpViewModel : ObservableObject
 	/// </summary>
 	public SolidColorBrush BarColorDecrement { get; set; } = new(Color.FromArgb(255, 136, 34, 34));
 
-	public double? Tag { get; set; }
 	public bool UsePrevValue { get; set; }
 	public bool ShowDifference { get; set; }
 	// when doing Akashi repair this is set to the original HP

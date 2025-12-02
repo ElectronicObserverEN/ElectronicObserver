@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Core;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Mathematics;
 
