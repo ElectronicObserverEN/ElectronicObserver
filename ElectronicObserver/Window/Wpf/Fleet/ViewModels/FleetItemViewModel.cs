@@ -115,7 +115,7 @@ public class FleetItemViewModel : ObservableObject
 
 		bool isEscaped = ship.IsEscaped(fleet);
 		IEnumerable<IEquipmentData> equipments = ship.AllSlotInstance
-			.Where(eq => eq != null);
+			.OfType<IEquipmentData>();
 
 		CanSink = ship.CanSink(fleet);
 		IsInSortie = fleet.IsInSortie;
