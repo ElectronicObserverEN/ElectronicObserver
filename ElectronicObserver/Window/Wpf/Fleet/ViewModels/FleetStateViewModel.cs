@@ -10,8 +10,6 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 
@@ -72,7 +70,7 @@ public class FleetStateViewModel : ObservableObject
 		Color colorInExpeditionBG = Colors.Transparent;
 
 		//所属艦なし
-		if (fleet == null || fleet.Members.All(id => id == -1))
+		if (fleet?.Members == null || fleet.Members.All(id => id == -1))
 		{
 			var state = GetStateLabel(index);
 
