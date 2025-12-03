@@ -24,6 +24,11 @@ public class FleetManager : APIWrapper
 	/// </summary>
 	public DateTime AnchorageRepairingTimer { get; private set; }
 
+	/// <summary>
+	/// 泊地修理タイマ
+	/// </summary>
+	public DateTime HomePortSupplyTimer { get; private set; }
+
 
 
 	/// <summary> 更新直前の艦船データ </summary>
@@ -71,6 +76,7 @@ public class FleetManager : APIWrapper
 	{
 		Fleets = new IDDictionary<FleetData>();
 		AnchorageRepairingTimer = DateTime.MinValue;
+		HomePortSupplyTimer = DateTime.MinValue;
 
 		ConditionPredictMin = 0;
 		ConditionPredictMax = ConditionHealingSpan.TotalSeconds * 2;
@@ -160,11 +166,19 @@ public class FleetManager : APIWrapper
 		// 泊地修理・コンディションの処理
 		if (apiname == "api_port/port")
 		{
+			if ((DateTime.Now - HomePortSupplyTimer).TotalMinutes >= 15)
+			{
+				StartHomePortSupplyTimer();
+			}
 
 			if ((DateTime.Now - AnchorageRepairingTimer).TotalMinutes >= 20)
+			{
 				StartAnchorageRepairingTimer();
+			}
 			else
+			{
 				CheckAnchorageRepairingHealing();
+			}
 
 			UpdateConditionPrediction();
 		}
@@ -229,6 +243,11 @@ public class FleetManager : APIWrapper
 	public void StartAnchorageRepairingTimer()
 	{
 		AnchorageRepairingTimer = DateTime.Now;
+	}
+
+	public void StartHomePortSupplyTimer()
+	{
+		HomePortSupplyTimer = DateTime.Now;
 	}
 
 	/// <summary>

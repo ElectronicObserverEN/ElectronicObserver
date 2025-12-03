@@ -185,6 +185,14 @@
 				IsChecked="{Binding ShowAircraftLevelByNumber}"
 				ToolTip="{Binding Translation.FormFleet_ShowAircraftLevelByNumberToolTip}"
 				/>
+
+			<CheckBox
+				Grid.Row="5"
+				Grid.Column="2"
+				Content="{Binding Translation.FormFleet_ShowHomePortSupplyTimer}"
+				IsChecked="{Binding ShowHomePortSupplyTimer}"
+				ToolTip="{Binding Translation.FormFleet_ShowHomePortSupplyTimerToolTip}"
+				/>
 		</Grid>
 
 		<GroupBox Grid.Row="4" Header="{Binding Translation.FormFleet_ShowTankTp}">

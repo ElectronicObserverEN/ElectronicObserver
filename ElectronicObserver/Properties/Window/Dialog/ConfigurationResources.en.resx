@@ -794,4 +794,10 @@ When enabled, the preview will be ignored and all compositions will be shown.</v
   <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
     <value>Secretary</value>
   </data>
+  <data name="FormFleet_ShowHomePortSupplyTimer" xml:space="preserve">
+    <value>Supply timer</value>
+  </data>
+  <data name="FormFleet_ShowHomePortSupplyTimerToolTip" xml:space="preserve">
+    <value>Show home port supply timer in the fleet list window.</value>
+  </data>
 </root>

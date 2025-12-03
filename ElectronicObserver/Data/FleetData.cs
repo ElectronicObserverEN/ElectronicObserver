@@ -230,10 +230,19 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 
 					}
 
+					// 随伴艦一括解除を除く
+					if (shipID != -2)
+					{
+						if (IsFlagshipRepairShip)
+						{
+							KCDatabase.Instance.Fleet.StartAnchorageRepairingTimer();
+						}
 
-					if (shipID != -2 && IsFlagshipRepairShip)        //随伴艦一括解除を除く
-						KCDatabase.Instance.Fleet.StartAnchorageRepairingTimer();
-
+						if (HasNosakiSparklePosition)
+						{
+							KCDatabase.Instance.Fleet.StartHomePortSupplyTimer();
+						}
+					}
 				}
 				else
 				{
@@ -247,12 +256,23 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 							{
 
 								if (replacedID != -1)
+								{
 									_members[i] = replacedID;
+								}
 								else
+								{
 									RemoveShip(i);
+								}
 
 								if (IsFlagshipRepairShip)
+								{
 									KCDatabase.Instance.Fleet.StartAnchorageRepairingTimer();
+								}
+
+								if (HasNosakiSparklePosition)
+								{
+									KCDatabase.Instance.Fleet.StartHomePortSupplyTimer();
+								}
 
 								break;
 							}
@@ -427,14 +447,12 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// <summary>
 	/// 旗艦が工作艦か
 	/// </summary>
-	public bool IsFlagshipRepairShip
-	{
-		get
-		{
-			ShipData flagship = KCDatabase.Instance.Ships[_members[0]];
-			return flagship != null && flagship.MasterShip.ShipType == ShipTypes.RepairShip;
-		}
-	}
+	public bool IsFlagshipRepairShip => KCDatabase.Instance.Ships[_members[0]]?.MasterShip.ShipType is ShipTypes.RepairShip;
+
+	private bool HasNosakiSparklePosition => MembersInstance
+		?.Take(2)
+		.Any(s => s?.MasterShip.ShipId is ShipId.Nosaki or ShipId.NosakiKai)
+		?? false;
 
 	/// <summary>
 	/// 泊地修理が発動可能か

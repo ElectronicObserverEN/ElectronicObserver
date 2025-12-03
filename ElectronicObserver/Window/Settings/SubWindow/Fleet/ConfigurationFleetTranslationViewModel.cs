@@ -25,6 +25,9 @@ public class ConfigurationFleetTranslationViewModel : TranslationBaseViewModel
 	public string FormFleet_ShowAnchorageRepairingTimer => ConfigurationResources.FormFleet_ShowAnchorageRepairingTimer;
 	public string FormFleet_ShowAnchorageRepairingTimerToolTip => ConfigurationResources.FormFleet_ShowAnchorageRepairingTimerToolTip;
 
+	public string FormFleet_ShowHomePortSupplyTimer => ConfigurationResources.FormFleet_ShowHomePortSupplyTimer;
+	public string FormFleet_ShowHomePortSupplyTimerToolTip => ConfigurationResources.FormFleet_ShowHomePortSupplyTimerToolTip;
+
 	public string FormFleet_BlinkAtDamaged => ConfigurationResources.FormFleet_BlinkAtDamaged;
 	public string FormFleet_BlinkAtDamagedToolTip => ConfigurationResources.FormFleet_BlinkAtDamagedToolTip;
 

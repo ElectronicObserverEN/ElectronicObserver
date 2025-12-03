@@ -1021,6 +1021,11 @@ public sealed class Configuration
 			public bool ShowAnchorageRepairingTimer { get; set; }
 
 			/// <summary>
+			/// 泊地修理タイマを表示するか
+			/// </summary>
+			public bool ShowHomePortSupplyTimer { get; set; }
+
+			/// <summary>
 			/// タイマー完了時に点滅させるか
 			/// </summary>
 			public bool BlinkAtCompletion { get; set; }
@@ -1106,6 +1111,7 @@ public sealed class Configuration
 				ShowAircraftLevelByNumber = false;
 				AirSuperiorityMethod = 1;
 				ShowAnchorageRepairingTimer = true;
+				ShowHomePortSupplyTimer = true;
 				BlinkAtCompletion = true;
 				ShowConditionIcon = true;
 				FixedShipNameWidth = 40;

@@ -38,6 +38,8 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 
 	public bool ShowAnchorageRepairingTimer { get; set; }
 
+	public bool ShowHomePortSupplyTimer { get; set; }
+
 	public bool BlinkAtCompletion { get; set; }
 
 	public bool ShowConditionIcon { get; set; }
@@ -86,6 +88,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		ShowAircraftLevelByNumber = Config.ShowAircraftLevelByNumber;
 		AirSuperiorityMethod = (AirSuperiorityMethod)Config.AirSuperiorityMethod;
 		ShowAnchorageRepairingTimer = Config.ShowAnchorageRepairingTimer;
+		ShowHomePortSupplyTimer = Config.ShowHomePortSupplyTimer;
 		BlinkAtCompletion = Config.BlinkAtCompletion;
 		ShowConditionIcon = Config.ShowConditionIcon;
 		FixedShipNameWidth = Config.FixedShipNameWidth;
@@ -111,6 +114,7 @@ public partial class ConfigurationFleetViewModel : ConfigurationViewModelBase
 		Config.ShowAircraftLevelByNumber = ShowAircraftLevelByNumber;
 		Config.AirSuperiorityMethod = (int)AirSuperiorityMethod;
 		Config.ShowAnchorageRepairingTimer = ShowAnchorageRepairingTimer;
+		Config.ShowHomePortSupplyTimer = ShowHomePortSupplyTimer;
 		Config.BlinkAtCompletion = BlinkAtCompletion;
 		Config.ShowConditionIcon = ShowConditionIcon;
 		Config.FixedShipNameWidth = FixedShipNameWidth;

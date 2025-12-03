@@ -135,13 +135,15 @@ Fórmula 33:
  n=4: {9:f2}</value>
   </data>
   <data name="AnchorageRepairToolTip" xml:space="preserve">
-    <value>Temporizador de reparación del anclaje
-Inicio:</value>
+    <value>Temporizador de reparación del anclaje</value>
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>Recuperación</value>
   </data>
   <data name="LandingOperationTooltip" xml:space="preserve">
     <value>Landing operation</value>
+  </data>
+  <data name="TimerStart" xml:space="preserve">
+    <value>Inicio</value>
   </data>
 </root>

@@ -135,13 +135,15 @@
 分歧点系数4：{9:f2}</value>
   </data>
   <data name="AnchorageRepairToolTip" xml:space="preserve">
-    <value>泊地修理计时器
-开始: </value>
+    <value>泊地修理计时器</value>
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>恢复</value>
   </data>
   <data name="LandingOperationTooltip" xml:space="preserve">
     <value>Landing operation</value>
+  </data>
+  <data name="TimerStart" xml:space="preserve">
+    <value>开始</value>
   </data>
 </root>
