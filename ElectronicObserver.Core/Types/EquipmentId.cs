@@ -561,4 +561,10 @@ public enum EquipmentId
 	CarrierBasedTorpedo_Ju87D4_Fliegerass = 559,
 	CarrierBasedFighter_Bf109T3_G = 560,
 	JetBomber_Ho229 = 561,
+	LandBasedAttacker_Do217E5_TVguidedHs293D = 562,
+	MainGunMedium_21cmSingleMainGunMount = 564,
+	SecondaryGun_15cmSingleSecondaryGunMount = 565,
+	SecondaryGun_10_2cmTripleSecondaryGunMount = 566,
+	CarrierBasedFighter_SeaGladiator = 567,
+	SeaplaneFighter_KyoufuuKaiNi_Skilled = 568,
 }
