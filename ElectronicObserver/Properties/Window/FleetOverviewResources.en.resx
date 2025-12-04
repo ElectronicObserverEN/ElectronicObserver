@@ -135,13 +135,18 @@ Formula 33:
  n=4: {9:f2}</value>
   </data>
   <data name="AnchorageRepairToolTip" xml:space="preserve">
-    <value>Anchorage Repair Timer
-Start: </value>
+    <value>Anchorage Repair Timer</value>
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>Recovery</value>
   </data>
   <data name="LandingOperationTooltip" xml:space="preserve">
     <value>Landing operation</value>
+  </data>
+  <data name="TimerStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="HomePortSupplyToolTip" xml:space="preserve">
+    <value>Home port supply timer</value>
   </data>
 </root>

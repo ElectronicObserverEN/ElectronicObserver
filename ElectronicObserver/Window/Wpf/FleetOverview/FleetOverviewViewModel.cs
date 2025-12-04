@@ -11,7 +11,6 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Fleet;
@@ -25,6 +24,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 
 	public List<FleetViewModel> Fleets { get; }
 	public FleetOverviewItemViewModel AnchorageRepairingTimer { get; }
+	public FleetOverviewItemViewModel HomePortSupplyTimer { get; }
 	public CombinedFleetOverviewItemViewModel CombinedTag { get; }
 
 	public FleetOverviewViewModel(List<FleetViewModel> fleets) : base("Fleets", "Fleets", IconContent.FormFleet)
@@ -75,6 +75,13 @@ public class FleetOverviewViewModel : AnchorableViewModel
 			Visible = false,
 		};
 
+		HomePortSupplyTimer = new()
+		{
+			Text = "-",
+			Icon = IconContent.ConditionSparkle,
+			Visible = false,
+		};
+
 		CombinedTag = new()
 		{
 			Text = "-",
@@ -90,7 +97,8 @@ public class FleetOverviewViewModel : AnchorableViewModel
 
 	private void ConfigurationChanged()
 	{
-		AnchorageRepairingTimer.Visible = Utility.Configuration.Config.FormFleet.ShowAnchorageRepairingTimer;
+		AnchorageRepairingTimer.Visible = Configuration.Config.FormFleet.ShowAnchorageRepairingTimer;
+		HomePortSupplyTimer.Visible = Configuration.Config.FormFleet.ShowHomePortSupplyTimer;
 	}
 
 	private void Updated(string apiname, dynamic data)
@@ -127,7 +135,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				Math.Floor(Calculator.GetSearchingAbility_New33(fleet1, 4) * 100) / 100 + Math.Floor(Calculator.GetSearchingAbility_New33(fleet2, 4) * 100) / 100,
 				radar.Sum(),
 				radar.Count(i => i > 0),
-				transport.Count(i => i> 0),
+				transport.Count(i => i > 0),
 				landing.Count(i => i > 0),
 				GetTankTpTooltip(fleet1, fleet2)
 			);
@@ -146,12 +154,24 @@ public class FleetOverviewViewModel : AnchorableViewModel
 			AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
 			AnchorageRepairingTimer.Tag = KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
 			AnchorageRepairingTimer.ToolTip =
-				FormFleetOverview.AnchorageRepairToolTip +
-				DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) +
-				$"\r\n{FormFleetOverview.Recovery}: " +
-				DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20));
+				$"""
+				{FleetOverviewResources.AnchorageRepairToolTip}
+				{FleetOverviewResources.TimerStart}：{DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer)}
+				{FleetOverviewResources.Recovery}：{DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20))}
+				""";
 		}
 
+		if (KCDatabase.Instance.Fleet.HomePortSupplyTimer > DateTime.MinValue)
+		{
+			HomePortSupplyTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.HomePortSupplyTimer);
+			HomePortSupplyTimer.Tag = KCDatabase.Instance.Fleet.HomePortSupplyTimer;
+			HomePortSupplyTimer.ToolTip =
+				$"""
+				{FleetOverviewResources.HomePortSupplyToolTip}
+				{FleetOverviewResources.TimerStart}：{DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.HomePortSupplyTimer)}
+				{FleetOverviewResources.Recovery}：{DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.HomePortSupplyTimer.AddMinutes(15))}
+				""";
+		}
 	}
 
 	private string GetTankTpTooltip(IFleetData fleet1, IFleetData fleet2)
@@ -171,9 +191,14 @@ public class FleetOverviewViewModel : AnchorableViewModel
 
 	private void UpdateTimerTick()
 	{
-		if (AnchorageRepairingTimer is { Visible: true, Tag: not null })
+		if (AnchorageRepairingTimer is { Visible: true, Tag: DateTime repairTime })
 		{
-			AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString((DateTime)AnchorageRepairingTimer.Tag);
+			AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString(repairTime);
+		}
+
+		if (HomePortSupplyTimer is { Visible: true, Tag: DateTime supplyTime })
+		{
+			HomePortSupplyTimer.Text = DateTimeHelper.ToTimeElapsedString(supplyTime);
 		}
 	}
 }

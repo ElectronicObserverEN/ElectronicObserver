@@ -135,13 +135,15 @@
 　분기점계수4: {9:f2}</value>
   </data>
   <data name="AnchorageRepairToolTip" xml:space="preserve">
-    <value>정박지 수리 타이머
-개시:</value>
+    <value>정박지 수리 타이머</value>
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>회복</value>
   </data>
   <data name="LandingOperationTooltip" xml:space="preserve">
     <value>전차 유송량(TP)</value>
+  </data>
+  <data name="TimerStart" xml:space="preserve">
+    <value>개시</value>
   </data>
 </root>

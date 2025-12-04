@@ -28,6 +28,7 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
 			<ItemsControl Grid.Row="0" ItemsSource="{Binding Fleets}">
@@ -86,6 +87,31 @@
 
 			<StackPanel
 				Grid.Row="2"
+				DataContext="{Binding HomePortSupplyTimer}"
+				Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
+				>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewTag" />
+						<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewText" />
+					</Grid.ColumnDefinitions>
+
+					<Border
+						Grid.Column="1"
+						Background="Transparent"
+						ToolTip="{Binding ToolTip}"
+						>
+						<StackPanel Orientation="Horizontal">
+							<common:IconContentIcon Margin="2 0" Type="{Binding Icon}" />
+							<TextBlock Text="{Binding Text}" />
+						</StackPanel>
+					</Border>
+				</Grid>
+				<Separator />
+			</StackPanel>
+
+			<StackPanel
+				Grid.Row="3"
 				DataContext="{Binding CombinedTag}"
 				Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
 				>

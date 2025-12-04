@@ -809,4 +809,10 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Control_DiscordRPC_Secretary" xml:space="preserve">
     <value>秘書艦</value>
   </data>
+  <data name="FormFleet_ShowHomePortSupplyTimer" xml:space="preserve">
+    <value>母港給糧タイマを表示する</value>
+  </data>
+  <data name="FormFleet_ShowHomePortSupplyTimerToolTip" xml:space="preserve">
+    <value>艦隊一覧の母港給糧タイマを表示するかを指定します。</value>
+  </data>
 </root>
