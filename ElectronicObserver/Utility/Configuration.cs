@@ -1016,13 +1016,10 @@ public sealed class Configuration
 			public int AirSuperiorityMethod { get; set; }
 
 			/// <summary>
-			/// 泊地修理タイマを表示するか
+			/// 泊地修理タイマーを表示するか
 			/// </summary>
 			public bool ShowAnchorageRepairingTimer { get; set; }
 
-			/// <summary>
-			/// 泊地修理タイマを表示するか
-			/// </summary>
 			public bool ShowHomePortSupplyTimer { get; set; }
 
 			/// <summary>

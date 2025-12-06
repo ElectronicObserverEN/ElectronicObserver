@@ -425,10 +425,10 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>遠征・入渠等の完了時に、ラベルを点滅させるかを指定します。</value>
   </data>
   <data name="FormFleet_ShowAnchorageRepairingTimer" xml:space="preserve">
-    <value>泊地修理タイマを表示する</value>
+    <value>泊地修理タイマーを表示する</value>
   </data>
   <data name="FormFleet_ShowAnchorageRepairingTimerToolTip" xml:space="preserve">
-    <value>艦隊一覧の泊地修理タイマを表示するかを指定します。</value>
+    <value>艦隊一覧の泊地修理タイマーを表示するかを指定します。</value>
   </data>
   <data name="FormFleet_AirSuperiorityMethod_Disabled" xml:space="preserve">
     <value>熟練度を無視</value>
@@ -810,9 +810,9 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>秘書艦</value>
   </data>
   <data name="FormFleet_ShowHomePortSupplyTimer" xml:space="preserve">
-    <value>母港給糧タイマを表示する</value>
+    <value>母港給糧タイマーを表示する</value>
   </data>
   <data name="FormFleet_ShowHomePortSupplyTimerToolTip" xml:space="preserve">
-    <value>艦隊一覧の母港給糧タイマを表示するかを指定します。</value>
+    <value>艦隊一覧の母港給糧タイマーを表示するかを指定します。</value>
   </data>
 </root>

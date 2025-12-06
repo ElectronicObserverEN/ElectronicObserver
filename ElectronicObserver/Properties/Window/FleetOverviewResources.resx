@@ -135,7 +135,7 @@
 　分岐点係数4: {9:f2}</value>
   </data>
   <data name="AnchorageRepairToolTip" xml:space="preserve">
-    <value>泊地修理タイマ</value>
+    <value>泊地修理タイマー</value>
   </data>
   <data name="Recovery" xml:space="preserve">
     <value>回復</value>
@@ -144,7 +144,7 @@
     <value>戦車輸送量(TP)</value>
   </data>
   <data name="HomePortSupplyToolTip" xml:space="preserve">
-    <value>母港給糧タイマ</value>
+    <value>母港給糧タイマー</value>
   </data>
   <data name="TimerStart" xml:space="preserve">
     <value>開始</value>

@@ -20,12 +20,12 @@ public class FleetManager : APIWrapper
 	public FleetType CombinedFlag { get; internal set; }
 
 	/// <summary>
-	/// 泊地修理タイマ
+	/// 泊地修理タイマー
 	/// </summary>
 	public DateTime AnchorageRepairingTimer { get; private set; }
 
 	/// <summary>
-	/// 泊地修理タイマ
+	/// 泊地修理タイマー
 	/// </summary>
 	public DateTime HomePortSupplyTimer { get; private set; }
 
@@ -238,7 +238,7 @@ public class FleetManager : APIWrapper
 
 
 	/// <summary>
-	/// 泊地修理タイマを現在時刻にセットします。
+	/// 泊地修理タイマーを現在時刻にセットします。
 	/// </summary>
 	public void StartAnchorageRepairingTimer()
 	{
@@ -251,7 +251,7 @@ public class FleetManager : APIWrapper
 	}
 
 	/// <summary>
-	/// 泊地修理による回復が発生していたかをチェックし、発生していた場合は泊地修理タイマをリセットします。
+	/// 泊地修理による回復が発生していたかをチェックし、発生していた場合は泊地修理タイマーをリセットします。
 	/// </summary>
 	public void CheckAnchorageRepairingHealing()
 	{
