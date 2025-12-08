@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="File" xml:space="preserve">
+    <value>檔案(_F)</value>
+  </data>
+  <data name="File_Close" xml:space="preserve">
+    <value>關閉(&amp;X)</value>
+  </data>
+  <data name="File_Configuration" xml:space="preserve">
+    <value>設定(&amp;C)...</value>
+  </data>
+  <data name="File_Layout" xml:space="preserve">
+    <value>佈局(&amp;L)</value>
+  </data>
+  <data name="File_Layout_Change" xml:space="preserve">
+    <value>儲存到另一個檔案(&amp;C)...</value>
+  </data>
+  <data name="File_Layout_Load" xml:space="preserve">
+    <value>恢復(&amp;L)</value>
+  </data>
+  <data name="File_Layout_LockLayout" xml:space="preserve">
+    <value>鎖定佈局(&amp;T)</value>
+  </data>
+  <data name="File_Layout_Open" xml:space="preserve">
+    <value>從另一個檔案恢復(&amp;O)...</value>
+  </data>
+  <data name="File_Layout_Save" xml:space="preserve">
+    <value>儲存(&amp;S)</value>
+  </data>
+  <data name="File_Layout_TopMost" xml:space="preserve">
+    <value>視窗最前端(&amp;M)</value>
+  </data>
+  <data name="File_Notification" xml:space="preserve">
+    <value>通知(&amp;N)</value>
+  </data>
+  <data name="File_Notification_MuteAll" xml:space="preserve">
+    <value>將所有通知靜音(&amp;M)</value>
+  </data>
+  <data name="File_Record" xml:space="preserve">
+    <value>記錄(&amp;R)</value>
+  </data>
+  <data name="File_Record_Load" xml:space="preserve">
+    <value>讀取(&amp;L)</value>
+  </data>
+  <data name="File_Record_Save" xml:space="preserve">
+    <value>儲存(&amp;S)</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>顯示(&amp;V)</value>
+  </data>
+  <data name="View_Fleet" xml:space="preserve">
+    <value>艦隊(&amp;F)</value>
+  </data>
+  <data name="View_Fleet_1" xml:space="preserve">
+    <value>#&amp;1</value>
+  </data>
+  <data name="View_Fleet_2" xml:space="preserve">
+    <value>#&amp;2</value>
+  </data>
+  <data name="View_Fleet_3" xml:space="preserve">
+    <value>#&amp;3</value>
+  </data>
+  <data name="View_Fleet_4" xml:space="preserve">
+    <value>#&amp;4</value>
+  </data>
+  <data name="View_FleetOverview" xml:space="preserve">
+    <value>艦隊一覽(&amp;O)</value>
+  </data>
+  <data name="View_ShipGroup" xml:space="preserve">
+    <value>艦娘列表(&amp;G)</value>
+  </data>
+  <data name="View_Dock" xml:space="preserve">
+    <value>入渠(&amp;D)</value>
+  </data>
+  <data name="View_Arsenal" xml:space="preserve">
+    <value>工廠(&amp;A)</value>
+  </data>
+  <data name="View_BaseAirCorps" xml:space="preserve">
+    <value>基地航空隊(&amp;S)</value>
+  </data>
+  <data name="View_Headquarters" xml:space="preserve">
+    <value>司令部(&amp;H)</value>
+  </data>
+  <data name="View_Quest" xml:space="preserve">
+    <value>任務(&amp;Q)</value>
+  </data>
+  <data name="View_Information" xml:space="preserve">
+    <value>訊息(&amp;I)</value>
+  </data>
+  <data name="View_Compass" xml:space="preserve">
+    <value>羅盤(&amp;C)</value>
+  </data>
+  <data name="View_Battle" xml:space="preserve">
+    <value>戰鬥(&amp;B)</value>
+  </data>
+  <data name="View_Browser" xml:space="preserve">
+    <value>瀏覽器(&amp;M)</value>
+  </data>
+  <data name="View_Log" xml:space="preserve">
+    <value>日誌(&amp;L)</value>
+  </data>
+  <data name="WindowCapture" xml:space="preserve">
+    <value>視窗捕捉(&amp;W)</value>
+  </data>
+  <data name="WindowCapture_SubWindow" xml:space="preserve">
+    <value>子視窗(&amp;C)</value>
+  </data>
+  <data name="WindowCapture_AttachAll" xml:space="preserve">
+    <value>搜尋並全部擷取(&amp;S)</value>
+  </data>
+  <data name="WindowCapture_DetachAll" xml:space="preserve">
+    <value>關閉所有擷取的視窗(&amp;R)</value>
+  </data>
+  <data name="View_Json" xml:space="preserve">
+    <value>JSON(&amp;J)</value>
+  </data>
+  <data name="Tool" xml:space="preserve">
+    <value>工具(&amp;T)</value>
+  </data>
+  <data name="Tool_EquipmentList" xml:space="preserve">
+    <value>裝備一覽(&amp;Q)</value>
+  </data>
+  <data name="Tool_DropRecord" xml:space="preserve">
+    <value>掉落記錄(&amp;D)</value>
+  </data>
+  <data name="Tool_DevelopmentRecord" xml:space="preserve">
+    <value>開發記錄(&amp;V)</value>
+  </data>
+  <data name="Tool_ConstructionRecord" xml:space="preserve">
+    <value>建造記錄(&amp;R)</value>
+  </data>
+  <data name="Tool_ResourceChart" xml:space="preserve">
+    <value>資源圖表(&amp;C)</value>
+  </data>
+  <data name="Tool_AlbumMasterShip" xml:space="preserve">
+    <value>艦娘圖鑑(&amp;S)</value>
+  </data>
+  <data name="Tool_AlbumMasterEquipment" xml:space="preserve">
+    <value>裝備圖鑑(&amp;E)</value>
+  </data>
+  <data name="Tool_AntiAirDefense" xml:space="preserve">
+    <value>對空火力詳情(&amp;A)</value>
+  </data>
+  <data name="Tool_FleetImageGenerator" xml:space="preserve">
+    <value>輸出編成圖片(&amp;F)</value>
+  </data>
+  <data name="Tool_BaseAirCorpsSimulation" xml:space="preserve">
+    <value>基地航空隊編成(&amp;B)</value>
+  </data>
+  <data name="Tool_ExpChecker" xml:space="preserve">
+    <value>計算所需經驗值(&amp;X)</value>
+  </data>
+  <data name="Tool_ExpeditionCheck" xml:space="preserve">
+    <value>遠征檢查(&amp;M)</value>
+  </data>
+  <data name="Tool_ExtraBrowser" xml:space="preserve">
+    <value>額外的瀏覽器</value>
+  </data>
+  <data name="Debug" xml:space="preserve">
+    <value>Debug(&amp;D)</value>
+  </data>
+  <data name="Debug_LoadAPIFromFile" xml:space="preserve">
+    <value>從檔案讀取 API(&amp;L)...</value>
+  </data>
+  <data name="Debug_LoadInitialAPI" xml:space="preserve">
+    <value>讀取 API 列表(&amp;A)...</value>
+  </data>
+  <data name="Debug_LoadRecordFromOld" xml:space="preserve">
+    <value>從舊的 apistart2 構建記錄(&amp;O)...</value>
+  </data>
+  <data name="Debug_DeleteOldAPI" xml:space="preserve">
+    <value>移除舊的 API 資料(&amp;D)</value>
+  </data>
+  <data name="Debug_RenameShipResource" xml:space="preserve">
+    <value>重新命名艦娘資源(&amp;R)...</value>
+  </data>
+  <data name="Debug_LoadDataFromOld" xml:space="preserve">
+    <value>從舊的apistart2恢復深海棲艦(&amp;A)...</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>幫助(&amp;H)</value>
+  </data>
+  <data name="Help_Help" xml:space="preserve">
+    <value>線上幫助(&amp;H)...</value>
+  </data>
+  <data name="Help_Version" xml:space="preserve">
+    <value>版本訊息(&amp;V)</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>準備中...</value>
+  </data>
+  <data name="Clock" xml:space="preserve">
+    <value>時鐘</value>
+  </data>
+  <data name="View_FleetPreset" xml:space="preserve">
+    <value>自訂編成(&amp;P)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>試制七四式電子觀測儀</value>
+  </data>
+  <data name="Help_Issue" xml:space="preserve">
+    <value>報告問題</value>
+  </data>
+  <data name="Help_Discord" xml:space="preserve">
+    <value>加入我們的 Discord</value>
+  </data>
+  <data name="Help_Update" xml:space="preserve">
+    <value>檢查更新</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value> 啟動中…</value>
+  </data>
+  <data name="ExitConfirmation" xml:space="preserve">
+    <value>{0} 確定要關閉嗎？</value>
+  </data>
+  <data name="ConfirmatonCaption" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="LayoutLoaded" xml:space="preserve">
+    <value>已成功從 {0} 讀取視窗佈局。</value>
+  </data>
+  <data name="ShipDataNotLoaded" xml:space="preserve">
+    <value>艦娘資料尚未讀取。</value>
+  </data>
+  <data name="ErrorCaption" xml:space="preserve">
+    <value>錯誤</value>
+  </data>
+  <data name="EquipmentDataNotLoaded" xml:space="preserve">
+    <value>裝備資料尚未讀取。</value>
+  </data>
+  <data name="OpenEOWiki" xml:space="preserve">
+    <value>這將使用外部瀏覽器打開 EO wiki。
+你確定嗎？</value>
+  </data>
+  <data name="HelpCaption" xml:space="preserve">
+    <value>幫助</value>
+  </data>
+  <data name="ReportIssue" xml:space="preserve">
+    <value>在外部瀏覽器中打開線上幫助。
+你確定嗎？</value>
+  </data>
+  <data name="ReportIssueCaption" xml:space="preserve">
+    <value>報告問題</value>
+  </data>
+  <data name="FailedToOpenBrowser" xml:space="preserve">
+    <value>無法打開瀏覽器</value>
+  </data>
+  <data name="OpenLayoutCaption" xml:space="preserve">
+    <value>打開佈局檔案</value>
+  </data>
+  <data name="SaveLayoutCaption" xml:space="preserve">
+    <value>儲存佈局檔案</value>
+  </data>
+  <data name="EventStartsIn" xml:space="preserve">
+    <value>活動將於 {0} 開始</value>
+  </data>
+  <data name="EventHasStarted" xml:space="preserve">
+    <value>活動已經開始。</value>
+  </data>
+  <data name="EventEndsIn" xml:space="preserve">
+    <value>活動將於 {0} 結束</value>
+  </data>
+  <data name="EventHasEnded" xml:space="preserve">
+    <value>活動期間已結束。</value>
+  </data>
+  <data name="MaintenanceStartsIn" xml:space="preserve">
+    <value>維護將於 {0} 開始</value>
+  </data>
+  <data name="MaintenanceHasEnded" xml:space="preserve">
+    <value>維護已結束</value>
+  </data>
+  <data name="NextExerciseReset" xml:space="preserve">
+    <value>下次演習重置：</value>
+  </data>
+  <data name="NextQuestReset" xml:space="preserve">
+    <value>下次任務重置：</value>
+  </data>
+  <data name="MissingPermissions" xml:space="preserve">
+    <value>您的 Windows 用戶無權在當前位置創建檔案。將 七四式電子觀測儀 資料夾移動到您有寫入權限的位置，例如桌面上。</value>
+  </data>
+  <data name="QuestDataNotLoaded" xml:space="preserve">
+    <value>任務資料未讀取。</value>
+  </data>
+  <data name="LayoutLoadFailed" xml:space="preserve">
+    <value>檢查您是否有有效的佈局檔案。
+佈局在 5.0.0 版本中被破壞，因此之前創建的佈局不再起作用。
+有關更多訊息或獲取現有佈局，請參閱此 github issue：https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71
+
+您想打開這個 github issue 嗎？</value>
+  </data>
+  <data name="LayoutLoadFailedTitle" xml:space="preserve">
+    <value>無法讀取佈局</value>
+  </data>
+  <data name="CopyingToClipboardFailed" xml:space="preserve">
+    <value>複製到剪貼簿失敗。</value>
+  </data>
+  <data name="Adjustment" xml:space="preserve">
+    <value>調整</value>
+  </data>
+  <data name="GridSplitterSize" xml:space="preserve">
+    <value>網格分割器尺寸</value>
+  </data>
+  <data name="Old" xml:space="preserve">
+    <value>舊</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="Update_DownloadUpdate" xml:space="preserve">
+    <value>下載更新 (_D)</value>
+  </data>
+  <data name="Update_OpenReleaseNotes" xml:space="preserve">
+    <value>リリースノートを開く (_O)</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>有可用更新 (_U)</value>
+  </data>
+  <data name="Update_DownloadingUpdate" xml:space="preserve">
+    <value>正在下載更新... ({0:##0.00}%)</value>
+  </data>
+  <data name="Update_DownloadingUpdater" xml:space="preserve">
+    <value>正在下載更新程式... ({0:##0.00}%)</value>
+  </data>
+  <data name="Debug_LoadBaseAPI" xml:space="preserve">
+    <value>讀取儲存的API</value>
+  </data>
+  <data name="WindowCaptureLoadFailed" xml:space="preserve">
+    <value>無法讀取捕獲的視窗資料</value>
+  </data>
+  <data name="OperationRoom" xml:space="preserve">
+    <value>作戰室</value>
+  </data>
+  <data name="GitHubWikiLink" xml:space="preserve">
+    <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
+  </data>
+  <data name="MaintenanceEndsIn" xml:space="preserve">
+    <value>維護結束於 {0}</value>
+  </data>
+  <data name="MaintenanceHasStarted" xml:space="preserve">
+    <value>維護已開始</value>
+  </data>
+  <data name="ResetFloatingWindows" xml:space="preserve">
+    <value>重置浮動視窗</value>
+  </data>
+</root>

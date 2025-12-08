@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ShipView_ShipType" xml:space="preserve">
+    <value>艦種</value>
+  </data>
+  <data name="ShipView_Name" xml:space="preserve">
+    <value>艦名</value>
+  </data>
+  <data name="ShipView_NextRemodel" xml:space="preserve">
+    <value>下一次改裝</value>
+  </data>
+  <data name="ShipView_Slot1" xml:space="preserve">
+    <value>裝備1</value>
+  </data>
+  <data name="ShipView_Slot2" xml:space="preserve">
+    <value>裝備2</value>
+  </data>
+  <data name="ShipView_Slot3" xml:space="preserve">
+    <value>裝備3</value>
+  </data>
+  <data name="ShipView_Slot4" xml:space="preserve">
+    <value>裝備4</value>
+  </data>
+  <data name="ShipView_Slot5" xml:space="preserve">
+    <value>裝備5</value>
+  </data>
+  <data name="ShipView_Fleet" xml:space="preserve">
+    <value>艦隊</value>
+  </data>
+  <data name="ShipView_RepairTime" xml:space="preserve">
+    <value>入渠時間</value>
+  </data>
+  <data name="ShipView_RepairSteel" xml:space="preserve">
+    <value>入渠鋼材</value>
+  </data>
+  <data name="ShipView_RepairFuel" xml:space="preserve">
+    <value>入渠燃料</value>
+  </data>
+  <data name="ShipView_NightBattlePower" xml:space="preserve">
+    <value>夜戰威力</value>
+  </data>
+  <data name="ShipView_SallyArea" xml:space="preserve">
+    <value>出擊海域</value>
+  </data>
+  <data name="MenuMember_AddToGroup" xml:space="preserve">
+    <value>添加到群組(_A)...</value>
+  </data>
+  <data name="MenuMember_CreateGroup" xml:space="preserve">
+    <value>創建新群組(_N)...</value>
+  </data>
+  <data name="MenuMember_Exclude" xml:space="preserve">
+    <value>移除(_E)</value>
+  </data>
+  <data name="MenuMember_Filter" xml:space="preserve">
+    <value>篩選器設定(_F)...</value>
+  </data>
+  <data name="MenuMember_ColumnFilter" xml:space="preserve">
+    <value>行顯示設定(_C)...</value>
+  </data>
+  <data name="MenuMember_SortOrder" xml:space="preserve">
+    <value>排序設定(_S)...</value>
+  </data>
+  <data name="MenuMember_CSVOutput" xml:space="preserve">
+    <value>匯出 CSV (_O)...</value>
+  </data>
+  <data name="MenuGroup_Add" xml:space="preserve">
+    <value>添加群組(_A)...</value>
+  </data>
+  <data name="MenuGroup_Copy" xml:space="preserve">
+    <value>複製群組(_C)...</value>
+  </data>
+  <data name="MenuGroup_Rename" xml:space="preserve">
+    <value>更改群組名稱(_R)...</value>
+  </data>
+  <data name="MenuGroup_Delete" xml:space="preserve">
+    <value>移除群組(_D)</value>
+  </data>
+  <data name="MenuGroup_AutoUpdate" xml:space="preserve">
+    <value>自動更新</value>
+  </data>
+  <data name="MenuGroup_ShowStatusBar" xml:space="preserve">
+    <value>顯示狀態列</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>群組</value>
+  </data>
+  <data name="GroupNotFound" xml:space="preserve">
+    <value>ShipGroup: 未找到群組。要恢復預設設定，請在關閉程式後移除 {0}。</value>
+  </data>
+  <data name="ShipCount" xml:space="preserve">
+    <value>擁有: {0}隻</value>
+  </data>
+  <data name="TotalAndAverageLevel" xml:space="preserve">
+    <value>Lv: 合計 {0:N0} / 平均 {1:N2}</value>
+  </data>
+  <data name="TotalAndAverageExp" xml:space="preserve">
+    <value>Exp: 合計 {0:N0} / 平均 {1:N2}</value>
+  </data>
+  <data name="GroupDoesNotExist" xml:space="preserve">
+    <value>Error：試圖引用不存在的群組。請聯繫開發者</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(沒有任何)</value>
+  </data>
+  <data name="SelectedShips" xml:space="preserve">
+    <value>選擇: {0} / {1}隻</value>
+  </data>
+  <data name="Dock" xml:space="preserve">
+    <value>入渠</value>
+  </data>
+  <data name="DialogGroupAddTitle" xml:space="preserve">
+    <value>添加群組</value>
+  </data>
+  <data name="DialogGroupAddDescription" xml:space="preserve">
+    <value>請輸入群組名稱：</value>
+  </data>
+  <data name="DialogGroupCopyTitle" xml:space="preserve">
+    <value>複製群組</value>
+  </data>
+  <data name="DialogGroupCopyDescription" xml:space="preserve">
+    <value>請輸入群組名稱：</value>
+  </data>
+  <data name="DialogGroupDeleteTitle" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="DialogGroupDeleteDescription" xml:space="preserve">
+    <value>您想移除群組 [{0}] 嗎？
+此操作無法撤銷。</value>
+  </data>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>錯誤</value>
+  </data>
+  <data name="DialogCouldNotDeleteGroupDescription" xml:space="preserve">
+    <value>該群組無法移除。</value>
+  </data>
+  <data name="DialogGroupRenameTitle" xml:space="preserve">
+    <value>更改群組名稱</value>
+  </data>
+  <data name="DialogGroupRenameDescription" xml:space="preserve">
+    <value>請輸入群組名稱：</value>
+  </data>
+  <data name="DialogCouldNotRenameGroupDescription" xml:space="preserve">
+    <value>該群組無法重命名。</value>
+  </data>
+  <data name="DialogGroupCanNotBeModifiedDescription" xml:space="preserve">
+    <value>該群組無法修改。</value>
+  </data>
+  <data name="ColumnSettingError" xml:space="preserve">
+    <value>ShipGroup：行設定對話框中發生錯誤。</value>
+  </data>
+  <data name="FilterDialogError" xml:space="preserve">
+    <value>ShipGroup：篩選器對話框中發生錯誤。</value>
+  </data>
+  <data name="AutoSortDialogError" xml:space="preserve">
+    <value>ShipGroup：自動排序設定對話框中發生錯誤。</value>
+  </data>
+  <data name="DialogGroupAddToGroupTitle" xml:space="preserve">
+    <value>選擇群組</value>
+  </data>
+  <data name="DialogGroupAddToGroupDescription" xml:space="preserve">
+    <value>添加選擇的艦娘到群組：</value>
+  </data>
+  <data name="ExportToCsvSuccess" xml:space="preserve">
+    <value>將群組 CSV 儲存到 {0}。</value>
+  </data>
+  <data name="ExportToCsvFail" xml:space="preserve">
+    <value>群組 CSV 輸出失敗。</value>
+  </data>
+  <data name="SortId" xml:space="preserve">
+    <value>ID 排序</value>
+  </data>
+  <data name="RepairTimeUnit" xml:space="preserve">
+    <value>1 HP 修復時間</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>燃料</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>彈藥</value>
+  </data>
+  <data name="Planes" xml:space="preserve">
+    <value>艦載機</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="Expansion" xml:space="preserve">
+    <value>補強</value>
+  </data>
+  <data name="ModRemaining" xml:space="preserve">
+    <value>改修</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>火力</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>雷裝</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>對空</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>裝甲</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>反潛</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>迴避</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>運</value>
+  </data>
+  <data name="Bombers" xml:space="preserve">
+    <value>爆裝</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速力</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>射程</value>
+  </data>
+  <data name="Air" xml:space="preserve">
+    <value>航空</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>砲擊</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>空襲</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>威力</value>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>鎖定</value>
+  </data>
+  <data name="DataGridSettings" xml:space="preserve">
+    <value>資料網格設定</value>
+  </data>
+</root>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdditionalInfo" xml:space="preserve">
+    <value>附加訊息 : {0}</value>
+  </data>
+  <data name="APIData" xml:space="preserve">
+    <value>通訊內容 : {0}</value>
+  </data>
+  <data name="APIObserverStarted" xml:space="preserve">
+    <value>APIObserver：開始在通訊埠 {0} 上接收。</value>
+  </data>
+  <data name="APIObserverStopped" xml:space="preserve">
+    <value>APIObserver：接收已停止。</value>
+  </data>
+  <data name="ChangedParameters" xml:space="preserve">
+    <value>參數更新了。</value>
+  </data>
+  <data name="CreatedItem" xml:space="preserve">
+    <value>{0}「{1}」開發成功。 ({2}/{3}/{4}/{5} 秘書艦: {6})</value>
+  </data>
+  <data name="DoesNotExist" xml:space="preserve">
+    <value>不存在。</value>
+  </data>
+  <data name="EquipmentObtained" xml:space="preserve">
+    <value>獲得了{0}「{1}」。</value>
+  </data>
+  <data name="ErrorDatabaseSending" xml:space="preserve">
+    <value>發送到 Kancolle 統計資料庫時發生錯誤。</value>
+  </data>
+  <data name="ErrorField" xml:space="preserve">
+    <value>錯誤 : {0}</value>
+  </data>
+  <data name="ErrorReport" xml:space="preserve">
+    <value>錯誤報告 : {0}</value>
+  </data>
+  <data name="ExecutedFlashQualitySetting" xml:space="preserve">
+    <value>設定 Flash 品質。</value>
+  </data>
+  <data name="ExpedStarted" xml:space="preserve">
+    <value>#{0}「{1}」正在遠征「{2}: {3}」。</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>失敗了。</value>
+  </data>
+  <data name="FailedDatabaseSend" xml:space="preserve">
+    <value>將 {0} 發送到 Kancolle 統計資料庫失敗了。{1}</value>
+  </data>
+  <data name="FailedLoadAPI" xml:space="preserve">
+    <value>API 讀取失敗。</value>
+  </data>
+  <data name="FailedLoading" xml:space="preserve">
+    <value>　讀取失敗。</value>
+  </data>
+  <data name="FailedLoadingRecords" xml:space="preserve">
+    <value>讀取記錄失敗。</value>
+  </data>
+  <data name="FailedLoadingResource" xml:space="preserve">
+    <value>讀取資源檔案失敗。</value>
+  </data>
+  <data name="FailedLoadingStorage" xml:space="preserve">
+    <value>無法讀取DataStorage。</value>
+  </data>
+  <data name="FailedLoadLayout" xml:space="preserve">
+    <value>無法恢復視窗佈局。</value>
+  </data>
+  <data name="FailedLoadSubLayout" xml:space="preserve">
+    <value>無法恢復子視窗佈局。</value>
+  </data>
+  <data name="FailedLoadWindowPlacement" xml:space="preserve">
+    <value>無法恢復視窗狀態。</value>
+  </data>
+  <data name="FailedResourceRename" xml:space="preserve">
+    <value>無法重新命名艦娘資源。</value>
+  </data>
+  <data name="FailedSaveAPI" xml:space="preserve">
+    <value>儲存通訊內容失敗。 </value>
+  </data>
+  <data name="FailedSaveLayout" xml:space="preserve">
+    <value>無法儲存子視窗佈局。</value>
+  </data>
+  <data name="FailedSaveWindowPlacement" xml:space="preserve">
+    <value>無法儲存視窗狀態。</value>
+  </data>
+  <data name="FailedSaving" xml:space="preserve">
+    <value>無法存儲。</value>
+  </data>
+  <data name="FailedSavingErrorReport" xml:space="preserve">
+    <value>無法寫入錯誤報告。
+{0}
+{1}</value>
+  </data>
+  <data name="FailedSavingStorage" xml:space="preserve">
+    <value>DataStorage 寫入失敗。</value>
+  </data>
+  <data name="FailedToLoadAPIFile" xml:space="preserve">
+    <value>API 檔案 {0} 的讀取失敗了。{1}</value>
+  </data>
+  <data name="GameStart" xml:space="preserve">
+    <value>提督已著任鎮守府。正在將艦隊指揮權轉交給您。</value>
+  </data>
+  <data name="ImageCantBeLoaded" xml:space="preserve">
+    <value>圖片資源 {0} 讀取失敗。</value>
+  </data>
+  <data name="ImageDoesNotExist" xml:space="preserve">
+    <value>圖片資源 {0} 不存在。</value>
+  </data>
+  <data name="ImprovedFailure" xml:space="preserve">
+    <value>{0} 的改修失敗了。</value>
+  </data>
+  <data name="ImprovedSuccess" xml:space="preserve">
+    <value>的改修成功了。( </value>
+  </data>
+  <data name="InitialEquipRegistered" xml:space="preserve">
+    <value>的初始裝備已記錄。</value>
+  </data>
+  <data name="ItemCreationFailed" xml:space="preserve">
+    <value>開發失敗。 ({0}/{1}/{2}/{3} 秘書艦: {4})</value>
+  </data>
+  <data name="ItemObtained" xml:space="preserve">
+    <value>獲得物品「{0}」。(總計: {1} 個 )</value>
+  </data>
+  <data name="JustMarried" xml:space="preserve">
+    <value>您和 {0} 結婚了。恭喜您 ! (運+{1}→{2}/{3})</value>
+  </data>
+  <data name="LoadedRecords" xml:space="preserve">
+    <value>記錄已讀取。</value>
+  </data>
+  <data name="RecievedRequest" xml:space="preserve">
+    <value>收到請求：</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>記錄 </value>
+  </data>
+  <data name="RegisteredParameters" xml:space="preserve">
+    <value>的參數已記錄。</value>
+  </data>
+  <data name="RequestError" xml:space="preserve">
+    <value>接收請求時發生錯誤。</value>
+  </data>
+  <data name="ResponseHadErrorCode" xml:space="preserve">
+    <value>從伺服器收到錯誤代碼。</value>
+  </data>
+  <data name="SavedAPI" xml:space="preserve">
+    <value>已儲存 API 檔案 {0}。</value>
+  </data>
+  <data name="SentDatabase" xml:space="preserve">
+    <value>已將 {0} 發送至 Kancolle 統計資料庫。</value>
+  </data>
+  <data name="ShipAdded" xml:space="preserve">
+    <value>{0}「{1}」加入了您的艦隊。</value>
+  </data>
+  <data name="ShipConstructed" xml:space="preserve">
+    <value>{0}「{1}」的建造已完成。</value>
+  </data>
+  <data name="ShipScrapped" xml:space="preserve">
+    <value>已解體。</value>
+  </data>
+  <data name="SortiedTo" xml:space="preserve">
+    <value>#{0}「{1}」 正在出擊 「{2}-{3} {4}」。</value>
+  </data>
+  <data name="StorageDoesNotExist" xml:space="preserve">
+    <value>DataStorage {0} 不存在。</value>
+  </data>
+  <data name="StorageFileDoesNotExist" xml:space="preserve">
+    <value>DataStorage 檔案不存在。</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>{0} 已複製。</value>
+  </data>
+  <data name="Decomissioned" xml:space="preserve">
+    <value> 已退役。</value>
+  </data>
+  <data name="FailedToCopy" xml:space="preserve">
+    <value>複製 {0} 失敗。{1}</value>
+  </data>
+  <data name="MultiplePossibleMvps" xml:space="preserve">
+    <value>MVP 候選人有多位。請檢查日誌。</value>
+  </data>
+  <data name="RecordAutosaveFailure" xml:space="preserve">
+    <value>自動儲存記錄失敗。</value>
+  </data>
+  <data name="RecordAutosaveSuccess" xml:space="preserve">
+    <value>記錄自動儲存已執行。</value>
+  </data>
+  <data name="ImprovedEqSuccess" xml:space="preserve">
+    <value>改修 {0} 成功。</value>
+  </data>
+  <data name="ClearedQuest" xml:space="preserve">
+    <value>任務『{0}』已完成。</value>
+  </data>
+  <data name="FailedToCopyToClipboard" xml:space="preserve">
+    <value>複製到剪貼簿失敗</value>
+  </data>
+</root>

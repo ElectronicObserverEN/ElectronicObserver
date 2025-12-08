@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AskClose" xml:space="preserve">
+    <value> 確定關閉嗎？</value>
+  </data>
+  <data name="AskForUpdate" xml:space="preserve">
+    <value>新版本 七四式電子觀測儀: {0} 已發布。
+更新內容：
+{1}
+
+打開下載頁面？
+（單擊“取消”可禁用更新通知）</value>
+  </data>
+  <data name="AskLoad" xml:space="preserve">
+    <value>所有未儲存的記錄都將遺失。
+讀取記錄？</value>
+  </data>
+  <data name="AskLogin" xml:space="preserve">
+    <value>移至登入頁面。
+你確定嗎？</value>
+  </data>
+  <data name="AskNavText" xml:space="preserve">
+    <value>請輸入目的網址。</value>
+  </data>
+  <data name="AskNavTitle" xml:space="preserve">
+    <value>移動到…</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>瀏覽器</value>
+  </data>
+  <data name="BrowserClosedWithoutWarning" xml:space="preserve">
+    <value>瀏覽器行程意外關閉。</value>
+  </data>
+  <data name="BrowserCloseError" xml:space="preserve">
+    <value>瀏覽器關閉時發生錯誤。</value>
+  </data>
+  <data name="BrowserThrewError" xml:space="preserve">
+    <value>瀏覽器行程之間發生通信錯誤。</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="ClosingComplete" xml:space="preserve">
+    <value>已關閉。</value>
+  </data>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>作者</value>
+  </data>
+  <data name="FailedBrowserStart" xml:space="preserve">
+    <value>無法啟動瀏覽器行程。</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>幫助</value>
+  </data>
+  <data name="InitLayout" xml:space="preserve">
+    <value>佈局已初始化。
+從“顯示”選單添加您喜歡的視窗。</value>
+  </data>
+  <data name="IsClosing" xml:space="preserve">
+    <value> 正在關閉…</value>
+  </data>
+  <data name="LayoutLoaded" xml:space="preserve">
+    <value>視窗佈局已從 {0} 恢復。</value>
+  </data>
+  <data name="LayoutSaved" xml:space="preserve">
+    <value>已成功儲存來自 {0} 的視窗佈局。</value>
+  </data>
+  <data name="NewVersionFound" xml:space="preserve">
+    <value>新版本已發布！ :</value>
+  </data>
+  <data name="NoEquipData" xml:space="preserve">
+    <value>裝備資料尚未讀取。</value>
+  </data>
+  <data name="NoLayoutFound" xml:space="preserve">
+    <value>視窗佈局檔案不存在。</value>
+  </data>
+  <data name="NoShipData" xml:space="preserve">
+    <value>艦娘資料尚未讀取。</value>
+  </data>
+  <data name="OpenLayout" xml:space="preserve">
+    <value>打開佈局檔案</value>
+  </data>
+  <data name="OriginalSite" xml:space="preserve">
+    <value>開發者(點擊此處報告錯誤並聯繫我們)</value>
+  </data>
+  <data name="SoftwareName" xml:space="preserve">
+    <value>七四式電子觀測儀</value>
+  </data>
+  <data name="StartupComplete" xml:space="preserve">
+    <value>啟動完成。</value>
+  </data>
+  <data name="TranslatedSite" xml:space="preserve">
+    <value>翻譯來源</value>
+  </data>
+  <data name="TranslatedVer" xml:space="preserve">
+    <value>翻譯版本</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新訊息</value>
+  </data>
+  <data name="UpdateConnectionFailed" xml:space="preserve">
+    <value>無法處理更新訊息。</value>
+  </data>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>關於</value>
+  </data>
+  <data name="ZoomCurrent" xml:space="preserve">
+    <value>現在</value>
+  </data>
+  <data name="FirstTimeDialog" xml:space="preserve">
+    <value>感謝您使用 {0}。
+有關設定和使用訊息，請參閱選單中的“幫助”→“線上幫助”選項。
+建議在使用前閱讀。</value>
+  </data>
+  <data name="FirstTimeTitle" xml:space="preserve">
+    <value>初次啟動</value>
+  </data>
+  <data name="FailedNewRecords" xml:space="preserve">
+    <value>由於版本升級，記錄轉換失敗。</value>
+  </data>
+  <data name="FailedRecordDialog" xml:space="preserve">
+    <value>轉換失敗並出現錯誤：
+{0}
+繼續啟動 七四式電子觀測儀 嗎？
+(繼續可能會損壞您當前的記錄)
+</value>
+  </data>
+  <data name="NewRecordFormat" xml:space="preserve">
+    <value>檢測到您正在從先前版本升級。
+我們現在會將當前的記錄檔案轉換為新格式。
+（原始檔案將移至 RecordBackup 資料夾。）
+要繼續嗎？
+（如果不轉換記錄，它們可能會變得不可讀。）</value>
+  </data>
+  <data name="NewRecordTitle" xml:space="preserve">
+    <value>因版本升級而確認（~1.4.6）</value>
+  </data>
+  <data name="FailedToDelete" xml:space="preserve">
+    <value>移除失敗。</value>
+  </data>
+  <data name="GroupUpgradeFailed" xml:space="preserve">
+    <value>由於版本升級，移除群組資料失敗。</value>
+  </data>
+  <data name="NewGroupFormat" xml:space="preserve">
+    <value>檢測到您正在從先前版本升級。
+以前的艦隊資料已變得不兼容，因此必須對其進行初始化
+（當前現有檔案將移至SettingsBackup。）
+要繼續嗎？
+(如果不初始化就繼續，可能會出現錯誤。)</value>
+  </data>
+  <data name="NewGroupFormatTitle" xml:space="preserve">
+    <value>因版本升級而確認（~1.5.0）</value>
+  </data>
+  <data name="MultiInstanceNotification" xml:space="preserve">
+    <value>七四式電子觀測儀 已經啟動，無法存在多個實例。
+如果出現誤報，請使用 -m 選項從命令行啟動它。</value>
+  </data>
+</root>

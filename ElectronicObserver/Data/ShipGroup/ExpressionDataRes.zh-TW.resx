@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AABase" xml:space="preserve">
+    <value>基礎對空</value>
+  </data>
+  <data name="AARemain" xml:space="preserve">
+    <value>剩餘對空</value>
+  </data>
+  <data name="AATotal" xml:space="preserve">
+    <value>合計對空</value>
+  </data>
+  <data name="AircraftRate1" xml:space="preserve">
+    <value>搭載比例 #1</value>
+  </data>
+  <data name="AircraftRate2" xml:space="preserve">
+    <value>搭載比例 #2</value>
+  </data>
+  <data name="AircraftRate3" xml:space="preserve">
+    <value>搭載比例 #3</value>
+  </data>
+  <data name="AircraftRate4" xml:space="preserve">
+    <value>搭載比例 #4</value>
+  </data>
+  <data name="AircraftRate5" xml:space="preserve">
+    <value>搭載比例 #5</value>
+  </data>
+  <data name="AircraftRateTotal" xml:space="preserve">
+    <value>搭載總比例</value>
+  </data>
+  <data name="AircraftSlot1" xml:space="preserve">
+    <value>搭載 #1</value>
+  </data>
+  <data name="AircraftSlot2" xml:space="preserve">
+    <value>搭載 #2</value>
+  </data>
+  <data name="AircraftSlot3" xml:space="preserve">
+    <value>搭載 #3</value>
+  </data>
+  <data name="AircraftSlot4" xml:space="preserve">
+    <value>搭載 #4</value>
+  </data>
+  <data name="AircraftSlot5" xml:space="preserve">
+    <value>搭載 #5</value>
+  </data>
+  <data name="AircraftTotal" xml:space="preserve">
+    <value>合計搭載</value>
+  </data>
+  <data name="AlbumNo" xml:space="preserve">
+    <value>圖鑑編號</value>
+  </data>
+  <data name="AllSlotMaster" xml:space="preserve">
+    <value>裝備</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>剩餘彈藥</value>
+  </data>
+  <data name="AmmoMax" xml:space="preserve">
+    <value>最大彈藥</value>
+  </data>
+  <data name="AmmoRate" xml:space="preserve">
+    <value>剩餘彈藥比例</value>
+  </data>
+  <data name="ArmorBase" xml:space="preserve">
+    <value>基礎裝甲</value>
+  </data>
+  <data name="ArmorRemain" xml:space="preserve">
+    <value>剩餘裝甲</value>
+  </data>
+  <data name="ArmorTotal" xml:space="preserve">
+    <value>合計裝甲</value>
+  </data>
+  <data name="ASWBase" xml:space="preserve">
+    <value>基礎反潛</value>
+  </data>
+  <data name="ASWPower" xml:space="preserve">
+    <value>反潛威力</value>
+  </data>
+  <data name="ASWTotal" xml:space="preserve">
+    <value>合計反潛</value>
+  </data>
+  <data name="BomberTotal" xml:space="preserve">
+    <value>合計爆裝</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>士氣</value>
+  </data>
+  <data name="AirBattlePower" xml:space="preserve">
+    <value>AirBattlePower?</value>
+  </data>
+  <data name="AircraftPower" xml:space="preserve">
+    <value>AircraftPower?</value>
+  </data>
+  <data name="EquippableCategories" xml:space="preserve">
+    <value>可裝備類別</value>
+  </data>
+  <data name="EvasionBase" xml:space="preserve">
+    <value>基礎迴避</value>
+  </data>
+  <data name="EvasionTotal" xml:space="preserve">
+    <value>總迴避</value>
+  </data>
+  <data name="ExpansionSlotMaster" xml:space="preserve">
+    <value>補強增設</value>
+  </data>
+  <data name="ExpNext" xml:space="preserve">
+    <value>下次升級</value>
+  </data>
+  <data name="ExpNextRemodel" xml:space="preserve">
+    <value>下次改裝</value>
+  </data>
+  <data name="ExpTotal" xml:space="preserve">
+    <value>總經驗</value>
+  </data>
+  <data name="FirePowerBase" xml:space="preserve">
+    <value>基礎火力</value>
+  </data>
+  <data name="FirePowerRemain" xml:space="preserve">
+    <value>剩餘火力</value>
+  </data>
+  <data name="FirePowerTotal" xml:space="preserve">
+    <value>合計火力</value>
+  </data>
+  <data name="FleetWithIndex" xml:space="preserve">
+    <value>所屬艦隊</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>剩餘燃料</value>
+  </data>
+  <data name="FuelMax" xml:space="preserve">
+    <value>最大燃料</value>
+  </data>
+  <data name="FuelRate" xml:space="preserve">
+    <value>剩餘燃料比例</value>
+  </data>
+  <data name="HPCurrent" xml:space="preserve">
+    <value>現在HP</value>
+  </data>
+  <data name="HPMax" xml:space="preserve">
+    <value>最大HP</value>
+  </data>
+  <data name="HPRate" xml:space="preserve">
+    <value>HP比例</value>
+  </data>
+  <data name="IsLocked" xml:space="preserve">
+    <value>鎖定</value>
+  </data>
+  <data name="IsLockedByEquipment" xml:space="preserve">
+    <value>裝備鎖定</value>
+  </data>
+  <data name="IsMarried" xml:space="preserve">
+    <value>已婚</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>等級</value>
+  </data>
+  <data name="LOSBase" xml:space="preserve">
+    <value>基礎索敵</value>
+  </data>
+  <data name="LOSTotal" xml:space="preserve">
+    <value>合計索敵</value>
+  </data>
+  <data name="LuckBase" xml:space="preserve">
+    <value>基礎運</value>
+  </data>
+  <data name="LuckRemain" xml:space="preserve">
+    <value>剩餘運</value>
+  </data>
+  <data name="LuckTotal" xml:space="preserve">
+    <value>合計運</value>
+  </data>
+  <data name="MasterAircraft1" xml:space="preserve">
+    <value>最大搭載 #1</value>
+  </data>
+  <data name="MasterAircraft2" xml:space="preserve">
+    <value>最大搭載 #2</value>
+  </data>
+  <data name="MasterAircraft3" xml:space="preserve">
+    <value>最大搭載 #3</value>
+  </data>
+  <data name="MasterAircraft4" xml:space="preserve">
+    <value>最大搭載 #4</value>
+  </data>
+  <data name="MasterAircraft5" xml:space="preserve">
+    <value>最大搭載 #5</value>
+  </data>
+  <data name="MasterAircraftTotal" xml:space="preserve">
+    <value>最大搭載數</value>
+  </data>
+  <data name="MasterID" xml:space="preserve">
+    <value>艦船ID</value>
+  </data>
+  <data name="MasterRarity" xml:space="preserve">
+    <value>稀有度</value>
+  </data>
+  <data name="MasterSpeed" xml:space="preserve">
+    <value>基礎速力</value>
+  </data>
+  <data name="NameReading" xml:space="preserve">
+    <value>艦名讀音</value>
+  </data>
+  <data name="NameWithClass" xml:space="preserve">
+    <value>艦名</value>
+  </data>
+  <data name="NightBattlePower" xml:space="preserve">
+    <value>夜戰威力</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>射程</value>
+  </data>
+  <data name="RemodelAfterShipID" xml:space="preserve">
+    <value>改裝後艦船ID</value>
+  </data>
+  <data name="RemodelBeforeShipID" xml:space="preserve">
+    <value>改裝前艦船ID</value>
+  </data>
+  <data name="RepairFuel" xml:space="preserve">
+    <value>入渠消耗燃料</value>
+  </data>
+  <data name="RepairingDockID" xml:space="preserve">
+    <value>渠位ID</value>
+  </data>
+  <data name="RepairSteel" xml:space="preserve">
+    <value>入渠消耗鋼材</value>
+  </data>
+  <data name="RepairTime" xml:space="preserve">
+    <value>入渠時間</value>
+  </data>
+  <data name="SallyArea" xml:space="preserve">
+    <value>出擊海域</value>
+  </data>
+  <data name="ShellingPower" xml:space="preserve">
+    <value>砲擊威力</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>艦船ID</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>艦種</value>
+  </data>
+  <data name="SlotMaster1" xml:space="preserve">
+    <value>裝備 #1</value>
+  </data>
+  <data name="SlotMaster2" xml:space="preserve">
+    <value>裝備 #2</value>
+  </data>
+  <data name="SlotMaster3" xml:space="preserve">
+    <value>裝備 #3</value>
+  </data>
+  <data name="SlotMaster4" xml:space="preserve">
+    <value>裝備 #4</value>
+  </data>
+  <data name="SlotMaster5" xml:space="preserve">
+    <value>裝備 #5</value>
+  </data>
+  <data name="SlotSize" xml:space="preserve">
+    <value>裝備槽</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速力</value>
+  </data>
+  <data name="StrArrayContains" xml:space="preserve">
+    <value>包含</value>
+  </data>
+  <data name="StrArrayNotContains" xml:space="preserve">
+    <value>不包含</value>
+  </data>
+  <data name="StrBeginsWith" xml:space="preserve">
+    <value>開頭是</value>
+  </data>
+  <data name="StrContains" xml:space="preserve">
+    <value>包含</value>
+  </data>
+  <data name="StrEndWith" xml:space="preserve">
+    <value>結尾是</value>
+  </data>
+  <data name="StrEquals" xml:space="preserve">
+    <value>==</value>
+  </data>
+  <data name="StrLessEquals" xml:space="preserve">
+    <value>&lt;=</value>
+  </data>
+  <data name="StrLessThan" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="StrMoreEquals" xml:space="preserve">
+    <value>&gt;=</value>
+  </data>
+  <data name="StrMoreThan" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="StrNotBeginsWith" xml:space="preserve">
+    <value>開頭不是</value>
+  </data>
+  <data name="StrNotContains" xml:space="preserve">
+    <value>不包含</value>
+  </data>
+  <data name="StrNotEndWith" xml:space="preserve">
+    <value>結尾不是</value>
+  </data>
+  <data name="StrNotEquals" xml:space="preserve">
+    <value>!=</value>
+  </data>
+  <data name="TorpedoBase" xml:space="preserve">
+    <value>基礎雷裝</value>
+  </data>
+  <data name="TorpedoPower" xml:space="preserve">
+    <value>雷擊威力</value>
+  </data>
+  <data name="TorpedoRemain" xml:space="preserve">
+    <value>剩餘雷裝</value>
+  </data>
+  <data name="TorpedoTotal" xml:space="preserve">
+    <value>合計雷裝</value>
+  </data>
+</root>
