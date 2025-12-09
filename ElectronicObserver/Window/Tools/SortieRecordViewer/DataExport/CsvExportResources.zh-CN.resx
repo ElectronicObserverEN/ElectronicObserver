@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,448 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>地图</value>
+  </data>
+  <data name="Cell" xml:space="preserve">
+    <value>点位</value>
+  </data>
+  <data name="Sortie" xml:space="preserve">
+    <value>出击</value>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>评价</value>
+  </data>
+  <data name="EnemyFleet" xml:space="preserve">
+    <value>敌舰队</value>
+  </data>
+  <data name="AdmiralLevel" xml:space="preserve">
+    <value>提督等级</value>
+  </data>
+  <data name="PlayerFormation" xml:space="preserve">
+    <value>我方阵形</value>
+  </data>
+  <data name="EnemyFormation" xml:space="preserve">
+    <value>敌阵形</value>
+  </data>
+  <data name="PlayerSearch" xml:space="preserve">
+    <value>我方索敌</value>
+  </data>
+  <data name="EnemySearch" xml:space="preserve">
+    <value>敌索敌</value>
+  </data>
+  <data name="AirState" xml:space="preserve">
+    <value>制空权</value>
+  </data>
+  <data name="Engagement" xml:space="preserve">
+    <value>接敌</value>
+  </data>
+  <data name="PlayerContact" xml:space="preserve">
+    <value>我方接触</value>
+  </data>
+  <data name="EnemyContact" xml:space="preserve">
+    <value>敌接触</value>
+  </data>
+  <data name="PlayerFlare" xml:space="preserve">
+    <value>我方照明弹</value>
+  </data>
+  <data name="EnemyFlare" xml:space="preserve">
+    <value>敌照明弹</value>
+  </data>
+  <data name="BattleType" xml:space="preserve">
+    <value>战斗类别</value>
+  </data>
+  <data name="ShipName1" xml:space="preserve">
+    <value>舰名1</value>
+  </data>
+  <data name="ShipName2" xml:space="preserve">
+    <value>舰名2</value>
+  </data>
+  <data name="ShipName3" xml:space="preserve">
+    <value>舰名3</value>
+  </data>
+  <data name="ShipName4" xml:space="preserve">
+    <value>舰名4</value>
+  </data>
+  <data name="ShipName5" xml:space="preserve">
+    <value>舰名5</value>
+  </data>
+  <data name="ShipName6" xml:space="preserve">
+    <value>舰名6</value>
+  </data>
+  <data name="PlayerFleetType" xml:space="preserve">
+    <value>我方舰队</value>
+  </data>
+  <data name="BattlePhase" xml:space="preserve">
+    <value>阶段</value>
+  </data>
+  <data name="AttackerSide" xml:space="preserve">
+    <value>攻击舰</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>我军</value>
+  </data>
+  <data name="Enemy" xml:space="preserve">
+    <value>敌军</value>
+  </data>
+  <data name="AttackType" xml:space="preserve">
+    <value>炮击类别</value>
+  </data>
+  <data name="AttackIndex" xml:space="preserve">
+    <value>炮击次数</value>
+  </data>
+  <data name="DisplayedEquipment1" xml:space="preserve">
+    <value>显示装备1</value>
+  </data>
+  <data name="DisplayedEquipment2" xml:space="preserve">
+    <value>显示装备2</value>
+  </data>
+  <data name="DisplayedEquipment3" xml:space="preserve">
+    <value>显示装备3</value>
+  </data>
+  <data name="HitType" xml:space="preserve">
+    <value>暴击</value>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>伤害</value>
+  </data>
+  <data name="Protected" xml:space="preserve">
+    <value>保护</value>
+  </data>
+  <data name="BossNode" xml:space="preserve">
+    <value>BOSS</value>
+  </data>
+  <data name="FleetType" xml:space="preserve">
+    <value>舰队种类</value>
+  </data>
+  <data name="EnemyFleetType" xml:space="preserve">
+    <value>敌舰队种类</value>
+  </data>
+  <data name="CombinedFleet" xml:space="preserve">
+    <value>联合舰队</value>
+  </data>
+  <data name="LogbookRedCsvExport" xml:space="preserve">
+    <value>【赤仮】</value>
+  </data>
+  <data name="ShellingBattle" xml:space="preserve">
+    <value>炮击战</value>
+  </data>
+  <data name="NightBattle" xml:space="preserve">
+    <value>夜战</value>
+  </data>
+  <data name="TorpedoBattle" xml:space="preserve">
+    <value>雷击战</value>
+  </data>
+  <data name="AirBattle" xml:space="preserve">
+    <value>航空战</value>
+  </data>
+  <data name="AirBaseBattle" xml:space="preserve">
+    <value>基地航空战</value>
+  </data>
+  <data name="CsvWasSavedSuccessfully" xml:space="preserve">
+    <value>CSV保存成功</value>
+  </data>
+  <data name="FailedToSaveCsv" xml:space="preserve">
+    <value>CSV保存失败</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>点</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="PrefixAttacker" xml:space="preserve">
+    <value>攻击舰.</value>
+  </data>
+  <data name="PrefixDefender" xml:space="preserve">
+    <value>防御舰.</value>
+  </data>
+  <data name="PrefixEquipment1" xml:space="preserve">
+    <value>装备1.</value>
+  </data>
+  <data name="PrefixEquipment2" xml:space="preserve">
+    <value>装备2.</value>
+  </data>
+  <data name="PrefixEquipment3" xml:space="preserve">
+    <value>装备3.</value>
+  </data>
+  <data name="PrefixEquipment4" xml:space="preserve">
+    <value>装备4.</value>
+  </data>
+  <data name="PrefixEquipment5" xml:space="preserve">
+    <value>装备5.</value>
+  </data>
+  <data name="PrefixEquipment6" xml:space="preserve">
+    <value>装备6.</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>编成顺序</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>疲劳</value>
+  </data>
+  <data name="HpCurrent" xml:space="preserve">
+    <value>当前HP</value>
+  </data>
+  <data name="HpMax" xml:space="preserve">
+    <value>最大HP</value>
+  </data>
+  <data name="DamageState" xml:space="preserve">
+    <value>损伤</value>
+  </data>
+  <data name="FuelCurrent" xml:space="preserve">
+    <value>剩余燃料</value>
+  </data>
+  <data name="AmmoCurrent" xml:space="preserve">
+    <value>剩余弹药</value>
+  </data>
+  <data name="AmmoMax" xml:space="preserve">
+    <value>最大弹药</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>对空</value>
+  </data>
+  <data name="AntiSubmarine" xml:space="preserve">
+    <value>对潜</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>索敌</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>运</value>
+  </data>
+  <data name="AircraftLevel" xml:space="preserve">
+    <value>熟练度</value>
+  </data>
+  <data name="Aircraft" xml:space="preserve">
+    <value>搭载数</value>
+  </data>
+  <data name="TorpedoBattlePhase" xml:space="preserve">
+    <value>开幕|闭幕</value>
+  </data>
+  <data name="TorpedoAttackType" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="PrefixStage1" xml:space="preserve">
+    <value>阶段1.</value>
+  </data>
+  <data name="PrefixStage2" xml:space="preserve">
+    <value>阶段2.</value>
+  </data>
+  <data name="PlayerAircraftTotal" xml:space="preserve">
+    <value>我方舰载机总数</value>
+  </data>
+  <data name="PlayerAircraftLost" xml:space="preserve">
+    <value>我方舰载机损失数</value>
+  </data>
+  <data name="EnemyAircraftTotal" xml:space="preserve">
+    <value>敌舰载机总数</value>
+  </data>
+  <data name="EnemyAircraftLost" xml:space="preserve">
+    <value>敌舰载机损失数</value>
+  </data>
+  <data name="PrefixAntiAirCutIn" xml:space="preserve">
+    <value>对空Cut In.</value>
+  </data>
+  <data name="AntiAirCutInShip" xml:space="preserve">
+    <value>发动舰</value>
+  </data>
+  <data name="AntiAirCutInId" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="PrefixAttacker1" xml:space="preserve">
+    <value>攻击舰1.</value>
+  </data>
+  <data name="PrefixAttacker2" xml:space="preserve">
+    <value>攻击舰2.</value>
+  </data>
+  <data name="PrefixAttacker3" xml:space="preserve">
+    <value>攻击舰3.</value>
+  </data>
+  <data name="PrefixAttacker4" xml:space="preserve">
+    <value>攻击舰4.</value>
+  </data>
+  <data name="PrefixAttacker5" xml:space="preserve">
+    <value>攻击舰5.</value>
+  </data>
+  <data name="PrefixAttacker6" xml:space="preserve">
+    <value>攻击舰6.</value>
+  </data>
+  <data name="PrefixAttacker7" xml:space="preserve">
+    <value>攻击舰7.</value>
+  </data>
+  <data name="TorpedoFlag" xml:space="preserve">
+    <value>雷击</value>
+  </data>
+  <data name="BomberFlag" xml:space="preserve">
+    <value>轰炸</value>
+  </data>
+  <data name="SquadronId" xml:space="preserve">
+    <value>航空队</value>
+  </data>
+  <data name="SquadronAttackIndex" xml:space="preserve">
+    <value>攻击顺序</value>
+  </data>
+  <data name="AirBasePlayerContact" xml:space="preserve">
+    <value>我方基地接触</value>
+  </data>
+  <data name="AirBaseEnemyContact" xml:space="preserve">
+    <value>敌基地接触</value>
+  </data>
+  <data name="AirBaseSquadron1EquipmentName" xml:space="preserve">
+    <value>第1中队</value>
+  </data>
+  <data name="AirBaseSquadron1Aircraft" xml:space="preserve">
+    <value>第1机数</value>
+  </data>
+  <data name="AirBaseSquadron2EquipmentName" xml:space="preserve">
+    <value>第2中队</value>
+  </data>
+  <data name="AirBaseSquadron2Aircraft" xml:space="preserve">
+    <value>第2机数</value>
+  </data>
+  <data name="AirBaseSquadron3EquipmentName" xml:space="preserve">
+    <value>第3中队</value>
+  </data>
+  <data name="AirBaseSquadron3Aircraft" xml:space="preserve">
+    <value>第3机数</value>
+  </data>
+  <data name="AirBaseSquadron4EquipmentName" xml:space="preserve">
+    <value>第4中队</value>
+  </data>
+  <data name="AirBaseSquadron4Aircraft" xml:space="preserve">
+    <value>第4机数</value>
+  </data>
+  <data name="TotalTorpedoFlags" xml:space="preserve">
+    <value>雷击合计</value>
+  </data>
+  <data name="TotalBomberFlags" xml:space="preserve">
+    <value>轰炸合计</value>
+  </data>
+  <data name="ConditionAfterBattle" xml:space="preserve">
+    <value>战斗后疲劳</value>
+  </data>
+  <data name="FuelAfterBattle" xml:space="preserve">
+    <value>战斗后剩余燃料</value>
+  </data>
+  <data name="AmmoAfterBattle" xml:space="preserve">
+    <value>战斗后剩余弹药</value>
+  </data>
+  <data name="AircraftAfterBattle" xml:space="preserve">
+    <value>战斗后搭载数</value>
+  </data>
+  <data name="RedShellingBattle" xml:space="preserve">
+    <value>赤仮炮击战</value>
+  </data>
+  <data name="RedNightBattle" xml:space="preserve">
+    <value>赤仮夜战</value>
+  </data>
+  <data name="RedTorpedoBattle" xml:space="preserve">
+    <value>赤仮雷击战</value>
+  </data>
+  <data name="PlayerSearchlightShipIndex" xml:space="preserve">
+    <value>我方探照灯.位置</value>
+  </data>
+  <data name="EnemySearchlightShipIndex" xml:space="preserve">
+    <value>敌探照灯.位置</value>
+  </data>
+  <data name="PlayerSearchlightEquipmentId" xml:space="preserve">
+    <value>我方探照灯.装备</value>
+  </data>
+  <data name="EnemySearchlightEquipmentId" xml:space="preserve">
+    <value>敌探照灯.装备</value>
+  </data>
+  <data name="AirBaseDamage" xml:space="preserve">
+    <value>受到伤害</value>
+  </data>
+  <data name="PlayerAircraft" xml:space="preserve">
+    <value>我方机数</value>
+  </data>
+  <data name="PlayerAircraftLost2" xml:space="preserve">
+    <value>我方损失数</value>
+  </data>
+  <data name="EnemyAircraft" xml:space="preserve">
+    <value>敌机数</value>
+  </data>
+  <data name="EnemyAircraftLost2" xml:space="preserve">
+    <value>敌机损失数</value>
+  </data>
+  <data name="PrefixSquadron1" xml:space="preserve">
+    <value>中队1.</value>
+  </data>
+  <data name="PrefixSquadron2" xml:space="preserve">
+    <value>中队2.</value>
+  </data>
+  <data name="PrefixSquadron3" xml:space="preserve">
+    <value>中队3.</value>
+  </data>
+  <data name="PrefixSquadron4" xml:space="preserve">
+    <value>中队4.</value>
+  </data>
+  <data name="Aircraft2" xml:space="preserve">
+    <value>机数</value>
+  </data>
+  <data name="PrefixEnemyShip1" xml:space="preserve">
+    <value>敌舰1.</value>
+  </data>
+  <data name="PrefixEnemyShip2" xml:space="preserve">
+    <value>敌舰2.</value>
+  </data>
+  <data name="PrefixEnemyShip3" xml:space="preserve">
+    <value>敌舰3.</value>
+  </data>
+  <data name="PrefixEnemyShip4" xml:space="preserve">
+    <value>敌舰4.</value>
+  </data>
+  <data name="PrefixEnemyShip5" xml:space="preserve">
+    <value>敌舰5.</value>
+  </data>
+  <data name="PrefixEnemyShip6" xml:space="preserve">
+    <value>敌舰6.</value>
+  </data>
+  <data name="BomberFlag2" xml:space="preserve">
+    <value>被炸flag</value>
+  </data>
+  <data name="Damage2" xml:space="preserve">
+    <value>被损伤</value>
+  </data>
+  <data name="AirBaseAirDefense" xml:space="preserve">
+    <value>基地航空队(防空)</value>
+  </data>
+  <data name="ActualRank" xml:space="preserve">
+    <value>实际RANK</value>
+  </data>
+  <data name="ExpectedRank" xml:space="preserve">
+    <value>预测RANK</value>
+  </data>
+  <data name="CombatRankPrediction" xml:space="preserve">
+    <value>战斗评价</value>
+  </data>
+  <data name="SmokeType" xml:space="preserve">
+    <value>烟幕等级</value>
+  </data>
+  <data name="BalloonCell" xml:space="preserve">
+    <value>阻塞气球点</value>
+  </data>
+  <data name="PlayerBalloons" xml:space="preserve">
+    <value>我方气球数</value>
+  </data>
+  <data name="EnemyBalloons" xml:space="preserve">
+    <value>敌气球数</value>
+  </data>
+  <data name="ArmorBreak" xml:space="preserve">
+    <value>装甲破碎</value>
+  </data>
 </root>

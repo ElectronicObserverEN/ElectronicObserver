@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,21 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Error" xml:space="preserve">
-    <value>错误</value>
-  </data>
-  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
-    <value>未编成·配置转换中</value>
-  </data>
-  <data name="BaseAirCorps_Rest" xml:space="preserve">
-    <value>[休息]</value>
-  </data>
   <data name="SoundVolumeToolTip" xml:space="preserve">
-    <value>指定通知音量。
-0 为静音，100 为最大音量。</value>
+    <value>设置提示音音量。
+0是静音，100是最大音量。</value>
+  </data>
+  <data name="ShowWithActivationToolTip" xml:space="preserve">
+    <value>显示时将激活对话框。
+禁用此功能不会影响操作，但对话框会容易被遮挡。</value>
   </data>
   <data name="SettingsWillBeAppliedForTest" xml:space="preserve">
-    <value>＊这些设置将在测试时应用</value>
+    <value>＊在进行测试时会应用设置</value>
   </data>
   <data name="GroupAnchorageRepair" xml:space="preserve">
     <value>泊地修理设置</value>
@@ -145,101 +140,96 @@
   <data name="BaseAirCorps_NotSupplied" xml:space="preserve">
     <value>未补给时</value>
   </data>
-  <data name="BaseAirCorps_Retreat" xml:space="preserve">
-    <value>[退避]</value>
-  </data>
-  <data name="BaseAirCorps_Standby" xml:space="preserve">
-    <value>[待机]</value>
-  </data>
-  <data name="BaseAirCorps_NormalMap" xml:space="preserve">
-    <value>通常海域</value>
+  <data name="BaseAirCorps_NotSuppliedToolTip" xml:space="preserve">
+    <value>出击前存在任何中队未补给时显示通知。</value>
   </data>
   <data name="BaseAirCorps_Tired" xml:space="preserve">
     <value>疲劳时</value>
   </data>
-  <data name="BaseAirCorps_NotSuppliedToolTip" xml:space="preserve">
-    <value>出击前，如果有陆航未补给将会收到通知。</value>
+  <data name="BaseAirCorps_TiredToolTip" xml:space="preserve">
+    <value>出击前存在任何中队橙色以上疲劳时显示通知。</value>
   </data>
   <data name="BaseAirCorps_RestToolTip" xml:space="preserve">
-    <value>出击前，如果有陆航在[休息]将会收到通知。</value>
-  </data>
-  <data name="BaseAirCorps_TiredToolTip" xml:space="preserve">
-    <value>出击前，如果有陆航橙脸将会收到通知。</value>
+    <value>出击前，基地航空队存在任何[休息]状态中队时显示通知。</value>
   </data>
   <data name="BaseAirCorps_RetreatToolTip" xml:space="preserve">
-    <value>出击前，如果有陆航在[退避]将会收到通知。</value>
+    <value>出击前，基地航空队存在任何[退避]状态中队时显示通知。</value>
+  </data>
+  <data name="BaseAirCorps_Standby" xml:space="preserve">
+    <value>[待机]</value>
   </data>
   <data name="BaseAirCorps_StandbyToolTip" xml:space="preserve">
-    <value>出击前，如果有陆航在[待机]将会收到通知。</value>
+    <value>出击前，基地航空队存在任何[待机]状态中队时显示通知。</value>
   </data>
   <data name="BaseAirCorps_NormalMapToolTip" xml:space="preserve">
-    <value>出击前，通常海域的陆航没准备好时将会收到通知。</value>
+    <value>出击前，通常海域的基地航空队准备不足时显示通知。</value>
   </data>
   <data name="BaseAirCorps_EventMap" xml:space="preserve">
     <value>活动海域</value>
   </data>
   <data name="BaseAirCorps_EventMapToolTip" xml:space="preserve">
-    <value>出击前，活动海域的陆航没准备好时将会收到通知。</value>
+    <value>出击前，活动海域的基地航空队准备不足时显示通知。</value>
   </data>
   <data name="BaseAirCorps_EquipmentRelocation" xml:space="preserve">
-    <value>装备的配置转换完成</value>
+    <value>装备配置转换完毕</value>
   </data>
   <data name="BaseAirCorps_EquipmentRelocationToolTip" xml:space="preserve">
-    <value>装备的配置转换完成时将会收到通知。</value>
+    <value>装备配置转换完毕时显示通知。</value>
   </data>
   <data name="BaseAirCorps_SquadronRelocation" xml:space="preserve">
-    <value>陆航的配置转换完成</value>
+    <value>基地配置转换完毕</value>
   </data>
   <data name="BaseAirCorps_SquadronRelocationToolTip" xml:space="preserve">
-    <value>陆航飞机槽位配置转换完成后将会收到通知。
-与“装备的配置转换完成”不同的是，已经返回装备栏的飞机不会得到通知。</value>
+    <value>基地装备槽位配置转换完成时显示通知。
+此处与「装备配置转换完毕」不同，不会通知您哪些飞机装备返回装备栏。</value>
   </data>
   <data name="GroupBattleEnd" xml:space="preserve">
     <value>战斗结束设置</value>
   </data>
   <data name="BattleEnd_IdleTimerEnabled" xml:space="preserve">
-    <value>启用空闲时间</value>
-  </data>
-  <data name="BattleEnd_IdleTime" xml:space="preserve">
-    <value>空闲时间</value>
+    <value>启用放置计时器</value>
   </data>
   <data name="BattleEnd_IdleTimerEnabledToolTip" xml:space="preserve">
-    <value>战斗开始后一定时间后会发送通知。</value>
+    <value>在战斗开始一定时间后显示通知。</value>
+  </data>
+  <data name="BattleEnd_IdleTime" xml:space="preserve">
+    <value>放置计时器</value>
   </data>
   <data name="BattleEnd_IdleTimeToolTip" xml:space="preserve">
-    <value>指定空闲时间（以秒为单位）。</value>
+    <value>请以秒为单位设置放置计时器。</value>
   </data>
   <data name="AnchorageRepairNotificationLevel_Always" xml:space="preserve">
-    <value>总是</value>
+    <value>随时</value>
   </data>
   <data name="AnchorageRepairNotificationLevel_AkashiFlagship" xml:space="preserve">
-    <value>当明石作为旗舰时</value>
+    <value>当明石为旗舰时</value>
   </data>
   <data name="AnchorageRepairNotificationLevel_ShipNeededRepair" xml:space="preserve">
-    <value>当有艆需要修理时</value>
+    <value>当有可维修舰时</value>
   </data>
   <data name="AnchorageRepairNotificationLevel_Preset" xml:space="preserve">
-    <value>预设</value>
+    <value>预设编成时</value>
   </data>
   <data name="AnchorageRepairNotificationLevelToolTip" xml:space="preserve">
-    <value>总是：每过20分钟提醒您。
-明石旗舰时：除上述情况外，我们仅在明石旗舰时通知您。
-有艆需要修理时：除上述情况外，仅在具备实际可以修理舰娘的条件时才进行通知。
-创建预设时：除上述内容外，当包含符合修复条件的预设时，还会通知您。</value>
+    <value>随时：20分钟后显示通知。
+当明石为旗舰时：除上述外，仅明石作为旗舰时显示通知。
+当有可维修舰时：除上述外，实际有船可进行维修时显示通知。
+预设编成时：除上述外，当预设编成符合维修条件时显示通知。</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
   </data>
   <data name="TestNotificationCustomPositioning" xml:space="preserve">
-    <value>这是一个测试通知。
-当您移动并关闭它时，显示位置将会更新。</value>
+    <value>这里是测试通知。
+移动窗口后关闭将更新通知显示的位置。</value>
   </data>
   <data name="TestNotification" xml:space="preserve">
-    <value>这是一个测试通知。</value>
+    <value>测试通知。</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
+    <value>未编成・配置转换中</value>
   </data>
   <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
-    <value>出击前，如果有陆航中队没有编成或在配置转换，您将会收到通知。</value>
-  </data>
-  <data name="ShowWithActivationToolTip" xml:space="preserve">
-    <value>显示时激活对话框。
-禁用它可以更轻松地隐藏对话框，而不会干扰操作。
-(猜测是游戏退出时的提示）</value>
+    <value>出击前存在任何中队未编成或配置转换中时显示通知。</value>
   </data>
 </root>

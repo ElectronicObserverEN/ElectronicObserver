@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,46 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FailedToDownloadElectronicObserver" xml:space="preserve">
-    <value>无法下载74EO。</value>
-  </data>
-  <data name="YouAreUsingTheLatestVersion" xml:space="preserve">
-    <value>您当前使用的是最新版本（{0} 版本)。</value>
-  </data>
-  <data name="UpdaterDownloadFinished" xml:space="preserve">
-    <value>更新程序下载完成。</value>
-  </data>
-  <data name="TranslationFilesUpdated" xml:space="preserve">
-    <value>翻译文件已更新。</value>
-  </data>
-  <data name="StartedDownloadingUpdate" xml:space="preserve">
-    <value>开始下载更新。{0}</value>
+  <data name="FailedToObtainUpdateData" xml:space="preserve">
+    <value>获取更新信息失败。</value>
   </data>
   <data name="InvalidUpdateUrl" xml:space="preserve">
-    <value>更新 URL 无效。</value>
+    <value>获取更新信息失败。</value>
   </data>
-  <data name="FileUpdated" xml:space="preserve">
-    <value>文件 {0} 已更新。</value>
+  <data name="YouAreUsingTheLatestVersion" xml:space="preserve">
+    <value>当前使用版本已是最新。</value>
   </data>
-  <data name="FailedToUpdateFile" xml:space="preserve">
-    <value>{0}无法更新数据{1}</value>
-  </data>
-  <data name="FailedToParseUpdateData" xml:space="preserve">
-    <value>无法解析更新数据：</value>
-  </data>
-  <data name="FailedToObtainUpdateData" xml:space="preserve">
-    <value>获取更新数据失败。</value>
-  </data>
-  <data name="FailedToDownloadUpdater" xml:space="preserve">
-    <value>无法下载更新程序。</value>
-  </data>
-  <data name="DownloadingUpdate" xml:space="preserve">
-    <value>正在下载更新...</value>
+  <data name="StartedDownloadingUpdate" xml:space="preserve">
+    <value>已开始下载更新。{0}</value>
   </data>
   <data name="DownloadFinished" xml:space="preserve">
-    <value>下载完成。</value>
+    <value>下载完毕。</value>
   </data>
   <data name="CloseElectronicObserverToCompleteTheUpdate" xml:space="preserve">
-    <value>关闭 七四式电子观测仪 以完成更新过程。它将自动重启。</value>
+    <value>请关闭七四式程序以完成自动更新。之后程序将自动启动。</value>
+  </data>
+  <data name="TranslationFilesUpdated" xml:space="preserve">
+    <value>翻译文件更新完毕。</value>
+  </data>
+  <data name="UpdaterDownloadFinished" xml:space="preserve">
+    <value>更新下载完毕。</value>
+  </data>
+  <data name="FailedToDownloadUpdater" xml:space="preserve">
+    <value>更新下载失败。</value>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>更新下载中...</value>
+  </data>
+  <data name="FailedToDownloadElectronicObserver" xml:space="preserve">
+    <value>七四式下载失败。</value>
+  </data>
+  <data name="FailedToParseUpdateData" xml:space="preserve">
+    <value>更新数据解析失败：</value>
+  </data>
+  <data name="FailedToUpdateFile" xml:space="preserve">
+    <value>{0}数据的更新失败了。{1}</value>
+  </data>
+  <data name="FileUpdated" xml:space="preserve">
+    <value>文件{0}已更新。</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -121,19 +121,16 @@
     <value>初始化</value>
   </data>
   <data name="ConvertToExpression" xml:space="preserve">
-    <value>转换为公式</value>
+    <value>转换表达式</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>(说明)</value>
+    <value>(描述)</value>
   </data>
   <data name="ExpressionDetailView_LeftOperand" xml:space="preserve">
-    <value>左侧</value>
+    <value>左边</value>
   </data>
   <data name="ExpressionDetailView_RightOperand" xml:space="preserve">
-    <value>右侧</value>
-  </data>
-  <data name="ExpressionDetailView_Operator" xml:space="preserve">
-    <value>状况</value>
+    <value>右边</value>
   </data>
   <data name="ExpressionDetail_Add" xml:space="preserve">
     <value>添加</value>
@@ -145,7 +142,7 @@
     <value>编辑</value>
   </data>
   <data name="ExpressionView_Expression" xml:space="preserve">
-    <value>公式</value>
+    <value>表达式</value>
   </data>
   <data name="ExpressionView_ExternalAndOr" xml:space="preserve">
     <value>外部条件</value>
@@ -153,118 +150,111 @@
   <data name="ExpressionView_InternalAndOr" xml:space="preserve">
     <value>内部条件</value>
   </data>
-  <data name="ExpressionView_Inverse" xml:space="preserve">
-    <value>否</value>
-  </data>
   <data name="Expression_Add" xml:space="preserve">
     <value>添加</value>
   </data>
   <data name="Expression_Delete" xml:space="preserve">
     <value>删除</value>
   </data>
+  <data name="label1" xml:space="preserve">
+    <value>该组内容与筛选器无关，是供筛选器追加/除外舰娘的列表。
+要添加组，请右键单击该组并选择添加。</value>
+  </data>
   <data name="OptimizeConstFilter" xml:space="preserve">
-    <value>优化</value>
+    <value>最适</value>
   </data>
   <data name="tabPage1" xml:space="preserve">
-    <value>筛选</value>
+    <value>筛选器</value>
   </data>
   <data name="tabPage2" xml:space="preserve">
-    <value>包含/排除列表</value>
+    <value>包含/除外列表</value>
   </data>
   <data name="ExpressionView_Enabled" xml:space="preserve">
-    <value>启用/禁用</value>
+    <value>有效/无效</value>
   </data>
   <data name="ExpressionView_Inverse_ToolTip" xml:space="preserve">
-    <value>逆转条件</value>
-  </data>
-  <data name="ExpressionView_Up" xml:space="preserve">
-    <value>↑</value>
+    <value>是否反转条件</value>
   </data>
   <data name="ExpressionView_Up_ToolTip" xml:space="preserve">
     <value>向上</value>
   </data>
-  <data name="ExpressionView_Down" xml:space="preserve">
-    <value>↓</value>
-  </data>
   <data name="ExpressionView_Down_ToolTip" xml:space="preserve">
     <value>向下</value>
   </data>
-  <data name="ExpressionDetailView_Enabled" xml:space="preserve">
-    <value>○</value>
-  </data>
   <data name="ExpressionDetailView_Enabled_ToolTip" xml:space="preserve">
-    <value>启用/禁用</value>
+    <value>有效/无效</value>
   </data>
   <data name="ConvertToExpression_ToolTip" xml:space="preserve">
     <value>将包含/排除列表转换为表达式。
-请注意，反向转换是不可能的。</value>
+请注意，无法进行逆向转换。</value>
   </data>
   <data name="OptimizeConstFilter_ToolTip" xml:space="preserve">
     <value>从列表中删除不存在的舰娘。</value>
   </data>
   <data name="ClearConstFilter_ToolTip" xml:space="preserve">
-    <value>删除列表中的所有内容。</value>
+    <value>将列表中所有内容删除。</value>
   </data>
   <data name="SelectARow" xml:space="preserve">
-    <value>选择要删除的行。</value>
+    <value>请选择目标行。</value>
   </data>
   <data name="SelectExpressionRow" xml:space="preserve">
-    <value>选择包含目标表达式的行（左侧）。
-如果该行不存在，则添加该行。</value>
+    <value>选择目标表达式(左侧)所在行。
+如果该行不存在请进行添加。</value>
   </data>
   <data name="SelectSequence" xml:space="preserve">
-    <value>选择目标表达式列（左侧）。</value>
+    <value>请选择目标表达式列(左侧)。</value>
   </data>
   <data name="SelectTargetRow" xml:space="preserve">
     <value>请选择目标行。</value>
   </data>
   <data name="ClearFilterWarningTitle" xml:space="preserve">
-    <value>确认初始化</value>
+    <value>初始化确认</value>
   </data>
   <data name="ClearFilterWarning" xml:space="preserve">
-    <value>初始化{0}。
-你确定吗？</value>
+    <value>将 {0} 初始化。
+可以吗?</value>
   </data>
   <data name="ConvertToExpressionWarning" xml:space="preserve">
-    <value>将当前包含/排除列表转换为表达式。
-无法进行反向转换。
-你确定吗？</value>
+    <value>将当前的包含/排除列表转换为表达式。
+无法进行逆向转换。
+可以吗？</value>
   </data>
   <data name="ImportFilterFromClipboard" xml:space="preserve">
-    <value>从剪贴板导入过滤器。
-当前过滤器将被丢弃（包含/排除过滤器将被保留）
-你确定吗？</value>
+    <value>从剪贴板导入筛选器参数。
+当前的筛选器参数将被丢弃。(包含/排除筛选设置保留)
+可以吗？
+</value>
   </data>
   <data name="ImportFilterFromClipboardTitle" xml:space="preserve">
-    <value>检查过滤器的导入</value>
+    <value>筛选器导入确认</value>
   </data>
   <data name="ClipboardIsEmpty" xml:space="preserve">
     <value>剪贴板是空的。
-复制过滤器数据并再次选择。</value>
+请先复制筛选器数据后再进行选择。
+</value>
   </data>
   <data name="CanNotImport" xml:space="preserve">
     <value>无法导入</value>
   </data>
   <data name="FormatCanNotBeImported" xml:space="preserve">
-    <value>该数据格式无法导入</value>
-  </data>
-  <data name="label1" xml:space="preserve">
-    <value>无论筛选内容如何，你都可以从组内的右键菜单添加/移除舰娘。
-</value>
+    <value>数据格式无法导入。</value>
   </data>
   <data name="FilterImportFailed" xml:space="preserve">
-    <value>导入过滤器失败。</value>
+    <value>筛选器导入失败。
+</value>
   </data>
   <data name="FilterWasExported" xml:space="preserve">
-    <value>已将过滤器导出到剪贴板。
-您可以使用“导入过滤器”导入它或
-将其粘贴到记事本等中并保存。</value>
+    <value>已将筛选器导出至剪贴板。
+请使用「导入筛选器」功能将其导入，
+或复制到记事本等地方进行保存。
+</value>
   </data>
   <data name="ExportingFilterTitle" xml:space="preserve">
-    <value>导出过滤器</value>
+    <value>导出筛选器</value>
   </data>
   <data name="FilterExportFailed" xml:space="preserve">
-    <value>导出过滤器失败。</value>
+    <value>导出筛选器失败。
+</value>
   </data>
   <data name="CanNotExport" xml:space="preserve">
     <value>无法导出</value>
@@ -273,13 +263,13 @@
     <value>取消</value>
   </data>
   <data name="Filter" xml:space="preserve">
-    <value>筛选</value>
+    <value>筛选器</value>
   </data>
   <data name="InclusionExclusionList" xml:space="preserve">
-    <value>包含/排除列表</value>
+    <value>包含/除外列表</value>
   </data>
   <data name="ConstFilterView_Name" xml:space="preserve">
-    <value>艆名</value>
+    <value>舰名</value>
   </data>
   <data name="ConstFilterSelector_InclusionList" xml:space="preserve">
     <value>包含列表</value>
@@ -291,10 +281,10 @@
     <value>菜单 ▼</value>
   </data>
   <data name="SubMenu_ImportFilter" xml:space="preserve">
-    <value>导入过滤器(&amp;I)</value>
+    <value>导入筛选器(&amp;I)</value>
   </data>
   <data name="SubMenu_ExportFilter" xml:space="preserve">
-    <value>导出过滤器(&amp;E)</value>
+    <value>导出筛选器(&amp;E)</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>筛选器设置</value>

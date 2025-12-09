@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -121,52 +121,46 @@
     <value>复制编成文本(&amp;C)</value>
   </data>
   <data name="ContextMenuFleet_CopyFleetDeckBuilder" xml:space="preserve">
-    <value>复制编成(BD-builder)(&amp;D)</value>
+    <value>复制编成(デッキビルダー)(&amp;D)</value>
   </data>
   <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
-    <value>复制并曝光到舰队分析(&amp;R)</value>
+    <value>复制到晒船页面(&amp;R)</value>
   </data>
   <data name="ContextMenuFleet_CopyFleetAnalysisShips" xml:space="preserve">
-    <value>复制舰娘列表到舰队分析</value>
+    <value>复制舰娘数据至舰队分析</value>
   </data>
   <data name="ContextMenuFleet_CopyFleetAnalysisEquipment" xml:space="preserve">
-    <value>复制装备列表到舰队分析</value>
+    <value>复制装备数据至舰队分析</value>
   </data>
   <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
-    <value>防空火力(AA)详细表示(&amp;A)</value>
+    <value>显示对空炮火详情(&amp;A)</value>
   </data>
   <data name="ContextMenuFleet_Capture" xml:space="preserve">
-    <value>复制为图像(&amp;S)</value>
+    <value>截屏该画面(&amp;S)</value>
   </data>
   <data name="ContextMenuFleet_OutputFleetImage" xml:space="preserve">
-    <value>编成另存为图像(&amp;I)</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>*未加载*</value>
+    <value>编成图像导出(&amp;I)</value>
   </data>
   <data name="SupportTypeNone" xml:space="preserve">
     <value>无法发动</value>
   </data>
-  <data name="SupportTypeAerial" xml:space="preserve">
-    <value>航空支援</value>
-  </data>
   <data name="SupportTypeShelling" xml:space="preserve">
-    <value>支援射击</value>
+    <value>炮击支援</value>
   </data>
   <data name="SupportTypeTorpedo" xml:space="preserve">
-    <value>长距离支援雷击</value>
+    <value>长距离雷击支援</value>
   </data>
   <data name="FleetNameToolTip" xml:space="preserve">
-    <value>总等级: {0} / 平均: {1:0.00}
+    <value>Lv合计: {0} / 平均: {1:0.00}
 {2}舰队
 支援攻击: {3}
-总计火力 {4} ({20})  / 雷装 {5} / 对空 {6} ({21}) / 对潜 {7} ({22}) / 索敌 {8} ({23}){26}
-搭载运输缶: {9}个 ({10}艆)
-搭载大发动艇: {11}个 ({12}艆, +{13:p1})
-运送量(TP): S {14} / A {15}{27}
-水上电探: {24}个 ({25}艆)
-总消耗: 油 {16} / 弹 {17}
-(每场战斗 油 {18} / 弹 {19})</value>
+总火力 {4} ({20})  / 雷装 {5} / 对空 {6} ({21}) / 对潜 {7} ({22}) / 索敌 {8} ({23}){26}
+运输桶搭载: {9}个 ({10}舰)
+大发动艇搭载: {11}个 ({12}舰, +{13:p1})
+运输量(TP): S {14} / A {15}{27}
+水上电探: {24}个 ({25}舰)
+总搭载: 燃 {16} / 弹 {17}
+(1次战斗消耗 燃 {18} / 弹 {19})</value>
   </data>
   <data name="WithoutProficiency" xml:space="preserve">
     <value>无熟练度</value>
@@ -175,18 +169,15 @@
     <value>有熟练度</value>
   </data>
   <data name="FleetLosToolTip" xml:space="preserve">
-    <value>新公式(33) 分歧点系数: {0}
+    <value>新判定式(33) 分歧点系数: {0}
 　(点击切换)
 
-接触开始率: 
+接触发生率: 
 　确保 {1:p1} / 优势 {2:p1}
 </value>
   </data>
   <data name="ContactSelection" xml:space="preserve">
     <value>接触选择率: </value>
-  </data>
-  <data name="ContactProbability" xml:space="preserve">
-    <value>　命中{0} : {1:p1}</value>
   </data>
   <data name="ShipNameToolTip" xml:space="preserve">
     <value>{0}{1} {2}
@@ -201,61 +192,52 @@
 命中: {18:+#;-#;+0}
 爆装: {19:+#;-#;+0}
 射程: {20} / 速力: {21}
-(右键查看图鉴)</value>
+(右键打开图鉴)</value>
   </data>
   <data name="ExpCalcHint" xml:space="preserve">
-    <value>(右键计算所需Exp)</value>
+    <value>(右键计算必要Exp)</value>
   </data>
   <data name="CvciFba" xml:space="preserve">
-    <value>航母CI(战爆攻-FBA)</value>
+    <value>空母Cut In(FBA)</value>
   </data>
   <data name="CvciBba" xml:space="preserve">
-    <value>航母CI(爆爆攻-BBA)</value>
+    <value>空母Cut In(BBA)</value>
   </data>
   <data name="CvciBa" xml:space="preserve">
-    <value>航母CI(爆攻-BA)</value>
-  </data>
-  <data name="Power" xml:space="preserve">
-    <value>威力</value>
-  </data>
-  <data name="Accuracy" xml:space="preserve">
-    <value>命中</value>
+    <value>空母Cut In(BA)</value>
   </data>
   <data name="Asw" xml:space="preserve">
     <value>对潜</value>
   </data>
   <data name="OpeningAsw" xml:space="preserve">
-    <value> (可先手)</value>
+    <value> (可以先制)</value>
   </data>
   <data name="Aarb" xml:space="preserve">
     <value>对空喷进弹幕</value>
-  </data>
-  <data name="AirstrikePower" xml:space="preserve">
-    <value>空袭威力</value>
   </data>
   <data name="CopyFleetText" xml:space="preserve">
     <value>{0}    制空战力{1} / 索敌能力 {2} / 运输能力 {3}</value>
   </data>
   <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
-    <value>将舰娘列表复制到舰队分析</value>
+    <value>舰娘数据复制至舰队分析电子表格</value>
   </data>
   <data name="CopyToFleetAnalysisSpreadsheetEquipment" xml:space="preserve">
-    <value>将装备列表复制到舰队分析</value>
+    <value>装备数据复制至舰队分析电子表格</value>
   </data>
   <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
     <value>(右键打开图鉴)</value>
   </data>
   <data name="ContextMenuFleetShipLevel_CreateTrainingPlan" xml:space="preserve">
-    <value>舰娘训练计划</value>
+    <value>新增舰娘训练</value>
   </data>
   <data name="ContextMenuFleetShipLevel_OpenExpChecker" xml:space="preserve">
-    <value>计算所需经验</value>
+    <value>必要Exp计算</value>
   </data>
   <data name="ContextMenuFleetShipLevel_EditTrainingPlan" xml:space="preserve">
     <value>编辑舰娘训练</value>
   </data>
   <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
-    <value>消除舰娘训练</value>
+    <value>删除舰娘训练</value>
   </data>
   <data name="SpecialAttacksDay" xml:space="preserve">
     <value>特殊炮击(昼战)：</value>
@@ -273,12 +255,15 @@
     <value>全部</value>
   </data>
   <data name="Locked" xml:space="preserve">
-    <value>锁定</value>
+    <value>已锁定</value>
   </data>
   <data name="SupportTypeAntiSubmarine" xml:space="preserve">
-    <value>对潜支援</value>
+    <value>反潜支援</value>
   </data>
   <data name="SmokeScreen" xml:space="preserve">
     <value>烟幕</value>
+  </data>
+  <data name="SearchingPhase" xml:space="preserve">
+    <value>索敌阶段</value>
   </data>
 </root>

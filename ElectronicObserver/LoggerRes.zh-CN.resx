@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -120,29 +120,26 @@
   <data name="AdditionalInfo" xml:space="preserve">
     <value>附加信息 : {0}</value>
   </data>
-  <data name="APIData" xml:space="preserve">
-    <value>通讯内容 : {0}</value>
-  </data>
   <data name="APIObserverStarted" xml:space="preserve">
-    <value>APIObserver：开始在端口 {0} 上接收。</value>
+    <value>APIObserver: 已开始监听 {0} 号端口。</value>
   </data>
   <data name="APIObserverStopped" xml:space="preserve">
-    <value>APIObserver：接收已停止。</value>
+    <value>APIObserver: 已停止监听。</value>
   </data>
   <data name="ChangedParameters" xml:space="preserve">
-    <value>更新了参数。</value>
+    <value>的参数已更新。</value>
   </data>
   <data name="CreatedItem" xml:space="preserve">
-    <value>{0}「{1}」开发成功。(消耗{2}/{3}/{4}/{5} 秘书舰: {6})</value>
+    <value>{0}「{1}」开发成功。({2}/{3}/{4}/{5} 秘书舰: {6})</value>
   </data>
   <data name="DoesNotExist" xml:space="preserve">
     <value>不存在。</value>
   </data>
   <data name="EquipmentObtained" xml:space="preserve">
-    <value>获得了{0}「{1}」。</value>
+    <value>{0}「{1}」已获得。</value>
   </data>
   <data name="ErrorDatabaseSending" xml:space="preserve">
-    <value>发送到 艦これ 统计数据库时发生错误。</value>
+    <value>向艦これ统计数据库发送数据时发生错误。</value>
   </data>
   <data name="ErrorField" xml:space="preserve">
     <value>错误 : {0}</value>
@@ -151,13 +148,16 @@
     <value>错误报告 : {0}</value>
   </data>
   <data name="ExecutedFlashQualitySetting" xml:space="preserve">
-    <value>设置 Flash 质量。</value>
+    <value>已设置flash画质。</value>
+  </data>
+  <data name="ExpedStarted" xml:space="preserve">
+    <value>#{0}「{1}」已出发前往远征「{2}: {3}」。</value>
   </data>
   <data name="Failed" xml:space="preserve">
     <value>失败了。</value>
   </data>
   <data name="FailedDatabaseSend" xml:space="preserve">
-    <value>无法将 {0} 发送到 砍口垒 统计数据库。</value>
+    <value>向艦これ统计数据库发送 {0} 时失败。{1}</value>
   </data>
   <data name="FailedLoadAPI" xml:space="preserve">
     <value>API加载失败。</value>
@@ -172,34 +172,34 @@
     <value>加载资源文件失败。</value>
   </data>
   <data name="FailedLoadingStorage" xml:space="preserve">
-    <value>无法加载数据存储。</value>
+    <value>数据存储加载失败。</value>
   </data>
   <data name="FailedLoadLayout" xml:space="preserve">
-    <value>无法恢复窗口布局。</value>
+    <value>窗口布局还原失败。</value>
   </data>
   <data name="FailedLoadSubLayout" xml:space="preserve">
-    <value>无法恢复子窗口布局。</value>
+    <value>子窗口布局还原失败。</value>
   </data>
   <data name="FailedLoadWindowPlacement" xml:space="preserve">
-    <value>无法恢复窗口状态。</value>
+    <value>窗口状态还原失败。</value>
   </data>
   <data name="FailedResourceRename" xml:space="preserve">
-    <value>无法重命名舰娘资源。</value>
-  </data>
-  <data name="FailedSaveLayout" xml:space="preserve">
-    <value>无法保存子窗口布局。</value>
+    <value>舰船资源重命名失败。</value>
   </data>
   <data name="FailedSaveAPI" xml:space="preserve">
-    <value>保存通讯内容失败。 </value>
+    <value>通信内容保存失败。 </value>
+  </data>
+  <data name="FailedSaveLayout" xml:space="preserve">
+    <value>子窗口布局保存失败。</value>
   </data>
   <data name="FailedSaveWindowPlacement" xml:space="preserve">
-    <value>无法保存窗口状态。</value>
+    <value>窗口状态保存失败。</value>
   </data>
   <data name="FailedSaving" xml:space="preserve">
-    <value>无法存储。</value>
+    <value>写入失败。</value>
   </data>
   <data name="FailedSavingErrorReport" xml:space="preserve">
-    <value>无法写入错误报告。
+    <value>错误报告写入失败。
 {0}
 {1}</value>
   </data>
@@ -207,10 +207,10 @@
     <value>数据存储写入失败。</value>
   </data>
   <data name="FailedToLoadAPIFile" xml:space="preserve">
-    <value>API文件 {0} 的加载失败了。{1}</value>
+    <value>API文件 {0} 加载失败。{1}</value>
   </data>
   <data name="GameStart" xml:space="preserve">
-    <value>提督已抵达镇守府。正在将舰队指挥权转交给您。</value>
+    <value>提督已抵达镇守府。从现在开始指挥舰队！</value>
   </data>
   <data name="ImageCantBeLoaded" xml:space="preserve">
     <value>图像资源 {0} 加载失败。</value>
@@ -219,28 +219,28 @@
     <value>图像资源 {0} 不存在。</value>
   </data>
   <data name="ImprovedFailure" xml:space="preserve">
-    <value>{0} 的改修失败了。</value>
+    <value>{0} 改修失败。</value>
   </data>
   <data name="ImprovedSuccess" xml:space="preserve">
-    <value>的改修成功了。( </value>
+    <value>改修成功。( </value>
   </data>
   <data name="InitialEquipRegistered" xml:space="preserve">
-    <value>的初始装备已记录。</value>
+    <value>初始装备记录完毕。</value>
   </data>
   <data name="ItemCreationFailed" xml:space="preserve">
-    <value>开发失败。(消耗 {0}/{1}/{2}/{3} 秘书舰: {4})</value>
+    <value>开发失败。({0}/{1}/{2}/{3} 秘书舰: {4})</value>
   </data>
   <data name="ItemObtained" xml:space="preserve">
-    <value>获得物品「{0}」。（总计：{1} 个）</value>
+    <value>获得物品「{0}」。( 总计: {1}个 )</value>
   </data>
   <data name="JustMarried" xml:space="preserve">
-    <value>您现已与 {0} 结婚了。（运+{1}→{2}/{3})</value>
+    <value>与 {0} 结婚了。恭喜！(运+{1}→{2}/{3})</value>
   </data>
   <data name="LoadedRecords" xml:space="preserve">
-    <value>记录已加载。</value>
+    <value>已加载记录。</value>
   </data>
   <data name="RecievedRequest" xml:space="preserve">
-    <value>收到请求：</value>
+    <value>已收到请求 :</value>
   </data>
   <data name="Record" xml:space="preserve">
     <value>记录 </value>
@@ -249,25 +249,28 @@
     <value>的参数已记录。</value>
   </data>
   <data name="RequestError" xml:space="preserve">
-    <value>接收请求时发生错误。</value>
+    <value>接收服务器请求时发生错误。</value>
   </data>
   <data name="ResponseHadErrorCode" xml:space="preserve">
-    <value>从服务器收到错误代码。</value>
+    <value>收到了包含错误代码的消息。</value>
   </data>
   <data name="SavedAPI" xml:space="preserve">
-    <value>已保存 API 文件 {0}。</value>
+    <value>通信中收到的 {0} 文件已保存。</value>
   </data>
   <data name="SentDatabase" xml:space="preserve">
-    <value>已将 {0} 发送至 砍口垒 统计数据库。</value>
+    <value>已向艦これ统计数据库发送 {0} 数据。</value>
   </data>
   <data name="ShipAdded" xml:space="preserve">
-    <value>{0}「{1}」加入了您的舰队。</value>
+    <value>{0}「{1}」加入您的战斗序列。</value>
   </data>
   <data name="ShipConstructed" xml:space="preserve">
-    <value>{0}「{1}」的建造已完成。</value>
+    <value>{0}「{1}」建造完毕。</value>
   </data>
   <data name="ShipScrapped" xml:space="preserve">
     <value>已解体。</value>
+  </data>
+  <data name="SortiedTo" xml:space="preserve">
+    <value>#{0}「{1}」已出击前往「{2}-{3} {4}」。</value>
   </data>
   <data name="StorageDoesNotExist" xml:space="preserve">
     <value>数据存储 {0} 不存在。</value>
@@ -276,33 +279,30 @@
     <value>数据存储文件不存在。</value>
   </data>
   <data name="Copied" xml:space="preserve">
-    <value>{0} 已被复制。</value>
+    <value>{0} 已复制。</value>
   </data>
   <data name="Decomissioned" xml:space="preserve">
-    <value> 已退役。</value>
+    <value> 已除籍。</value>
   </data>
   <data name="FailedToCopy" xml:space="preserve">
-    <value>复制 {0} 失败。 {1}</value>
+    <value>{0} 复制失败。{1}</value>
   </data>
   <data name="MultiplePossibleMvps" xml:space="preserve">
-    <value>MVP 候选人有多位。请检查日志。</value>
+    <value>存在多个MVP候补。请查看日志。</value>
   </data>
   <data name="RecordAutosaveFailure" xml:space="preserve">
-    <value>自动保存记录失败。</value>
+    <value>记录自动保存失败。</value>
   </data>
   <data name="RecordAutosaveSuccess" xml:space="preserve">
-    <value>执行了记录的自动保存。</value>
+    <value>记录自动保存成功。</value>
   </data>
   <data name="ImprovedEqSuccess" xml:space="preserve">
-    <value>对{0}的修改成功。</value>
+    <value>{0} 改修成功。</value>
   </data>
   <data name="ClearedQuest" xml:space="preserve">
     <value>任务『{0}』已完成。</value>
   </data>
-  <data name="SortiedTo" xml:space="preserve">
-    <value>#{0}「{1}」 正在出击 「{2}-{3} {4}」。</value>
-  </data>
-  <data name="ExpedStarted" xml:space="preserve">
-    <value>#{0}「{1}」正在远征「{2}: {3}」。</value>
+  <data name="FailedToCopyToClipboard" xml:space="preserve">
+    <value>复制到剪贴板失败</value>
   </data>
 </root>

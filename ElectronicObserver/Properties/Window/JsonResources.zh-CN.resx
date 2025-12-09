@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -121,39 +121,40 @@
     <value>全部展开</value>
   </data>
   <data name="TreeContextMenu_Shrink" xml:space="preserve">
-    <value>全部收起</value>
+    <value>全部折叠</value>
   </data>
   <data name="TreeContextMenu_ShrinkParent" xml:space="preserve">
-    <value>收起到父节点</value>
+    <value>折叠父节点</value>
   </data>
   <data name="TreeContextMenu_OutputCSV" xml:space="preserve">
-    <value>将此节点输出到 CSV...</value>
+    <value>将该节点导出至CSV...</value>
   </data>
   <data name="TreeContextMenu_CopyToClipboard" xml:space="preserve">
-    <value>将此节点复制到剪贴板</value>
+    <value>将该节点复制到剪贴板</value>
   </data>
   <data name="LoadSavedJsonByDragging" xml:space="preserve">
-    <value>◆ 可以读取D&amp;D保存的json文件</value>
+    <value>◆可读取在 D&amp;D 中保存的 json 文件</value>
   </data>
   <data name="EnablingAutoUpdateCanBeHeavy" xml:space="preserve">
-    <value>启用自动更新可能会严重影响性能</value>
+    <value>启用自动更新时，
+可能增加程序运行负担</value>
+  </data>
+  <data name="UpdatesTree" xml:space="preserve">
+    <value>更新树状图</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>筛选：</value>
-  </data>
-  <data name="UpdatesTree" xml:space="preserve">
-    <value>同时更新 JSON 树视图</value>
   </data>
   <data name="AutoUpdate" xml:space="preserve">
     <value>自动更新</value>
   </data>
   <data name="CSVSaver" xml:space="preserve">
-    <value>将节点导出到 CSV</value>
+    <value>将节点导出为 CSV 文件</value>
   </data>
   <data name="TreeContextMenu_CopyAsDocument" xml:space="preserve">
-    <value>记录并复制该节点</value>
+    <value>将该节点文档化并复制</value>
   </data>
   <data name="AutoUpdateDisabledMessage" xml:space="preserve">
-    <value>&lt;自动更新已禁用。请从配置中启用它&gt;</value>
+    <value>&lt;自动更新已被禁用。请前往设置中启用。&gt;</value>
   </data>
 </root>

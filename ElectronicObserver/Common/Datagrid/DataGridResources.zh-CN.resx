@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -124,6 +124,6 @@
     <value>隐藏</value>
   </data>
   <data name="OpenColumnSelector" xml:space="preserve">
-    <value>打开列选择器</value>
+    <value>列显示设置</value>
   </data>
 </root>

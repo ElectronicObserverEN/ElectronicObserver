@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,301 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AABase" xml:space="preserve">
+    <value>基础对空</value>
+  </data>
+  <data name="AARemain" xml:space="preserve">
+    <value>对空改修剩余</value>
+  </data>
+  <data name="AATotal" xml:space="preserve">
+    <value>合计对空</value>
+  </data>
+  <data name="AircraftPower" xml:space="preserve">
+    <value>空袭威力</value>
+  </data>
+  <data name="AircraftRate1" xml:space="preserve">
+    <value>搭载比例 #1</value>
+  </data>
+  <data name="AircraftRate2" xml:space="preserve">
+    <value>搭载比例 #2</value>
+  </data>
+  <data name="AircraftRate3" xml:space="preserve">
+    <value>搭载比例 #3</value>
+  </data>
+  <data name="AircraftRate4" xml:space="preserve">
+    <value>搭载比例 #4</value>
+  </data>
+  <data name="AircraftRate5" xml:space="preserve">
+    <value>搭载比例 #5</value>
+  </data>
+  <data name="AircraftRateTotal" xml:space="preserve">
+    <value>搭载比例合计</value>
+  </data>
+  <data name="AircraftSlot1" xml:space="preserve">
+    <value>搭载 #1</value>
+  </data>
+  <data name="AircraftSlot2" xml:space="preserve">
+    <value>搭载 #2</value>
+  </data>
+  <data name="AircraftSlot3" xml:space="preserve">
+    <value>搭载 #3</value>
+  </data>
+  <data name="AircraftSlot4" xml:space="preserve">
+    <value>搭载 #4</value>
+  </data>
+  <data name="AircraftSlot5" xml:space="preserve">
+    <value>搭载 #5</value>
+  </data>
+  <data name="AircraftTotal" xml:space="preserve">
+    <value>搭载架数合计</value>
+  </data>
+  <data name="AlbumNo" xml:space="preserve">
+    <value>图鉴编号</value>
+  </data>
+  <data name="AllSlotMaster" xml:space="preserve">
+    <value>装备</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>搭载弹药</value>
+  </data>
+  <data name="AmmoMax" xml:space="preserve">
+    <value>最大搭载弹药</value>
+  </data>
+  <data name="AmmoRate" xml:space="preserve">
+    <value>搭载弹药比例</value>
+  </data>
+  <data name="ArmorBase" xml:space="preserve">
+    <value>基础装甲</value>
+  </data>
+  <data name="ArmorRemain" xml:space="preserve">
+    <value>装甲改修剩余</value>
+  </data>
+  <data name="ArmorTotal" xml:space="preserve">
+    <value>合计装甲</value>
+  </data>
+  <data name="ASWBase" xml:space="preserve">
+    <value>基础对潜</value>
+  </data>
+  <data name="ASWPower" xml:space="preserve">
+    <value>对潜威力</value>
+  </data>
+  <data name="ASWTotal" xml:space="preserve">
+    <value>合计对潜</value>
+  </data>
+  <data name="BomberTotal" xml:space="preserve">
+    <value>合计爆装</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>条件</value>
+  </data>
+  <data name="EquippableCategories" xml:space="preserve">
+    <value>可装备列表</value>
+  </data>
+  <data name="EvasionBase" xml:space="preserve">
+    <value>基础回避</value>
+  </data>
+  <data name="EvasionTotal" xml:space="preserve">
+    <value>合计回避</value>
+  </data>
+  <data name="ExpansionSlotMaster" xml:space="preserve">
+    <value>补强装备</value>
+  </data>
+  <data name="ExpNext" xml:space="preserve">
+    <value>距离升级还有</value>
+  </data>
+  <data name="ExpNextRemodel" xml:space="preserve">
+    <value>距离改造还有</value>
+  </data>
+  <data name="ExpTotal" xml:space="preserve">
+    <value>经验值</value>
+  </data>
+  <data name="FirePowerBase" xml:space="preserve">
+    <value>基础火力</value>
+  </data>
+  <data name="FirePowerRemain" xml:space="preserve">
+    <value>火力改修剩余</value>
+  </data>
+  <data name="FirePowerTotal" xml:space="preserve">
+    <value>合计火力</value>
+  </data>
+  <data name="FleetWithIndex" xml:space="preserve">
+    <value>所属舰队</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>搭载燃料</value>
+  </data>
+  <data name="FuelMax" xml:space="preserve">
+    <value>最大搭载燃料</value>
+  </data>
+  <data name="FuelRate" xml:space="preserve">
+    <value>搭载燃料比例</value>
+  </data>
+  <data name="HPCurrent" xml:space="preserve">
+    <value>当前HP</value>
+  </data>
+  <data name="HPRate" xml:space="preserve">
+    <value>HP比例</value>
+  </data>
+  <data name="IsLocked" xml:space="preserve">
+    <value>锁定</value>
+  </data>
+  <data name="IsLockedByEquipment" xml:space="preserve">
+    <value>装备锁定</value>
+  </data>
+  <data name="IsMarried" xml:space="preserve">
+    <value>婚舰</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>等级</value>
+  </data>
+  <data name="LOSBase" xml:space="preserve">
+    <value>基础索敌</value>
+  </data>
+  <data name="LOSTotal" xml:space="preserve">
+    <value>合计索敌</value>
+  </data>
+  <data name="LuckBase" xml:space="preserve">
+    <value>基础运</value>
+  </data>
+  <data name="LuckRemain" xml:space="preserve">
+    <value>运改修剩余</value>
+  </data>
+  <data name="LuckTotal" xml:space="preserve">
+    <value>合计运</value>
+  </data>
+  <data name="MasterAircraft1" xml:space="preserve">
+    <value>最大搭载 #1</value>
+  </data>
+  <data name="MasterAircraft2" xml:space="preserve">
+    <value>最大搭载 #2</value>
+  </data>
+  <data name="MasterAircraft3" xml:space="preserve">
+    <value>最大搭载 #3</value>
+  </data>
+  <data name="MasterAircraft4" xml:space="preserve">
+    <value>最大搭载 #4</value>
+  </data>
+  <data name="MasterAircraft5" xml:space="preserve">
+    <value>最大搭载 #5</value>
+  </data>
+  <data name="MasterAircraftTotal" xml:space="preserve">
+    <value>最大搭载架数</value>
+  </data>
+  <data name="MasterID" xml:space="preserve">
+    <value>舰船固有ID</value>
+  </data>
+  <data name="MasterRarity" xml:space="preserve">
+    <value>稀有度</value>
+  </data>
+  <data name="MasterSpeed" xml:space="preserve">
+    <value>基础速力</value>
+  </data>
+  <data name="NameReading" xml:space="preserve">
+    <value>舰名注音</value>
+  </data>
+  <data name="NameWithClass" xml:space="preserve">
+    <value>舰名</value>
+  </data>
+  <data name="NightBattlePower" xml:space="preserve">
+    <value>夜战威力</value>
+  </data>
+  <data name="RemodelAfterShipID" xml:space="preserve">
+    <value>改造后舰船ID</value>
+  </data>
+  <data name="RemodelBeforeShipID" xml:space="preserve">
+    <value>改造前舰船ID</value>
+  </data>
+  <data name="RepairFuel" xml:space="preserve">
+    <value>入渠燃油消耗</value>
+  </data>
+  <data name="RepairingDockID" xml:space="preserve">
+    <value>入渠船坞</value>
+  </data>
+  <data name="RepairSteel" xml:space="preserve">
+    <value>入渠钢材消耗</value>
+  </data>
+  <data name="RepairTime" xml:space="preserve">
+    <value>入渠时间</value>
+  </data>
+  <data name="SallyArea" xml:space="preserve">
+    <value>出击海域</value>
+  </data>
+  <data name="ShellingPower" xml:space="preserve">
+    <value>炮击威力</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>舰船ID</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>舰种</value>
+  </data>
+  <data name="SlotMaster1" xml:space="preserve">
+    <value>装备 #1</value>
+  </data>
+  <data name="SlotMaster2" xml:space="preserve">
+    <value>装备 #2</value>
+  </data>
+  <data name="SlotMaster3" xml:space="preserve">
+    <value>装备 #3</value>
+  </data>
+  <data name="SlotMaster4" xml:space="preserve">
+    <value>装备 #4</value>
+  </data>
+  <data name="SlotMaster5" xml:space="preserve">
+    <value>装备 #5</value>
+  </data>
+  <data name="SlotSize" xml:space="preserve">
+    <value>装备</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="StrArrayContains" xml:space="preserve">
+    <value>包括</value>
+  </data>
+  <data name="StrArrayNotContains" xml:space="preserve">
+    <value>不包括</value>
+  </data>
+  <data name="StrBeginsWith" xml:space="preserve">
+    <value>始于</value>
+  </data>
+  <data name="StrContains" xml:space="preserve">
+    <value>包括</value>
+  </data>
+  <data name="StrEndWith" xml:space="preserve">
+    <value>结束</value>
+  </data>
+  <data name="StrEquals" xml:space="preserve">
+    <value>等于</value>
+  </data>
+  <data name="StrLessThan" xml:space="preserve">
+    <value>较小</value>
+  </data>
+  <data name="StrMoreThan" xml:space="preserve">
+    <value>较大</value>
+  </data>
+  <data name="StrNotBeginsWith" xml:space="preserve">
+    <value>不始于</value>
+  </data>
+  <data name="StrNotContains" xml:space="preserve">
+    <value>不包括</value>
+  </data>
+  <data name="StrNotEndWith" xml:space="preserve">
+    <value>不结束</value>
+  </data>
+  <data name="StrNotEquals" xml:space="preserve">
+    <value>不等于</value>
+  </data>
+  <data name="TorpedoBase" xml:space="preserve">
+    <value>基础雷装</value>
+  </data>
+  <data name="TorpedoPower" xml:space="preserve">
+    <value>雷击威力</value>
+  </data>
+  <data name="TorpedoRemain" xml:space="preserve">
+    <value>雷装改修剩余</value>
+  </data>
+  <data name="TorpedoTotal" xml:space="preserve">
+    <value>合计雷装</value>
+  </data>
 </root>

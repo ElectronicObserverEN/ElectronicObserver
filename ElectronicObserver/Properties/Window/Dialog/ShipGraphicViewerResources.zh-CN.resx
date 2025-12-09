@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -127,16 +127,19 @@
     <value>复制到剪贴板(&amp;C)</value>
   </data>
   <data name="TopMenu_View" xml:space="preserve">
-    <value>展示(&amp;V)</value>
+    <value>显示(&amp;V)</value>
   </data>
   <data name="TopMenu_View_InterpolationMode" xml:space="preserve">
     <value>插值模式(&amp;I)</value>
   </data>
   <data name="TopMenu_View_InterpolationMode_Sharp" xml:space="preserve">
-    <value>清除(&amp;N)</value>
+    <value>清晰(&amp;N)</value>
   </data>
   <data name="TopMenu_View_InterpolationMode_Smooth" xml:space="preserve">
     <value>平滑(&amp;B)</value>
+  </data>
+  <data name="TopMenu_View_Zoom" xml:space="preserve">
+    <value>缩放(&amp;Z)</value>
   </data>
   <data name="TopMenu_View_Zoom_In" xml:space="preserve">
     <value>放大(&amp;E)</value>
@@ -144,39 +147,33 @@
   <data name="TopMenu_View_Zoom_Out" xml:space="preserve">
     <value>缩小(&amp;S)</value>
   </data>
-  <data name="TopMenu_View_Zoom_100" xml:space="preserve">
-    <value>100%(&amp;1)</value>
-  </data>
   <data name="TopMenu_View_Zoom_Fit" xml:space="preserve">
-    <value>缩放至​​(&amp;F)</value>
+    <value>自适应(&amp;F)</value>
   </data>
   <data name="OpenSwfDialog" xml:space="preserve">
-    <value>打开图像文件</value>
+    <value>保存图像</value>
   </data>
   <data name="SaveImageDialog" xml:space="preserve">
     <value>保存图像</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>舰娘图像查看器</value>
+    <value>舰船图像浏览器</value>
   </data>
   <data name="ErrorLoadingImage" xml:space="preserve">
-    <value>图像查看器：加载图像时发生错误。</value>
+    <value>图像浏览器：加载图像时发生错误。</value>
   </data>
   <data name="ImageNotFound" xml:space="preserve">
-    <value>没有找到图像。</value>
+    <value>未找到任何图片。</value>
   </data>
   <data name="ImageCanNotBeOpened" xml:space="preserve">
-    <value>{0}无法打开。
+    <value>未能打开{0}。
 {1}
 {2}</value>
   </data>
   <data name="KeyboardShortcutInstructions" xml:space="preserve">
     <value>{0} / {1}
 {2} ({3})
-缩放{4:p1}
-（使用←/→键翻页）</value>
-  </data>
-  <data name="TopMenu_View_Zoom" xml:space="preserve">
-    <value>缩放(&amp;Z)</value>
+缩放 {4:p1}
+(使用←/→键翻页)</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,67 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ABText" xml:space="preserve">
-    <value>基地航空队</value>
-  </data>
-  <data name="DamageFriend" xml:space="preserve">
-    <value>损失率</value>
-  </data>
-  <data name="SupportExpedition" xml:space="preserve">
-    <value>支援攻击</value>
-  </data>
-  <data name="AirBase" xml:space="preserve">
-    <value>第{0}基地</value>
-  </data>
-  <data name="AirDefense" xml:space="preserve">
-    <value>防空火力</value>
-  </data>
-  <data name="AerialPhase1" xml:space="preserve">
-    <value>第1次: </value>
-  </data>
-  <data name="DidNotActivate" xml:space="preserve">
-    <value>(未激活)</value>
-  </data>
-  <data name="None" xml:space="preserve">
-    <value>(无)</value>
-  </data>
-  <data name="FleetFriendShort" xml:space="preserve">
-    <value>我军</value>
-  </data>
-  <data name="AerialPhaseJet" xml:space="preserve">
-    <value>喷式强袭: </value>
-  </data>
   <data name="FleetFriend" xml:space="preserve">
     <value>我军舰队</value>
+  </data>
+  <data name="DamageFriend" xml:space="preserve">
+    <value>损害率</value>
+  </data>
+  <data name="FleetEnemyEscort" xml:space="preserve">
+    <value>敌军伴随</value>
+  </data>
+  <data name="WinRank" xml:space="preserve">
+    <value>战绩评价</value>
+  </data>
+  <data name="DamageEnemy" xml:space="preserve">
+    <value>损害率</value>
+  </data>
+  <data name="FleetFriendEscort" xml:space="preserve">
+    <value>我军伴随</value>
   </data>
   <data name="FleetEnemy" xml:space="preserve">
     <value>敌军舰队</value>
   </data>
+  <data name="ABText" xml:space="preserve">
+    <value>基地航空队</value>
+  </data>
+  <data name="AerialPhaseJet" xml:space="preserve">
+    <value>喷式强袭: </value>
+  </data>
+  <data name="AirDefense" xml:space="preserve">
+    <value>防空火力</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>接触中</value>
   </data>
-  <data name="AACIType" xml:space="preserve">
-    <value>对空CI种类: </value>
+  <data name="None" xml:space="preserve">
+    <value>(无)</value>
   </data>
   <data name="AACI" xml:space="preserve">
-    <value>对空CI</value>
+    <value>对空Cut In</value>
   </data>
-  <data name="AerialPhase2" xml:space="preserve">
-    <value>第2次: </value>
+  <data name="AACIType" xml:space="preserve">
+    <value>Cut in类别: </value>
+  </data>
+  <data name="DidNotActivate" xml:space="preserve">
+    <value>(未发动)</value>
+  </data>
+  <data name="SupportExpedition" xml:space="preserve">
+    <value>支援攻击</value>
+  </data>
+  <data name="FleetFriendShort" xml:space="preserve">
+    <value>我军</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
-    <value>紧凑模式（_C）</value>
-  </data>
-  <data name="DamageEnemy" xml:space="preserve">
-    <value>损失率</value>
-  </data>
-  <data name="WinRank" xml:space="preserve">
-    <value>战斗结果判定</value>
-  </data>
-  <data name="FleetFriendEscort" xml:space="preserve">
-    <value>我军僚队</value>
-  </data>
-  <data name="FleetEnemyEscort" xml:space="preserve">
-    <value>敌军僚队</value>
+    <value>紧凑模式(_C)</value>
   </data>
 </root>

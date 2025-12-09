@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Boss" xml:space="preserve">
-    <value>Boss</value>
+    <value>BOSS</value>
   </data>
   <data name="BossVictory" xml:space="preserve">
-    <value>Boss胜利</value>
+    <value>BOSS胜利</value>
   </data>
   <data name="Complete" xml:space="preserve">
     <value>达成</value>
@@ -130,7 +130,7 @@
     <value>出击</value>
   </data>
   <data name="SRank" xml:space="preserve">
-    <value>S胜</value>
+    <value>S胜利</value>
   </data>
   <data name="Supply" xml:space="preserve">
     <value>补给</value>
@@ -138,23 +138,11 @@
   <data name="Sunk" xml:space="preserve">
     <value>击沉</value>
   </data>
-  <data name="Construction" xml:space="preserve">
-    <value>建造</value>
-  </data>
   <data name="Development" xml:space="preserve">
     <value>开发</value>
   </data>
-  <data name="Dismantlement" xml:space="preserve">
-    <value>解体</value>
-  </data>
   <data name="Improvement" xml:space="preserve">
     <value>装备改修</value>
-  </data>
-  <data name="Modernization" xml:space="preserve">
-    <value>现代化改修</value>
-  </data>
-  <data name="Repair" xml:space="preserve">
-    <value>入渠</value>
   </data>
   <data name="Discard" xml:space="preserve">
     <value>废弃</value>
@@ -166,34 +154,31 @@
     <value>次</value>
   </data>
   <data name="GaugeIndex" xml:space="preserve">
-    <value>(第{0}阶段)</value>
+    <value>(第{0}血条)</value>
   </data>
   <data name="AGoSorties" xml:space="preserve">
     <value>出击 {0}/{1}</value>
   </data>
   <data name="AGoSRanks" xml:space="preserve">
-    <value>S胜 {0}/{1}</value>
+    <value>S胜利 {0}/{1}</value>
   </data>
   <data name="AGoBossEncounters" xml:space="preserve">
-    <value>Boss {0}/{1}</value>
+    <value>BOSS {0}/{1}</value>
   </data>
   <data name="AGoBossVictories" xml:space="preserve">
-    <value>Boss胜利 {0}/{1}</value>
+    <value>BOSS胜利 {0}/{1}</value>
   </data>
   <data name="AGoClearCondition" xml:space="preserve">
-    <value>出击 {0}, S胜 {1}, Boss {2}, Boss胜利 {3}</value>
+    <value>出击 {0}, S胜利 {1}, BOSS {2}, BOSS胜利 {3}</value>
   </data>
   <data name="ClearConditionBoss" xml:space="preserve">
-    <value>Boss</value>
+    <value>BOSS</value>
   </data>
   <data name="ClearConditionClear" xml:space="preserve">
     <value>到达</value>
   </data>
   <data name="ClearConditionBattle" xml:space="preserve">
     <value>战斗</value>
-  </data>
-  <data name="ClearConditionOrHigher" xml:space="preserve">
-    <value>以上</value>
   </data>
   <data name="ClearConditionVictories" xml:space="preserve">
     <value>胜利</value>
@@ -214,12 +199,12 @@
     <value>演习</value>
   </data>
   <data name="AutoSavedProgress" xml:space="preserve">
-    <value>任务进度已自动保存。</value>
+    <value>已自动保存任务进度。</value>
   </data>
   <data name="Reach" xml:space="preserve">
     <value>到达</value>
   </data>
   <data name="MapFirstClear" xml:space="preserve">
-    <value>首次清除</value>
+    <value>初次通关</value>
   </data>
 </root>

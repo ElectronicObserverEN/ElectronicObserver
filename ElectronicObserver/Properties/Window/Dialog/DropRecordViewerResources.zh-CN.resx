@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,17 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ItemNameToolTip" xml:space="preserve">
-    <value>指定要搜索的项目名称。
-(Drop) 仅当项目被丢弃时才提取。</value>
+    <value>请设定要搜索的物品名称。
+(掉落) 仅在物品通过掉落获取时才会列为搜索结果。 </value>
   </data>
   <data name="ShipNameToolTip" xml:space="preserve">
-    <value>指定要搜索的舰娘名称。</value>
+    <value>请设定要搜索的舰船名。
+(掉落) 仅在舰娘通过掉落获取时才会列为搜索结果。 </value>
   </data>
   <data name="EquipmentNameToolTip" xml:space="preserve">
-    <value>指定要搜索的装备名称。</value>
+    <value>请设定要搜索的装备名。
+(掉落) 仅在装备通过掉落获取时才会列为搜索结果。 </value>
   </data>
   <data name="DateBeginToolTip" xml:space="preserve">
-    <value>指定搜索的开始日期。</value>
+    <value>请设定搜索范围的起始时间点。</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>开始</value>
@@ -137,80 +139,84 @@
     <value>结束</value>
   </data>
   <data name="DateEndToolTip" xml:space="preserve">
-    <value>指定搜索的结束日期。</value>
+    <value>请设定搜索范围的结束时间点。</value>
   </data>
   <data name="RankSToolTip" xml:space="preserve">
-    <value>S胜</value>
+    <value>S胜利</value>
   </data>
   <data name="RankAToolTip" xml:space="preserve">
-    <value>A胜</value>
+    <value>A胜利</value>
   </data>
   <data name="RankBToolTip" xml:space="preserve">
-    <value>B胜</value>
+    <value>B胜利</value>
   </data>
   <data name="RankXToolTip" xml:space="preserve">
     <value>败北</value>
   </data>
+  <data name="NodeSelection" xml:space="preserve">
+    <value>海域・点位</value>
+  </data>
   <data name="MapDifficultyToolTip" xml:space="preserve">
-    <value>指定海图的难度。</value>
+    <value>请设定海域难度。
+选择 * 时所有难度都将纳入搜索范围。</value>
   </data>
   <data name="ButtonRun" xml:space="preserve">
-    <value>搜索</value>
+    <value>查找</value>
   </data>
   <data name="RecordView_Name" xml:space="preserve">
-    <value>名字</value>
+    <value>名称</value>
   </data>
   <data name="RecordView_Date" xml:space="preserve">
     <value>日期</value>
   </data>
-  <data name="RecordView_Map" xml:space="preserve">
-    <value>海域</value>
-  </data>
   <data name="RecordView_Rank" xml:space="preserve">
-    <value>RANK</value>
+    <value>评价</value>
   </data>
   <data name="RecordView_RankS" xml:space="preserve">
-    <value>S胜</value>
+    <value>S胜利</value>
   </data>
   <data name="RecordView_RankA" xml:space="preserve">
-    <value>A胜</value>
+    <value>A胜利</value>
   </data>
   <data name="RecordView_RankB" xml:space="preserve">
-    <value>B胜</value>
-  </data>
-  <data name="IsBossOnly" xml:space="preserve">
-    <value>Boss</value>
+    <value>B胜利</value>
   </data>
   <data name="MapAreaIDToolTip" xml:space="preserve">
-    <value>指定海域ID。
-*ID大于20为活动海域。</value>
+    <value>请设定海域ID。
+选择 * 时所有的海域都将纳入搜索范围。
+</value>
   </data>
   <data name="MapInfoIDToolTip" xml:space="preserve">
-    <value>指定海域ID。</value>
+    <value>请设定海域ID。
+选择 * 时所有的海域都将纳入搜索范围。
+</value>
   </data>
   <data name="MapCellIDToolTip" xml:space="preserve">
-    <value>指定海域ID。</value>
+    <value>请设定点位ID。
+选择 * 时所有点位都将纳入搜索范围。
+</value>
+  </data>
+  <data name="MergeRows" xml:space="preserve">
+    <value>合并结果</value>
   </data>
   <data name="MergeRowsToolTip" xml:space="preserve">
-    <value>合并相同掉落物。</value>
+    <value>勾选后，相同的掉落内容将合并显示。
+</value>
   </data>
   <data name="LabelShipName" xml:space="preserve">
     <value>舰船</value>
   </data>
   <data name="LabelItemName" xml:space="preserve">
-    <value>物品</value>
+    <value>道具</value>
   </data>
   <data name="LabelEquipmentName" xml:space="preserve">
     <value>装备</value>
   </data>
-  <data name="StatusInfo" xml:space="preserve">
-    <value>-</value>
-  </data>
   <data name="statusStrip1" xml:space="preserve">
-    <value>状态条1</value>
+    <value>状态栏1</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>删除日志</value>
+    <value>掉落记录</value>
   </data>
   <data name="NameAny" xml:space="preserve">
     <value>(全部)</value>
@@ -219,31 +225,28 @@
     <value>(无)</value>
   </data>
   <data name="NameFullPort" xml:space="preserve">
-    <value>(满)</value>
+    <value>(满员)</value>
   </data>
   <data name="NameExist" xml:space="preserve">
-    <value>(降低)</value>
+    <value>(掉落)</value>
   </data>
   <data name="Boss" xml:space="preserve">
-    <value> [Boss]</value>
+    <value> [BOSS]</value>
   </data>
   <data name="BattleHistoryNotFound" xml:space="preserve">
-    <value>没有找到战斗日志。</value>
+    <value>未找到战斗日志。</value>
   </data>
   <data name="SearchingBattleHistory" xml:space="preserve">
-    <value>正在搜索战斗日志...</value>
+    <value>正在搜索战斗日志…</value>
   </data>
   <data name="OpenBattleHistory" xml:space="preserve">
-    <value>打开战斗日志{0}。</value>
+    <value>战斗日志 {0} 已打开。</value>
   </data>
   <data name="CouldNotOpenBattleHistory" xml:space="preserve">
     <value>无法打开战斗日志。</value>
   </data>
   <data name="SelectedItems" xml:space="preserve">
-    <value>所选项目：{0} / {1} ({2:p1})</value>
-  </data>
-  <data name="Today" xml:space="preserve">
-    <value>今天</value>
+    <value>选择条目总计: {0} / {1} ({2:p1})</value>
   </data>
   <data name="IgnoreCommonDrops" xml:space="preserve">
     <value>忽略常见掉落</value>

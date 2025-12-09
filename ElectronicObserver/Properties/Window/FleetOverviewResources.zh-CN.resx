@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -121,18 +121,18 @@
     <value>舰队</value>
   </data>
   <data name="CombinedFleetToolTip" xml:space="preserve">
-    <value>搭载运输缶：{0} 件（{12} 艆）
-搭载大发动艇：{1} 件（{13} 艆）
-水上电探：{10} 件（{11} 艆）
-运输量（TP）：S {2} / A {3}{14}
+    <value>运输桶搭载: {0}个 ({12}舰)
+大发动艇搭载: {1}个 ({13}舰)
+水上电探: {10}个 ({11}舰)
+运输量(TP): S {2} / A {3}{14}
 
-总制空：{4}
-总索敌：{5:f2}
-新公式-33式(33)：
-分歧点系数1：{6:f2}
-分歧点系数2：{7:f2}
-分歧点系数3：{8:f2}
-分歧点系数4：{9:f2}</value>
+总制空: {4}
+总索敌: {5:f2}
+新判定式(33):
+　分歧点系数1: {6:f2}
+　分歧点系数2: {7:f2}
+　分歧点系数3: {8:f2}
+　分歧点系数4: {9:f2}</value>
   </data>
   <data name="AnchorageRepairToolTip" xml:space="preserve">
     <value>泊地修理计时器</value>
@@ -141,7 +141,10 @@
     <value>恢复</value>
   </data>
   <data name="LandingOperationTooltip" xml:space="preserve">
-    <value>Landing operation</value>
+    <value>战车运输量(TP)</value>
+  </data>
+  <data name="HomePortSupplyToolTip" xml:space="preserve">
+    <value>母港刷闪计时器</value>
   </data>
   <data name="TimerStart" xml:space="preserve">
     <value>开始</value>
