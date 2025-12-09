@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Alignment_Bottom" xml:space="preserve">
+    <value>下(&amp;B)</value>
+  </data>
+  <data name="Alignment_Invisible" xml:space="preserve">
+    <value>隱藏(&amp;I)</value>
+  </data>
+  <data name="Alignment_Left" xml:space="preserve">
+    <value>左(&amp;L)</value>
+  </data>
+  <data name="Alignment_Right" xml:space="preserve">
+    <value>右(&amp;R)</value>
+  </data>
+  <data name="Alignment_Top" xml:space="preserve">
+    <value>上(&amp;T)</value>
+  </data>
+  <data name="RefreshIgnoreCache" xml:space="preserve">
+    <value>強制更新(&amp;C)</value>
+  </data>
+  <data name="NavigateToLogInPage" xml:space="preserve">
+    <value>前往登入頁</value>
+  </data>
+  <data name="Other_Zoom_Current" xml:space="preserve">
+    <value>縮放：</value>
+  </data>
+  <data name="FailedToApplyStylesheet" xml:space="preserve">
+    <value>樣式表套用失敗。</value>
+  </data>
+  <data name="LoginDialog" xml:space="preserve">
+    <value>前往登入頁。
+你確定嗎？</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="Other_Zoom_Current_Fit" xml:space="preserve">
+    <value>縮放：最適</value>
+  </data>
+  <data name="ReloadDialog" xml:space="preserve">
+    <value>重新整理。
+你確定嗎？</value>
+  </data>
+  <data name="ScreenshotError" xml:space="preserve">
+    <value>截圖失敗。</value>
+  </data>
+  <data name="LastScreenShot_CopyToClipboard" xml:space="preserve">
+    <value>複製到剪貼板(&amp;C)</value>
+  </data>
+  <data name="Strip_Mute" xml:space="preserve">
+    <value>靜音</value>
+  </data>
+  <data name="Strip_Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Strip_ScreenShot" xml:space="preserve">
+    <value>螢幕截圖</value>
+  </data>
+  <data name="Strip_Zoom" xml:space="preserve">
+    <value>縮放</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>七四式電子觀測儀</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="ReloadHardDialog" xml:space="preserve">
+    <value>忽略快取並重新整理。
+你確定嗎？</value>
+  </data>
+  <data name="ShowToolMenu" xml:space="preserve">
+    <value>顯示工具選單</value>
+  </data>
+  <data name="OpenDevTool" xml:space="preserve">
+    <value>打開開發者工具</value>
+  </data>
+  <data name="Zoom_to_Fit" xml:space="preserve">
+    <value>縮放：最適</value>
+  </data>
+  <data name="ClearCache" xml:space="preserve">
+    <value>移除快取</value>
+  </data>
+  <data name="RenderProcessTerminatedBy" xml:space="preserve">
+    <value>瀏覽器渲染過程</value>
+  </data>
+  <data name="RenderProcessAbnormalTermination" xml:space="preserve">
+    <value>沒有正常結束。</value>
+  </data>
+  <data name="RenderProcessProcessWasKilled" xml:space="preserve">
+    <value>被其他程式終止。</value>
+  </data>
+  <data name="RenderProcessProcessCrashed" xml:space="preserve">
+    <value>已經崩潰。</value>
+  </data>
+  <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
+    <value>意外終止。</value>
+  </data>
+  <data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
+    <value>重新整理以復原。</value>
+  </data>
+  <data name="ClearCacheMessage" xml:space="preserve">
+    <value>您確定要清除快取嗎？</value>
+  </data>
+  <data name="ClearCacheTitle" xml:space="preserve">
+    <value>確認重啟瀏覽器</value>
+  </data>
+  <data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
+    <value>螢幕截圖(&amp;S)</value>
+  </data>
+  <data name="ToolMenu_Other_LastScreenShot" xml:space="preserve">
+    <value>上一張截圖(&amp;P)</value>
+  </data>
+  <data name="ToolMenu_Other_LastScreenShot_OpenScreenShotFolder" xml:space="preserve">
+    <value>打開儲存資料夾(&amp;O)</value>
+  </data>
+  <data name="ToolMenu_Other_Volume" xml:space="preserve">
+    <value>音量(&amp;V)</value>
+  </data>
+  <data name="ToolMenu_Other_Mute" xml:space="preserve">
+    <value>靜音(&amp;M)</value>
+  </data>
+  <data name="ToolMenu_Other_Refresh" xml:space="preserve">
+    <value>更新(&amp;R)</value>
+  </data>
+  <data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
+    <value>移至登錄頁面(&amp;L)</value>
+  </data>
+  <data name="ToolMenu_Other_Navigate" xml:space="preserve">
+    <value>移動(&amp;N)...</value>
+  </data>
+  <data name="ToolMenu_Other_AppliesStyleSheet" xml:space="preserve">
+    <value>套用樣式表</value>
+  </data>
+  <data name="ToolMenu_Other_Alignment" xml:space="preserve">
+    <value>設定(&amp;A)</value>
+  </data>
+  <data name="NoScreenshotYet" xml:space="preserve">
+    <value>還沒有螢幕截圖。</value>
+  </data>
+  <data name="InstallVisualCpp" xml:space="preserve">
+    <value>無法載入瀏覽器組件。
+需要 Microsoft Visual C++ 2019 Redistributable。
+您想打開下載頁面嗎？
+(請安裝vcredist.x64.exe)</value>
+  </data>
+  <data name="CefSharpLoadErrorTitle" xml:space="preserve">
+    <value>CefSharp加載錯誤</value>
+  </data>
+  <data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
+    <value>無法隱藏 DMM 刷新對話框。</value>
+  </data>
+  <data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
+    <value>Kancolle 尚未載入，無法截圖。</value>
+  </data>
+  <data name="ScreenshotSavedTo" xml:space="preserve">
+    <value>螢幕截圖已儲存至 {0}。</value>
+  </data>
+  <data name="FailedToSaveScreenshot" xml:space="preserve">
+    <value>儲存螢幕截圖失敗。</value>
+  </data>
+  <data name="ScreenshotCopiedToClipboard" xml:space="preserve">
+    <value>將截圖複製到剪貼板。</value>
+  </data>
+  <data name="FailedToCopyScreenshotToClipboard" xml:space="preserve">
+    <value>無法將截圖複製到剪貼板。</value>
+  </data>
+  <data name="LastScreenshotCopiedToClipboard" xml:space="preserve">
+    <value>已將截圖 {0} 複製到剪貼板。</value>
+  </data>
+  <data name="ToolMenu_Other_Zoom" xml:space="preserve">
+    <value>縮放(&amp;Z)</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>文件(_F)</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>下一頁</value>
+  </data>
+  <data name="DmmPoints" xml:space="preserve">
+    <value>DMM點數</value>
+  </data>
+  <data name="AkashiList" xml:space="preserve">
+    <value>明石列表</value>
+  </data>
+  <data name="WebView2NotFound" xml:space="preserve">
+    <value>未找到 WebView2。開始下載。</value>
+  </data>
+  <data name="WebView2DownloadComplete" xml:space="preserve">
+    <value>WebView2 下載完成。開始安裝。</value>
+  </data>
+  <data name="WebView2InstallationComplete" xml:space="preserve">
+    <value>WebView2 安裝完成。</value>
+  </data>
+  <data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
+    <value>由於缺少權限，無法套用 Vulkan 解決方案。以管理員身分運行 七四式電子觀測儀 以使解決方案生效。</value>
+  </data>
+  <data name="OlderBrowserVersionDetected" xml:space="preserve">
+    <value>檢測到舊版本的 WebView2。下載最新版本。</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>嘗試安裝 WebView2 時發生錯誤。請手動安裝WebView2。</value>
+  </data>
+  <data name="CacheCleared" xml:space="preserve">
+    <value>快取移除處理完成。</value>
+  </data>
+  <data name="AutoRefreshNotification" xml:space="preserve">
+    <value>你即將前進到自動重整設定中禁止的地圖點。
+您想重新整理嗎？</value>
+  </data>
+  <data name="FailedToApplyBrowserFont" xml:space="preserve">
+    <value>套用瀏覽器字體失敗。</value>
+  </data>
+</root>

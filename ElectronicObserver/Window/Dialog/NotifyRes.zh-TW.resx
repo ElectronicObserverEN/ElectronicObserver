@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivationHint" xml:space="preserve">
+    <value>顯示對話框時自動將其設為最前/焦點。
+啟用此選項可避免誤操作（例如避免大破進擊），
+關閉比較不會妨礙操作，但對話框容易被其他視窗遮住。</value>
+  </data>
+  <data name="AlignBottom" xml:space="preserve">
+    <value>下</value>
+  </data>
+  <data name="AlignBottomLeft" xml:space="preserve">
+    <value>左下</value>
+  </data>
+  <data name="AlignBottomRight" xml:space="preserve">
+    <value>右下</value>
+  </data>
+  <data name="AlignCenter" xml:space="preserve">
+    <value>中央</value>
+  </data>
+  <data name="AlignHint" xml:space="preserve">
+    <value>設定通知對話框的出現位置。</value>
+  </data>
+  <data name="AlignLeft" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="AlignManualAbs" xml:space="preserve">
+    <value>手動(絕對)</value>
+  </data>
+  <data name="AlignManualRel" xml:space="preserve">
+    <value>手動(相對)</value>
+  </data>
+  <data name="Alignment" xml:space="preserve">
+    <value>對齊</value>
+  </data>
+  <data name="AlignRight" xml:space="preserve">
+    <value>右</value>
+  </data>
+  <data name="AlignTop" xml:space="preserve">
+    <value>上</value>
+  </data>
+  <data name="AlignTopLeft" xml:space="preserve">
+    <value>左上</value>
+  </data>
+  <data name="AlignTopRight" xml:space="preserve">
+    <value>右上</value>
+  </data>
+  <data name="AlignUnset" xml:space="preserve">
+    <value>未指定</value>
+  </data>
+  <data name="AutoClose" xml:space="preserve">
+    <value>自動關閉</value>
+  </data>
+  <data name="BackColorDispHint" xml:space="preserve">
+    <value>指定通知對話框的背景顏色。
+顏色預覽顯示在該標籤的 ■ 中。
+</value>
+  </data>
+  <data name="BackColorDisplay" xml:space="preserve">
+    <value>■背景顏色</value>
+  </data>
+  <data name="BackColorSelect" xml:space="preserve">
+    <value>指定通知對話框的背景顏色。
+顏色預覽顯示在左側標籤中。
+</value>
+  </data>
+  <data name="CloseOn" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="DamageOptions" xml:space="preserve">
+    <value>大破警告</value>
+  </data>
+  <data name="DisplayMessage" xml:space="preserve">
+    <value>顯示訊息</value>
+  </data>
+  <data name="DisplayMessageHint" xml:space="preserve">
+    <value>設定是否在對話框中顯示通知文本。
+如果您只需要圖片，則可以將其隱藏。</value>
+  </data>
+  <data name="DisplayWindowBorder" xml:space="preserve">
+    <value>顯示視窗邊框</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>啟用</value>
+  </data>
+  <data name="EnableNotify" xml:space="preserve">
+    <value>啟用通知</value>
+  </data>
+  <data name="FailedLoadImage" xml:space="preserve">
+    <value>讀取圖片檔案失敗。</value>
+  </data>
+  <data name="FailedLoadSound" xml:space="preserve">
+    <value>無法讀取音效檔案。</value>
+  </data>
+  <data name="ForeColorDispHint" xml:space="preserve">
+    <value>指定通知對話框的文本顏色。
+顏色預覽顯示在該標籤的 ■ 中。
+</value>
+  </data>
+  <data name="ForeColorDisplay" xml:space="preserve">
+    <value>■前景色</value>
+  </data>
+  <data name="ForeColorSelect" xml:space="preserve">
+    <value>指定通知對話框的文本顏色。
+顏色預覽顯示在左側標籤中。</value>
+  </data>
+  <data name="HurryBy" xml:space="preserve">
+    <value>提前通知</value>
+  </data>
+  <data name="HurryHint" xml:space="preserve">
+    <value>指定提前通知的秒數。
+建議將遠征/入渠提前60秒(會有個人差異請自行調整)。</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>通知圖片</value>
+  </data>
+  <data name="IncludeDamecon" xml:space="preserve">
+    <value>包括已裝備損管的艦娘</value>
+  </data>
+  <data name="IncludeFlagship" xml:space="preserve">
+    <value>包括旗艦</value>
+  </data>
+  <data name="IncludeUnlocked" xml:space="preserve">
+    <value>包括非鎖定艦娘</value>
+  </data>
+  <data name="IntervalHint" xml:space="preserve">
+    <value>指定通知對話框在閒置時自動關閉的時間。
+如果指定0秒，則永遠不會關閉。</value>
+  </data>
+  <data name="LeftClick" xml:space="preserve">
+    <value>左鍵單擊</value>
+  </data>
+  <data name="LeftDoubleClick" xml:space="preserve">
+    <value>左鍵雙擊</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>座標</value>
+  </data>
+  <data name="LocXHint" xml:space="preserve">
+    <value>手動設定時的X坐標偏移。</value>
+  </data>
+  <data name="LocYHint" xml:space="preserve">
+    <value>手動設定時的Y坐標偏移。</value>
+  </data>
+  <data name="LvHint" xml:space="preserve">
+    <value>指定需要通知的大破艦娘的最低等級。
+請注意，等級低於此設定的艦娘大破將不會收到通知。</value>
+  </data>
+  <data name="MiddleClick" xml:space="preserve">
+    <value>中鍵單擊</value>
+  </data>
+  <data name="MiddleDoubleClick" xml:space="preserve">
+    <value>中鍵雙擊</value>
+  </data>
+  <data name="MinLv" xml:space="preserve">
+    <value>最低等級</value>
+  </data>
+  <data name="MouseOver" xml:space="preserve">
+    <value>鼠標經過</value>
+  </data>
+  <data name="NotifyAfter" xml:space="preserve">
+    <value>啟用事後通知</value>
+  </data>
+  <data name="NotifyAfterHint" xml:space="preserve">
+    <value>在大破進擊時將收到通知。</value>
+  </data>
+  <data name="NotifyBefore" xml:space="preserve">
+    <value>啟用事前通知</value>
+  </data>
+  <data name="NotifyBeforeHint" xml:space="preserve">
+    <value>通知將在出擊前和戰鬥開始後立即發送。</value>
+  </data>
+  <data name="NotifyDialog" xml:space="preserve">
+    <value>通知對話框</value>
+  </data>
+  <data name="NotifyDisplayError" xml:space="preserve">
+    <value>通知系統: 無法在對話框中繪製圖片。</value>
+  </data>
+  <data name="NotifyEndHint" xml:space="preserve">
+    <value>在地圖的最後一個點是否通知(通常是Boss)。</value>
+  </data>
+  <data name="NotifyEndNodes" xml:space="preserve">
+    <value>即使在終點也發出通知</value>
+  </data>
+  <data name="NotifyNow" xml:space="preserve">
+    <value>啟用事中通知</value>
+  </data>
+  <data name="NotifyNowHint" xml:space="preserve">
+    <value>出擊前和戰鬥結束時會發送通知。</value>
+  </data>
+  <data name="OpenImage" xml:space="preserve">
+    <value>打開圖片檔案</value>
+  </data>
+  <data name="OpenSound" xml:space="preserve">
+    <value>打開音效檔案</value>
+  </data>
+  <data name="RightClick" xml:space="preserve">
+    <value>右鍵單擊</value>
+  </data>
+  <data name="RightDoubleClick" xml:space="preserve">
+    <value>雙擊右鍵</value>
+  </data>
+  <data name="Sec" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="ShowOnTop" xml:space="preserve">
+    <value>始終處於最上層</value>
+  </data>
+  <data name="ShowWithActivation" xml:space="preserve">
+    <value>顯示時自動獲得焦點</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>通知音效</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>測試</value>
+  </data>
+  <data name="TestHint" xml:space="preserve">
+    <value>執行通知的測試播放。
+請注意，設定將被應用並儲存。</value>
+  </data>
+  <data name="TestNotification" xml:space="preserve">
+    <value>這是一個測試通知。</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>通知設定</value>
+  </data>
+  <data name="WindowBorderHint" xml:space="preserve">
+    <value>您可以指定是否顯示通知對話框視窗邊框。
+如果您只需要圖片，則可以將其隱藏。</value>
+  </data>
+  <data name="SoundPathDirectorizeToolTip" xml:space="preserve">
+    <value>移除路徑的檔案名部分以指定目標為資料夾。
+如果指定了資料夾，則會隨機播放該資料夾中包含的音效檔案。</value>
+  </data>
+</root>

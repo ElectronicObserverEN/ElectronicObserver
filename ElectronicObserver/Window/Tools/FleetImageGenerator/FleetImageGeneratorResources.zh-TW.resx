@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Empty" xml:space="preserve">
+    <value>(無)</value>
+  </data>
+  <data name="SearchOutputPathToolTip" xml:space="preserve">
+    <value>打開一個對話框以搜尋並指定輸出目標檔案。</value>
+  </data>
+  <data name="Basic" xml:space="preserve">
+    <value>基礎</value>
+  </data>
+  <data name="GroupOutputPath" xml:space="preserve">
+    <value>輸出目的地</value>
+  </data>
+  <data name="SearchOutputPath" xml:space="preserve">
+    <value>瀏覽...</value>
+  </data>
+  <data name="OutputPathToolTip" xml:space="preserve">
+    <value>指定輸出目標檔案名。</value>
+  </data>
+  <data name="CustomText" xml:space="preserve">
+    <value>自訂輸入欄位</value>
+  </data>
+  <data name="FleetTitle" xml:space="preserve">
+    <value>標題：</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>註記：</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>輸出方式</value>
+  </data>
+  <data name="ImageTypeBanner" xml:space="preserve">
+    <value>橫幅(小)</value>
+  </data>
+  <data name="ImageTypeCutin" xml:space="preserve">
+    <value>嵌入式(中)</value>
+  </data>
+  <data name="ImageTypeCard" xml:space="preserve">
+    <value>卡片(大)</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>目標艦隊</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="SynchronizeTitleAndFileName" xml:space="preserve">
+    <value>同步標題和檔案名</value>
+  </data>
+  <data name="SynchronizeTitleAndFileNameToolTip" xml:space="preserve">
+    <value>使標題和輸出檔案名相同。</value>
+  </data>
+  <data name="AutoSetFileNameToDate" xml:space="preserve">
+    <value>將輸出檔案名設定為當前日期和時間</value>
+  </data>
+  <data name="AutoSetFileNameToDateToolTip" xml:space="preserve">
+    <value>自動將檔案重命名為當前日期和時間。</value>
+  </data>
+  <data name="OutputToClipboard" xml:space="preserve">
+    <value>輸出到剪貼簿</value>
+  </data>
+  <data name="OutputToClipboardToolTip" xml:space="preserve">
+    <value>將圖片輸出到剪貼簿。
+指定檔案位置被忽略。</value>
+  </data>
+  <data name="DisableOverwritePrompt" xml:space="preserve">
+    <value>總是覆蓋檔案</value>
+  </data>
+  <data name="DisableOverwritePromptToolTip" xml:space="preserve">
+    <value>禁用檔案覆蓋檢查並始終允許覆蓋。</value>
+  </data>
+  <data name="OpenImageAfterOutput" xml:space="preserve">
+    <value>儲存後打開</value>
+  </data>
+  <data name="OpenImageAfterOutputToolTip" xml:space="preserve">
+    <value>如果輸出目的地是“檔案”，指定輸出後是否在查看器中打開圖片。
+將啟動與該圖片關聯的預設查看器。</value>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>背景圖片</value>
+  </data>
+  <data name="ClearBackgroundPath" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="ClearBackgroundPathToolTip" xml:space="preserve">
+    <value>清除背景圖片。</value>
+  </data>
+  <data name="SearchBackgroundImagePathToolTip" xml:space="preserve">
+    <value>打開一個對話框以搜尋並指定背景圖片。</value>
+  </data>
+  <data name="BackgroundImagePathToolTip" xml:space="preserve">
+    <value>指定背景圖片的路徑。
+如果為空白，則輸出時沒有背景圖片。</value>
+  </data>
+  <data name="Layout" xml:space="preserve">
+    <value>佈局</value>
+  </data>
+  <data name="AvoidTwitterDeterioration" xml:space="preserve">
+    <value>避免 Twitter 圖片壓縮</value>
+  </data>
+  <data name="AvoidTwitterDeteriorationToolTip" xml:space="preserve">
+    <value>如果您將 PNG 格式的圖片上傳到 Twitter，它將自動轉換為 JPEG 格式，並且圖片質量會下降。
+對圖片套用修改，以便阻止 Twitter 自動將它們轉換為 JPEG。</value>
+  </data>
+  <data name="ReflectDamageGraphic" xml:space="preserve">
+    <value>使用中破立繪</value>
+  </data>
+  <data name="ReflectDamageGraphicToolTip" xml:space="preserve">
+    <value>如果艦娘中破(或以上)，是否在輸出圖片中使用中破立繪。</value>
+  </data>
+  <data name="ShipColumn" xml:space="preserve">
+    <value>艦娘行數：</value>
+  </data>
+  <data name="HorizontalShipCountToolTip" xml:space="preserve">
+    <value>指定水平排列的艦娘數量。
+如果輸出超過這個數字，會自動換到新行。</value>
+  </data>
+  <data name="HorizontalFleetCountToolTip" xml:space="preserve">
+    <value>指定水平排列的車隊數量。
+如果輸出超過這個數字，會自動換到新行。</value>
+  </data>
+  <data name="FleetColumn" xml:space="preserve">
+    <value>艦隊行數：</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>字體</value>
+  </data>
+  <data name="ButtonClearFont" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="ApplyGeneralFontToolTip" xml:space="preserve">
+    <value>將左側的字體設定套用到下面的所有字體設定。</value>
+  </data>
+  <data name="DigitSmall" xml:space="preserve">
+    <value>小(英數)：</value>
+  </data>
+  <data name="DigitMedium" xml:space="preserve">
+    <value>中(英數)：</value>
+  </data>
+  <data name="OpenDialogToSpecifyFontSetting" xml:space="preserve">
+    <value>打開一個對話框來指定字體。</value>
+  </data>
+  <data name="FontSmall" xml:space="preserve">
+    <value>小(正常)：</value>
+  </data>
+  <data name="FontMedium" xml:space="preserve">
+    <value>中(正常)：</value>
+  </data>
+  <data name="FontLarge" xml:space="preserve">
+    <value>大(正常)：</value>
+  </data>
+  <data name="ChangeAll" xml:space="preserve">
+    <value>全部套用：</value>
+  </data>
+  <data name="OpenImageDialog" xml:space="preserve">
+    <value>選擇背景圖片</value>
+  </data>
+  <data name="SaveImageDialog" xml:space="preserve">
+    <value>儲存編成圖片</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>輸出編成圖片</value>
+  </data>
+  <data name="SpecifiedFontDoesNotExist" xml:space="preserve">
+    <value>找不到指定的字體。</value>
+  </data>
+  <data name="FontConversionFailed" xml:space="preserve">
+    <value>字體轉換失敗</value>
+  </data>
+  <data name="SelectFleetToExport" xml:space="preserve">
+    <value>沒有指定輸出艦隊。</value>
+  </data>
+  <data name="InputError" xml:space="preserve">
+    <value>輸入值錯誤</value>
+  </data>
+  <data name="FleetMustContainShip" xml:space="preserve">
+    <value>艦隊/船娘的行數應為 1 或以上。</value>
+  </data>
+  <data name="EnterDestinationPath" xml:space="preserve">
+    <value>尚未輸入輸出檔案名。</value>
+  </data>
+  <data name="PathContainsInvalidCharacters" xml:space="preserve">
+    <value>輸出目標包含無法使用的字符。</value>
+  </data>
+  <data name="OverwriteExistingFile" xml:space="preserve">
+    <value>{0}
+已經存在。
+您想覆蓋它嗎？</value>
+  </data>
+  <data name="OverwriteConfirmation" xml:space="preserve">
+    <value>覆蓋確認</value>
+  </data>
+  <data name="FleetImageExportedSuccessfully" xml:space="preserve">
+    <value>我已經輸出了編成圖片。</value>
+  </data>
+  <data name="FailedToExportFleetImage" xml:space="preserve">
+    <value>無法輸出編成圖片。</value>
+  </data>
+  <data name="ExportFailure" xml:space="preserve">
+    <value>編成圖片輸出失敗</value>
+  </data>
+  <data name="InvalidSettings" xml:space="preserve">
+    <value>艦娘圖片儲存設定無效(詳細...)</value>
+  </data>
+  <data name="ShipImageNotFound" xml:space="preserve">
+    <value>找不到艦娘圖片(詳情...)</value>
+  </data>
+  <data name="EnableShipImageSaving" xml:space="preserve">
+    <value>為了輸出編成圖片，必須啟用儲存船娘圖片的設定。
+您想啟用它嗎？</value>
+  </data>
+  <data name="InvalidSettingsTitle" xml:space="preserve">
+    <value>船娘圖片儲存設定已禁用</value>
+  </data>
+  <data name="OpenOrganizeAndViewDetails" xml:space="preserve">
+    <value>打開遊戲中的“編成”畫面時，顯示每艘船的詳細訊息</value>
+  </data>
+  <data name="SortieFleet" xml:space="preserve">
+    <value>當你以這個編成出擊時</value>
+  </data>
+  <data name="OpenOrganize" xml:space="preserve">
+    <value>打開遊戲本身的“編成”畫面時</value>
+  </data>
+  <data name="OpenOrganize2" xml:space="preserve">
+    <value>打開遊戲本身的“編成”畫面時?</value>
+  </data>
+  <data name="MissingImages" xml:space="preserve">
+    <value>艦娘圖片資料不足，無法輸出當前船隊。
+
+移除快取並重新讀取，
+{0}
+將儲存艦娘圖片資料。</value>
+  </data>
+  <data name="ShipImageMissing" xml:space="preserve">
+    <value>艦娘圖片資料不足</value>
+  </data>
+  <data name="ResetFontSettings" xml:space="preserve">
+    <value>將字體恢復為預設設定。
+你確定嗎？</value>
+  </data>
+  <data name="ClearConfirmation" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="ImageWillBeExportedToClipboard" xml:space="preserve">
+    <value>輸出到剪貼簿。
+如果要輸出到檔案，請取消選中詳細訊息選單上的“輸出到剪貼簿”。</value>
+  </data>
+  <data name="UseAlbumStatusName" xml:space="preserve">
+    <value>使用圖鑑名稱</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>複製到剪貼簿</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>從剪貼簿貼上</value>
+  </data>
+  <data name="HighAltitudeShort" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="MaxEquipmentNameWidth" xml:space="preserve">
+    <value>最大裝備名稱寬度</value>
+  </data>
+  <data name="SuccessfullyDownloadedImage" xml:space="preserve">
+    <value>已成功下載 {1} 的圖片類型 {0}。</value>
+  </data>
+  <data name="FailedToDownloadImage" xml:space="preserve">
+    <value>無法下載 {1} 的圖片類型 {0}。</value>
+  </data>
+  <data name="DownloadMissingShipImage" xml:space="preserve">
+    <value>下載遺失的艦娘圖片</value>
+  </data>
+  <data name="SaveImageToFile" xml:space="preserve">
+    <value>儲存</value>
+  </data>
+  <data name="QuickConfigurationAccess" xml:space="preserve">
+    <value>快速存取設定</value>
+  </data>
+  <data name="QuickConfigurationAccessToolTip" xml:space="preserve">
+    <value>啟用後，設定將顯示在編成輸出視窗中的編成預覽上方。</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>主題</value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>自定義主題</value>
+  </data>
+  <data name="ShowTankTp" xml:space="preserve">
+    <value>戰車輸送量</value>
+  </data>
+  <data name="ButtonClearFontToolTip" xml:space="preserve">
+    <value>將字體恢復為預設。</value>
+  </data>
+</root>

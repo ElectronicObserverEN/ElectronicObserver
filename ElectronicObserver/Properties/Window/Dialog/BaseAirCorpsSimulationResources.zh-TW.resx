@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AirBaseOne" xml:space="preserve">
+    <value>第一基地航空隊</value>
+  </data>
+  <data name="AirBaseThree" xml:space="preserve">
+    <value>第三基地航空隊</value>
+  </data>
+  <data name="AirBaseTwo" xml:space="preserve">
+    <value>第二基地航空隊</value>
+  </data>
+  <data name="TopMenu_Edit" xml:space="preserve">
+    <value>編輯(&amp;E)</value>
+  </data>
+  <data name="TopMenu_Edit_ImportOrganization" xml:space="preserve">
+    <value>導入當前設定(&amp;I)</value>
+  </data>
+  <data name="TopMenu_Edit_Clear" xml:space="preserve">
+    <value>清除陸航名稱(&amp;C)</value>
+  </data>
+  <data name="TopMenu_Settings" xml:space="preserve">
+    <value>設定(&amp;S)</value>
+  </data>
+  <data name="TopMenu_Settings_HighAltitude" xml:space="preserve">
+    <value>高空轟炸(&amp;H)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>基地航空隊編成模擬</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>火力</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>雷裝</value>
+  </data>
+  <data name="Bomber" xml:space="preserve">
+    <value>爆裝</value>
+  </data>
+  <data name="AA" xml:space="preserve">
+    <value>對空</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>裝甲</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>反潛</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>迎擊</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>迴避</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>對爆</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>命中</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>消耗</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>航程</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>類型</value>
+  </data>
+  <data name="Aircraft" xml:space="preserve">
+    <value>已裝備</value>
+  </data>
+  <data name="Slot" xml:space="preserve">
+    <value>搭載</value>
+  </data>
+  <data name="Sortie" xml:space="preserve">
+    <value>出擊制空</value>
+  </data>
+  <data name="AirDefense" xml:space="preserve">
+    <value>防空制空</value>
+  </data>
+  <data name="OrganizationCost" xml:space="preserve">
+    <value>部署消耗</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>目標制空</value>
+  </data>
+  <data name="AutoRange" xml:space="preserve">
+    <value>目標航程</value>
+  </data>
+  <data name="AutoOrganizeSortie" xml:space="preserve">
+    <value>自動編成出擊</value>
+  </data>
+  <data name="AutoOrganizeAirDefense" xml:space="preserve">
+    <value>自動編成防空</value>
+  </data>
+  <data name="TitleTotal" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>選擇</value>
+  </data>
+  <data name="OptimizationFailed" xml:space="preserve">
+    <value>自動編成失敗。
+要麼條件不滿足，要麼沒有足夠的飛機。</value>
+  </data>
+  <data name="OptimizationFailedTitle" xml:space="preserve">
+    <value>自動編成失敗</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(不明)</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(無)</value>
+  </data>
+  <data name="FailedToLoadAirBaseInfo" xml:space="preserve">
+    <value>沒有基地航空隊的資料。
+請移動到出擊畫面一次。</value>
+  </data>
+  <data name="FailedToLoadAirBaseInfoTitle" xml:space="preserve">
+    <value>未收到基地航空隊資料</value>
+  </data>
+  <data name="EventMap" xml:space="preserve">
+    <value>活動海域</value>
+  </data>
+  <data name="Dupes" xml:space="preserve">
+    <value>有重複</value>
+  </data>
+  <data name="ClearAirBaseOrganizations" xml:space="preserve">
+    <value>這將清除所有陸航設定。
+你確定嗎？</value>
+  </data>
+  <data name="ClearAirBaseOrganizationsTitle" xml:space="preserve">
+    <value>清除陸航名稱</value>
+  </data>
+</root>

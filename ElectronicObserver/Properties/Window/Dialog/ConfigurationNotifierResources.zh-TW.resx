@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SoundVolumeToolTip" xml:space="preserve">
+    <value>指定通知音量。
+0 為靜音，100 為最大音量。</value>
+  </data>
+  <data name="ShowWithActivationToolTip" xml:space="preserve">
+    <value>顯示對話框時自動將其設為最前/焦點。
+啟用此選項可避免誤操作（例如避免大破進擊），
+關閉比較不會妨礙操作，但對話框容易被其他視窗遮住。</value>
+  </data>
+  <data name="SettingsWillBeAppliedForTest" xml:space="preserve">
+    <value>＊這些設定將在測試時套用</value>
+  </data>
+  <data name="GroupAnchorageRepair" xml:space="preserve">
+    <value>泊地修理設定</value>
+  </data>
+  <data name="TriggerWhen" xml:space="preserve">
+    <value>發動條件：</value>
+  </data>
+  <data name="GroupBaseAirCorps" xml:space="preserve">
+    <value>基地航空隊設定</value>
+  </data>
+  <data name="BaseAirCorps_NotSupplied" xml:space="preserve">
+    <value>未補給時</value>
+  </data>
+  <data name="BaseAirCorps_NotSuppliedToolTip" xml:space="preserve">
+    <value>出擊前，如果有陸航未補給將會收到通知。</value>
+  </data>
+  <data name="BaseAirCorps_Tired" xml:space="preserve">
+    <value>疲勞時</value>
+  </data>
+  <data name="BaseAirCorps_TiredToolTip" xml:space="preserve">
+    <value>出擊前，如果有陸航橙臉將會收到通知。</value>
+  </data>
+  <data name="BaseAirCorps_Rest" xml:space="preserve">
+    <value>[休息]</value>
+  </data>
+  <data name="BaseAirCorps_RestToolTip" xml:space="preserve">
+    <value>出擊前，如果有陸航在[休息]將會收到通知。</value>
+  </data>
+  <data name="BaseAirCorps_Retreat" xml:space="preserve">
+    <value>[退避]</value>
+  </data>
+  <data name="BaseAirCorps_RetreatToolTip" xml:space="preserve">
+    <value>出擊前，如果有陸航在[退避]將會收到通知。</value>
+  </data>
+  <data name="BaseAirCorps_Standby" xml:space="preserve">
+    <value>[待機]</value>
+  </data>
+  <data name="BaseAirCorps_StandbyToolTip" xml:space="preserve">
+    <value>出擊前，如果有陸航在[待機]將會收到通知。</value>
+  </data>
+  <data name="BaseAirCorps_NormalMap" xml:space="preserve">
+    <value>通常海域</value>
+  </data>
+  <data name="BaseAirCorps_NormalMapToolTip" xml:space="preserve">
+    <value>出擊前，通常海域的陸航沒準備好時將會收到通知。</value>
+  </data>
+  <data name="BaseAirCorps_EventMap" xml:space="preserve">
+    <value>活動海域</value>
+  </data>
+  <data name="BaseAirCorps_EventMapToolTip" xml:space="preserve">
+    <value>出擊前，活動海域的陸航沒準備好時將會收到通知。</value>
+  </data>
+  <data name="BaseAirCorps_EquipmentRelocation" xml:space="preserve">
+    <value>裝備的配置轉換完成</value>
+  </data>
+  <data name="BaseAirCorps_EquipmentRelocationToolTip" xml:space="preserve">
+    <value>裝備的配置轉換完成時將會收到通知。</value>
+  </data>
+  <data name="BaseAirCorps_SquadronRelocation" xml:space="preserve">
+    <value>陸航的配置轉換完成</value>
+  </data>
+  <data name="BaseAirCorps_SquadronRelocationToolTip" xml:space="preserve">
+    <value>陸航飛機槽位配置轉換完成後將會收到通知。
+與“裝備的配置轉換完成”不同的是，已經返回裝備欄的飛機不會得到通知。</value>
+  </data>
+  <data name="GroupBattleEnd" xml:space="preserve">
+    <value>戰鬥結束設定</value>
+  </data>
+  <data name="BattleEnd_IdleTimerEnabled" xml:space="preserve">
+    <value>啟用閒置計時器</value>
+  </data>
+  <data name="BattleEnd_IdleTimerEnabledToolTip" xml:space="preserve">
+    <value>戰鬥(開始?結束?)後一定時間後會發送通知。
+(可用於提醒提督回來進行操作)</value>
+  </data>
+  <data name="BattleEnd_IdleTime" xml:space="preserve">
+    <value>閒置時間</value>
+  </data>
+  <data name="BattleEnd_IdleTimeToolTip" xml:space="preserve">
+    <value>閒置時間（以秒為單位）。</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Always" xml:space="preserve">
+    <value>總是</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_AkashiFlagship" xml:space="preserve">
+    <value>當明石作為旗艦時</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_ShipNeededRepair" xml:space="preserve">
+    <value>當有艦需要修理時</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Preset" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevelToolTip" xml:space="preserve">
+    <value>總是：每過20分鐘提醒您。
+明石旗艦時：除上述條件外，僅在明石旗艦時通知。
+有艦需要修理時：除上述條件外，僅在具備實際可以修理艦娘的條件時才進行通知。
+包含自訂編成時：除上述條件外，當包含符合修復條件的自訂編成時，才會通知。</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>錯誤</value>
+  </data>
+  <data name="TestNotificationCustomPositioning" xml:space="preserve">
+    <value>這是一個測試通知。
+當您移動並關閉它時，顯示位置將會更新。</value>
+  </data>
+  <data name="TestNotification" xml:space="preserve">
+    <value>這是一個測試通知。</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
+    <value>未編成・配置轉換中</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
+    <value>出擊前，如果有陸航中隊沒有編成或在配置轉換，會發出通知。</value>
+  </data>
+</root>
