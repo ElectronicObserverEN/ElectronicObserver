@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,23 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Accuracy" xml:space="preserve">
-    <value>命中</value>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>编辑参数(&amp;E)...</value>
+  </data>
+  <data name="StripMenu_Edit_CopyShipName" xml:space="preserve">
+    <value>复制舰名(&amp;N)</value>
+  </data>
+  <data name="StripMenu_Edit_CopyShipData" xml:space="preserve">
+    <value>复制舰船数据(&amp;D)</value>
+  </data>
+  <data name="StripMenu_Edit_GoogleShipName" xml:space="preserve">
+    <value>在DuckDuckGo检索舰船名(&amp;G)</value>
+  </data>
+  <data name="StripMenu_View_ShowShipGraphicViewer" xml:space="preserve">
+    <value>图片查看器(&amp;V)</value>
+  </data>
+  <data name="ParameterLevelToolTip" xml:space="preserve">
+    <value>设定等级后将显示预测数值。</value>
+  </data>
+  <data name="ShipBannerToolTip" xml:space="preserve">
+    <value>(单击右键打开图像查看器)</value>
+  </data>
+  <data name="StripMenu_Edit_CopySpecialEquipmentTable" xml:space="preserve">
+    <value>复制特殊装备表(&amp;S)</value>
+  </data>
+  <data name="StripMenu_File_MergeDefaultRecord" xml:space="preserve">
+    <value>从默认记录更新(&amp;M)</value>
+  </data>
+  <data name="ResourceNameToolTip" xml:space="preserve">
+    <value>档案名: {0}
+图片 ver. {1}
+语音 ver. {2}
+母港语音 ver. {3}
+({4})</value>
+  </data>
+  <data name="ShipClassId" xml:space="preserve">
+    <value>舰型ID</value>
+  </data>
+  <data name="ShipClassUnknown" xml:space="preserve">
+    <value>舰型不明</value>
+  </data>
+  <data name="HpMinToolTip" xml:space="preserve">
+    <value>改修后: {0} (+{1})</value>
+  </data>
+  <data name="HpMaxToolTip" xml:space="preserve">
+    <value>改修后: {0} (+{1})
+(内部最大耐久: {2})</value>
+  </data>
+  <data name="DefaultRange" xml:space="preserve">
+    <value>初始射程</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(无)</value>
+  </data>
+  <data name="AA" xml:space="preserve">
+    <value>对空</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>对潜</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>迎击</value>
+  </data>
+  <data name="AntiBomb" xml:space="preserve">
+    <value>对爆</value>
   </data>
   <data name="LOS" xml:space="preserve">
     <value>索敌</value>
   </data>
-  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
-    <value>编辑参数(&amp;E)...</value>
-  </data>
-  <data name="Bombing" xml:space="preserve">
-    <value>爆装</value>
-  </data>
   <data name="RightClickToOpenInNewWindow" xml:space="preserve">
-    <value>（右键查看图鉴）</value>
+    <value>(右键打开图鉴)</value>
   </data>
   <data name="RemodelBeforeShipNameToolTip" xml:space="preserve">
-    <value>（左键打开，右键打开新窗口）</value>
+    <value>(左键单击打开, 右键在新窗口打开)</value>
   </data>
   <data name="ActionReport" xml:space="preserve">
     <value>战斗详报</value>
@@ -142,122 +198,42 @@
     <value>新型航空兵装资材</value>
   </data>
   <data name="CsvExportFailed" xml:space="preserve">
-    <value>舰船图鉴输出到CSV失败。</value>
+    <value>舰船图鉴 CSV文件导出失败。</value>
   </data>
   <data name="SelectAShip" xml:space="preserve">
-    <value>请选择一艘船。</value>
+    <value>请选择舰船。</value>
   </data>
   <data name="Unknown" xml:space="preserve">
-    <value>敌军舰队名称不明</value>
-  </data>
-  <data name="Recipe" xml:space="preserve">
-    <value>建造</value>
+    <value>敌舰队名不明</value>
   </data>
   <data name="FailedToFindMapOrRecipe" xml:space="preserve">
-    <value>{0}出现的海域未知。</value>
+    <value>{0} 的出现海域不明。</value>
   </data>
   <data name="MapOrRecipeSearchCaption" xml:space="preserve">
-    <value>地图海域搜索</value>
+    <value>检索出现海域</value>
   </data>
   <data name="SpecifyTargetShip" xml:space="preserve">
-    <value>请指定舰船。</value>
+    <value>请指定目标舰船。</value>
   </data>
   <data name="NoShipSelectedCaption" xml:space="preserve">
-    <value>未选择舰娘</value>
+    <value>查看器：目标未指定</value>
   </data>
   <data name="Installation" xml:space="preserve">
     <value>陆上设施</value>
   </data>
   <data name="ReinforcementSlot" xml:space="preserve">
-    <value>补强增设</value>
+    <value>补强槽位</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>运</value>
   </data>
   <data name="ShipId" xml:space="preserve">
-    <value>舰船ID：</value>
-  </data>
-  <data name="AntiBomb" xml:space="preserve">
-    <value>对爆</value>
-  </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>回避</value>
-  </data>
-  <data name="Interception" xml:space="preserve">
-    <value>迎击</value>
-  </data>
-  <data name="ASW" xml:space="preserve">
-    <value>对潜</value>
-  </data>
-  <data name="StripMenu_Edit_CopyShipName" xml:space="preserve">
-    <value>复制船名(&amp;N)</value>
-  </data>
-  <data name="StripMenu_Edit_CopyShipData" xml:space="preserve">
-    <value>复制船舶数据(&amp;C)</value>
-  </data>
-  <data name="StripMenu_Edit_GoogleShipName" xml:space="preserve">
-    <value>在DuckDuckGo搜索舰船名称(&amp;G)</value>
-  </data>
-  <data name="StripMenu_View_ShowShipGraphicViewer" xml:space="preserve">
-    <value>图像查看器(&amp;V)</value>
-  </data>
-  <data name="ParameterLevelToolTip" xml:space="preserve">
-    <value>显示指定级别的预测统计数据。</value>
-  </data>
-  <data name="TitleHP" xml:space="preserve">
-    <value>耐久</value>
-  </data>
-  <data name="ShipBannerToolTip" xml:space="preserve">
-    <value>（右键单击打开图像查看器）</value>
-  </data>
-  <data name="StripMenu_Edit_CopySpecialEquipmentTable" xml:space="preserve">
-    <value>复制特殊设备表(&amp;S)</value>
-  </data>
-  <data name="StripMenu_File_MergeDefaultRecord" xml:space="preserve">
-    <value>从默认记录更新(&amp;M)</value>
+    <value>舰船ID:</value>
   </data>
   <data name="SpecialEquipmentTableHeader1" xml:space="preserve">
-    <value>|目标艆ID|目标艆|可装备|不可装备|</value>
-  </data>
-  <data name="ResourceNameToolTip" xml:space="preserve">
-    <value>资源名称：{0}
-图形版本{1}
-语音版本{2}
-主港语音版本{3}
-({4})</value>
-  </data>
-  <data name="ShipClassUnknown" xml:space="preserve">
-    <value>舰种不明</value>
-  </data>
-  <data name="HpMinToolTip" xml:space="preserve">
-    <value>改修后: {0} (+{1})</value>
-  </data>
-  <data name="HpMaxToolTip" xml:space="preserve">
-    <value>改修后: {0} (+{1})
-(内部最大耐久度: {2})</value>
-  </data>
-  <data name="DefaultRange" xml:space="preserve">
-    <value>原始射程</value>
-  </data>
-  <data name="Empty" xml:space="preserve">
-    <value>(无)</value>
-  </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>火力</value>
-  </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>雷装</value>
-  </data>
-  <data name="AA" xml:space="preserve">
-    <value>对空</value>
-  </data>
-  <data name="Armor" xml:space="preserve">
-    <value>装甲</value>
-  </data>
-  <data name="ShipClassId" xml:space="preserve">
-    <value>舰种ID</value>
+    <value>|目标舰ID|目标舰|可以装备|不可装备|</value>
   </data>
   <data name="SpecialEquipmentTableHeader2" xml:space="preserve">
-    <value>|目标艆ID|目标艆|可装备ID|可装备|</value>
+    <value>|目标舰ID|目标舰|可以装备ID|可以装备|</value>
   </data>
 </root>

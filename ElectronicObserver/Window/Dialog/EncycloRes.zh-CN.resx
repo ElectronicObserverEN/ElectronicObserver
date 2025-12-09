@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AfterRemodel" xml:space="preserve">
+    <value>改造后</value>
+  </data>
+  <data name="AirPower" xml:space="preserve">
+    <value>制空战力</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>对空</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>对潜</value>
+  </data>
+  <data name="BaseValue" xml:space="preserve">
+    <value>基本值</value>
+  </data>
+  <data name="BeforeRemodel" xml:space="preserve">
+    <value>改造前</value>
+  </data>
+  <data name="ConstructionTime" xml:space="preserve">
+    <value>建造时间</value>
+  </data>
+  <data name="Consumption" xml:space="preserve">
+    <value>消费</value>
+  </data>
+  <data name="DayAttack" xml:space="preserve">
+    <value>昼战攻击</value>
+  </data>
+  <data name="EncyclopediaNumber" xml:space="preserve">
+    <value>图鉴编号:</value>
+  </data>
+  <data name="FailedToOutputCSV" xml:space="preserve">
+    <value>舰船图鉴 CSV文件导出失败。</value>
+  </data>
+  <data name="Initial" xml:space="preserve">
+    <value>初始值</value>
+  </data>
+  <data name="LandBase" xml:space="preserve">
+    <value>陆上基地</value>
+  </data>
+  <data name="LevelTooltip" xml:space="preserve">
+    <value>设定等级后将显示预测数值。</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>索敌</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>运</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>最大值</value>
+  </data>
+  <data name="NightAttack" xml:space="preserve">
+    <value>夜战攻击</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(无)</value>
+  </data>
+  <data name="OutputCSVData" xml:space="preserve">
+    <value>导出CSV(数据用)(&amp;D)...</value>
+  </data>
+  <data name="OutputCSVUser" xml:space="preserve">
+    <value>导出CSV(浏览用)(&amp;U)...</value>
+  </data>
+  <data name="Rarity" xml:space="preserve">
+    <value>稀有</value>
+  </data>
+  <data name="RepairTooltip" xml:space="preserve">
+    <value>入渠时消费:
+每HP1: 钢 {0:F2} / 燃 {1:F2}
+最大: 钢 {2} / 燃 {3}
+</value>
+  </data>
+  <data name="RightClickForMore" xml:space="preserve">
+    <value>(右键打开图鉴)</value>
+  </data>
+  <data name="ShipEncyclopedia" xml:space="preserve">
+    <value>舰船图鉴</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>舰船ID:</value>
+  </data>
+  <data name="ShipName" xml:space="preserve">
+    <value>舰名</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>舰种</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="WithEquipValue" xml:space="preserve">
+    <value>包括装备</value>
+  </data>
+  <data name="CountAll" xml:space="preserve">
+    <value>全个数</value>
+  </data>
+  <data name="CountExtra" xml:space="preserve">
+    <value>余个数</value>
+  </data>
+  <data name="EquipmentEncyclopedia" xml:space="preserve">
+    <value>装备图鉴</value>
+  </data>
+  <data name="EquipmentList" xml:space="preserve">
+    <value>装备一览</value>
+  </data>
+  <data name="EquipName" xml:space="preserve">
+    <value>装备名</value>
+  </data>
+  <data name="EquippableShips" xml:space="preserve">
+    <value>可装备舰种:</value>
+  </data>
+  <data name="EquippedShips" xml:space="preserve">
+    <value>装备舰</value>
+  </data>
+  <data name="EquipScrap" xml:space="preserve">
+    <value>废弃</value>
+  </data>
+  <data name="EquipType" xml:space="preserve">
+    <value>装备种类</value>
+  </data>
+  <data name="FailedOutputEqListCSV" xml:space="preserve">
+    <value>装备一览 CSV文件导出失败。</value>
+  </data>
+  <data name="FailedOutputEquipCSV" xml:space="preserve">
+    <value>装备图鉴 CSV文件导出失败。</value>
+  </data>
+  <data name="InitiallyEquippedShips" xml:space="preserve">
+    <value>初始装备舰：</value>
+  </data>
+  <data name="Resource" xml:space="preserve">
+    <value>资源:</value>
+  </data>
+  <data name="SkillLevel" xml:space="preserve">
+    <value>练度</value>
+  </data>
+  <data name="Blueprint" xml:space="preserve">
+    <value>改装设计图</value>
+  </data>
+  <data name="PrototypeCatapult" xml:space="preserve">
+    <value>试制甲板用弹射器</value>
+  </data>
+  <data name="Any" xml:space="preserve">
+    <value>(全部)</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>旗舰</value>
+  </data>
+  <data name="InterruptSearch" xml:space="preserve">
+    <value>要停止搜索吗?</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>公式</value>
+  </data>
+  <data name="SearchCancelled" xml:space="preserve">
+    <value>搜索已取消。</value>
+  </data>
+  <data name="SearchComplete" xml:space="preserve">
+    <value>搜索完毕。</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>正在搜索</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>次数</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(未知)</value>
+  </data>
+  <data name="AircraftCostHint" xml:space="preserve">
+    <value>配置时的铝土消耗</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>对爆</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>迎击</value>
+  </data>
+  <data name="StripMenu_Edit" xml:space="preserve">
+    <value>编辑(&amp;E)</value>
+  </data>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>编辑参数(&amp;E)...</value>
+  </data>
+  <data name="StripMenu_File" xml:space="preserve">
+    <value>文件(&amp;F)</value>
+  </data>
+  <data name="TitleAircraftCost" xml:space="preserve">
+    <value>配置消耗</value>
+  </data>
+  <data name="TitleAircraftDistance" xml:space="preserve">
+    <value>作战行动半径</value>
+  </data>
+  <data name="ResourceGraphicVersion" xml:space="preserve">
+    <value>图形 ver.</value>
+  </data>
+  <data name="ResourceName" xml:space="preserve">
+    <value>资源名</value>
+  </data>
+  <data name="ResourcePortVoiceVersion" xml:space="preserve">
+    <value>母港语音 ver.</value>
+  </data>
+  <data name="ResourceVoiceVersion" xml:space="preserve">
+    <value>语音 ver.</value>
+  </data>
+  <data name="EditShipParameter" xml:space="preserve">
+    <value>编辑舰船参数</value>
+  </data>
+  <data name="EditShipParameterHint" xml:space="preserve">
+    <value>※仅限知晓其含义者使用。
+部分项目可能不适用。</value>
+  </data>
+  <data name="ParameterView_Key" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="ParameterView_Value" xml:space="preserve">
+    <value>项目</value>
+  </data>
+  <data name="FullPort" xml:space="preserve">
+    <value>(满员)</value>
+  </data>
+  <data name="Drop" xml:space="preserve">
+    <value>(掉落)</value>
+  </data>
+  <data name="Tries" xml:space="preserve">
+    <value>次数</value>
+  </data>
+  <data name="SearchingNow" xml:space="preserve">
+    <value>正在搜索...</value>
+  </data>
+</root>

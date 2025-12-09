@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BonodereError" xml:space="preserve">
-    <value>Bonodere 错误</value>
+    <value>Bonodere错误</value>
   </data>
   <data name="BonodereSubmissionSuccess" xml:space="preserve">
     <value>Bonodere提交：成功</value>
   </data>
   <data name="InconsistantDataDetected" xml:space="preserve">
-    <value>检测到不一致的数据</value>
+    <value>检测到不一致数据</value>
   </data>
 </root>

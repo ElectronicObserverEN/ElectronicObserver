@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,24 +117,72 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title" xml:space="preserve">
-    <value>罗盘</value>
+  <data name="TextDestination" xml:space="preserve">
+    <value>(目的地)</value>
+  </data>
+  <data name="TextEventKind" xml:space="preserve">
+    <value>(事件)</value>
+  </data>
+  <data name="TextEventDetail" xml:space="preserve">
+    <value>(事件详情)</value>
+  </data>
+  <data name="TextEnemyFleetName" xml:space="preserve">
+    <value>(敌舰队名)</value>
   </data>
   <data name="TextFormation" xml:space="preserve">
     <value>(阵形)</value>
   </data>
-  <data name="BranchChoice" xml:space="preserve">
-    <value>路线选择</value>
+  <data name="TextAirSuperiority" xml:space="preserve">
+    <value>(制空战力)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>罗盘</value>
   </data>
   <data name="AirValues" xml:space="preserve">
     <value>确保: {0}
 优势: {1}
-均衡: {2}
+均势: {2}
 劣势: {3}
 </value>
   </data>
-  <data name="TextAirSuperiority" xml:space="preserve">
-    <value>(制空战斗力)</value>
+  <data name="MapClearCount" xml:space="preserve">
+    <value>{0}击破: {1} / {2} 次</value>
+  </data>
+  <data name="SpecialAttackActivated" xml:space="preserve">
+    <value>已发动过</value>
+  </data>
+  <data name="EnemySighted" xml:space="preserve">
+    <value>发现敌方舰队！</value>
+  </data>
+  <data name="TargetSighted" xml:space="preserve">
+    <value>发现攻击目标！</value>
+  </data>
+  <data name="CoursePatrol" xml:space="preserve">
+    <value>航线巡逻！</value>
+  </data>
+  <data name="EnemyPlaneSighted" xml:space="preserve">
+    <value>索敌机起飞！</value>
+  </data>
+  <data name="NoEnemySighted" xml:space="preserve">
+    <value>未发现敌踪迹</value>
+  </data>
+  <data name="BranchChoice" xml:space="preserve">
+    <value>能动分歧</value>
+  </data>
+  <data name="CalmSea" xml:space="preserve">
+    <value>平静的海面</value>
+  </data>
+  <data name="CalmStrait" xml:space="preserve">
+    <value>平静的海峡</value>
+  </data>
+  <data name="NeedToBeCareful" xml:space="preserve">
+    <value>需要警戒</value>
+  </data>
+  <data name="CalmSea2" xml:space="preserve">
+    <value>宁静的海</value>
+  </data>
+  <data name="RepairPossibility" xml:space="preserve">
+    <value>可以维修</value>
   </data>
   <data name="AirRaid" xml:space="preserve">
     <value>空袭 - </value>
@@ -142,68 +190,14 @@
   <data name="UnknownItem" xml:space="preserve">
     <value>神秘物品</value>
   </data>
-  <data name="TargetSighted" xml:space="preserve">
-    <value>发现攻击目标！</value>
-  </data>
-  <data name="NoEnemySighted" xml:space="preserve">
-    <value>未发现敌方</value>
-  </data>
-  <data name="CalmStrait" xml:space="preserve">
-    <value>平静的海峡</value>
-  </data>
-  <data name="CalmSea2" xml:space="preserve">
-    <value>平静的海面</value>
-  </data>
-  <data name="CalmSea" xml:space="preserve">
-    <value>平静的海面</value>
-  </data>
-  <data name="NeedToBeCareful" xml:space="preserve">
-    <value>需要警戒</value>
-  </data>
-  <data name="FleetPaging" xml:space="preserve">
-    <value>候选：{0} / {1}
-（点击左右翻页）</value>
-  </data>
-  <data name="FleetCount" xml:space="preserve">
-    <value>候选: {0}</value>
-  </data>
-  <data name="EnemySighted" xml:space="preserve">
-    <value>发现敌方舰队！</value>
-  </data>
-  <data name="EnemyPlaneSighted" xml:space="preserve">
-    <value>索敌飞机发射！</value>
-  </data>
-  <data name="TextEnemyFleetName" xml:space="preserve">
-    <value>(敌方舰队名)</value>
-  </data>
-  <data name="MapClearCount" xml:space="preserve">
-    <value>{0}击破: {1} / {2} 回</value>
-  </data>
   <data name="None" xml:space="preserve">
     <value>(无)</value>
   </data>
-  <data name="BranchChoiceSeparator" xml:space="preserve">
-    <value>/</value>
+  <data name="FleetPaging" xml:space="preserve">
+    <value>可选: {0} / {1}
+(可点击左右翻页)</value>
   </data>
-  <data name="TextEventKind" xml:space="preserve">
-    <value>(事件)</value>
-  </data>
-  <data name="SpecialAttackActivated" xml:space="preserve">
-    <value>已激活</value>
-  </data>
-  <data name="RepairPossibility" xml:space="preserve">
-    <value>可修复</value>
-  </data>
-  <data name="TextEventDetail" xml:space="preserve">
-    <value>(事件详情)</value>
-  </data>
-  <data name="TextDestination" xml:space="preserve">
-    <value>(目的地)</value>
-  </data>
-  <data name="TextMapArea" xml:space="preserve">
-    <value>(海域)</value>
-  </data>
-  <data name="CoursePatrol" xml:space="preserve">
-    <value>前进路线警戒！</value>
+  <data name="FleetCount" xml:space="preserve">
+    <value>可选: {0}</value>
   </data>
 </root>

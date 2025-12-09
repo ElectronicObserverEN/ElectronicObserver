@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="WindowCaptureConfirmation" xml:space="preserve">
-    <value>检查窗口捕获</value>
-  </data>
   <data name="WarningMessage" xml:space="preserve">
-    <value>您确定捕捉该窗口吗？
+    <value>是否要捕获此窗口？
 
-警告：捕捉的窗口可能会变得不稳定并导致数据丢失。
-请先保存数据并返回母港以确保安全，然后再继续。</value>
+注意: 某些窗口可能无法正常捕获，并可能导致系统不稳定。
+请在保存数据或返回母港后再执行本操作。</value>
+  </data>
+  <data name="WindowCaptureConfirmation" xml:space="preserve">
+    <value>窗口捕获确认</value>
   </data>
 </root>

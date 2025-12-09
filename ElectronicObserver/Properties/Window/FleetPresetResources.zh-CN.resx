@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -121,6 +121,6 @@
     <value>编成预设</value>
   </data>
   <data name="LowestCondition" xml:space="preserve">
-    <value>最低条件</value>
+    <value>必要条件</value>
   </data>
 </root>

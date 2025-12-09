@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,157 +117,158 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DevelopedBy" xml:space="preserve">
-    <value>开发</value>
-  </data>
-  <data name="TranslatedVer" xml:space="preserve">
-    <value>翻译版本</value>
-  </data>
   <data name="AskClose" xml:space="preserve">
-    <value>确定关闭吗？</value>
+    <value> 确定关闭吗？</value>
   </data>
-  <data name="StartupComplete" xml:space="preserve">
-    <value>启动完成。</value>
+  <data name="AskForUpdate" xml:space="preserve">
+    <value>新版本已发布！ : {0}\
+更新内容 : 
+{1}
+需要打开下载页吗？
+(点击取消将不再显示)</value>
   </data>
-  <data name="IsClosing" xml:space="preserve">
-    <value>正在关闭…</value>
-  </data>
-  <data name="TranslatedSite" xml:space="preserve">
-    <value>翻译来源</value>
-  </data>
-  <data name="InitLayout" xml:space="preserve">
-    <value>布局已初始化。
-从“显示”菜单添加您最喜欢的窗口。</value>
+  <data name="AskLoad" xml:space="preserve">
+    <value>任何未保存的记录都可能会丢失。
+要直接加载吗？</value>
   </data>
   <data name="AskLogin" xml:space="preserve">
-    <value>移至登录页面。
-你确定吗？</value>
+    <value>将转到账号登录页。
+可以吗？</value>
   </data>
-  <data name="NewGroupFormatTitle" xml:space="preserve">
-    <value>因版本升级而确认（~1.5.0）</value>
+  <data name="AskNavText" xml:space="preserve">
+    <value>请输入您要访问的网址。</value>
   </data>
-  <data name="NewRecordTitle" xml:space="preserve">
-    <value>因版本升级而确认（~1.4.6）</value>
+  <data name="AskNavTitle" xml:space="preserve">
+    <value>输入跳转网址</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>更新信息</value>
-  </data>
-  <data name="BrowserThrewError" xml:space="preserve">
-    <value>浏览器进程之间发生通信错误。</value>
+  <data name="Browser" xml:space="preserve">
+    <value>浏览器</value>
   </data>
   <data name="BrowserClosedWithoutWarning" xml:space="preserve">
-    <value>浏览器进程意外关闭。</value>
+    <value>浏览器进程意外终止。</value>
   </data>
   <data name="BrowserCloseError" xml:space="preserve">
     <value>浏览器关闭时发生错误。</value>
   </data>
-  <data name="FirstTimeDialog" xml:space="preserve">
-    <value>感谢您使用{0}。
-有关设置和使用信息，请参阅菜单中的“帮助”→“在线帮助”选项。
-建议在使用前阅读。</value>
+  <data name="BrowserThrewError" xml:space="preserve">
+    <value>浏览器进程发生通信错误。</value>
   </data>
-  <data name="LayoutSaved" xml:space="preserve">
-    <value>已成功保存来自 {0} 的窗口布局。</value>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
   </data>
-  <data name="LayoutLoaded" xml:space="preserve">
-    <value>窗口布局已从 {0} 恢复。</value>
+  <data name="ClosingComplete" xml:space="preserve">
+    <value>关闭已完成。</value>
   </data>
-  <data name="NoShipData" xml:space="preserve">
-    <value>舰娘数据尚未加载。</value>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>开发</value>
   </data>
-  <data name="OriginalSite" xml:space="preserve">
-    <value>开发者(点击此处报告错误并联系我们)</value>
-  </data>
-  <data name="OpenLayout" xml:space="preserve">
-    <value>打开布局文件</value>
-  </data>
-  <data name="NoLayoutFound" xml:space="preserve">
-    <value>窗口布局文件不存在。</value>
-  </data>
-  <data name="NewRecordFormat" xml:space="preserve">
-    <value>检测到您正在从先前版本升级。
-我们现在会将您当前的记录文件转换为新格式。
-（您的原始文件将移至 Record_Backup 文件夹。）
-继续？
-（如果您不转换记录，它们可能会变得不可读。）</value>
-  </data>
-  <data name="NewGroupFormat" xml:space="preserve">
-    <value>检测到您正在从先前版本升级。
-以前的船组数据已变得不兼容，因此必须对其进行初始化（当前现有文件将移至Settings_Backup）。
-继续？
-如果不初始化就继续，可能会出现错误。</value>
+  <data name="FailedBrowserStart" xml:space="preserve">
+    <value>浏览器进程启动失败。</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>帮助</value>
   </data>
-  <data name="AskNavTitle" xml:space="preserve">
-    <value>移动至…</value>
+  <data name="InitLayout" xml:space="preserve">
+    <value>布局已完成初始化。
+请从「显示」菜单中添加您需要的窗口。</value>
   </data>
-  <data name="FirstTimeTitle" xml:space="preserve">
-    <value>第一条启动消息</value>
+  <data name="IsClosing" xml:space="preserve">
+    <value> 正在关闭…</value>
   </data>
-  <data name="FailedBrowserStart" xml:space="preserve">
-    <value>无法启动浏览器进程。</value>
+  <data name="LayoutLoaded" xml:space="preserve">
+    <value>从{0}文件还原了窗口布局。</value>
+  </data>
+  <data name="LayoutSaved" xml:space="preserve">
+    <value>将窗口布局保存至{0}文件。</value>
+  </data>
+  <data name="NewVersionFound" xml:space="preserve">
+    <value>新版本已正式发布！ :</value>
+  </data>
+  <data name="NoEquipData" xml:space="preserve">
+    <value>装备数据未加载。</value>
+  </data>
+  <data name="NoLayoutFound" xml:space="preserve">
+    <value>未找到窗口布局文件。</value>
+  </data>
+  <data name="NoShipData" xml:space="preserve">
+    <value>舰船数据未加载。</value>
+  </data>
+  <data name="OpenLayout" xml:space="preserve">
+    <value>打开布局文件</value>
+  </data>
+  <data name="OriginalSite" xml:space="preserve">
+    <value>发布页(BUG报告・联系请点击此处)</value>
+  </data>
+  <data name="SoftwareName" xml:space="preserve">
+    <value>七四式电子观测仪</value>
+  </data>
+  <data name="StartupComplete" xml:space="preserve">
+    <value>程序启动完毕。</value>
+  </data>
+  <data name="TranslatedSite" xml:space="preserve">
+    <value>翻译发布页</value>
+  </data>
+  <data name="TranslatedVer" xml:space="preserve">
+    <value>翻译版本</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新信息</value>
   </data>
   <data name="UpdateConnectionFailed" xml:space="preserve">
-    <value>无法处理更新信息。</value>
+    <value>处理更新信息失败。</value>
+  </data>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="ZoomCurrent" xml:space="preserve">
+    <value>当前</value>
+  </data>
+  <data name="FirstTimeDialog" xml:space="preserve">
+    <value>感谢您使用 {0} 。
+关于设置与使用的方法，请参考「帮助」→「在线帮助」。
+请务必在使用前阅读相关内容。</value>
+  </data>
+  <data name="FirstTimeTitle" xml:space="preserve">
+    <value>初次启动信息</value>
+  </data>
+  <data name="FailedNewRecords" xml:space="preserve">
+    <value>因版本升级导致记录转换失败。</value>
+  </data>
+  <data name="FailedRecordDialog" xml:space="preserve">
+    <value>数据转换失败。
+{0}
+是否继续启动程序？
+(数据存在被破坏的可能性)
+</value>
+  </data>
+  <data name="NewRecordFormat" xml:space="preserve">
+    <value>检测到版本更新。
+接下来会将旧的记录文件转换为新版本格式。
+(原始文件将保存在 Record_Backup 文件夹中。)
+确定吗？
+(不进行转换直接运行程序，可能无法识别记录内容。)</value>
+  </data>
+  <data name="NewRecordTitle" xml:space="preserve">
+    <value>版本更新确认(～1.4.6)</value>
   </data>
   <data name="FailedToDelete" xml:space="preserve">
     <value>删除失败。</value>
   </data>
   <data name="GroupUpgradeFailed" xml:space="preserve">
-    <value>由于版本升级，删除群组数据失败。</value>
+    <value>因版本升级导致组数据删除失败。</value>
   </data>
-  <data name="NoEquipData" xml:space="preserve">
-    <value>设备数据尚未加载。</value>
+  <data name="NewGroupFormat" xml:space="preserve">
+    <value>检测到版本更新。
+由于旧舰船组数据不兼容，将对该数据进行初始化。
+(旧文件会保存至 Settings_Backup 文件夹中。)
+确定吗？
+(不进行初始化直接运行程序，会发生错误。)</value>
   </data>
-  <data name="AskNavText" xml:space="preserve">
-    <value>请输入目标网址。</value>
+  <data name="NewGroupFormatTitle" xml:space="preserve">
+    <value>版本更新确认(～1.5.0)</value>
   </data>
   <data name="MultiInstanceNotification" xml:space="preserve">
-    <value>74EO已经启动，无法存在多个74EO。
-如果出现误报，请使用 -m 选项从命令行启动它。</value>
-  </data>
-  <data name="AskForUpdate" xml:space="preserve">
-    <value>新版本74EO{0}已发布。
-更新内容：
-{1}
-
-打开下载页面？
-（单击“取消”可禁用更新通知）</value>
-  </data>
-  <data name="SoftwareName" xml:space="preserve">
-    <value>七四式电子观测仪</value>
-  </data>
-  <data name="ZoomCurrent" xml:space="preserve">
-    <value>现在</value>
-  </data>
-  <data name="FailedNewRecords" xml:space="preserve">
-    <value>由于版本升级，记录转换失败。</value>
-  </data>
-  <data name="FailedRecordDialog" xml:space="preserve">
-    <value>转换失败并出现错误：
-{0}
-继续启动74EO吗？
-(继续可能会损坏您当前的记录)</value>
-  </data>
-  <data name="ClosingComplete" xml:space="preserve">
-    <value>关闭完成。</value>
-  </data>
-  <data name="Browser" xml:space="preserve">
-    <value>浏览器</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>关闭</value>
-  </data>
-  <data name="AskLoad" xml:space="preserve">
-    <value>所有未保存的记录都将丢失。
-加载记录？</value>
-  </data>
-  <data name="VersionTitle" xml:space="preserve">
-    <value>版本、关于74EO</value>
-  </data>
-  <data name="NewVersionFound" xml:space="preserve">
-    <value>新版本已发布！ :</value>
+    <value>已有正在运行的74EO，不能进行多重启动。
+若为误报，请在命令行中添加 -m 参数再进行启动。</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,69 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Range" xml:space="preserve">
-    <value>航程</value>
-  </data>
-  <data name="AirBaseTwo" xml:space="preserve">
-    <value>第二基地航空队</value>
-  </data>
-  <data name="Empty" xml:space="preserve">
-    <value>(无)</value>
-  </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>(不明)</value>
-  </data>
-  <data name="EventMap" xml:space="preserve">
-    <value>活动海域</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>类型</value>
-  </data>
-  <data name="Cost" xml:space="preserve">
-    <value>成本</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>选择</value>
-  </data>
-  <data name="Bomber" xml:space="preserve">
-    <value>爆装</value>
-  </data>
-  <data name="ClearAirBaseOrganizationsTitle" xml:space="preserve">
-    <value>清除陆航名称</value>
-  </data>
-  <data name="TopMenu_Edit_Clear" xml:space="preserve">
-    <value>清除陆航名称(&amp;C)</value>
-  </data>
-  <data name="ClearAirBaseOrganizations" xml:space="preserve">
-    <value>这将清除所有陆航配置。
-你确定吗？</value>
-  </data>
-  <data name="TopMenu_Edit" xml:space="preserve">
-    <value>编辑(&amp;E)</value>
-  </data>
-  <data name="AutoOrganizeSortie" xml:space="preserve">
-    <value>出击编队</value>
-  </data>
-  <data name="Sortie" xml:space="preserve">
-    <value>出击制空</value>
+  <data name="AirBaseOne" xml:space="preserve">
+    <value>第一基地航空队</value>
   </data>
   <data name="AirBaseThree" xml:space="preserve">
     <value>第三基地航空队</value>
   </data>
-  <data name="AirBaseOne" xml:space="preserve">
-    <value>第一基地航空队</value>
+  <data name="AirBaseTwo" xml:space="preserve">
+    <value>第二基地航空队</value>
   </data>
-  <data name="AntiBomber" xml:space="preserve">
-    <value>对爆</value>
+  <data name="TopMenu_Edit" xml:space="preserve">
+    <value>编辑(&amp;E)</value>
   </data>
-  <data name="AutoRange" xml:space="preserve">
-    <value>目标航程</value>
+  <data name="TopMenu_Edit_ImportOrganization" xml:space="preserve">
+    <value>导入当前编成(&amp;I)</value>
   </data>
-  <data name="AirSuperiority" xml:space="preserve">
-    <value>目标制空</value>
+  <data name="TopMenu_Edit_Clear" xml:space="preserve">
+    <value>清除编成(&amp;C)</value>
+  </data>
+  <data name="TopMenu_Settings" xml:space="preserve">
+    <value>设置(&amp;S)</value>
   </data>
   <data name="TopMenu_Settings_HighAltitude" xml:space="preserve">
-    <value>高空轰炸(&amp;H)</value>
+    <value>对高高度轰炸(&amp;H)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>基地航空队编成模拟器</value>
   </data>
   <data name="AA" xml:space="preserve">
     <value>对空</value>
@@ -187,69 +150,82 @@
   <data name="ASW" xml:space="preserve">
     <value>对潜</value>
   </data>
-  <data name="AutoOrganizeAirDefense" xml:space="preserve">
-    <value>防空编辑</value>
-  </data>
-  <data name="AirDefense" xml:space="preserve">
-    <value>防空制空</value>
-  </data>
-  <data name="TitleTotal" xml:space="preserve">
-    <value>总量</value>
-  </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>回避</value>
-  </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>火力</value>
-  </data>
-  <data name="FailedToLoadAirBaseInfoTitle" xml:space="preserve">
-    <value>未收到基地航空队数据</value>
-  </data>
-  <data name="TopMenu_Edit_ImportOrganization" xml:space="preserve">
-    <value>导入当前配置(&amp;I)</value>
-  </data>
-  <data name="TopMenu_Settings" xml:space="preserve">
-    <value>设置(&amp;S)</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>基地航空队编成模拟</value>
-  </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>雷装</value>
-  </data>
-  <data name="Armor" xml:space="preserve">
-    <value>装甲</value>
-  </data>
   <data name="Interception" xml:space="preserve">
     <value>迎击</value>
   </data>
   <data name="LOS" xml:space="preserve">
     <value>索敌</value>
   </data>
-  <data name="Accuracy" xml:space="preserve">
-    <value>命中</value>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>对爆</value>
   </data>
-  <data name="OrganizationCost" xml:space="preserve">
-    <value>部署消耗</value>
+  <data name="Cost" xml:space="preserve">
+    <value>消耗</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>类别</value>
   </data>
   <data name="Aircraft" xml:space="preserve">
-    <value>额定搭载</value>
+    <value>配置机型</value>
   </data>
   <data name="Slot" xml:space="preserve">
-    <value>搭载</value>
+    <value>机数</value>
+  </data>
+  <data name="Sortie" xml:space="preserve">
+    <value>出击制空</value>
+  </data>
+  <data name="OrganizationCost" xml:space="preserve">
+    <value>配置消耗</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>目标制空</value>
+  </data>
+  <data name="AutoRange" xml:space="preserve">
+    <value>目标半径</value>
+  </data>
+  <data name="AutoOrganizeSortie" xml:space="preserve">
+    <value>出击编成</value>
+  </data>
+  <data name="AutoOrganizeAirDefense" xml:space="preserve">
+    <value>防空编成</value>
+  </data>
+  <data name="TitleTotal" xml:space="preserve">
+    <value>合计</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>选择</value>
   </data>
   <data name="OptimizationFailed" xml:space="preserve">
-    <value>自动组织失败。
-要么条件不满足，要么没有足够的飞机。</value>
+    <value>自动编成失败。
+可能是由于条件设置过于苛刻或者可用飞机不足。</value>
   </data>
   <data name="OptimizationFailedTitle" xml:space="preserve">
     <value>自动编成失败</value>
   </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(未知)</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(无)</value>
+  </data>
   <data name="FailedToLoadAirBaseInfo" xml:space="preserve">
-    <value>没有基地航空队的数据。
-请移动到出击画面一次。</value>
+    <value>未能获取基地航空队数据。
+请打开出击地图选择界面以读取信息。</value>
+  </data>
+  <data name="FailedToLoadAirBaseInfoTitle" xml:space="preserve">
+    <value>未收到基地航空队数据</value>
+  </data>
+  <data name="EventMap" xml:space="preserve">
+    <value>活动海域</value>
   </data>
   <data name="Dupes" xml:space="preserve">
-    <value>有重复</value>
+    <value>可重复</value>
+  </data>
+  <data name="ClearAirBaseOrganizations" xml:space="preserve">
+    <value>将清除所有编成数据。
+可以吗？</value>
+  </data>
+  <data name="ClearAirBaseOrganizationsTitle" xml:space="preserve">
+    <value>清除编成</value>
   </data>
 </root>

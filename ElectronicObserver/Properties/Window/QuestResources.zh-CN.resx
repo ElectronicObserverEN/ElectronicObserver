@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,99 +117,87 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Unknown" xml:space="preserve">
-    <value>(未获得)</value>
+  <data name="MenuProgress_Reset" xml:space="preserve">
+    <value>重置进度(&amp;R)</value>
   </data>
-  <data name="OtherQuests" xml:space="preserve">
-    <value>(未获得的任务 x {0}）</value>
+  <data name="MenuMain_QuestFilter" xml:space="preserve">
+    <value>显示筛选(&amp;Q)</value>
   </data>
-  <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
-    <value>+砍口垒</value>
+  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
+    <value>在DuckDuckGo检索任务名(&amp;G)</value>
   </data>
-  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
-    <value>在 _Startpage 中搜索“{0}”</value>
-  </data>
-  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
-    <value>在 DuckDuckGo(&amp;G) 中搜索“{0}”(&amp;G)</value>
-  </data>
-  <data name="SearchLinkWiki" xml:space="preserve">
-    <value>https://zh.kcwiki.cn/wiki/任务#{0}</value>
-  </data>
-  <data name="SearchOnWikiQuery" xml:space="preserve">
-    <value>site:https://zh.kcwiki.cn</value>
-  </data>
-  <data name="SizeAdjustment" xml:space="preserve">
-    <value>尺寸调整</value>
+  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
+    <value>在wikiwiki检索任务名(&amp;K)</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>页</value>
   </data>
-  <data name="Header" xml:space="preserve">
-    <value>标头</value>
-  </data>
-  <data name="MenuMain_QuestFilter" xml:space="preserve">
-    <value>显示过滤器(&amp;Q)</value>
-  </data>
   <data name="Complete" xml:space="preserve">
-    <value>达成！</value>
+    <value>完成！</value>
   </data>
-  <data name="ManuMain_QuestTranslate" xml:space="preserve">
-    <value>复制未翻译的任务数据(&amp;N)</value>
+  <data name="OtherQuests" xml:space="preserve">
+    <value>(未获得的任务 x {0})</value>
   </data>
-  <data name="MenuProgress_Reset" xml:space="preserve">
-    <value>重置进度(&amp;R)</value>
+  <data name="Unknown" xml:space="preserve">
+    <value>(未获得)</value>
   </data>
-  <data name="ModifyProgress" xml:space="preserve">
-    <value>修改进度(_M)</value>
+  <data name="FailedToChangeQuestProgress" xml:space="preserve">
+    <value>无法更改任务『{0}』的进度。</value>
   </data>
-  <data name="Row" xml:space="preserve">
-    <value>列</value>
+  <data name="QuestResetConfirmationText" xml:space="preserve">
+    <value>将{0}从列表中删除并重置任务进度记录。
+可以吗？
+(重新打开艦これ游戏任务界面将更新正确数据。)</value>
+  </data>
+  <data name="QuestResetConfirmationCaption" xml:space="preserve">
+    <value>删除任务确认</value>
+  </data>
+  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
+    <value>在DuckDuckGo检索『{0}』(&amp;G)</value>
+  </data>
+  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
+    <value>在wikiwiki检索任务名(&amp;K)</value>
+  </data>
+  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
+    <value>在 DuckDuckGo 检索任务名失败。</value>
+  </data>
+  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
+    <value>任务检索失败</value>
+  </data>
+  <data name="AllQuestsAreTranslated" xml:space="preserve">
+    <value>任务已全部翻译完毕</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>信息</value>
   </data>
-  <data name="QuestResetConfirmationText" xml:space="preserve">
-    <value>从列表中删除任务 {0} 并重置进度。
-你确定吗？
-（当您打开砍口垒本身的任务屏幕时，它会正确更新。）</value>
+  <data name="ManuMain_QuestTitle" xml:space="preserve">
+    <value>复制任务标题(&amp;T)</value>
   </data>
-  <data name="FailedToChangeQuestProgress" xml:space="preserve">
-    <value>任务“{0}”的进度无法更改。</value>
+  <data name="ManuMain_QuestDescription" xml:space="preserve">
+    <value>复制任务说明(&amp;D)</value>
+  </data>
+  <data name="ManuMain_QuestTranslate" xml:space="preserve">
+    <value>复制未翻译的任务数据(&amp;N)</value>
+  </data>
+  <data name="ModifyProgress" xml:space="preserve">
+    <value>修正任务进度(_M)</value>
+  </data>
+  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
+    <value>在Startpage检索『{0}』</value>
+  </data>
+  <data name="FailedToSearchOnStartpage" xml:space="preserve">
+    <value>在 Startpage 检索任务名失败。</value>
+  </data>
+  <data name="LookUpQuestOnStartpage" xml:space="preserve">
+    <value>在Startpage检索任务名</value>
   </data>
   <data name="ShowQuestCode" xml:space="preserve">
     <value>显示任务代码</value>
   </data>
-  <data name="ManuMain_QuestTitle" xml:space="preserve">
-    <value>复制任务标题(&amp;T)</value>
+  <data name="SizeAdjustment" xml:space="preserve">
+    <value>尺寸调整</value>
   </data>
-  <data name="FailedToOpenKancolleWiki" xml:space="preserve">
-    <value>任务搜索失败</value>
-  </data>
-  <data name="ManuMain_QuestDescription" xml:space="preserve">
-    <value>复制任务描述(&amp;D)</value>
-  </data>
-  <data name="AllQuestsAreTranslated" xml:space="preserve">
-    <value>所有任务均已翻译</value>
-  </data>
-  <data name="LookUpQuestOnStartpage" xml:space="preserve">
-    <value>在 _Startpage 上搜索</value>
-  </data>
-  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
-    <value>在DuckDuckGo上搜索(&amp;G)</value>
-  </data>
-  <data name="MenuMain_KcwikiQuest" xml:space="preserve">
-    <value>在舰娘百科上搜索任务名(&amp;K)</value>
-  </data>
-  <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
-    <value>在舰娘百科上搜索任务名(&amp;K)</value>
-  </data>
-  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
-    <value>在DuckDuckGo上搜索任务名称失败。</value>
-  </data>
-  <data name="FailedToSearchOnStartpage" xml:space="preserve">
-    <value>在Startpage上搜索任务名失败。</value>
-  </data>
-  <data name="QuestResetConfirmationCaption" xml:space="preserve">
-    <value>重置任务进度</value>
+  <data name="Header" xml:space="preserve">
+    <value>表头</value>
   </data>
 </root>

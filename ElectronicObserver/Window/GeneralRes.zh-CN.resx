@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,662 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AACITooltip" xml:space="preserve">
+    <value>对空Cut In: {0}
+Cut In种类: {1} ({2})</value>
+  </data>
+  <data name="AACutIn" xml:space="preserve">
+    <value>对空Cut In</value>
+  </data>
+  <data name="AAPower" xml:space="preserve">
+    <value>防空火力</value>
+  </data>
+  <data name="AddFleetToGroupMenu" xml:space="preserve">
+    <value>添加当前舰队(&amp;G)</value>
+  </data>
+  <data name="AdmiralXP" xml:space="preserve">
+    <value>提督经验值</value>
+  </data>
+  <data name="AirPower" xml:space="preserve">
+    <value>制空战力</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>制空权</value>
+  </data>
+  <data name="AllAssignedShips" xml:space="preserve">
+    <value>全所属舰</value>
+  </data>
+  <data name="AllComplete" xml:space="preserve">
+    <value>(任务完成！)</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>弹药</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>对空</value>
+  </data>
+  <data name="Arsenal" xml:space="preserve">
+    <value>工厂</value>
+  </data>
+  <data name="ArsenalLog" xml:space="preserve">
+    <value>工厂 #{0}号船坞开始建造 {1}。({2}/{3}/{4}/{5}-{6} 秘书舰: {7})</value>
+  </data>
+  <data name="ASTooltip" xml:space="preserve">
+    <value>确保: {0}
+优势: {1}
+均势: {2}
+劣势: {3}
+({4}: {5})</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>对潜</value>
+  </data>
+  <data name="AutoAdjustColumns" xml:space="preserve">
+    <value>列宽自动调整(&amp;D)</value>
+  </data>
+  <data name="Battle" xml:space="preserve">
+    <value>战斗</value>
+  </data>
+  <data name="CannotChangeGroup" xml:space="preserve">
+    <value>该组无法变更。</value>
+  </data>
+  <data name="CannotDeleteGroup" xml:space="preserve">
+    <value>该组无法删除。</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>分类</value>
+  </data>
+  <data name="CategoryFilter" xml:space="preserve">
+    <value>分类(&amp;C)</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>完成(&amp;C)</value>
+  </data>
+  <data name="Compass" xml:space="preserve">
+    <value>罗盘</value>
+  </data>
+  <data name="CompassShipTooltip" xml:space="preserve">
+    <value>{0} {1}{2}
+耐久: {3}
+火力: {4}/{5}
+雷装: {6}/{7}
+对空: {8}/{9}
+装甲: {10}/{11}
+对潜: {12}/{13}
+回避: {14}/{15}
+索敌: {16}/{17}
+运: {18}/{19}
+射程: {20} / 速力: {21}
+(右键单击打开图鉴)
+</value>
+  </data>
+  <data name="Contacting" xml:space="preserve">
+    <value>接触中</value>
+  </data>
+  <data name="CreateGroup" xml:space="preserve">
+    <value>添加组</value>
+  </data>
+  <data name="CurrentHealth" xml:space="preserve">
+    <value>当前HP</value>
+  </data>
+  <data name="DamagedArtUnseen" xml:space="preserve">
+    <value>[中破立绘未回收]</value>
+  </data>
+  <data name="DamageDone" xml:space="preserve">
+    <value>造成伤害</value>
+  </data>
+  <data name="DamagePct" xml:space="preserve">
+    <value>损害率</value>
+  </data>
+  <data name="DayBattle" xml:space="preserve">
+    <value>昼战</value>
+  </data>
+  <data name="Defeated" xml:space="preserve">
+    <value>击破</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除(&amp;D)</value>
+  </data>
+  <data name="DeleteGroup" xml:space="preserve">
+    <value>确认删除组 [{0}] 吗？
+该操作执行后无法撤销。</value>
+  </data>
+  <data name="DevelopmentFailed" xml:space="preserve">
+    <value>[开发失败]</value>
+  </data>
+  <data name="DockTime" xml:space="preserve">
+    <value>入渠时间</value>
+  </data>
+  <data name="DontScrollNames" xml:space="preserve">
+    <value>舰名不滚动显示(&amp;S)</value>
+  </data>
+  <data name="EncounterType" xml:space="preserve">
+    <value>交战形态</value>
+  </data>
+  <data name="EndNode" xml:space="preserve">
+    <value> (终点)</value>
+  </data>
+  <data name="EnemyFleet" xml:space="preserve">
+    <value>敌军舰队</value>
+  </data>
+  <data name="EnemyFleetID" xml:space="preserve">
+    <value>敌舰队ID</value>
+  </data>
+  <data name="EnemyFleetName" xml:space="preserve">
+    <value>敌舰队名</value>
+  </data>
+  <data name="EnemyFormation" xml:space="preserve">
+    <value>敌阵形</value>
+  </data>
+  <data name="EnemyScout" xml:space="preserve">
+    <value>敌索敌</value>
+  </data>
+  <data name="EnemyUnknown" xml:space="preserve">
+    <value>(敌舰队情报不明)</value>
+  </data>
+  <data name="EscortFleet" xml:space="preserve">
+    <value>伴随舰队</value>
+  </data>
+  <data name="ExpeditionReturned" xml:space="preserve">
+    <value>[远征归来]</value>
+  </data>
+  <data name="FailedToCreateCSV" xml:space="preserve">
+    <value>舰船组 CSV文件导出失败。</value>
+  </data>
+  <data name="FatigueRestoreTime" xml:space="preserve">
+    <value>完全恢复需要 约 {0:D2}:{1:D2}</value>
+  </data>
+  <data name="FilterBy" xml:space="preserve">
+    <value>列筛选(&amp;C)</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>舰队</value>
+  </data>
+  <data name="FriendlyFleet" xml:space="preserve">
+    <value>我军舰队</value>
+  </data>
+  <data name="FriendlyFormation" xml:space="preserve">
+    <value>我方阵形</value>
+  </data>
+  <data name="FriendlyScout" xml:space="preserve">
+    <value>我方索敌</value>
+  </data>
+  <data name="Initialize" xml:space="preserve">
+    <value>初始化(&amp;I)</value>
+  </data>
+  <data name="InitializeQuestData" xml:space="preserve">
+    <value>初始化任务数据。
+除数据存在异常的情况外不建议使用该功能。
+真的要初始化吗？</value>
+  </data>
+  <data name="InitQuestTitle" xml:space="preserve">
+    <value>初始化任务确认</value>
+  </data>
+  <data name="InProgressFilter" xml:space="preserve">
+    <value>进行中(&amp;S)</value>
+  </data>
+  <data name="IsTaiha" xml:space="preserve">
+    <value>舰娘大破！</value>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>锁定</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>日志</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>索敌</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>运</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>出击海域</value>
+  </data>
+  <data name="MapGauges" xml:space="preserve">
+    <value>[海域血条]</value>
+  </data>
+  <data name="MaxHealth" xml:space="preserve">
+    <value>最大HP</value>
+  </data>
+  <data name="MysteriousItem" xml:space="preserve">
+    <value>神秘物品</value>
+  </data>
+  <data name="NameFilter" xml:space="preserve">
+    <value>任务名(&amp;N)</value>
+  </data>
+  <data name="NextNode" xml:space="preserve">
+    <value>下一个点位</value>
+  </data>
+  <data name="NightBattle" xml:space="preserve">
+    <value>夜战</value>
+  </data>
+  <data name="NightContact" xml:space="preserve">
+    <value>夜间接触</value>
+  </data>
+  <data name="NightContacting" xml:space="preserve">
+    <value>夜间接触中</value>
+  </data>
+  <data name="Practice" xml:space="preserve">
+    <value>演习</value>
+  </data>
+  <data name="PracticeReport" xml:space="preserve">
+    <value>[演习情报]</value>
+  </data>
+  <data name="Progress" xml:space="preserve">
+    <value>进度</value>
+  </data>
+  <data name="ProgressFilter" xml:space="preserve">
+    <value>进度(&amp;P)</value>
+  </data>
+  <data name="Quest" xml:space="preserve">
+    <value>任务</value>
+  </data>
+  <data name="QuestName" xml:space="preserve">
+    <value>任务名</value>
+  </data>
+  <data name="RemainingExpeds" xml:space="preserve">
+    <value>还可以跑 {0} 次远征</value>
+  </data>
+  <data name="RenameGroupMenu" xml:space="preserve">
+    <value>更改组名(&amp;R)...</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>结果</value>
+  </data>
+  <data name="Retreating" xml:space="preserve">
+    <value>已退避</value>
+  </data>
+  <data name="SawNoEnemy" xml:space="preserve">
+    <value>未发现敌踪迹</value>
+  </data>
+  <data name="Scouting" xml:space="preserve">
+    <value>索敌</value>
+  </data>
+  <data name="ShipGirl" xml:space="preserve">
+    <value>舰娘</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>舰船ID</value>
+  </data>
+  <data name="ShipName" xml:space="preserve">
+    <value>舰名</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>舰种</value>
+  </data>
+  <data name="ShipXP" xml:space="preserve">
+    <value>舰娘经验值</value>
+  </data>
+  <data name="ShotDown" xml:space="preserve">
+    <value>击坠</value>
+  </data>
+  <data name="ShowDaily" xml:space="preserve">
+    <value>显示每日任务(&amp;D)</value>
+  </data>
+  <data name="ShowInProgressOnly" xml:space="preserve">
+    <value>显示进行中任务(&amp;R)</value>
+  </data>
+  <data name="ShowMonthly" xml:space="preserve">
+    <value>显示月常任务(&amp;M)</value>
+  </data>
+  <data name="ShowOneTime" xml:space="preserve">
+    <value>显示单次任务(&amp;O)</value>
+  </data>
+  <data name="ShowWeekly" xml:space="preserve">
+    <value>显示周常任务(&amp;W)</value>
+  </data>
+  <data name="SortiePlace" xml:space="preserve">
+    <value>出击地</value>
+  </data>
+  <data name="SpecifySelectGroup" xml:space="preserve">
+    <value>请选择要添加的组：</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="StarShellUsed" xml:space="preserve">
+    <value>照明弹投射</value>
+  </data>
+  <data name="SVictory" xml:space="preserve">
+    <value>S胜利</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>次</value>
+  </data>
+  <data name="TimeToCompletion" xml:space="preserve">
+    <value>完成时间</value>
+  </data>
+  <data name="ToX" xml:space="preserve">
+    <value>距离Lv{0}还有: {1}</value>
+  </data>
+  <data name="To99" xml:space="preserve">
+    <value>距离Lv99还有: {0}</value>
+  </data>
+  <data name="ToHeavy" xml:space="preserve">
+    <value>距离大破还有: {0}</value>
+  </data>
+  <data name="ToMidAndHeavy" xml:space="preserve">
+    <value>距离中破还有: {0} / 距离大破还有: {1}</value>
+  </data>
+  <data name="ToNextLevel" xml:space="preserve">
+    <value>距离升级还有: {0}</value>
+  </data>
+  <data name="ToRemodel" xml:space="preserve">
+    <value>距离改造还有: Lv. {0} / {1} exp.</value>
+  </data>
+  <data name="TotalExperienceGained" xml:space="preserve">
+    <value>获得经验值</value>
+  </data>
+  <data name="TotalLoS" xml:space="preserve">
+    <value>索敌能力</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>种类</value>
+  </data>
+  <data name="TypeFilter" xml:space="preserve">
+    <value>出现类别(&amp;T)</value>
+  </data>
+  <data name="UnseenEquips" xml:space="preserve">
+    <value>[未持有装备]</value>
+  </data>
+  <data name="UnseenShips" xml:space="preserve">
+    <value>[未持有舰]</value>
+  </data>
+  <data name="WhyDidThisHappen" xml:space="preserve">
+    <value>怎么会这样？</value>
+  </data>
+  <data name="WindowCapture" xml:space="preserve">
+    <value>窗口捕获</value>
+  </data>
+  <data name="WindowCaptureInst" xml:space="preserve">
+    <value>请将按钮拖拽到您想要捕获的窗口上。</value>
+  </data>
+  <data name="WinRank" xml:space="preserve">
+    <value>战绩评价</value>
+  </data>
+  <data name="AllData" xml:space="preserve">
+    <value>全部(&amp;A)</value>
+  </data>
+  <data name="Baux" xml:space="preserve">
+    <value>铝土</value>
+  </data>
+  <data name="Bucket" xml:space="preserve">
+    <value>高速修复材</value>
+  </data>
+  <data name="DevMat" xml:space="preserve">
+    <value>开发资材</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>(差值)</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>经验值</value>
+  </data>
+  <data name="ImpMat" xml:space="preserve">
+    <value>改修资材</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>资材</value>
+  </data>
+  <data name="ResourceChart" xml:space="preserve">
+    <value>资源图表</value>
+  </data>
+  <data name="Steel" xml:space="preserve">
+    <value>钢材</value>
+  </data>
+  <data name="ThreeMonths" xml:space="preserve">
+    <value>季度(&amp;S)</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>周(&amp;W)</value>
+  </data>
+  <data name="AerialRecon" xml:space="preserve">
+    <value>航空侦查</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="Expansion" xml:space="preserve">
+    <value>补强</value>
+  </data>
+  <data name="ChangeTooltip" xml:space="preserve">
+    <value>本日: {0:+##;-##;±0}
+本周: {1:+##;-##;±0}
+本月: {2:+##;-##;±0}</value>
+  </data>
+  <data name="BattleComplete" xml:space="preserve">
+    <value>战斗结束</value>
+  </data>
+  <data name="EnemyName" xml:space="preserve">
+    <value>敌舰队名: {0}
+</value>
+  </data>
+  <data name="NoSecondAirStage" xml:space="preserve">
+    <value>(未发生第二轮战斗)</value>
+  </data>
+  <data name="EnemyCandidate" xml:space="preserve">
+    <value>敌舰队推测</value>
+  </data>
+  <data name="NoFleetCandidates" xml:space="preserve">
+    <value>(敌舰队推测暂缺)</value>
+  </data>
+  <data name="BauxiteUsage" xml:space="preserve">
+    <value>铝土: {0} ( {1}架 )
+</value>
+  </data>
+  <data name="FleetReturned" xml:space="preserve">
+    <value>[舰队归来]</value>
+  </data>
+  <data name="ResupplyComplete" xml:space="preserve">
+    <value>[补给完毕]</value>
+  </data>
+  <data name="ResupplyString" xml:space="preserve">
+    <value>燃料: {0:+0;-0} ( 自然 {1:+0;-0} - 补给 {2} - 入渠 {3} )
+弹药: {4:+0;-0} ( 自然 {5:+0;-0} - 补给 {6} )
+钢材: {7:+0;-0} ( 自然 {8:+0;-0} - 入渠 {9} )
+铝土: {10:+0;-0} ( 自然 {11:+0;-0} - 补给 {12} ( {13} 架 ) )</value>
+  </data>
+  <data name="Planes" xml:space="preserve">
+    <value>舰战机</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合计</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>空袭</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>移除(&amp;E)</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>炮击</value>
+  </data>
+  <data name="AutoSortDialogError" xml:space="preserve">
+    <value>ShipGroup: 在自动排序设置对话框中发生错误。</value>
+  </data>
+  <data name="CopyGroupText" xml:space="preserve">
+    <value>请输入组名：</value>
+  </data>
+  <data name="CopyGroupTitle" xml:space="preserve">
+    <value>复制组</value>
+  </data>
+  <data name="TotalShips" xml:space="preserve">
+    <value>所属: {0}艘</value>
+  </data>
+  <data name="KancolleMustBeLoaded" xml:space="preserve">
+    <value>请先进入艦これ游戏后再打开。</value>
+  </data>
+  <data name="NoBuildData" xml:space="preserve">
+    <value>没有建造记录。</value>
+  </data>
+  <data name="NoDevData" xml:space="preserve">
+    <value>没有开发记录。</value>
+  </data>
+  <data name="NoDropData" xml:space="preserve">
+    <value>没有掉落记录。</value>
+  </data>
+  <data name="NoMasterData" xml:space="preserve">
+    <value>没有主数据</value>
+  </data>
+  <data name="DecrementByOne" xml:space="preserve">
+    <value>进度 -1(&amp;D)</value>
+  </data>
+  <data name="IncrementByOne" xml:space="preserve">
+    <value>进度 +1(&amp;I)</value>
+  </data>
+  <data name="Encyclopedia" xml:space="preserve">
+    <value>(右键打开图鉴)</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ShowOther" xml:space="preserve">
+    <value>显示其他任务(&amp;R)</value>
+  </data>
+  <data name="BaseNotOpen" xml:space="preserve">
+    <value>(未开放)</value>
+  </data>
+  <data name="BaseRedeployment" xml:space="preserve">
+    <value>配置转换中</value>
+  </data>
+  <data name="BaseRelocate" xml:space="preserve">
+    <value>配置转换中 (开始时间: {0})</value>
+  </data>
+  <data name="BaseTooltip" xml:space="preserve">
+    <value>确保: {0}
+优势: {1}
+均势: {2}
+劣势: {3}</value>
+  </data>
+  <data name="BaseUnassigned" xml:space="preserve">
+    <value>(未分配)</value>
+  </data>
+  <data name="NotResupplied" xml:space="preserve">
+    <value>未补给</value>
+  </data>
+  <data name="Tired" xml:space="preserve">
+    <value>疲劳</value>
+  </data>
+  <data name="VeryTired" xml:space="preserve">
+    <value>红脸</value>
+  </data>
+  <data name="EnemyAir" xml:space="preserve">
+    <value>敌军</value>
+  </data>
+  <data name="FriendlyAir" xml:space="preserve">
+    <value>我军</value>
+  </data>
+  <data name="BaseWave" xml:space="preserve">
+    <value>第{0}次</value>
+  </data>
+  <data name="ClearBaseAirAttack" xml:space="preserve">
+    <value>索敌</value>
+  </data>
+  <data name="DetailAirBattle" xml:space="preserve">
+    <value>《航空战》</value>
+  </data>
+  <data name="DetailAirBattle1" xml:space="preserve">
+    <value>《第一轮航空战》</value>
+  </data>
+  <data name="DetailAirBattle2" xml:space="preserve">
+    <value>《第二轮航空战》</value>
+  </data>
+  <data name="DetailAirRaid" xml:space="preserve">
+    <value>《空袭战》</value>
+  </data>
+  <data name="DetailNightBattle" xml:space="preserve">
+    <value>《夜战》</value>
+  </data>
+  <data name="DetailOpeningASW" xml:space="preserve">
+    <value>《开幕反潜》</value>
+  </data>
+  <data name="DetailOpeningTorpedo" xml:space="preserve">
+    <value>《开幕雷击》</value>
+  </data>
+  <data name="DetailShelling1" xml:space="preserve">
+    <value>《第一轮炮击战》</value>
+  </data>
+  <data name="DetailShelling2" xml:space="preserve">
+    <value>《第二轮炮击战》</value>
+  </data>
+  <data name="DetailShelling3" xml:space="preserve">
+    <value>《第三轮炮击战》</value>
+  </data>
+  <data name="DetailTorpedo" xml:space="preserve">
+    <value>《雷击战》</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="BattleDetail" xml:space="preserve">
+    <value>战斗详情</value>
+  </data>
+  <data name="RightClickMenu_ShowBattleDetail" xml:space="preserve">
+    <value>显示战斗详情(&amp;D)...</value>
+  </data>
+  <data name="RightClickMenu_ShowBattleResult" xml:space="preserve">
+    <value>临时显示战斗结果(&amp;V)</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments" xml:space="preserve">
+    <value>确认配置转换中的装备(&amp;R)</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail" xml:space="preserve">
+    <value>当前没有配置转换中的装备。</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title" xml:space="preserve">
+    <value>配置转换中的装备</value>
+  </data>
+  <data name="AntiAirPower" xml:space="preserve">
+    <value>舰队防空
+单纵阵: {0:0.0} / 复纵阵: {1:0.0} / 轮型阵: {2:0.0}
+</value>
+  </data>
+  <data name="ShipAADefense" xml:space="preserve">
+    <value>加重对空: {0} (百分比击坠: {1:p2})</value>
+  </data>
+  <data name="EnemyAdmiral" xml:space="preserve">
+    <value>敌提督名</value>
+  </data>
+  <data name="BaseExp" xml:space="preserve">
+    <value>获得经验值</value>
+  </data>
+  <data name="HighAltitudeAirState" xml:space="preserve">
+    <value>
+对高高度轰炸：制空 {0}
+确保: {1}
+优势: {2}
+均势: {3}
+劣势: {4}
+</value>
+  </data>
+  <data name="BrowserProcessClickStart" xml:space="preserve">
+    <value>浏览器未启动。
+请单击启动。</value>
+  </data>
+  <data name="ExpeditionFailureWarningTitle" xml:space="preserve">
+    <value>远征失败警告</value>
+  </data>
+  <data name="ExpeditionFailureWarningMessage" xml:space="preserve">
+    <value>#{0} {1} 的远征 {2}:{3} 可能会失败。
+
+{4}
+
+（该警告可在 设置→运行模式 中禁用。）</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="NextAccuracy" xml:space="preserve">
+    <value>下次命中↑</value>
+  </data>
+  <data name="NextEvasion" xml:space="preserve">
+    <value>下次回避↑</value>
+  </data>
+  <data name="NextAsw" xml:space="preserve">
+    <value>下次对潜↑</value>
+  </data>
+  <data name="MaximumMorale" xml:space="preserve">
+    <value>士气已最高</value>
+  </data>
 </root>

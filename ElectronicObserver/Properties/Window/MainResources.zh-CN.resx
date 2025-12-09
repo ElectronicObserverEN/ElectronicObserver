@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Old" xml:space="preserve">
-    <value>旧</value>
-  </data>
-  <data name="New" xml:space="preserve">
-    <value>新</value>
-  </data>
   <data name="File" xml:space="preserve">
     <value>文件(_F)</value>
   </data>
@@ -136,34 +130,28 @@
     <value>布局(&amp;L)</value>
   </data>
   <data name="File_Layout_Change" xml:space="preserve">
-    <value>保存到另一个文件(&amp;C)...</value>
+    <value>另存为(&amp;C)...</value>
   </data>
   <data name="File_Layout_Load" xml:space="preserve">
-    <value>恢复(&amp;L)</value>
+    <value>还原(&amp;L)</value>
   </data>
   <data name="File_Layout_LockLayout" xml:space="preserve">
-    <value>锁定布局(&amp;T)</value>
+    <value>布局锁定(&amp;T)</value>
   </data>
   <data name="File_Layout_Open" xml:space="preserve">
-    <value>从另一个文件恢复(&amp;O)...</value>
-  </data>
-  <data name="File_Layout_Save" xml:space="preserve">
-    <value>保存(&amp;S)</value>
+    <value>从另一个文件还原(&amp;O)...</value>
   </data>
   <data name="File_Layout_TopMost" xml:space="preserve">
-    <value>窗口最前端(&amp;M)</value>
-  </data>
-  <data name="File_Notification" xml:space="preserve">
-    <value>通知(&amp;N)</value>
+    <value>置顶显示(&amp;M)</value>
   </data>
   <data name="File_Notification_MuteAll" xml:space="preserve">
-    <value>将所有通知静音(&amp;M)</value>
+    <value>静音所有通知(&amp;M)</value>
   </data>
   <data name="File_Record" xml:space="preserve">
     <value>记录(&amp;R)</value>
   </data>
   <data name="File_Record_Load" xml:space="preserve">
-    <value>加载(&amp;L)</value>
+    <value>读取(&amp;L)</value>
   </data>
   <data name="File_Record_Save" xml:space="preserve">
     <value>保存(&amp;S)</value>
@@ -174,35 +162,17 @@
   <data name="View_Fleet" xml:space="preserve">
     <value>舰队(&amp;F)</value>
   </data>
-  <data name="View_Fleet_1" xml:space="preserve">
-    <value>#&amp;1</value>
-  </data>
-  <data name="View_Fleet_2" xml:space="preserve">
-    <value>#&amp;2</value>
-  </data>
-  <data name="View_Fleet_3" xml:space="preserve">
-    <value>#&amp;3</value>
-  </data>
-  <data name="View_Fleet_4" xml:space="preserve">
-    <value>#&amp;4</value>
-  </data>
   <data name="View_FleetOverview" xml:space="preserve">
     <value>舰队一览(&amp;O)</value>
   </data>
   <data name="View_ShipGroup" xml:space="preserve">
-    <value>舰娘列表(&amp;G)</value>
-  </data>
-  <data name="View_Dock" xml:space="preserve">
-    <value>入渠(&amp;D)</value>
+    <value>舰船组(&amp;G)</value>
   </data>
   <data name="View_Arsenal" xml:space="preserve">
     <value>工厂(&amp;A)</value>
   </data>
   <data name="View_BaseAirCorps" xml:space="preserve">
     <value>基地航空队(&amp;S)</value>
-  </data>
-  <data name="View_Headquarters" xml:space="preserve">
-    <value>司令部(&amp;H)</value>
   </data>
   <data name="View_Quest" xml:space="preserve">
     <value>任务(&amp;Q)</value>
@@ -217,25 +187,22 @@
     <value>战斗(&amp;B)</value>
   </data>
   <data name="View_Browser" xml:space="preserve">
-    <value>浏览器 (&amp;M)</value>
+    <value>浏览器(&amp;M)</value>
   </data>
   <data name="View_Log" xml:space="preserve">
     <value>日志(&amp;L)</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
-    <value>窗口捕捉(&amp;W)</value>
+    <value>窗口捕获(&amp;W)</value>
   </data>
   <data name="WindowCapture_SubWindow" xml:space="preserve">
-    <value>子窗口 (&amp;C)</value>
+    <value>控制窗口(&amp;C)</value>
   </data>
   <data name="WindowCapture_AttachAll" xml:space="preserve">
-    <value>再次搜索并导入所有内容 (&amp;S)</value>
+    <value>重新搜索并导入全部(&amp;S)</value>
   </data>
   <data name="WindowCapture_DetachAll" xml:space="preserve">
-    <value>打开所有窗口(&amp;R)</value>
-  </data>
-  <data name="View_Json" xml:space="preserve">
-    <value>JSON(&amp;J)</value>
+    <value>分离所有窗口(&amp;R)</value>
   </data>
   <data name="Tool" xml:space="preserve">
     <value>工具(&amp;T)</value>
@@ -253,10 +220,10 @@
     <value>建造记录(&amp;R)</value>
   </data>
   <data name="Tool_ResourceChart" xml:space="preserve">
-    <value>資源图表(&amp;C)</value>
+    <value>资源图表(&amp;C)</value>
   </data>
   <data name="Tool_AlbumMasterShip" xml:space="preserve">
-    <value>舰娘图鉴(&amp;S)</value>
+    <value>舰船图鉴(&amp;S)</value>
   </data>
   <data name="Tool_AlbumMasterEquipment" xml:space="preserve">
     <value>装备图鉴(&amp;E)</value>
@@ -265,46 +232,40 @@
     <value>防空火力详情(&amp;A)</value>
   </data>
   <data name="Tool_FleetImageGenerator" xml:space="preserve">
-    <value>输出编成图像(&amp;F)</value>
+    <value>编成图像导出(&amp;F)</value>
   </data>
   <data name="Tool_BaseAirCorpsSimulation" xml:space="preserve">
     <value>基地航空队编成(&amp;B)</value>
   </data>
   <data name="Tool_ExpChecker" xml:space="preserve">
-    <value>计算所需经验值(&amp;X)</value>
+    <value>经验计算器(&amp;X)</value>
   </data>
   <data name="Tool_ExpeditionCheck" xml:space="preserve">
-    <value>远征检查(&amp;M)</value>
+    <value>远征条件检查(&amp;M)</value>
   </data>
   <data name="Tool_ExtraBrowser" xml:space="preserve">
-    <value>额外的浏览器</value>
+    <value>额外浏览器</value>
   </data>
   <data name="Debug" xml:space="preserve">
-    <value>Debug(&amp;D)</value>
+    <value>调试(&amp;D)</value>
   </data>
   <data name="Debug_LoadAPIFromFile" xml:space="preserve">
-    <value>从文件加载 API(&amp;L)...</value>
+    <value>从文件加载API(&amp;L)...</value>
   </data>
   <data name="Debug_LoadInitialAPI" xml:space="preserve">
-    <value>加载 API 列表(&amp;A)...</value>
+    <value>读取API列表(&amp;I)...</value>
   </data>
   <data name="Debug_LoadRecordFromOld" xml:space="preserve">
-    <value>从旧的 api_start2 构建记录(&amp;O)...</value>
-  </data>
-  <data name="ErrorCaption" xml:space="preserve">
-    <value>错误</value>
-  </data>
-  <data name="OperationRoom" xml:space="preserve">
-    <value>作战室</value>
+    <value>从旧 api_start2 中构建记录(&amp;O)...</value>
   </data>
   <data name="Debug_DeleteOldAPI" xml:space="preserve">
-    <value>删除旧的 API 数据(&amp;D)</value>
+    <value>删除旧API数据(&amp;D)</value>
   </data>
   <data name="Debug_RenameShipResource" xml:space="preserve">
-    <value>重命名舰娘资源(&amp;R)...</value>
+    <value>舰船资源重命名(&amp;R)...</value>
   </data>
   <data name="Debug_LoadDataFromOld" xml:space="preserve">
-    <value>从旧的api_start2恢复深海栖舰(&amp;A)...</value>
+    <value>从旧 api_start2中恢复深海栖舰(&amp;A)...</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>帮助(&amp;H)</value>
@@ -316,13 +277,13 @@
     <value>版本信息(&amp;V)</value>
   </data>
   <data name="Information" xml:space="preserve">
-    <value>准备中...</value>
+    <value>正在准备中...</value>
   </data>
   <data name="Clock" xml:space="preserve">
-    <value>钟</value>
+    <value>时钟</value>
   </data>
   <data name="View_FleetPreset" xml:space="preserve">
-    <value>舰队和预设(&amp;P)</value>
+    <value>编成预设(&amp;P)</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>试制七四式电子观测仪</value>
@@ -331,45 +292,48 @@
     <value>报告问题</value>
   </data>
   <data name="Help_Discord" xml:space="preserve">
-    <value>加入我们的 Discord</value>
+    <value>加入Discord</value>
   </data>
   <data name="Help_Update" xml:space="preserve">
     <value>检查更新</value>
   </data>
   <data name="Starting" xml:space="preserve">
-    <value> 开始…</value>
+    <value> 正在启动…</value>
   </data>
   <data name="ExitConfirmation" xml:space="preserve">
-    <value>{0}你想退出吗？</value>
+    <value>要关闭 {0} 吗？</value>
   </data>
   <data name="ConfirmatonCaption" xml:space="preserve">
     <value>确认</value>
   </data>
   <data name="LayoutLoaded" xml:space="preserve">
-    <value>已成功从 {0} 加载窗口布局。</value>
+    <value>从 {0} 还原了窗口布局。</value>
   </data>
   <data name="ShipDataNotLoaded" xml:space="preserve">
-    <value>舰娘数据尚未加载。</value>
+    <value>舰船数据未加载。</value>
+  </data>
+  <data name="ErrorCaption" xml:space="preserve">
+    <value>错误</value>
   </data>
   <data name="EquipmentDataNotLoaded" xml:space="preserve">
-    <value>装备数据尚未加载。</value>
+    <value>装备数据未加载。</value>
   </data>
   <data name="OpenEOWiki" xml:space="preserve">
-    <value>这将使用您的浏览器打开 EO wiki。
-你确定吗？</value>
+    <value>将在系统默认浏览器中打开在线帮助。
+确定吗？</value>
   </data>
   <data name="HelpCaption" xml:space="preserve">
     <value>帮助</value>
   </data>
   <data name="ReportIssue" xml:space="preserve">
-    <value>在外部浏览器中打开联机帮助。
-你确定吗？</value>
+    <value>将在系统默认浏览器中打开在线帮助。
+确定吗？</value>
   </data>
   <data name="ReportIssueCaption" xml:space="preserve">
     <value>报告问题</value>
   </data>
   <data name="FailedToOpenBrowser" xml:space="preserve">
-    <value>无法打开浏览器</value>
+    <value>打开浏览器失败</value>
   </data>
   <data name="OpenLayoutCaption" xml:space="preserve">
     <value>打开布局文件</value>
@@ -378,19 +342,19 @@
     <value>保存布局文件</value>
   </data>
   <data name="EventStartsIn" xml:space="preserve">
-    <value>活动将于 {0} 开始</value>
+    <value>活动将于{0}后开始</value>
   </data>
   <data name="EventHasStarted" xml:space="preserve">
-    <value>活动已经开始。</value>
+    <value>活动已开始。</value>
   </data>
   <data name="EventEndsIn" xml:space="preserve">
-    <value>活动将于 {0} 结束</value>
+    <value>活动将于{0}后结束</value>
   </data>
   <data name="EventHasEnded" xml:space="preserve">
-    <value>活动期间已结束。</value>
+    <value>活动已结束。</value>
   </data>
   <data name="MaintenanceStartsIn" xml:space="preserve">
-    <value>维护将于 {0} 开始</value>
+    <value>维护将于{0}后开始</value>
   </data>
   <data name="MaintenanceHasEnded" xml:space="preserve">
     <value>维护已结束</value>
@@ -402,20 +366,20 @@
     <value>下次任务重置：</value>
   </data>
   <data name="MissingPermissions" xml:space="preserve">
-    <value>您的 Windows 用户无权在当前位置创建文件。将 74EO 文件夹移动到您有写入权限的位置，例如桌面上。</value>
+    <value>您的windows用户没有权限在当前位置创建文件。请将七四式文件夹移至有写入权限的存储路径后再打开。</value>
   </data>
   <data name="QuestDataNotLoaded" xml:space="preserve">
     <value>任务数据未加载。</value>
   </data>
   <data name="LayoutLoadFailed" xml:space="preserve">
-    <value>检查您是否有有效的布局文件。
-布局在 5.0.0 版本中被破坏，因此之前创建的布局不再起作用。
-有关更多信息或获取现有布局，请参阅此 github 问题：https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71
+    <value>请检查您是否拥有可用的布局文件。
+在5.0.0版本进行了布局重构，因此在此版本前创建的布局文件不再有效。
+如需了解更多信息并获取现有布局文件，请参阅此github issue链接： https://github.com/ElectronicObserverEN/ElectronicObserver/issues/71
 
-您想打开这个 github 问题吗？</value>
+要打开github issue吗？</value>
   </data>
   <data name="LayoutLoadFailedTitle" xml:space="preserve">
-    <value>无法加载布局</value>
+    <value>布局加载失败</value>
   </data>
   <data name="CopyingToClipboardFailed" xml:space="preserve">
     <value>复制到剪贴板失败。</value>
@@ -427,33 +391,36 @@
     <value>网格分割器尺寸</value>
   </data>
   <data name="Update_DownloadUpdate" xml:space="preserve">
-    <value>下载更新 (_D)</value>
+    <value>下载更新程序 (_D)</value>
   </data>
   <data name="Update_OpenReleaseNotes" xml:space="preserve">
-    <value>リリースノートを開く (_O)</value>
+    <value>打开发布日志 (_O)</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>有可用更新 (_U)</value>
   </data>
   <data name="Update_DownloadingUpdate" xml:space="preserve">
-    <value>正在下载更新... ({0:##0.00}%)</value>
+    <value>下载更新 ({0:##0.00}%)</value>
   </data>
   <data name="Update_DownloadingUpdater" xml:space="preserve">
-    <value>正在下载更新程序... ({0:##0.00}%)</value>
+    <value>下载更新器 ({0:##0.00}%)</value>
   </data>
   <data name="Debug_LoadBaseAPI" xml:space="preserve">
-    <value>加载保存的API</value>
+    <value>加载已保存的API</value>
   </data>
   <data name="WindowCaptureLoadFailed" xml:space="preserve">
-    <value>无法加载窗口捕获数据</value>
+    <value>窗口捕获数据加载失败</value>
   </data>
-  <data name="GitHubWikiLink" xml:space="preserve">
-    <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
+  <data name="OperationRoom" xml:space="preserve">
+    <value>作战室</value>
   </data>
   <data name="MaintenanceEndsIn" xml:space="preserve">
-    <value>维护结束于 {0}</value>
+    <value>维护将于{0}后结束</value>
   </data>
   <data name="MaintenanceHasStarted" xml:space="preserve">
     <value>维护已开始</value>
+  </data>
+  <data name="ResetFloatingWindows" xml:space="preserve">
+    <value>重置浮动窗口</value>
   </data>
 </root>

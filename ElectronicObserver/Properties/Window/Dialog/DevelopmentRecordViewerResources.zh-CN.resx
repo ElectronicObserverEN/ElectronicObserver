@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,47 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="From" xml:space="preserve">
-    <value>开始</value>
-  </data>
-  <data name="RecordView_FlagshipType" xml:space="preserve">
-    <value>舰种</value>
-  </data>
-  <data name="RecordView_Name" xml:space="preserve">
-    <value>名字</value>
-  </data>
-  <data name="NameExist" xml:space="preserve">
-    <value>(成功)</value>
-  </data>
   <data name="ButtonRun" xml:space="preserve">
-    <value>搜索</value>
+    <value>查找</value>
   </data>
   <data name="MergeRows" xml:space="preserve">
-    <value>合计</value>
+    <value>总计</value>
   </data>
   <data name="Recipe" xml:space="preserve">
-    <value>开发公式</value>
+    <value>公式</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>秘书舰</value>
   </data>
   <data name="Until" xml:space="preserve">
     <value>结束</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>开始</value>
+  </data>
   <data name="Type" xml:space="preserve">
-    <value>类型</value>
+    <value>类别</value>
   </data>
   <data name="EquipmentName" xml:space="preserve">
-    <value>装备名称</value>
+    <value>装备名</value>
+  </data>
+  <data name="RecordView_Name" xml:space="preserve">
+    <value>名称</value>
   </data>
   <data name="RecordView_Date" xml:space="preserve">
     <value>日期</value>
   </data>
   <data name="RecordView_Recipe" xml:space="preserve">
-    <value>开发公式</value>
+    <value>公式</value>
+  </data>
+  <data name="RecordView_FlagshipType" xml:space="preserve">
+    <value>舰种</value>
   </data>
   <data name="RecordView_Flagship" xml:space="preserve">
     <value>秘书舰</value>
   </data>
   <data name="RecordView_Detail" xml:space="preserve">
-    <value>详细</value>
+    <value>详情</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>开发记录</value>
@@ -172,18 +172,15 @@
     <value>装备</value>
   </data>
   <data name="RecipeTries" xml:space="preserve">
-    <value>每个公式的次数</value>
+    <value>公式使用次数</value>
   </data>
   <data name="ShipType" xml:space="preserve">
-    <value>按舰种划分的次数</value>
+    <value>舰种使用次数</value>
   </data>
   <data name="Unknown" xml:space="preserve">
-    <value>(不明)</value>
+    <value>(未知)</value>
   </data>
   <data name="SelectedItems" xml:space="preserve">
-    <value>所选项目总数</value>
-  </data>
-  <data name="Flagship" xml:space="preserve">
-    <value>秘书舰</value>
+    <value>选择条目合计</value>
   </data>
 </root>

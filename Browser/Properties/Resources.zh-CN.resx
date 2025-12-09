@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,80 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Alignment_Bottom" xml:space="preserve">
-    <value>下(&amp;B)</value>
-  </data>
   <data name="Alignment_Invisible" xml:space="preserve">
     <value>隐藏(&amp;I)</value>
   </data>
-  <data name="Alignment_Left" xml:space="preserve">
-    <value>左(&amp;L)</value>
-  </data>
-  <data name="Alignment_Right" xml:space="preserve">
-    <value>右(&amp;R)</value>
-  </data>
-  <data name="Alignment_Top" xml:space="preserve">
-    <value>上(&amp;T)</value>
-  </data>
   <data name="RefreshIgnoreCache" xml:space="preserve">
-    <value>更新忽略缓存(&amp;C)</value>
+    <value>忽略缓存并刷新(&amp;C)</value>
   </data>
   <data name="NavigateToLogInPage" xml:space="preserve">
-    <value>前往登录页面</value>
+    <value>前往登录页</value>
   </data>
   <data name="Other_Zoom_Current" xml:space="preserve">
-    <value>缩放：</value>
+    <value>当前:</value>
   </data>
   <data name="FailedToApplyStylesheet" xml:space="preserve">
-    <value>应用样式表失败。</value>
+    <value>样式表应用失败。</value>
   </data>
   <data name="LoginDialog" xml:space="preserve">
-    <value>移至登录页面。
-你确定吗？</value>
+    <value>将转到账号登录页。
+可以吗？</value>
   </data>
   <data name="Other" xml:space="preserve">
-    <value>更多选择</value>
+    <value>其他</value>
   </data>
   <data name="Other_Zoom_Current_Fit" xml:space="preserve">
-    <value>缩放：适合</value>
+    <value>当前: 自适应</value>
   </data>
   <data name="ReloadDialog" xml:space="preserve">
-    <value>重新加载。
-你确定吗？</value>
+    <value>将重新加载。
+可以吗？</value>
   </data>
   <data name="ScreenshotError" xml:space="preserve">
-    <value>截图失败。</value>
+    <value>屏幕截图失败。</value>
   </data>
   <data name="LastScreenShot_CopyToClipboard" xml:space="preserve">
     <value>复制到剪贴板(&amp;C)</value>
   </data>
   <data name="Strip_Mute" xml:space="preserve">
-    <value>沉默</value>
+    <value>静音</value>
   </data>
   <data name="Strip_Refresh" xml:space="preserve">
-    <value>刷新</value>
+    <value>进化</value>
   </data>
   <data name="Strip_ScreenShot" xml:space="preserve">
-    <value>截屏</value>
+    <value>屏幕截图</value>
   </data>
   <data name="Strip_Zoom" xml:space="preserve">
     <value>缩放</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>七四式电子观测仪浏览器</value>
-  </data>
-  <data name="RemoveWelcomePopup" xml:space="preserve">
-    <value>var element = document.getElementById('welcome'); element.parentNode.removeChild(element);</value>
-  </data>
-  <data name="RemoveServicePopup" xml:space="preserve">
-    <value>var element = document.getElementById('welcome'); element.parentNode.removeChild(element);</value>
+    <value>七四式电子观测仪 浏览器</value>
   </data>
   <data name="Confirmation" xml:space="preserve">
     <value>确认</value>
   </data>
   <data name="ReloadHardDialog" xml:space="preserve">
     <value>忽略缓存并重新加载。
-你确定吗？</value>
+确定吗？</value>
   </data>
   <data name="ShowToolMenu" xml:space="preserve">
     <value>显示工具菜单</value>
@@ -199,94 +181,88 @@
     <value>打开开发者工具</value>
   </data>
   <data name="Zoom_to_Fit" xml:space="preserve">
-    <value>窗口合适</value>
+    <value>当前: 自适应</value>
   </data>
   <data name="ClearCache" xml:space="preserve">
     <value>删除缓存</value>
   </data>
   <data name="RenderProcessTerminatedBy" xml:space="preserve">
-    <value>浏览器渲染过程</value>
+    <value>浏览器渲染流程</value>
   </data>
   <data name="RenderProcessAbnormalTermination" xml:space="preserve">
-    <value>没有正常结束。</value>
+    <value>检测到非正常关闭。</value>
   </data>
   <data name="RenderProcessProcessWasKilled" xml:space="preserve">
-    <value>被另一个进程终止。</value>
+    <value>进程被其他程序意外终止。</value>
   </data>
   <data name="RenderProcessProcessCrashed" xml:space="preserve">
-    <value>已经崩溃。</value>
+    <value>进程发生崩溃。</value>
   </data>
   <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
-    <value>被意外终止。</value>
+    <value>进程谜一样的死翘翘了。</value>
   </data>
   <data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
-    <value>重新加载后，该进程将启动。</value>
+    <value>重新加载后将会恢复。</value>
   </data>
   <data name="ClearCacheMessage" xml:space="preserve">
-    <value>您确定要清除缓存吗？</value>
+    <value>真的要清除缓存吗？</value>
   </data>
   <data name="ClearCacheTitle" xml:space="preserve">
-    <value>确认重启浏览器</value>
+    <value>已确认浏览器重启</value>
   </data>
   <data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
-    <value>截屏(&amp;S)</value>
+    <value>截图(&amp;S)</value>
   </data>
   <data name="ToolMenu_Other_LastScreenShot" xml:space="preserve">
     <value>上一张截图(&amp;P)</value>
   </data>
   <data name="ToolMenu_Other_LastScreenShot_OpenScreenShotFolder" xml:space="preserve">
-    <value>打开屏幕截图文件夹(&amp;O)</value>
-  </data>
-  <data name="ToolMenu_Other_Volume" xml:space="preserve">
-    <value>音量(&amp;V)</value>
+    <value>打开保存文件夹(&amp;O)</value>
   </data>
   <data name="ToolMenu_Other_Mute" xml:space="preserve">
-    <value>沉默(&amp;M)</value>
-  </data>
-  <data name="ToolMenu_Other_Refresh" xml:space="preserve">
-    <value>刷新(&amp;R)</value>
+    <value>静音(&amp;M)</value>
   </data>
   <data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
-    <value>转到登录页面(&amp;L)</value>
+    <value>转到登录页(&amp;L)</value>
   </data>
   <data name="ToolMenu_Other_Navigate" xml:space="preserve">
-    <value>移动(&amp;N)...</value>
+    <value>转到(&amp;N)...</value>
   </data>
   <data name="ToolMenu_Other_AppliesStyleSheet" xml:space="preserve">
-    <value>应用样式表</value>
+    <value>应用样式表（提取游戏窗口）</value>
   </data>
   <data name="ToolMenu_Other_Alignment" xml:space="preserve">
-    <value>配置(&amp;A)</value>
+    <value>工具栏位置(&amp;A)</value>
   </data>
   <data name="NoScreenshotYet" xml:space="preserve">
-    <value>尚无截图。</value>
+    <value>目前暂无截图数据。</value>
   </data>
   <data name="InstallVisualCpp" xml:space="preserve">
-    <value>无法加载浏览器组件。
-需要 Microsoft Visual C++ 2019 Redistributable。
-打开下载页面？
-（请安装 vc_redist.x64.exe）</value>
+    <value>浏览器组件无法完成加载。
+需要安装Microsoft Visual C++ 2019 Redistributable运行库。
+需要打开下载页面吗？
+(请运行安装vc_redist.x64.exe)</value>
   </data>
   <data name="CefSharpLoadErrorTitle" xml:space="preserve">
-    <value>CefSharp 加载错误</value>
+    <value>CefSharp加载错误</value>
   </data>
   <data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
-    <value>无法隐藏 DMM 刷新对话框。</value>
+    <value>未能隐藏DMM页面更新对话框。</value>
   </data>
   <data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
-    <value>砍口垒未加载，无法截屏。</value>
+    <value>由于艦これ尚未加载，因此无法进行截图操作。</value>
   </data>
   <data name="ScreenshotSavedTo" xml:space="preserve">
-    <value>屏幕截图已保存至 {0}。</value>
+    <value>已将截图保存到 {0} 。</value>
   </data>
   <data name="FailedToSaveScreenshot" xml:space="preserve">
-    <value>无法保存屏幕截图。</value>
+    <value>屏幕截图保存失败。</value>
   </data>
   <data name="ScreenshotCopiedToClipboard" xml:space="preserve">
-    <value>屏幕截图已复制到剪贴板。</value>
+    <value>已将屏幕截图复制到剪贴板。</value>
   </data>
   <data name="FailedToCopyScreenshotToClipboard" xml:space="preserve">
-    <value>无法将屏幕截图复制到剪贴板。</value>
+    <value>屏幕截图复制到剪贴板失败。</value>
   </data>
   <data name="LastScreenshotCopiedToClipboard" xml:space="preserve">
     <value>屏幕截图 {0} 已复制到剪贴板。</value>
@@ -301,40 +277,40 @@
     <value>后退</value>
   </data>
   <data name="Forward" xml:space="preserve">
-    <value>向前</value>
+    <value>前进</value>
   </data>
   <data name="DmmPoints" xml:space="preserve">
-    <value>DMM点</value>
+    <value>DMM点数</value>
   </data>
   <data name="AkashiList" xml:space="preserve">
-    <value>明石列表</value>
+    <value>明石工厂</value>
   </data>
   <data name="WebView2NotFound" xml:space="preserve">
-    <value>未找到 WebView2。开始下载。</value>
+    <value>未找到 WebView2 。将开始下载。</value>
   </data>
   <data name="WebView2DownloadComplete" xml:space="preserve">
-    <value>WebView2 下载完成。开始安装。</value>
+    <value>WebView2下载完毕。将开始安装。</value>
   </data>
   <data name="WebView2InstallationComplete" xml:space="preserve">
-    <value>WebView2 安装完成。</value>
+    <value>WebView2安装完毕。</value>
   </data>
   <data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
-    <value>由于缺少权限，无法应用 Vulkan 解决方法。以管理员身份运行 Electronic Observer 以使解决方法生效。</value>
+    <value>由于权限不足，无法应用 vulkan 的规避方法。请以管理员身份运行七四式程序以启用规避功能。</value>
   </data>
   <data name="OlderBrowserVersionDetected" xml:space="preserve">
-    <value>检测到 WebView2 的版本较旧。正在下载最新版本。</value>
+    <value>检测到您的WebView2版本过旧。将下载最新版本。</value>
   </data>
   <data name="InstallationFailed" xml:space="preserve">
-    <value>尝试安装 WebView2 时发生错误。请手动安装WebView2。</value>
+    <value>尝试安装WebView2时发生错误。请手动安装WebView2。</value>
   </data>
   <data name="CacheCleared" xml:space="preserve">
-    <value>缓存删除处理完成。</value>
+    <value>缓存已删除完毕。</value>
   </data>
   <data name="AutoRefreshNotification" xml:space="preserve">
-    <value>您即将前进到自动刷新工具中的规则禁止的单元格。
-你想刷新一下吗？</value>
+    <value>已进击到了设置中不想前往的点位。
+需要刷新吗？</value>
   </data>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">
-    <value>应用浏览器字体失败。</value>
+    <value>浏览器字体应用失败。</value>
   </data>
 </root>

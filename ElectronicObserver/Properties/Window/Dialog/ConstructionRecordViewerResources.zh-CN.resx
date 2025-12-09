@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,32 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IsLargeConstruction" xml:space="preserve">
-    <value>大型舰建造</value>
-  </data>
   <data name="DevMats" xml:space="preserve">
     <value>开发资材</value>
   </data>
-  <data name="Flagship" xml:space="preserve">
-    <value>秘书舰</value>
+  <data name="IsLargeConstruction" xml:space="preserve">
+    <value>大型舰建造</value>
+  </data>
+  <data name="EmptyDocks" xml:space="preserve">
+    <value>空置船坞</value>
   </data>
   <data name="ButtonRun" xml:space="preserve">
-    <value>搜索</value>
-  </data>
-  <data name="RecordView_Date" xml:space="preserve">
-    <value>日期</value>
-  </data>
-  <data name="RecordView_Name" xml:space="preserve">
-    <value>名字</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>开始</value>
+    <value>查找</value>
   </data>
   <data name="MergeRows" xml:space="preserve">
     <value>总计</value>
   </data>
-  <data name="DevMat" xml:space="preserve">
-    <value>开发资材</value>
+  <data name="Recipe" xml:space="preserve">
+    <value>公式</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>秘书舰</value>
+  </data>
+  <data name="Until" xml:space="preserve">
+    <value>结束</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="Hull" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="Ship" xml:space="preserve">
+    <value>舰名</value>
+  </data>
+  <data name="RecordView_Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="RecordView_Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="RecordView_Recipe" xml:space="preserve">
+    <value>公式</value>
+  </data>
+  <data name="RecordView_SecretaryShip" xml:space="preserve">
+    <value>秘书舰</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>建造记录</value>
   </data>
   <data name="NameAny" xml:space="preserve">
     <value>(全部)</value>
@@ -150,28 +171,7 @@
   <data name="Tries" xml:space="preserve">
     <value>次数</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>建造记录</value>
-  </data>
-  <data name="RecordView_SecretaryShip" xml:space="preserve">
-    <value>秘书舰</value>
-  </data>
-  <data name="RecordView_Recipe" xml:space="preserve">
-    <value>开发公式</value>
-  </data>
-  <data name="Ship" xml:space="preserve">
-    <value>艆名</value>
-  </data>
-  <data name="Hull" xml:space="preserve">
-    <value>类别</value>
-  </data>
-  <data name="Until" xml:space="preserve">
-    <value>结束</value>
-  </data>
-  <data name="Recipe" xml:space="preserve">
-    <value>开发公式</value>
-  </data>
-  <data name="EmptyDocks" xml:space="preserve">
-    <value>空位</value>
+  <data name="DevMat" xml:space="preserve">
+    <value>开发资材</value>
   </data>
 </root>

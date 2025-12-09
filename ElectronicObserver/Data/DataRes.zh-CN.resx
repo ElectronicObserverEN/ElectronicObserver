@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MissionClearTotalShipCount" xml:space="preserve">
-    <value>舰娘数量{0}{1}</value>
+    <value>舰船数量{0}{1}</value>
   </data>
   <data name="MissionClearShipLvSum" xml:space="preserve">
     <value>Lv总计</value>
@@ -129,23 +129,17 @@
   <data name="MissionClearSmallShipCount" xml:space="preserve">
     <value>(驱逐+海防)</value>
   </data>
-  <data name="MissionClearAircraftCarrierCount" xml:space="preserve">
-    <value>空母系</value>
-  </data>
   <data name="MissionClearSubmarineCount" xml:space="preserve">
-    <value>潜艇系</value>
+    <value>潜水艇系</value>
   </data>
   <data name="MissionClearEscortLeaderCount" xml:space="preserve">
     <value>(轻巡+练巡+护卫空母)</value>
   </data>
   <data name="MissionClearFlagshipType" xml:space="preserve">
-    <value>旗舰： </value>
+    <value>旗舰: </value>
   </data>
   <data name="MissionClearFlagshipEscortAircraftCarrier" xml:space="preserve">
     <value>旗舰:护卫空母</value>
-  </data>
-  <data name="MissionClearFirepower" xml:space="preserve">
-    <value>火力</value>
   </data>
   <data name="MissionClearAa" xml:space="preserve">
     <value>对空</value>
@@ -157,16 +151,13 @@
     <value>索敌</value>
   </data>
   <data name="MissionClearEquippedShipCount" xml:space="preserve">
-    <value>{0}: 装备的舰娘数量 {1}{2}</value>
+    <value>{0}: 装备舰船数 {1}{2}</value>
   </data>
   <data name="MissionClearEquipmentCount" xml:space="preserve">
-    <value>{0}: 装备数量 {1}{2}</value>
+    <value>{0}: 装备数 {1}{2}</value>
   </data>
   <data name="MissionClearFailure" xml:space="preserve">
     <value>失败 </value>
-  </data>
-  <data name="MissionClearSuccess" xml:space="preserve">
-    <value>成功 </value>
   </data>
   <data name="MissionClearEscortFleet" xml:space="preserve">
     <value>护卫队(轻巡1驱逐2其他)</value>
@@ -175,22 +166,16 @@
     <value>护卫队(轻巡1驱逐3其他)</value>
   </data>
   <data name="MissionClearIncompatible" xml:space="preserve">
-    <value>不支持</value>
+    <value>不兼容</value>
   </data>
   <data name="MissionClearUnverified" xml:space="preserve">
-    <value>(未证实)</value>
-  </data>
-  <data name="MissionClearParameter" xml:space="preserve">
-    <value>{0} {1}{2}</value>
-  </data>
-  <data name="MissionClearShipCount" xml:space="preserve">
-    <value>{0} {1}{2}</value>
+    <value>(不确定)</value>
   </data>
   <data name="MissionClearExcludingSeaplaneTender" xml:space="preserve">
-    <value>(不含水母)</value>
+    <value>(水母除外)</value>
   </data>
   <data name="ZeroSlotAircraftWarning" xml:space="preserve">
-    <value>有搭载数为0的飞机
-可能不满足远征成功的条件</value>
+    <value>存在搭载数为0的机体
+可能导致不满足远征成功条件</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,107 +117,108 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ResultView_AntiAir" xml:space="preserve">
-    <value>对空</value>
+  <data name="WipeRate" xml:space="preserve">
+    <value>全灭概率：</value>
   </data>
-  <data name="Formation_Ring" xml:space="preserve">
-    <value>轮型阵</value>
+  <data name="ShowAll" xml:space="preserve">
+    <value>显示所有可选项</value>
   </data>
   <data name="ShowAllToolTip" xml:space="preserve">
-    <value>勾选后会显示所有对空cut in选项。
-不勾选仅显示现时配装可能触发的对空cut in。</value>
-  </data>
-  <data name="AACI" xml:space="preserve">
-    <value>对空CI：</value>
-  </data>
-  <data name="Fleet" xml:space="preserve">
-    <value>舰队：</value>
-  </data>
-  <data name="FleetID_Second" xml:space="preserve">
-    <value>第二舰队</value>
-  </data>
-  <data name="FleetID_Fourth" xml:space="preserve">
-    <value>第四舰队</value>
-  </data>
-  <data name="ResultView_FixedAirDefense" xml:space="preserve">
-    <value>固定击坠</value>
-  </data>
-  <data name="ResultView_AdjustedAntiAir" xml:space="preserve">
-    <value>加权对空</value>
-  </data>
-  <data name="Formation_LineAhead" xml:space="preserve">
-    <value>单纵阵之外</value>
-  </data>
-  <data name="ResultView_ShootDownBothToolTip" xml:space="preserve">
-    <value>百分比击落与固定击落如果都成功的击落数</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>错误</value>
-  </data>
-  <data name="ResultView_ShootDownProportionalToolTip" xml:space="preserve">
-    <value>百分比击落成功时的击落数</value>
-  </data>
-  <data name="ResultView_ShootDownFixedToolTip" xml:space="preserve">
-    <value>固定击落成功时的击落数</value>
-  </data>
-  <data name="ResultView_AARocketBarrageProbability" xml:space="preserve">
-    <value>喷进弹幕</value>
-  </data>
-  <data name="ResultView_ShootDownFailedToolTip" xml:space="preserve">
-    <value>百分比击落与固定击落如果都失败的击落数</value>
-  </data>
-  <data name="ResultView_AARocketBarrageProbabilityToolTip" xml:space="preserve">
-    <value>对空喷进弹幕的激活概率</value>
-  </data>
-  <data name="DataNotLoaded" xml:space="preserve">
-    <value>读取舰队数据失败，请在启动砍口垒后开启。</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>AA细节</value>
-  </data>
-  <data name="Formation_DoubleLine" xml:space="preserve">
-    <value>复纵阵</value>
-  </data>
-  <data name="Formation" xml:space="preserve">
-    <value>阵型：</value>
+    <value>勾选时显示所有可能的对空Cut in选项。
+未勾选时，仅显示当前舰队可触发的对空Cut in。</value>
   </data>
   <data name="FleetAA" xml:space="preserve">
     <value>舰队防空：</value>
   </data>
-  <data name="WipeRate" xml:space="preserve">
-    <value>全灭概率：</value>
+  <data name="AACI" xml:space="preserve">
+    <value>对空Cut In：</value>
+  </data>
+  <data name="Formation" xml:space="preserve">
+    <value>阵型：</value>
+  </data>
+  <data name="Formation_LineAhead" xml:space="preserve">
+    <value>单纵阵</value>
+  </data>
+  <data name="Formation_DoubleLine" xml:space="preserve">
+    <value>复纵阵</value>
+  </data>
+  <data name="Formation_Ring" xml:space="preserve">
+    <value>轮型阵</value>
+  </data>
+  <data name="PlaneSlot" xml:space="preserve">
+    <value>敌方格子机数：</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>舰队：</value>
   </data>
   <data name="FleetID_First" xml:space="preserve">
-    <value>第一舰队</value>
+    <value>第1舰队</value>
+  </data>
+  <data name="FleetID_Second" xml:space="preserve">
+    <value>第2舰队</value>
   </data>
   <data name="FleetID_Third" xml:space="preserve">
-    <value>第三舰队</value>
+    <value>第3舰队</value>
+  </data>
+  <data name="FleetID_Fourth" xml:space="preserve">
+    <value>第4舰队</value>
   </data>
   <data name="FleetID_CombinedFleet" xml:space="preserve">
     <value>联合舰队</value>
   </data>
-  <data name="ResultView_ShootDownBoth" xml:space="preserve">
-    <value>都成功</value>
-  </data>
   <data name="ResultView_ShipName" xml:space="preserve">
     <value>舰名</value>
   </data>
-  <data name="ResultView_ShootDownFailed" xml:space="preserve">
-    <value>都失败</value>
+  <data name="ResultView_AntiAir" xml:space="preserve">
+    <value>对空</value>
+  </data>
+  <data name="ResultView_AdjustedAntiAir" xml:space="preserve">
+    <value>加权对空</value>
+  </data>
+  <data name="ResultView_ProportionalAirDefense" xml:space="preserve">
+    <value>百分比击落</value>
+  </data>
+  <data name="ResultView_FixedAirDefense" xml:space="preserve">
+    <value>固定击落</value>
+  </data>
+  <data name="ResultView_ShootDownBoth" xml:space="preserve">
+    <value>双判定成功</value>
+  </data>
+  <data name="ResultView_ShootDownBothToolTip" xml:space="preserve">
+    <value>百分比击落与固定击落两者判定均成功时的击落数</value>
+  </data>
+  <data name="ResultView_ShootDownProportional" xml:space="preserve">
+    <value>仅百分比</value>
+  </data>
+  <data name="ResultView_ShootDownProportionalToolTip" xml:space="preserve">
+    <value>百分比击落判定成功时的击落数</value>
   </data>
   <data name="ResultView_ShootDownFixed" xml:space="preserve">
     <value>仅固定</value>
   </data>
-  <data name="ResultView_ShootDownProportional" xml:space="preserve">
-    <value>仅比例</value>
+  <data name="ResultView_ShootDownFixedToolTip" xml:space="preserve">
+    <value>固定击落判定成功时的击落数</value>
   </data>
-  <data name="ResultView_ProportionalAirDefense" xml:space="preserve">
-    <value>百分比击坠</value>
+  <data name="ResultView_ShootDownFailed" xml:space="preserve">
+    <value>双判定失败</value>
   </data>
-  <data name="ShowAll" xml:space="preserve">
-    <value>全部都可以选择</value>
+  <data name="ResultView_ShootDownFailedToolTip" xml:space="preserve">
+    <value>百分比击落与固定击落两者判定均失败时的击落数</value>
   </data>
-  <data name="PlaneSlot" xml:space="preserve">
-    <value>敌方格子机数：</value>
+  <data name="ResultView_AARocketBarrageProbability" xml:space="preserve">
+    <value>喷进弹幕</value>
+  </data>
+  <data name="ResultView_AARocketBarrageProbabilityToolTip" xml:space="preserve">
+    <value>对空喷进弹幕的发动概率</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>防空火力详情</value>
+  </data>
+  <data name="DataNotLoaded" xml:space="preserve">
+    <value>舰队数据读取失败。
+请在启动艦これ之后再打开。</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
   </data>
 </root>

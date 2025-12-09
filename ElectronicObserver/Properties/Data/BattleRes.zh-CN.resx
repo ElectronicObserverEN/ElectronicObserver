@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,34 +118,118 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Friendly" xml:space="preserve">
-    <value>友军</value>
-  </data>
-  <data name="CombatRation" xml:space="preserve">
-    <value>战斗粮食补给</value>
-  </data>
-  <data name="Empty" xml:space="preserve">
-    <value>(无)</value>
+    <value>我军</value>
   </data>
   <data name="Enemy" xml:space="preserve">
     <value>敌军</value>
   </data>
+  <data name="Protected" xml:space="preserve">
+    <value>保护</value>
+  </data>
   <data name="DameconActivated" xml:space="preserve">
-    <value>普通损管已启动</value>
+    <value>发动应急修理要员</value>
   </data>
   <data name="GoddessActivated" xml:space="preserve">
-    <value>女神损管已启动</value>
+    <value>发动应急修理女神</value>
   </data>
-  <data name="BattlePhaseNightBattle" xml:space="preserve">
-    <value>夜战</value>
+  <data name="SupportFleet" xml:space="preserve">
+    <value>支援舰队</value>
   </data>
   <data name="EnemyAirSquadron" xml:space="preserve">
     <value>敌军航空队</value>
   </data>
-  <data name="BattlePhaseOpeningTorpedo" xml:space="preserve">
-    <value>开幕雷击</value>
+  <data name="FriendlyAirSquadron" xml:space="preserve">
+    <value>我军航空队</value>
   </data>
-  <data name="BattlePhaseOpeningAsw" xml:space="preserve">
-    <value>开幕对潜</value>
+  <data name="AirSquadronWave" xml:space="preserve">
+    <value>基地航空队 第{0}波次</value>
+  </data>
+  <data name="Exercise" xml:space="preserve">
+    <value>演习</value>
+  </data>
+  <data name="ClearProgress" xml:space="preserve">
+    <value>击破: {0} / {1} 次</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>(无)</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>制空战力</value>
+  </data>
+  <data name="Los" xml:space="preserve">
+    <value> / 索敌能力 [1] {0}, [2] {1}, [3] {2}, [4] {3}</value>
+  </data>
+  <data name="AirBaseAirPower" xml:space="preserve">
+    <value> 制空战力 {0} (对基地 {1})</value>
+  </data>
+  <data name="ToBeDetermined" xml:space="preserve">
+    <value> (未确定)</value>
+  </data>
+  <data name="BossDebuffed" xml:space="preserve">
+    <value> : 装甲破坏</value>
+  </data>
+  <data name="CombatRation" xml:space="preserve">
+    <value>战斗粮食补给</value>
+  </data>
+  <data name="Formation" xml:space="preserve">
+    <value>我军阵形</value>
+  </data>
+  <data name="EnemyFormation" xml:space="preserve">
+    <value>敌军阵形</value>
+  </data>
+  <data name="Engagement" xml:space="preserve">
+    <value>交战形态</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>我军索敌</value>
+  </data>
+  <data name="EnemyContact" xml:space="preserve">
+    <value>敌军索敌</value>
+  </data>
+  <data name="FriendlyFleet" xml:space="preserve">
+    <value>友军舰队</value>
+  </data>
+  <data name="AaciType" xml:space="preserve">
+    <value>对空Cut In {2} ( {0}, {1} )</value>
+  </data>
+  <data name="Escaped" xml:space="preserve">
+    <value>已退避</value>
+  </data>
+  <data name="OutputFriendBase" xml:space="preserve">
+    <value>#{0}: 陆上设施 第{1}基地 HP: {2} / {3}</value>
+  </data>
+  <data name="CombinedFleetNightBattle" xml:space="preserve">
+    <value>联合舰队 夜战</value>
+  </data>
+  <data name="CombinedFleetRadarAmbush" xml:space="preserve">
+    <value>联合舰队 雷达射击</value>
+  </data>
+  <data name="SuijouButaiDayBattle" xml:space="preserve">
+    <value>联合舰队-水面部队 昼战</value>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>战力</value>
+  </data>
+  <data name="PhaseSearching" xml:space="preserve">
+    <value>索敌</value>
+  </data>
+  <data name="EnemyCombinedFleetNightDayBattle" xml:space="preserve">
+    <value>敌方联合舰队　夜转昼</value>
+  </data>
+  <data name="BattleFinishedPractice" xml:space="preserve">
+    <value>与「{0}」{1}的「{2}」舰队进行了演习。( 评价: {3}, 提督Exp+{4}, 舰娘Exp+{5} )</value>
+  </data>
+  <data name="BattleFinishedBaseAirRaid" xml:space="preserve">
+    <value>{0}-{1}-{2} 基地遭受了空袭。( {3}, 受到伤害合计: {4}, {5} )</value>
+  </data>
+  <data name="BattleFinishedSortie" xml:space="preserve">
+    <value>在{0}-{1}-{2} 与「{3}」发生交战。( 评价: {4}, 提督Exp+{5}, 舰娘Exp+{6} )</value>
+  </data>
+  <data name="HasLeveledUp" xml:space="preserve">
+    <value>{0} 等级提升至 Lv. {1} 。</value>
+  </data>
+  <data name="UnknownItem" xml:space="preserve">
+    <value>未知物品 - ID:</value>
   </data>
   <data name="BattlePhaseLandBasedJet" xml:space="preserve">
     <value>基地航空队喷式强袭</value>
@@ -153,77 +237,32 @@
   <data name="BattlePhaseJet" xml:space="preserve">
     <value>喷式强袭</value>
   </data>
+  <data name="BattlePhaseLandBasedAir" xml:space="preserve">
+    <value>基地航空队攻击</value>
+  </data>
+  <data name="BattlePhaseAirBaseRaid" xml:space="preserve">
+    <value>防空战</value>
+  </data>
   <data name="BattlePhaseAirBattle" xml:space="preserve">
     <value>航空战</value>
   </data>
-  <data name="PhaseSearching" xml:space="preserve">
-    <value>索敌</value>
-  </data>
-  <data name="SupportFleet" xml:space="preserve">
-    <value>支援舰队</value>
-  </data>
-  <data name="FriendlyAirSquadron" xml:space="preserve">
-    <value>我军航空队</value>
-  </data>
-  <data name="Base" xml:space="preserve">
-    <value>第{0}基地</value>
-  </data>
-  <data name="Exercise" xml:space="preserve">
-    <value>演习</value>
-  </data>
-  <data name="ToBeDetermined" xml:space="preserve">
-    <value> (未确定)</value>
-  </data>
-  <data name="EnemyContact" xml:space="preserve">
-    <value>敌军索敌</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>我军索敌</value>
-  </data>
-  <data name="Escaped" xml:space="preserve">
-    <value>退避中</value>
-  </data>
-  <data name="NightBattleBegins" xml:space="preserve">
-    <value>夜战开始</value>
-  </data>
   <data name="BattlePhaseAirRaid" xml:space="preserve">
-    <value>空袭</value>
+    <value>空袭战</value>
   </data>
-  <data name="BattlePhaseLandBasedAir" xml:space="preserve">
-    <value>基地航空队航空战</value>
+  <data name="BattlePhaseAirAttackFirst" xml:space="preserve">
+    <value>第一次航空战</value>
   </data>
-  <data name="AirSquadronWave" xml:space="preserve">
-    <value>基地航空队 第{0}波</value>
+  <data name="BattlePhaseAirAttackSecond" xml:space="preserve">
+    <value>第二次航空战</value>
   </data>
-  <data name="ClearProgress" xml:space="preserve">
-    <value>击破: {0} / {1} 回</value>
+  <data name="BattlePhaseSupportExpedition" xml:space="preserve">
+    <value>支援攻击</value>
   </data>
-  <data name="Protected" xml:space="preserve">
-    <value>保护</value>
+  <data name="BattlePhaseOpeningAsw" xml:space="preserve">
+    <value>先制对潜</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value> / 索敌能力 [1] {0}, [2] {1}, [3] {2}, [4] {3}</value>
-  </data>
-  <data name="SmokeScreen" xml:space="preserve">
-    <value>烟雾</value>
-  </data>
-  <data name="BattlePhaseFriendlyAirBattle" xml:space="preserve">
-    <value>友军航空攻击支援</value>
-  </data>
-  <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
-    <value>夜间支援攻击</value>
-  </data>
-  <data name="BattlePhaseFriendlyShelling" xml:space="preserve">
-    <value>友军舰队援护</value>
-  </data>
-  <data name="BattlePhaseNightBattleFirst" xml:space="preserve">
-    <value>第一次夜战</value>
-  </data>
-  <data name="BattlePhaseNightBattleSecond" xml:space="preserve">
-    <value>第二次夜战</value>
-  </data>
-  <data name="BattlePhaseClosingTorpedo" xml:space="preserve">
-    <value>雷击战</value>
+  <data name="BattlePhaseOpeningTorpedo" xml:space="preserve">
+    <value>先制雷击</value>
   </data>
   <data name="BattlePhaseShellingFirst" xml:space="preserve">
     <value>第一次炮击战</value>
@@ -234,73 +273,31 @@
   <data name="BattlePhaseShellingThird" xml:space="preserve">
     <value>第三次炮击战</value>
   </data>
-  <data name="BattlePhaseSupportExpedition" xml:space="preserve">
-    <value>支援攻击</value>
+  <data name="BattlePhaseClosingTorpedo" xml:space="preserve">
+    <value>雷击战</value>
   </data>
-  <data name="BattlePhaseAirAttackFirst" xml:space="preserve">
-    <value>第一次航空战</value>
+  <data name="BattlePhaseNightBattle" xml:space="preserve">
+    <value>夜战</value>
   </data>
-  <data name="BattlePhaseAirAttackSecond" xml:space="preserve">
-    <value>第二次航空战</value>
+  <data name="BattlePhaseNightBattleFirst" xml:space="preserve">
+    <value>第一次夜战</value>
   </data>
-  <data name="BattlePhaseAirBaseRaid" xml:space="preserve">
-    <value>陆航基地空袭</value>
+  <data name="BattlePhaseNightBattleSecond" xml:space="preserve">
+    <value>第二次夜战</value>
   </data>
-  <data name="UnknownItem" xml:space="preserve">
-    <value>未知物品 - ID: </value>
+  <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
+    <value>夜间支援攻击</value>
   </data>
-  <data name="HasLeveledUp" xml:space="preserve">
-    <value>{0} 等级提升至 lv{1}.</value>
+  <data name="BattlePhaseFriendlyShelling" xml:space="preserve">
+    <value>友军舰队援护</value>
   </data>
-  <data name="EnemyCombinedFleetNightDayBattle" xml:space="preserve">
-    <value>敌方联合舰队 夜转昼</value>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>烟幕</value>
   </data>
-  <data name="Participant" xml:space="preserve">
-    <value>战力</value>
+  <data name="BattlePhaseFriendlyAirBattle" xml:space="preserve">
+    <value>友军支援航空攻击</value>
   </data>
-  <data name="SuijouButaiDayBattle" xml:space="preserve">
-    <value>联合舰队 水面部队 昼战</value>
-  </data>
-  <data name="CombinedFleetRadarAmbush" xml:space="preserve">
-    <value>联合舰队雷达射击</value>
-  </data>
-  <data name="CombinedFleetNightBattle" xml:space="preserve">
-    <value>联合舰队 夜战</value>
-  </data>
-  <data name="OutputFriendBase" xml:space="preserve">
-    <value>#{0}: 基地航空队 #{1} 血量: {2} / {3}</value>
-  </data>
-  <data name="FriendlyFleet" xml:space="preserve">
-    <value>友军舰队</value>
-  </data>
-  <data name="AaciType" xml:space="preserve">
-    <value>对空CI 类型 #{2} ( {0}, {1} )</value>
-  </data>
-  <data name="Formation" xml:space="preserve">
-    <value>我军阵型</value>
-  </data>
-  <data name="EnemyFormation" xml:space="preserve">
-    <value>敌军阵型</value>
-  </data>
-  <data name="Engagement" xml:space="preserve">
-    <value>交战类型</value>
-  </data>
-  <data name="BossDebuffed" xml:space="preserve">
-    <value> : 装甲破坏（削甲）</value>
-  </data>
-  <data name="AirSuperiority" xml:space="preserve">
-    <value>制空战力</value>
-  </data>
-  <data name="AirBaseAirPower" xml:space="preserve">
-    <value> 制空战力 {0} (対基地 {1})</value>
-  </data>
-  <data name="BattleFinishedPractice" xml:space="preserve">
-    <value>「{0}」在演习中与{1}的「{2}」交战了。（等级：{3}、提督Exp+{4}、舰娘Exp+{5} ​​）</value>
-  </data>
-  <data name="BattleFinishedBaseAirRaid" xml:space="preserve">
-    <value>该基地于 {0}-{1}-{2} 遭到空袭。 （{3}，受到的总伤害：{4}，{5}）</value>
-  </data>
-  <data name="BattleFinishedSortie" xml:space="preserve">
-    <value>在{0}-{1}-{2}与“{3}”展开战斗。 （等级：{4}、提督Exp+{5}、舰娘Exp+{6}）</value>
+  <data name="NightBattleBegins" xml:space="preserve">
+    <value>夜战开始</value>
   </data>
 </root>
