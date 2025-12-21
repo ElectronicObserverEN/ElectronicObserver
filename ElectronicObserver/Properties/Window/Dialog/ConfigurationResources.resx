@@ -815,4 +815,7 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="FormFleet_ShowHomePortSupplyTimerToolTip" xml:space="preserve">
     <value>艦隊一覧の母港給糧タイマーを表示するかを指定します。</value>
   </data>
+  <data name="Language_TraditionalChinese" xml:space="preserve">
+    <value>繁体中国語</value>
+  </data>
 </root>

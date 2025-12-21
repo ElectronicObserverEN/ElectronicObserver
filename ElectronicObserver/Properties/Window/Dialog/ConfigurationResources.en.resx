@@ -800,4 +800,7 @@ When enabled, the preview will be ignored and all compositions will be shown.</v
   <data name="FormFleet_ShowHomePortSupplyTimerToolTip" xml:space="preserve">
     <value>Show home port supply timer in the fleet list window.</value>
   </data>
+  <data name="Language_TraditionalChinese" xml:space="preserve">
+    <value>Chinese (Traditional)</value>
+  </data>
 </root>

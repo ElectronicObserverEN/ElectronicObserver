@@ -254,7 +254,16 @@
 			</RadioButton>
 		</StackPanel>
 
-		<StackPanel Orientation="Horizontal">
+		<WrapPanel Orientation="Horizontal">
+			<WrapPanel.Resources>
+				<Style x:Key="LanguageRadioButton" BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+					<Setter Property="Margin" Value="4" />
+					<Setter Property="Padding" Value="4" />
+					<Setter Property="MinWidth" Value="0" />
+					<Setter Property="VerticalContentAlignment" Value="Center" />
+				</Style>
+			</WrapPanel.Resources>
+
 			<TextBlock Text="{Binding Translation.UI_LanguageLabel}" />
 
 			<RadioButton
@@ -263,7 +272,7 @@
 				Content="{Binding Translation.Language_Japanese}"
 				>
 				<RadioButton.Style>
-					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+					<Style BasedOn="{StaticResource LanguageRadioButton}" TargetType="RadioButton">
 						<Setter Property="IsChecked" Value="False" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding Culture}" Value="ja-JP">
@@ -280,7 +289,7 @@
 				Content="{Binding Translation.Language_English}"
 				>
 				<RadioButton.Style>
-					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+					<Style BasedOn="{StaticResource LanguageRadioButton}" TargetType="RadioButton">
 						<Setter Property="IsChecked" Value="False" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding Culture}" Value="en-US">
@@ -297,7 +306,7 @@
 				Content="{Binding Translation.Language_Korean}"
 				>
 				<RadioButton.Style>
-					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+					<Style BasedOn="{StaticResource LanguageRadioButton}" TargetType="RadioButton">
 						<Setter Property="IsChecked" Value="False" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding Culture}" Value="ko-KR">
@@ -314,10 +323,27 @@
 				Content="{Binding Translation.Language_SimplifiedChinese}"
 				>
 				<RadioButton.Style>
-					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+					<Style BasedOn="{StaticResource LanguageRadioButton}" TargetType="RadioButton">
 						<Setter Property="IsChecked" Value="False" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding Culture}" Value="zh-CN">
+								<Setter Property="IsChecked" Value="True" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</RadioButton.Style>
+			</RadioButton>
+
+			<RadioButton
+				Command="{Binding SetLanguageCommand}"
+				CommandParameter="zh-TW"
+				Content="{Binding Translation.Language_TraditionalChinese}"
+				>
+				<RadioButton.Style>
+					<Style BasedOn="{StaticResource LanguageRadioButton}" TargetType="RadioButton">
+						<Setter Property="IsChecked" Value="False" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Culture}" Value="zh-TW">
 								<Setter Property="IsChecked" Value="True" />
 							</DataTrigger>
 						</Style.Triggers>
@@ -332,7 +358,7 @@
 				Content="{Binding Translation.Language_Spanish}"
 				>
 				<RadioButton.Style>
-					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+					<Style BasedOn="{StaticResource LanguageRadioButton}" TargetType="RadioButton">
 						<Setter Property="IsChecked" Value="False" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding Culture}" Value="es-ES">
@@ -342,7 +368,7 @@
 					</Style>
 				</RadioButton.Style>
 			</RadioButton>
-		</StackPanel>
+		</WrapPanel>
 
 		<TextBlock Text="{Binding Translation.UI_RestartHint}" />
 	</StackPanel>
