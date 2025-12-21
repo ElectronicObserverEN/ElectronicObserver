@@ -13,7 +13,7 @@ public class WikiShip
 	public int _armor_max { get; set; }
 	public JsonElement _armor_mod { get; set; }
 	public string _artist { get; set; }
-	public int? _asw { get; set; }
+	public JsonElement _asw { get; set; }
 	public JsonElement _asw_max { get; set; }
 	public JsonElement _availability { get; set; }
 	public int _build_time { get; set; }
@@ -51,7 +51,7 @@ public class WikiShip
 	public int _scrap_steel { get; set; }
 	public int _speed { get; set; }
 	public JsonElement _suffix { get; set; }
-	public int _torpedo { get; set; }
+	public JsonElement _torpedo { get; set; }
 	public JsonElement _torpedo_max { get; set; }
 	public JsonElement _torpedo_mod { get; set; }
 	public JsonElement _true_id { get; set; }

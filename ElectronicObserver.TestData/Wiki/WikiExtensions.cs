@@ -22,13 +22,13 @@ public static class WikiExtensions
 		ArmorMax = wikiShip._armor_max,
 		FirepowerMin = wikiShip._firepower,
 		FirepowerMax = wikiShip._firepower_max,
-		TorpedoMin = wikiShip._torpedo,
+		TorpedoMin = wikiShip._torpedo.ToIntValue(),
 		TorpedoMax = wikiShip._torpedo_max.ToIntValue(),
 		AAMin = wikiShip._aa,
 		AAMax = wikiShip._aa_max.ToIntValue(),
 		ASW = (ShipId)wikiShip._api_id switch
 		{
-			_ => new ParameterMock(wikiShip._asw ?? -1, wikiShip._asw_max.ToIntValue()),
+			_ => new ParameterMock(wikiShip._asw.ToIntValue(), wikiShip._asw_max.ToIntValue()),
 		},
 		Evasion = (ShipId)wikiShip._api_id switch
 		{

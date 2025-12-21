@@ -787,6 +787,7 @@ public enum ShipId
 	KiyoshimoKaiNiD = 960,
 	ShigureKaiSan = 961,
 	Mogador = 962,
+	AkizukiKaiNi = 963,
 	Shirakumo = 964,
 	Gloire = 965,
 	Lexington = 966,
