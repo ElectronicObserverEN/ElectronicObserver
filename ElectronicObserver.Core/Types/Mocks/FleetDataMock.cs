@@ -18,7 +18,7 @@ public class FleetDataMock : IFleetData
 	{
 		null => null,
 #pragma warning disable S2365 // Properties should not make collection or array copies
-		_ => new(MembersInstance.Select(s => s?.ShipID ?? -1).ToList()),
+		_ => new(MembersInstance.Select(s => s?.ID ?? -1).ToList()),
 #pragma warning restore S2365 // Properties should not make collection or array copies
 	};
 	public ReadOnlyCollection<IShipData?>? MembersInstance { get; set; }
@@ -37,7 +37,7 @@ public class FleetDataMock : IFleetData
 	public ReadOnlyCollection<int> EscapedShipList { get; set; } = new(Array.Empty<int>());
 	public bool IsInSortie { get; set; }
 	public bool IsInPractice { get; set; }
-	public int ID { get; set; }
+	public int ID => FleetID;
 	public SupportType SupportType => this.GetSupportType();
 	public bool IsFlagshipRepairShip { get; set; }
 	public bool CanAnchorageRepair { get; set; }

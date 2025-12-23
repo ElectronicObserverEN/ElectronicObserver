@@ -1,4 +1,5 @@
 ﻿using DynaJson;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data.Battle;
@@ -177,6 +178,8 @@ public sealed class KCDatabase : IKCDatabase
 
 	private SystemQuestTrackerManager? _systemQuestTrackerManager;
 	public SystemQuestTrackerManager SystemQuestTrackerManager => _systemQuestTrackerManager ??= new();
+
+	public HomePortSupplyService HomePortSupplyService { get; } = new();
 
 	private KCDatabase()
 	{

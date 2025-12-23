@@ -180,8 +180,15 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 				int fleetID = int.Parse(data["api_id"]);
 				int index = int.Parse(data["api_ship_idx"]);
 				int shipID = int.Parse(data["api_ship_id"]);
-				int replacedID = data.ContainsKey("replaced_id") ? int.Parse(data["replaced_id"]) : -1;
-				int flagshipID = _members[0];
+				int replacedID = data.TryGetValue("replaced_id", out string? value) switch
+				{
+					true => int.Parse(value),
+					_ => -1,
+				};
+
+				KCDatabase.Instance.Ships.TryGetValue(shipID, out ShipData? movedShip);
+				KCDatabase.Instance.Ships.TryGetValue(replacedID, out ShipData? replacedShip);
+				KCDatabase.Instance.HomePortSupplyService.FleetUpdated(this, fleetID, index, shipID, movedShip, replacedShip);
 
 				if (FleetID == fleetID)
 				{
@@ -237,12 +244,8 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 						{
 							KCDatabase.Instance.Fleet.StartAnchorageRepairingTimer();
 						}
-
-						if (HasNosakiSparklePosition)
-						{
-							KCDatabase.Instance.Fleet.StartHomePortSupplyTimer();
-						}
 					}
+
 				}
 				else
 				{
@@ -267,11 +270,6 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 								if (IsFlagshipRepairShip)
 								{
 									KCDatabase.Instance.Fleet.StartAnchorageRepairingTimer();
-								}
-
-								if (HasNosakiSparklePosition)
-								{
-									KCDatabase.Instance.Fleet.StartHomePortSupplyTimer();
 								}
 
 								break;
@@ -448,11 +446,6 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// 旗艦が工作艦か
 	/// </summary>
 	public bool IsFlagshipRepairShip => KCDatabase.Instance.Ships[_members[0]]?.MasterShip.ShipType is ShipTypes.RepairShip;
-
-	private bool HasNosakiSparklePosition => MembersInstance
-		?.Take(2)
-		.Any(s => s?.MasterShip.ShipId is ShipId.Nosaki or ShipId.NosakiKai)
-		?? false;
 
 	/// <summary>
 	/// 泊地修理が発動可能か
