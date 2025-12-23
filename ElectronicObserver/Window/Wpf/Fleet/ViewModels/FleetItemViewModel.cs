@@ -179,7 +179,7 @@ public class FleetItemViewModel : ObservableObject
 
 		HP.BackColor = isEscaped switch
 		{
-			true => Utility.Configuration.Config.UI.SubBackColor,
+			true => Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped,
 			_ => System.Drawing.Color.Transparent
 		};
 
