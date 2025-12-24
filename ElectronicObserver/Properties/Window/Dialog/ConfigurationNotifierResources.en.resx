@@ -233,4 +233,25 @@ Preset: + including fleets saved as presets.</value>
   <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
     <value>Before a sortie, notify if any base slot is unassigned or relocating.</value>
   </data>
+  <data name="HomePortSupplyNotificationLevel_Always" xml:space="preserve">
+    <value>Always</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_HomePortSupplyFleet" xml:space="preserve">
+    <value>Home port supply fleet</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_HomePortSupplyAvailable" xml:space="preserve">
+    <value>Home port supply available</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_IncludingPresets" xml:space="preserve">
+    <value>Preset</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevelToolTip" xml:space="preserve">
+    <value>Always: always trigger notification every 15 minutes.
+Home port supply fleet: + only if a home port supply fleet is set (Nosaki position 1 or 2).
+Home port supply available: + only if a ship can be supplied.
+Preset: + including fleets saved as presets.</value>
+  </data>
+  <data name="GroupHomePortSupply" xml:space="preserve">
+    <value>Home Port Supply Settings</value>
+  </data>
 </root>

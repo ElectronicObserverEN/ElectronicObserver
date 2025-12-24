@@ -219,4 +219,10 @@
   <data name="ExpansionSlotOpened" xml:space="preserve">
     <value>{0}'s expansion slot has been opened</value>
   </data>
+  <data name="HomePortSupplyFinished" xml:space="preserve">
+    <value>15 minutes have passed since the start of home port supply.</value>
+  </data>
+  <data name="HomePortSupply" xml:space="preserve">
+    <value>Home Port Supply</value>
+  </data>
 </root>

@@ -70,6 +70,9 @@ public class ConfigurationNotificationBaseTranslationViewModel : TranslationBase
 	public string TriggerWhen => ConfigurationNotifierResources.TriggerWhen;
 	public string AnchorageRepairNotificationLevelToolTip => ConfigurationNotifierResources.AnchorageRepairNotificationLevelToolTip;
 
+	public string GroupHomePortSupply => ConfigurationNotifierResources.GroupHomePortSupply;
+	public string HomePortSupplyNotificationLevelToolTip => ConfigurationNotifierResources.HomePortSupplyNotificationLevelToolTip;
+
 	public string GroupBaseAirCorps => ConfigurationNotifierResources.GroupBaseAirCorps;
 	public string BaseAirCorps_NotSupplied => ConfigurationNotifierResources.BaseAirCorps_NotSupplied;
 	public string BaseAirCorps_NotSuppliedToolTip => ConfigurationNotifierResources.BaseAirCorps_NotSuppliedToolTip;

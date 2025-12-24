@@ -25,6 +25,7 @@ public sealed class NotifierManager
 	public NotifierCondition Condition { get; private set; }
 	public NotifierDamage Damage { get; private set; }
 	public NotifierAnchorageRepair AnchorageRepair { get; private set; }
+	public NotifierHomePortSupply HomePortSupply { get; private set; }
 	public NotifierBaseAirCorps BaseAirCorps { get; private set; }
 	public NotifierBattleEnd BattleEnd { get; private set; }
 	public NotifierRemodelLevel RemodelLevel { get; private set; }
@@ -48,6 +49,7 @@ public sealed class NotifierManager
 		Condition = new NotifierCondition(c.NotifierCondition);
 		Damage = new NotifierDamage(c.NotifierDamage);
 		AnchorageRepair = new NotifierAnchorageRepair(c.NotifierAnchorageRepair);
+		HomePortSupply = new NotifierHomePortSupply(c.NotifierHomePortSupply);
 		BaseAirCorps = new NotifierBaseAirCorps(c.NotifierBaseAirCorps);
 		BattleEnd = new NotifierBattleEnd(c.NotifierBattleEnd);
 		RemodelLevel = new NotifierRemodelLevel(c.NotifierRemodelLevel);
@@ -65,6 +67,7 @@ public sealed class NotifierManager
 		Condition.ApplyToConfiguration(c.NotifierCondition);
 		Damage.ApplyToConfiguration(c.NotifierDamage);
 		AnchorageRepair.ApplyToConfiguration(c.NotifierAnchorageRepair);
+		HomePortSupply.ApplyToConfiguration(c.NotifierHomePortSupply);
 		BaseAirCorps.ApplyToConfiguration(c.NotifierBaseAirCorps);
 		BattleEnd.ApplyToConfiguration(c.NotifierBattleEnd);
 		RemodelLevel.ApplyToConfiguration(c.NotifierRemodelLevel);
@@ -102,6 +105,7 @@ public sealed class NotifierManager
 		yield return Condition;
 		yield return Damage;
 		yield return AnchorageRepair;
+		yield return HomePortSupply;
 		yield return BaseAirCorps;
 		yield return BattleEnd;
 		yield return RemodelLevel;

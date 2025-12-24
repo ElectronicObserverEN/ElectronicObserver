@@ -63,6 +63,13 @@
 		<Button
 			Margin="2"
 			Command="{Binding OpenNotificationConfigDialogCommand}"
+			CommandParameter="{Binding HomePortSupply}"
+			Content="{Binding Translation.Notification_HomePortSupply}"
+			/>
+
+		<Button
+			Margin="2"
+			Command="{Binding OpenNotificationConfigDialogCommand}"
 			CommandParameter="{Binding BaseAirCorps}"
 			Content="{Binding Translation.Notification_BaseAirCorps}"
 			/>

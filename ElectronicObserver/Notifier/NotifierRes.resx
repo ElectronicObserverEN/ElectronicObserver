@@ -222,4 +222,10 @@
   <data name="ETA" xml:space="preserve">
     <value>修理完了予定: </value>
   </data>
+  <data name="HomePortSupplyFinished" xml:space="preserve">
+    <value>母港給糧の開始から15分が経過しました。</value>
+  </data>
+  <data name="HomePortSupply" xml:space="preserve">
+    <value>母港給糧</value>
+  </data>
 </root>

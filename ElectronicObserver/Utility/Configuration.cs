@@ -1705,6 +1705,20 @@ public sealed class Configuration
 			}
 		}
 
+
+		/// <summary>
+		/// [母港給糧通知]の設定を扱います。
+		/// </summary>
+		public class ConfigNotifierHomePortSupply : ConfigNotifierBase
+		{
+			public int NotificationLevel { get; set; } = 2;
+
+			public ConfigNotifierHomePortSupply() : base()
+			{
+				
+			}
+		}
+
 		/// <summary>
 		/// [基地航空隊通知]の設定を扱います。
 		/// </summary>
@@ -1818,6 +1832,10 @@ public sealed class Configuration
 		/// <summary>[泊地修理通知]</summary>
 		[DataMember]
 		public ConfigNotifierAnchorageRepair NotifierAnchorageRepair { get; private set; }
+
+		/// <summary>[母港給糧通知]</summary>
+		[DataMember]
+		public ConfigNotifierHomePortSupply NotifierHomePortSupply { get; private set; }
 
 		/// <summary>[基地航空隊通知]</summary>
 		[DataMember]
@@ -1985,6 +2003,7 @@ public sealed class Configuration
 			NotifierCondition = new ConfigNotifierBase();
 			NotifierDamage = new ConfigNotifierDamage();
 			NotifierAnchorageRepair = new ConfigNotifierAnchorageRepair();
+			NotifierHomePortSupply = new ConfigNotifierHomePortSupply();
 			NotifierBaseAirCorps = new ConfigNotifierBaseAirCorps();
 			NotifierBattleEnd = new ConfigNotifierBattleEnd();
 			NotifierRemodelLevel = new ConfigNotifierBase();

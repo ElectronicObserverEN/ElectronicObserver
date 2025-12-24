@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Core;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
@@ -470,6 +471,25 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 		};
 
 		return fleet.CanAnchorageRepair();
+	}
+
+	public static bool CanHomePortSupplyWithMember(IEnumerable<IShipData?>? membersInstance)
+	{
+		if (membersInstance == null) return false;
+
+		bool anyShipOnExpedition = membersInstance
+			.OfType<IShipData>()
+			.Any(s => KCDatabase.Instance.Fleet[s.Fleet]?.ExpeditionState is not ExpeditionState.NotDeployed);
+
+		if (anyShipOnExpedition) return false;
+
+		FleetDataMock fleet = new()
+		{
+			ExpeditionState = ExpeditionState.NotDeployed,
+			MembersInstance = new([.. membersInstance]),
+		};
+
+		return HomePortSupplyService.CanHomePortSupply(fleet);
 	}
 
 

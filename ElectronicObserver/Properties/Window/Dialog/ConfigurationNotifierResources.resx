@@ -221,4 +221,25 @@
   <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
     <value>出撃前に、いずれかの中隊が未編成か、配置転換中のときに通知します。</value>
   </data>
+  <data name="HomePortSupplyNotificationLevel_Always" xml:space="preserve">
+    <value>いつでも</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_HomePortSupplyFleet" xml:space="preserve">
+    <value>母港給糧艦隊</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_HomePortSupplyAvailable" xml:space="preserve">
+    <value>母港給糧もいる時</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_IncludingPresets" xml:space="preserve">
+    <value>プリセット編成時</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevelToolTip" xml:space="preserve">
+    <value>いつでも：15分経過したら通知します。
+母港給糧艦隊：上記に加え、母港補給艦隊が設定されている場合のみ（野埼位置1または2）。
+母港給糧もいる時：上記に加え、実際に補給可能な条件の時のみ通知します。
+プリセット編成時：上記に加え、補給条件を満たしたプリセット編成を含むときにも通知します。</value>
+  </data>
+  <data name="GroupHomePortSupply" xml:space="preserve">
+    <value>母港給糧設定</value>
+  </data>
 </root>
