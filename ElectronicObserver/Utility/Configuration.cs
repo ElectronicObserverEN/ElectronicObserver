@@ -1712,6 +1712,8 @@ public sealed class Configuration
 		public class ConfigNotifierHomePortSupply : ConfigNotifierBase
 		{
 			public int NotificationLevel { get; set; } = 2;
+			public bool NotifyForExpeditions { get; set; }
+			public int ExpeditionAccelInterval { get; set; }
 
 			public ConfigNotifierHomePortSupply() : base()
 			{

@@ -72,7 +72,10 @@ public class ConfigurationNotificationBaseTranslationViewModel : TranslationBase
 
 	public string GroupHomePortSupply => ConfigurationNotifierResources.GroupHomePortSupply;
 	public string HomePortSupplyNotificationLevelToolTip => ConfigurationNotifierResources.HomePortSupplyNotificationLevelToolTip;
-
+	public string HomePortSupply_NotifyForExpeditions => ConfigurationNotifierResources.HomePortSupply_NotifyForExpeditions;
+	public string HomePortSupply_NotifyForExpeditionsToolTip => ConfigurationNotifierResources.HomePortSupply_NotifyForExpeditionsToolTip;
+	public string HomePortSupply_ExpeditionHurryBy => ConfigurationNotifierResources.HomePortSupply_ExpeditionHurryBy;
+	
 	public string GroupBaseAirCorps => ConfigurationNotifierResources.GroupBaseAirCorps;
 	public string BaseAirCorps_NotSupplied => ConfigurationNotifierResources.BaseAirCorps_NotSupplied;
 	public string BaseAirCorps_NotSuppliedToolTip => ConfigurationNotifierResources.BaseAirCorps_NotSuppliedToolTip;

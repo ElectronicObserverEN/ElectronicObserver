@@ -254,4 +254,13 @@ Preset: + including fleets saved as presets.</value>
   <data name="GroupHomePortSupply" xml:space="preserve">
     <value>Home Port Supply Settings</value>
   </data>
+  <data name="HomePortSupply_ExpeditionHurryBy" xml:space="preserve">
+    <value>Expedition hurry by</value>
+  </data>
+  <data name="HomePortSupply_NotifyForExpeditionsToolTip" xml:space="preserve">
+    <value>Send a notification when a home port supply fleet expedition timer shows 15 minutes + expedition hurry by</value>
+  </data>
+  <data name="HomePortSupply_NotifyForExpeditions" xml:space="preserve">
+    <value>Notify for expedition</value>
+  </data>
 </root>

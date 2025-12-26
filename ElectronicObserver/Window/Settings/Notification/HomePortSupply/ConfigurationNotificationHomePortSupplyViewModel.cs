@@ -15,12 +15,16 @@ public class ConfigurationNotificationHomePortSupplyViewModel(
 	public List<HomePortSupplyNotificationLevel> NotificationLevels { get; } = [.. Enum.GetValues<HomePortSupplyNotificationLevel>()];
 
 	public HomePortSupplyNotificationLevel NotificationLevel { get; set; }
+	public bool NotifyForExpeditions { get; set; }
+	public int ExpeditionAccelInterval { get; set; }
 
 	public override void Load()
 	{
 		base.Load();
 
 		NotificationLevel = NotifierBase.NotificationLevel;
+		NotifyForExpeditions = NotifierBase.NotifyForExpeditions;
+		ExpeditionAccelInterval = NotifierBase.ExpeditionAccelInterval / 1000;
 	}
 
 	public override void Save()
@@ -28,5 +32,7 @@ public class ConfigurationNotificationHomePortSupplyViewModel(
 		base.Save();
 
 		NotifierBase.NotificationLevel = NotificationLevel;
+		NotifierBase.NotifyForExpeditions = NotifyForExpeditions;
+		NotifierBase.ExpeditionAccelInterval = ExpeditionAccelInterval * 1000;
 	}
 }

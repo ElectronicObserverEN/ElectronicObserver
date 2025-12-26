@@ -13,7 +13,7 @@ namespace ElectronicObserver.Core.Services;
 public class HomePortSupplyService
 {
 	/// <summary>
-	/// 泊地修理タイマー
+	/// 母港給糧タイマー
 	/// </summary>
 	public DateTime HomePortSupplyTimer { get; private set; }
 

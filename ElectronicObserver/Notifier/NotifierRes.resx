@@ -228,4 +228,7 @@
   <data name="HomePortSupply" xml:space="preserve">
     <value>母港給糧</value>
   </data>
+  <data name="HomePortSupplyExpeditionFinished" xml:space="preserve">
+    <value>母港給糧艦隊「{0}」が遠征からあと{1}で帰投します。</value>
+  </data>
 </root>

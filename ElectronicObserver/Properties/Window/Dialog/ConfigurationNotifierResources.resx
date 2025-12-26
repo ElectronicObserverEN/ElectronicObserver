@@ -242,4 +242,13 @@
   <data name="GroupHomePortSupply" xml:space="preserve">
     <value>母港給糧設定</value>
   </data>
+  <data name="HomePortSupply_NotifyForExpeditions" xml:space="preserve">
+    <value>遠征で通知する</value>
+  </data>
+  <data name="HomePortSupply_NotifyForExpeditionsToolTip" xml:space="preserve">
+    <value>母港給糧艦隊遠征タイマーが15分＋遠征通知を早めるを表示した際に通知を送信する</value>
+  </data>
+  <data name="HomePortSupply_ExpeditionHurryBy" xml:space="preserve">
+    <value>遠征通知を早める</value>
+  </data>
 </root>
