@@ -12,6 +12,8 @@ namespace ElectronicObserver.Core.Services;
 /// </summary>
 public class HomePortSupplyService
 {
+	public static int MaxSupplyCondition => 54;
+
 	/// <summary>
 	/// 母港給糧タイマー
 	/// </summary>
@@ -24,14 +26,13 @@ public class HomePortSupplyService
 
 	public static bool IsHomePortSupplyFleet(IFleetData fleet) => HomePortSupplyShips(fleet).Any();
 
-	/// <summary>
-	/// Can't be in expedition <br />
-	/// Must have more than 1 (Nosaki + 1) non-docked ships <br />
-	/// Must have a home port supply ship with condtions
-	/// </summary>
 	public static bool CanHomePortSupply(IFleetData fleet)
 		=> fleet.ExpeditionState is ExpeditionState.NotDeployed
-		&& fleet.MembersInstance.Count(ship => ship?.RepairingDockID is -1) > 1
+		&& fleet.MembersInstance
+			.OfType<IShipData>()
+			.Where(s => !IsHomePortSupplyShip(s))
+			.Where(s => s.RepairingDockID is -1)
+			.Any(s => s.Condition < MaxSupplyCondition)
 		&& HomePortSupplyShips(fleet)
 			.Any(s => s is
 			{
@@ -39,7 +40,7 @@ public class HomePortSupplyService
 				FuelRate: 1,
 				AmmoRate: 1,
 				RepairingDockID: -1,
-				DamageState: > DamageState.Light, // shouha doesn't work
+				DamageState: > DamageState.Light,
 			});
 
 	private static bool IsHomePortSupplyShip(IShipData? ship)

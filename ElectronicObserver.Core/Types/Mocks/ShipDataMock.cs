@@ -74,7 +74,7 @@ public class ShipDataMock : IShipData
 	public TimeSpan RepairTimeUnit => this.CalculateDockingUnitTime();
 	public int RepairSteel { get; }
 	public int RepairFuel { get; }
-	public int Condition { get; set; }
+	public int Condition { get; set; } = 49;
 	public int[] Kyouka { get; }
 	public int FirepowerModernized => Kyouka[0];
 	public int TorpedoModernized => Kyouka[1];
