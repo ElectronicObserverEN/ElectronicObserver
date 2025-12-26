@@ -381,6 +381,10 @@ public static class Constants
 		130 => "大泊型",
 		131 => "Киров級",
 		132 => "特1TL型",
+		133 => "Norge級",
+		134 => "Courageous級",
+		135 => "Glorious級",
+		136 => "野埼型",
 		_ => "不明",
 	};
 
