@@ -175,7 +175,6 @@ public static class GameDataExtensions
 		EscapedShipList = new(fleet.EscapedShipList),
 		IsInSortie = fleet.IsInSortie,
 		IsInPractice = fleet.IsInPractice,
-		ID = fleet.ID,
 		IsFlagshipRepairShip = fleet.IsFlagshipRepairShip,
 		CanAnchorageRepair = fleet.CanAnchorageRepair,
 		ConditionTime = fleet.ConditionTime,

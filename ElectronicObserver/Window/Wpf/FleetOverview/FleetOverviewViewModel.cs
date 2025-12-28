@@ -161,15 +161,15 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				""";
 		}
 
-		if (KCDatabase.Instance.Fleet.HomePortSupplyTimer > DateTime.MinValue)
+		if (KCDatabase.Instance.HomePortSupplyService.HomePortSupplyTimer > DateTime.MinValue)
 		{
-			HomePortSupplyTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.HomePortSupplyTimer);
-			HomePortSupplyTimer.Tag = KCDatabase.Instance.Fleet.HomePortSupplyTimer;
+			HomePortSupplyTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.HomePortSupplyService.HomePortSupplyTimer);
+			HomePortSupplyTimer.Tag = KCDatabase.Instance.HomePortSupplyService.HomePortSupplyTimer;
 			HomePortSupplyTimer.ToolTip =
 				$"""
 				{FleetOverviewResources.HomePortSupplyToolTip}
-				{FleetOverviewResources.TimerStart}：{DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.HomePortSupplyTimer)}
-				{FleetOverviewResources.Recovery}：{DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.HomePortSupplyTimer.AddMinutes(15))}
+				{FleetOverviewResources.TimerStart}：{DateTimeHelper.TimeToCSVString(KCDatabase.Instance.HomePortSupplyService.HomePortSupplyTimer)}
+				{FleetOverviewResources.Recovery}：{DateTimeHelper.TimeToCSVString(KCDatabase.Instance.HomePortSupplyService.HomePortSupplyTimer.AddMinutes(15))}
 				""";
 		}
 	}

@@ -219,4 +219,13 @@
   <data name="ExpansionSlotOpened" xml:space="preserve">
     <value>{0}'s expansion slot has been opened</value>
   </data>
+  <data name="HomePortSupplyFinished" xml:space="preserve">
+    <value>15 minutes have passed since the start of home port supply.</value>
+  </data>
+  <data name="HomePortSupply" xml:space="preserve">
+    <value>Home Port Supply</value>
+  </data>
+  <data name="HomePortSupplyExpeditionFinished" xml:space="preserve">
+    <value>Home port supply fleet {0} will return from expedition in {1}.</value>
+  </data>
 </root>

@@ -9,6 +9,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:damage="clr-namespace:ElectronicObserver.Window.Settings.Notification.Damage"
+	xmlns:homeportsupply="clr-namespace:ElectronicObserver.Window.Settings.Notification.HomePortSupply"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.Notification"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -47,6 +48,10 @@
 
 		<DataTemplate DataType="{x:Type anchorageRepair:ConfigurationNotificationAnchorageRepairViewModel}">
 			<anchorageRepair:ConfigurationNotificationAnchorageRepairUserControl />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type homeportsupply:ConfigurationNotificationHomePortSupplyViewModel}">
+			<homeportsupply:ConfigurationNotificationHomePortSupplyUserControl />
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type baseAirCorps:ConfigurationNotificationBaseAirCorpsViewModel}">
