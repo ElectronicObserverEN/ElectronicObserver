@@ -216,7 +216,7 @@
     <value>航母CI(爆攻-BA)</value>
   </data>
   <data name="Power" xml:space="preserve">
-    <value>威力</value>
+    <value>戰力</value>
   </data>
   <data name="Accuracy" xml:space="preserve">
     <value>命中</value>
@@ -231,7 +231,7 @@
     <value>對空噴進彈幕</value>
   </data>
   <data name="AirstrikePower" xml:space="preserve">
-    <value>空襲威力</value>
+    <value>航空威力</value>
   </data>
   <data name="CopyFleetText" xml:space="preserve">
     <value>{0}    制空戰力{1} / 索敵能力 {2} / 運輸能力 {3}</value>

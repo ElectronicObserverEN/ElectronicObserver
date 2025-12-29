@@ -136,6 +136,6 @@
     <value>對空</value>
   </data>
   <data name="TypeToggle" xml:space="preserve">
-    <value>裝備類型切換</value>
+    <value>全選</value>
   </data>
 </root>

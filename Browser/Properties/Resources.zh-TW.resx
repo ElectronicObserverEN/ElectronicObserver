@@ -325,7 +325,7 @@
     <value>快取移除處理完成。</value>
   </data>
   <data name="AutoRefreshNotification" xml:space="preserve">
-    <value>你即將前進到自動重整設定中禁止的地圖點。
+    <value>你即將前進到自動重整設定中禁止的節點。
 您想重新整理嗎？</value>
   </data>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">

@@ -126,9 +126,6 @@
   <data name="EnabledView_SortDirection" xml:space="preserve">
     <value>遞增/遞減</value>
   </data>
-  <data name="EnabledView_SortDirectionToolTip" xml:space="preserve">
-    <value>按升序或降序對列進行排序。</value>
-  </data>
   <data name="ButtonRightAll" xml:space="preserve">
     <value>全部 &gt;&gt;</value>
   </data>

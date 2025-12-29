@@ -190,7 +190,7 @@
     <value>基礎反潛</value>
   </data>
   <data name="ASWPower" xml:space="preserve">
-    <value>反潛威力</value>
+    <value>反潛戰力</value>
   </data>
   <data name="ASWTotal" xml:space="preserve">
     <value>合計反潛</value>
@@ -202,10 +202,10 @@
     <value>士氣</value>
   </data>
   <data name="AirBattlePower" xml:space="preserve">
-    <value>AirBattlePower?</value>
+    <value>航空戰力</value>
   </data>
   <data name="AircraftPower" xml:space="preserve">
-    <value>AircraftPower?</value>
+    <value>空襲戰力</value>
   </data>
   <data name="EquippableCategories" xml:space="preserve">
     <value>可裝備類別</value>
@@ -319,7 +319,7 @@
     <value>艦名</value>
   </data>
   <data name="NightBattlePower" xml:space="preserve">
-    <value>夜戰威力</value>
+    <value>夜戰戰力</value>
   </data>
   <data name="Range" xml:space="preserve">
     <value>射程</value>
@@ -346,7 +346,7 @@
     <value>出擊海域</value>
   </data>
   <data name="ShellingPower" xml:space="preserve">
-    <value>砲擊威力</value>
+    <value>砲擊戰力</value>
   </data>
   <data name="ShipID" xml:space="preserve">
     <value>艦船ID</value>
@@ -421,7 +421,7 @@
     <value>基礎雷裝</value>
   </data>
   <data name="TorpedoPower" xml:space="preserve">
-    <value>雷擊威力</value>
+    <value>雷擊戰力</value>
   </data>
   <data name="TorpedoRemain" xml:space="preserve">
     <value>剩餘雷裝</value>

@@ -272,7 +272,7 @@
     <value>最低等級</value>
   </data>
   <data name="MouseOver" xml:space="preserve">
-    <value>鼠標經過</value>
+    <value>滑鼠經過</value>
   </data>
   <data name="NotifyAfter" xml:space="preserve">
     <value>啟用事後通知</value>
@@ -293,7 +293,7 @@
     <value>通知系統: 無法在對話框中繪製圖片。</value>
   </data>
   <data name="NotifyEndHint" xml:space="preserve">
-    <value>在地圖的最後一個點是否通知(通常是Boss)。</value>
+    <value>在海域的最後一個點是否通知(通常是Boss)。</value>
   </data>
   <data name="NotifyEndNodes" xml:space="preserve">
     <value>即使在終點也發出通知</value>

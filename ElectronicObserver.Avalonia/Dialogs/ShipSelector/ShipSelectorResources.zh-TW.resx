@@ -121,7 +121,7 @@
     <value>火力</value>
   </data>
   <data name="NightBattlePower" xml:space="preserve">
-    <value>夜戰威力</value>
+    <value>夜戰戰力</value>
   </data>
   <data name="ShipPicker" xml:space="preserve">
     <value>選擇艦娘</value>

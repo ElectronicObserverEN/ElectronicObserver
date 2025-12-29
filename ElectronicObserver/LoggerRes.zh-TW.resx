@@ -285,7 +285,7 @@
     <value>{0} 已複製。</value>
   </data>
   <data name="Decomissioned" xml:space="preserve">
-    <value> 已退役。</value>
+    <value> 已除籍。</value>
   </data>
   <data name="FailedToCopy" xml:space="preserve">
     <value>複製 {0} 失敗。{1}</value>

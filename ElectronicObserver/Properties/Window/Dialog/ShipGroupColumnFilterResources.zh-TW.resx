@@ -123,14 +123,8 @@
   <data name="ColumnView_Visible" xml:space="preserve">
     <value>顯示</value>
   </data>
-  <data name="ColumnView_VisibleToolTip" xml:space="preserve">
-    <value>啟用指定的行。</value>
-  </data>
   <data name="ColumnView_AutoSize" xml:space="preserve">
     <value>自動調整大小</value>
-  </data>
-  <data name="ColumnView_AutoSizeToolTip" xml:space="preserve">
-    <value>選擇自動調整指定行的大小。</value>
   </data>
   <data name="ColumnView_Width" xml:space="preserve">
     <value>寬度</value>

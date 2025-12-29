@@ -340,7 +340,7 @@
     <value>打開遊戲本身的“編成”畫面時</value>
   </data>
   <data name="OpenOrganize2" xml:space="preserve">
-    <value>打開遊戲本身的“編成”畫面時?</value>
+    <value>在遊戲中瀏覽到必要的圖片時</value>
   </data>
   <data name="MissingImages" xml:space="preserve">
     <value>艦娘圖片資料不足，無法輸出當前船隊。

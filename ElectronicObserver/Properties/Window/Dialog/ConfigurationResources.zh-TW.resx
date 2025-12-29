@@ -271,7 +271,7 @@
 由於獲取的訊息不完整，可能會出現誤判。注意。</value>
   </data>
   <data name="Control_PowerEngagementFormToolTip" xml:space="preserve">
-    <value>設定計算威力（戰鬥中的攻擊力）時的預設交戰型態。</value>
+    <value>設定計算戰力（戰鬥中的攻擊力）時的預設交戰型態。</value>
   </data>
   <data name="FormationModifier" xml:space="preserve">
     <value>攻擊力表示交戰型態:</value>
@@ -303,7 +303,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
   <data name="Debug_EnableDebugMenuToolTip" xml:space="preserve">
     <value>啟用主視窗中的[調試]選單。
 這是一個測試用功能，不建議普通用戶使用。
-無法保證使用過程中的操作，因此請＊自行承擔風險＊。</value>
+無法保證使用過程中的操作，因此請***自行承擔風險***。</value>
   </data>
   <data name="Life_CanCloseFloatWindowInLockToolTip" xml:space="preserve">
     <value>即使啟用了上述“鎖定佈局”，
@@ -374,7 +374,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>當第2至第4艦隊到達母港時，會以彩色顯示。</value>
   </data>
   <data name="FormFleet_BlinkAtDamaged" xml:space="preserve">
-    <value>大破時閃爍</value>
+    <value>母港大破時閃爍</value>
   </data>
   <data name="FormFleet_BlinkAtDamagedToolTip" xml:space="preserve">
     <value>設定在母港有大破艦娘時是否閃爍。
@@ -487,7 +487,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>戰鬥</value>
   </data>
   <data name="FormBattle_Display7thAsSingleLine" xml:space="preserve">
-    <value>在同一行顯示第 7 艘船</value>
+    <value>在同一行顯示第 7 位艦娘</value>
   </data>
   <data name="FormBattle_Display7thAsSingleLineToolTip" xml:space="preserve">
     <value>與游擊隊（7艘）出擊時，指定顯示第7艘艦訊息的位置。
@@ -507,7 +507,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>隱藏它可以節省一些垂直空間。</value>
   </data>
   <data name="FormBattle_HideDuringBattle" xml:space="preserve">
-    <value>隱藏直到戰鬥結束</value>
+    <value>隱藏結果直到戰鬥結束</value>
   </data>
   <data name="FormBattle_HideDuringBattleToolTip" xml:space="preserve">
     <value>戰鬥中隱藏戰鬥預測畫面，避免劇透。
@@ -738,17 +738,17 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>埠和上游代理埠值必須不同</value>
   </data>
   <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
-    <value>允許為同一個艦娘添加訓練計劃</value>
+    <value>允許為同一個艦娘重複添加訓練計劃</value>
   </data>
   <data name="FormShipTraining_AllowMultiplePlanPerShipToolTip" xml:space="preserve">
     <value>如果不勾選，當添加新的艦娘訓練計劃時，艦娘列表會自動過濾，僅顯示沒有訓練計劃的艦娘。
 如果勾選，則不會套用任何篩選器。</value>
   </data>
   <data name="Compass_DisplayAllPossibleEnemyComps" xml:space="preserve">
-    <value>顯示所有敵方組成</value>
+    <value>顯示所有敵方編成</value>
   </data>
   <data name="Compass_DisplayAllPossibleEnemyCompsTooltip" xml:space="preserve">
-    <value>禁用後，僅顯示與地圖畫面預覽匹配的敵編成。
+    <value>禁用後，僅顯示與海域畫面預覽匹配的敵編成。
 啟用後，預覽將被忽略並顯示所有敵編成。</value>
   </data>
   <data name="Language_Korean" xml:space="preserve">
@@ -807,5 +807,8 @@ API列表的格式和使用方法請參見線上幫助。</value>
   </data>
   <data name="FormFleet_ShowHomePortSupplyTimerToolTip" xml:space="preserve">
     <value>在艦隊一覽視窗啟用母港給糧計時器。</value>
+  </data>
+  <data name="Language_TraditionalChinese" xml:space="preserve">
+    <value>繁體中文</value>
   </data>
 </root>
