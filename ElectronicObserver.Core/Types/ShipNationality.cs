@@ -20,6 +20,10 @@ public enum ShipNationality
 	French,
 	[Display(ResourceType = typeof(Properties.ShipNationality), Name = "Russian")]
 	Russian,
+	[Display(ResourceType = typeof(Properties.ShipNationality), Name = "Thai")]
+	Thai,
+	[Display(ResourceType = typeof(Properties.ShipNationality), Name = "Norwegian")]
+	Norwegian,
 	[Display(ResourceType = typeof(Properties.ShipNationality), Name = "Swedish")]
 	Swedish,
 	[Display(ResourceType = typeof(Properties.ShipNationality), Name = "Dutch")]
