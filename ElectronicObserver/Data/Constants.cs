@@ -385,6 +385,7 @@ public static class Constants
 		134 => "Courageous級",
 		135 => "Glorious級",
 		136 => "野埼型",
+		137 => "Thonburi級",
 		_ => "不明",
 	};
 
