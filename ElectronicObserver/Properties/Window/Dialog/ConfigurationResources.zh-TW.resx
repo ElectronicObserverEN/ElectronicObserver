@@ -205,8 +205,8 @@
     <value>儲存戰鬥日誌</value>
   </data>
   <data name="Log_SaveBattleLogToolTip" xml:space="preserve">
-    <value>指定是否儲存戰鬥日誌。
-戰鬥日誌儲存在BattleLog資料夾中。</value>
+    <value>指定是否額外儲存戰鬥日誌文字檔。
+戰鬥日誌文字檔儲存在BattleLog資料夾中。</value>
   </data>
   <data name="Log_ShowSpoiler" xml:space="preserve">
     <value>顯示劇透</value>
@@ -303,7 +303,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
   <data name="Debug_EnableDebugMenuToolTip" xml:space="preserve">
     <value>啟用主視窗中的[調試]選單。
 這是一個測試用功能，不建議普通用戶使用。
-無法保證使用過程中的操作，因此請***自行承擔風險***。</value>
+無法保證使用過程中的操作，因此請＊自行承擔風險＊。</value>
   </data>
   <data name="Life_CanCloseFloatWindowInLockToolTip" xml:space="preserve">
     <value>即使啟用了上述“鎖定佈局”，
@@ -341,7 +341,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>關閉時確認</value>
   </data>
   <data name="Window" xml:space="preserve">
-    <value>子視窗</value>
+    <value>分割視窗</value>
   </data>
   <data name="Fleet" xml:space="preserve">
     <value>艦隊</value>
@@ -437,7 +437,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>計算熟練度</value>
   </data>
   <data name="FormFleet_ShowNextExpToolTip" xml:space="preserve">
-    <value>是否顯示“達到下一等級所需的經驗值”。
+    <value>是否顯示“達到升級級所需的經驗值”。
 省略它可以節省空間。</value>
   </data>
   <data name="FormFleet_ShortenHPBar" xml:space="preserve">
@@ -608,7 +608,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>※啟用自動更新，可能會增加處理負載</value>
   </data>
   <data name="FormJson_UpdatesTree" xml:space="preserve">
-    <value>也更新樹狀圖</value>
+    <value>同時更新樹狀圖</value>
   </data>
   <data name="FormJson_UpdatesTreeToolTip" xml:space="preserve">
     <value>發送/接收 API 資料時自動更新樹內容。
@@ -711,10 +711,10 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>使用字母進行節點分配</value>
   </data>
   <data name="Language_English" xml:space="preserve">
-    <value>英語</value>
+    <value>英文</value>
   </data>
   <data name="Language_Japanese" xml:space="preserve">
-    <value>日本語</value>
+    <value>日文</value>
   </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>更改主題或語言後，請重新啟動七四式電子觀測儀。</value>
@@ -752,7 +752,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
 啟用後，預覽將被忽略並顯示所有敵編成。</value>
   </data>
   <data name="Language_Korean" xml:space="preserve">
-    <value>韓語</value>
+    <value>韓文</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
     <value>七四式電子觀測儀-EN版 API URL</value>
@@ -788,10 +788,10 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>資料提交常見問題解答</value>
   </data>
   <data name="Language_SimplifiedChinese" xml:space="preserve">
-    <value>簡體中文語</value>
+    <value>簡體中文</value>
   </data>
   <data name="Language_Spanish" xml:space="preserve">
-    <value>西班牙語</value>
+    <value>西班牙文</value>
   </data>
   <data name="Control_DiscordRPC_Icon" xml:space="preserve">
     <value>Discord RPC 圖示：</value>

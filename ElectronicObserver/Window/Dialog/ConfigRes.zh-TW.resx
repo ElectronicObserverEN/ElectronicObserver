@@ -182,7 +182,7 @@
 可以有效防止意外。</value>
   </data>
   <data name="ConnectionPort" xml:space="preserve">
-    <value>設定埠號。</value>
+    <value>指定通訊埠。</value>
   </data>
   <data name="ConstructEnd" xml:space="preserve">
     <value>建造完成</value>
@@ -385,7 +385,7 @@ direct 模式可能可以提高性能。</value>
     <value>縮短 HP 條以節省空間。</value>
   </data>
   <data name="ShowNextXP" xml:space="preserve">
-    <value>顯示到下一等級所需經驗</value>
+    <value>顯示升級所需經驗</value>
   </data>
   <data name="ShowStatusbarHint" xml:space="preserve">
     <value>指定是否在底部顯示狀態欄(所有艦娘數量等)。
@@ -538,7 +538,7 @@ direct 模式可能可以提高性能。</value>
     <value>無法將瀏覽器版本寫入註冊表。</value>
   </data>
   <data name="WriteRegistry" xml:space="preserve">
-    <value>將瀏覽器版本寫入註冊表。如果要移除，請按“設定→子視窗→瀏覽器2→移除”。</value>
+    <value>將瀏覽器版本寫入註冊表。如果要移除，請按“設定→分割視窗→瀏覽器2→移除”。</value>
   </data>
   <data name="AnchorageRepairFinish" xml:space="preserve">
     <value>泊地修理</value>

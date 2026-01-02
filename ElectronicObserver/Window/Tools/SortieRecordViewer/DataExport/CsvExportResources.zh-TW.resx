@@ -586,7 +586,7 @@
     <value>被害</value>
   </data>
   <data name="AirBaseAirDefense" xml:space="preserve">
-    <value>基地航空隊(對空)</value>
+    <value>基地航空隊(防空)</value>
   </data>
   <data name="ActualRank" xml:space="preserve">
     <value>實際排名</value>

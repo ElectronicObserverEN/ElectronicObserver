@@ -170,7 +170,7 @@
   </data>
   <data name="ExpeditionToolTip" xml:space="preserve">
     <value>{0} : {1}
-完成日期 : {2}</value>
+完成時間 : {2}</value>
   </data>
   <data name="Repairing" xml:space="preserve">
     <value>泊地修理中 </value>

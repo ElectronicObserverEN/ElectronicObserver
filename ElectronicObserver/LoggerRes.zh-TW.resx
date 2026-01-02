@@ -181,7 +181,7 @@
     <value>無法恢復視窗佈局。</value>
   </data>
   <data name="FailedLoadSubLayout" xml:space="preserve">
-    <value>無法恢復子視窗佈局。</value>
+    <value>無法恢復分割視窗佈局。</value>
   </data>
   <data name="FailedLoadWindowPlacement" xml:space="preserve">
     <value>無法恢復視窗狀態。</value>
@@ -193,7 +193,7 @@
     <value>儲存通訊內容失敗。 </value>
   </data>
   <data name="FailedSaveLayout" xml:space="preserve">
-    <value>無法儲存子視窗佈局。</value>
+    <value>無法儲存分割視窗佈局。</value>
   </data>
   <data name="FailedSaveWindowPlacement" xml:space="preserve">
     <value>無法儲存視窗狀態。</value>

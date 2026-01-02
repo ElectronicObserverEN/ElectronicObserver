@@ -801,7 +801,7 @@
 </value>
   </data>
   <data name="ShipAADefense" xml:space="preserve">
-    <value>加權對空: {0} (擊墜百分比: {1:p2})</value>
+    <value>加權對空: {0} (擊墜比例: {1:p2})</value>
   </data>
   <data name="EnemyAdmiral" xml:space="preserve">
     <value>敵方提督名稱</value>
@@ -836,13 +836,13 @@
     <value>編輯</value>
   </data>
   <data name="NextAccuracy" xml:space="preserve">
-    <value>下一等級命中</value>
+    <value>+1命中</value>
   </data>
   <data name="NextEvasion" xml:space="preserve">
-    <value>下一等級迴避</value>
+    <value>+1迴避</value>
   </data>
   <data name="NextAsw" xml:space="preserve">
-    <value>下一等級反潛</value>
+    <value>+1反潛</value>
   </data>
   <data name="MaximumMorale" xml:space="preserve">
     <value>最高士氣</value>

@@ -157,7 +157,7 @@
     <value>艦娘列表(&amp;G)</value>
   </data>
   <data name="ShowShipName" xml:space="preserve">
-    <value>顯示艦名(V)</value>
+    <value>顯示艦名(&amp;V)</value>
   </data>
   <data name="ShowToolMenu" xml:space="preserve">
     <value>顯示工具選單</value>

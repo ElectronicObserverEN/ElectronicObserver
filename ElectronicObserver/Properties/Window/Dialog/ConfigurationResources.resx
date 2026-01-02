@@ -303,7 +303,7 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Debug_EnableDebugMenuToolTip" xml:space="preserve">
     <value>メインウィンドウの[デバッグ]メニューを有効にします。
 デバッグ用の機能であるため、通常ユーザーの操作は推奨されません。
-使用時の動作は保証されないので、＊自己責任で＊使用してください。</value>
+使用時の動作は保証されないので、＊自己責任で使用してください。</value>
   </data>
   <data name="Life_CanCloseFloatWindowInLockToolTip" xml:space="preserve">
     <value>上記「レイアウトをロックする」が有効な時でも、

@@ -178,7 +178,7 @@
     <value>公式個別次數</value>
   </data>
   <data name="ShipType" xml:space="preserve">
-    <value>按艦種劃分次數</value>
+    <value>艦種別次數</value>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>(不明)</value>

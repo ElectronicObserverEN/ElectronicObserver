@@ -163,7 +163,7 @@
     <value>儲存(&amp;S)</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>顯示(&amp;V)</value>
+    <value>顯示(_V)</value>
   </data>
   <data name="View_Fleet" xml:space="preserve">
     <value>艦隊(&amp;F)</value>
@@ -220,7 +220,7 @@
     <value>視窗捕捉(&amp;W)</value>
   </data>
   <data name="WindowCapture_SubWindow" xml:space="preserve">
-    <value>子視窗(&amp;C)</value>
+    <value>分割視窗(&amp;C)</value>
   </data>
   <data name="WindowCapture_AttachAll" xml:space="preserve">
     <value>搜尋並全部擷取(&amp;S)</value>
