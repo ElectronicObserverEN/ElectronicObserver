@@ -150,4 +150,10 @@
   <data name="Australian" xml:space="preserve">
     <value>Australian</value>
   </data>
+  <data name="Thai" xml:space="preserve">
+    <value>Thai</value>
+  </data>
+  <data name="Norwegian" xml:space="preserve">
+    <value>Norwegian</value>
+  </data>
 </root>

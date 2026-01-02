@@ -508,6 +508,8 @@ public static class ShipDataExtensions
 			< 34000 => ShipNationality.British,
 			< 35000 => ShipNationality.French,
 			< 36000 => ShipNationality.Russian,
+			< 36060 => ShipNationality.Thai,
+			< 36100 => ShipNationality.Norwegian,
 			< 37000 => ShipNationality.Swedish,
 			< 38000 => ShipNationality.Dutch,
 			< 39000 => ShipNationality.Australian,
