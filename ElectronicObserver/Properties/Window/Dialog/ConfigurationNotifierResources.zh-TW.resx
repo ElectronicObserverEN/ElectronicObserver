@@ -201,7 +201,7 @@
   </data>
   <data name="BattleEnd_IdleTimerEnabledToolTip" xml:space="preserve">
     <value>戰鬥(開始?結束?)後一定時間後會發送通知。
-(可用於提醒提督回來進行操作)</value>
+(可用於提醒提督回到遊戲操作)</value>
   </data>
   <data name="BattleEnd_IdleTime" xml:space="preserve">
     <value>閒置時間</value>
@@ -225,7 +225,7 @@
     <value>總是：每過20分鐘提醒您。
 明石旗艦時：除上述條件外，僅在明石旗艦時通知。
 有艦需要修理時：除上述條件外，僅在具備實際可以修理艦娘的條件時才進行通知。
-包含自訂編成時：除上述條件外，當包含符合修復條件的自訂編成時，才會通知。</value>
+包含編成紀錄時：除上述條件外，當包含符合修復條件的編成紀錄時，才會通知。</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>錯誤</value>
@@ -242,5 +242,35 @@
   </data>
   <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
     <value>出擊前，如果有陸航中隊沒有編成或在配置轉換，會發出通知。</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_IncludingPresets" xml:space="preserve">
+    <value>包含於編成紀錄時</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevelToolTip" xml:space="preserve">
+    <value>總是：經過 15 分鐘後進行通知。
+母港給糧艦隊：在符合上述條件的基礎上，僅當編成是母港給糧艦隊時才會通知（※野埼位置 1 或 2）。
+母港給糧可用時：在符合上述條件的基礎上，僅在實際可進行給糧的條件成立時才會通知。
+使用編成紀錄時：在符合上述條件的基礎上，當包含於編成紀錄的編成時才會通知。</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_HomePortSupplyAvailable" xml:space="preserve">
+    <value>母港給糧可用時</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_Always" xml:space="preserve">
+    <value>總是</value>
+  </data>
+  <data name="GroupHomePortSupply" xml:space="preserve">
+    <value>母港給糧設定</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_HomePortSupplyFleet" xml:space="preserve">
+    <value>母港給糧艦隊</value>
+  </data>
+  <data name="HomePortSupply_NotifyForExpeditions" xml:space="preserve">
+    <value>遠征通知</value>
+  </data>
+  <data name="HomePortSupply_ExpeditionHurryBy" xml:space="preserve">
+    <value>遠征通知提前</value>
+  </data>
+  <data name="HomePortSupply_NotifyForExpeditionsToolTip" xml:space="preserve">
+    <value>當滿足母港給糧計時器 15 分 + 遠征通知提前時間時發出通知</value>
   </data>
 </root>

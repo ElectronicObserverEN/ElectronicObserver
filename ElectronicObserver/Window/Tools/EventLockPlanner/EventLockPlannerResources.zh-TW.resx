@@ -176,7 +176,7 @@
     <value>已擊破</value>
   </data>
   <data name="ShipTypeToggle" xml:space="preserve">
-    <value>艦種顯示切換</value>
+    <value>全選</value>
   </data>
   <data name="Fcf" xml:space="preserve">
     <value>司令部設施</value>

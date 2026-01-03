@@ -226,7 +226,7 @@
     <value>甲種勳章持有數量: {0}</value>
   </data>
   <data name="HQLevelToolTipSenkaSession" xml:space="preserve">
-    <value>本次: +{0} exp. / 戰果 {1:n2}</value>
+    <value>半日: +{0} exp. / 戰果 {1:n2}</value>
   </data>
   <data name="HQLevelToolTipSenkaDay" xml:space="preserve">
     <value>本日: +{0} exp. / 戰果 {1:n2}</value>
@@ -235,7 +235,7 @@
     <value>本月: +{0} exp. / 戰果 {1:n2}</value>
   </data>
   <data name="ResourceToolTip" xml:space="preserve">
-    <value>本次: {0:+##;-##;±0}
+    <value>本日: {0:+##;-##;±0}
 本週: {1:+##;-##;±0}
 本月: {2:+##;-##;±0}</value>
   </data>
@@ -432,7 +432,7 @@
     <value>白襻(白帶)</value>
   </data>
   <data name="SenkaSession" xml:space="preserve">
-    <value>本次戰果</value>
+    <value>半日戰果</value>
   </data>
   <data name="SenkaDay" xml:space="preserve">
     <value>本日戰果</value>

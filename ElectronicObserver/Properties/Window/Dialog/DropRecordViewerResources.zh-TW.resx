@@ -185,13 +185,18 @@
   </data>
   <data name="MapAreaIDToolTip" xml:space="preserve">
     <value>指定海域ID。
-*ID大於20為活動海域。</value>
+* 會搜尋所有海域ID。
+</value>
   </data>
   <data name="MapInfoIDToolTip" xml:space="preserve">
-    <value>指定地圖ID。</value>
+    <value>指定海域ID。
+* 會搜尋所有海域ID。
+</value>
   </data>
   <data name="MapCellIDToolTip" xml:space="preserve">
-    <value>指定節點ID。</value>
+    <value>指定節點ID。
+* 會搜尋所有節點ID。
+</value>
   </data>
   <data name="MergeRowsToolTip" xml:space="preserve">
     <value>合併相同掉落物。
@@ -252,7 +257,7 @@
     <value>忽略常見掉落</value>
   </data>
   <data name="NodeSelection" xml:space="preserve">
-    <value>分支選擇?</value>
+    <value>分支選擇</value>
   </data>
   <data name="MergeRows" xml:space="preserve">
     <value>合併</value>

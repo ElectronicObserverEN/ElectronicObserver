@@ -121,7 +121,7 @@
     <value>泊地修理發動</value>
   </data>
   <data name="AnchorageRepairFinished" xml:space="preserve">
-    <value>泊地修理發動後，已經過20分鐘。</value>
+    <value>泊地修理開始後，已經過20分鐘。</value>
   </data>
   <data name="ConditionText" xml:space="preserve">
     <value>艦隊#{0} 「{1}」所有艦娘疲勞已恢復。</value>
@@ -221,5 +221,14 @@
   </data>
   <data name="ETA" xml:space="preserve">
     <value>預計修復時間: </value>
+  </data>
+  <data name="HomePortSupply" xml:space="preserve">
+    <value>母港給糧</value>
+  </data>
+  <data name="HomePortSupplyFinished" xml:space="preserve">
+    <value>母港給糧開始後，已經過15分鐘。</value>
+  </data>
+  <data name="HomePortSupplyExpeditionFinished" xml:space="preserve">
+    <value>母港給糧艦隊「{0}」已經從遠征 {1} 返回。</value>
   </data>
 </root>

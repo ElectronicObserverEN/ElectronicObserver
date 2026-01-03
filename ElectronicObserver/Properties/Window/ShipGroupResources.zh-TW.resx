@@ -154,7 +154,7 @@
     <value>入渠燃料</value>
   </data>
   <data name="ShipView_NightBattlePower" xml:space="preserve">
-    <value>夜戰威力</value>
+    <value>夜戰戰力</value>
   </data>
   <data name="MenuMember_AddToGroup" xml:space="preserve">
     <value>添加到群組(&amp;A)...</value>

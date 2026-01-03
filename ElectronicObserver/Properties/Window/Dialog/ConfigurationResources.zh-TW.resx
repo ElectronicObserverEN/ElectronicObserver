@@ -205,8 +205,8 @@
     <value>儲存戰鬥日誌</value>
   </data>
   <data name="Log_SaveBattleLogToolTip" xml:space="preserve">
-    <value>指定是否儲存戰鬥日誌。
-戰鬥日誌儲存在BattleLog資料夾中。</value>
+    <value>指定是否額外儲存戰鬥日誌文字檔。
+戰鬥日誌文字檔儲存在BattleLog資料夾中。</value>
   </data>
   <data name="Log_ShowSpoiler" xml:space="preserve">
     <value>顯示劇透</value>
@@ -271,7 +271,7 @@
 由於獲取的訊息不完整，可能會出現誤判。注意。</value>
   </data>
   <data name="Control_PowerEngagementFormToolTip" xml:space="preserve">
-    <value>設定計算威力（戰鬥中的攻擊力）時的預設交戰型態。</value>
+    <value>設定計算戰力（戰鬥中的攻擊力）時的預設交戰型態。</value>
   </data>
   <data name="FormationModifier" xml:space="preserve">
     <value>攻擊力表示交戰型態:</value>
@@ -341,7 +341,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>關閉時確認</value>
   </data>
   <data name="Window" xml:space="preserve">
-    <value>子視窗</value>
+    <value>分割視窗</value>
   </data>
   <data name="Fleet" xml:space="preserve">
     <value>艦隊</value>
@@ -374,7 +374,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>當第2至第4艦隊到達母港時，會以彩色顯示。</value>
   </data>
   <data name="FormFleet_BlinkAtDamaged" xml:space="preserve">
-    <value>大破時閃爍</value>
+    <value>母港大破時閃爍</value>
   </data>
   <data name="FormFleet_BlinkAtDamagedToolTip" xml:space="preserve">
     <value>設定在母港有大破艦娘時是否閃爍。
@@ -437,7 +437,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>計算熟練度</value>
   </data>
   <data name="FormFleet_ShowNextExpToolTip" xml:space="preserve">
-    <value>是否顯示“達到下一等級所需的經驗值”。
+    <value>是否顯示“達到升級級所需的經驗值”。
 省略它可以節省空間。</value>
   </data>
   <data name="FormFleet_ShortenHPBar" xml:space="preserve">
@@ -487,7 +487,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>戰鬥</value>
   </data>
   <data name="FormBattle_Display7thAsSingleLine" xml:space="preserve">
-    <value>在同一行顯示第 7 艘船</value>
+    <value>在同一行顯示第 7 位艦娘</value>
   </data>
   <data name="FormBattle_Display7thAsSingleLineToolTip" xml:space="preserve">
     <value>與游擊隊（7艘）出擊時，指定顯示第7艘艦訊息的位置。
@@ -507,7 +507,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>隱藏它可以節省一些垂直空間。</value>
   </data>
   <data name="FormBattle_HideDuringBattle" xml:space="preserve">
-    <value>隱藏直到戰鬥結束</value>
+    <value>隱藏結果直到戰鬥結束</value>
   </data>
   <data name="FormBattle_HideDuringBattleToolTip" xml:space="preserve">
     <value>戰鬥中隱藏戰鬥預測畫面，避免劇透。
@@ -608,7 +608,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>※啟用自動更新，可能會增加處理負載</value>
   </data>
   <data name="FormJson_UpdatesTree" xml:space="preserve">
-    <value>也更新樹狀圖</value>
+    <value>同時更新樹狀圖</value>
   </data>
   <data name="FormJson_UpdatesTreeToolTip" xml:space="preserve">
     <value>發送/接收 API 資料時自動更新樹內容。
@@ -711,10 +711,10 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>使用字母進行節點分配</value>
   </data>
   <data name="Language_English" xml:space="preserve">
-    <value>英語</value>
+    <value>英文</value>
   </data>
   <data name="Language_Japanese" xml:space="preserve">
-    <value>日本語</value>
+    <value>日文</value>
   </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>更改主題或語言後，請重新啟動七四式電子觀測儀。</value>
@@ -738,21 +738,21 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>埠和上游代理埠值必須不同</value>
   </data>
   <data name="FormShipTraining_AllowMultiplePlanPerShip" xml:space="preserve">
-    <value>允許為同一個艦娘添加訓練計劃</value>
+    <value>允許為同一個艦娘重複添加訓練計劃</value>
   </data>
   <data name="FormShipTraining_AllowMultiplePlanPerShipToolTip" xml:space="preserve">
     <value>如果不勾選，當添加新的艦娘訓練計劃時，艦娘列表會自動過濾，僅顯示沒有訓練計劃的艦娘。
 如果勾選，則不會套用任何篩選器。</value>
   </data>
   <data name="Compass_DisplayAllPossibleEnemyComps" xml:space="preserve">
-    <value>顯示所有敵方組成</value>
+    <value>顯示所有敵方編成</value>
   </data>
   <data name="Compass_DisplayAllPossibleEnemyCompsTooltip" xml:space="preserve">
-    <value>禁用後，僅顯示與地圖畫面預覽匹配的敵編成。
+    <value>禁用後，僅顯示與海域畫面預覽匹配的敵編成。
 啟用後，預覽將被忽略並顯示所有敵編成。</value>
   </data>
   <data name="Language_Korean" xml:space="preserve">
-    <value>韓語</value>
+    <value>韓文</value>
   </data>
   <data name="Debug_ElectronicObserverApiUrl" xml:space="preserve">
     <value>七四式電子觀測儀-EN版 API URL</value>
@@ -788,10 +788,10 @@ API列表的格式和使用方法請參見線上幫助。</value>
     <value>資料提交常見問題解答</value>
   </data>
   <data name="Language_SimplifiedChinese" xml:space="preserve">
-    <value>簡體中文語</value>
+    <value>簡體中文</value>
   </data>
   <data name="Language_Spanish" xml:space="preserve">
-    <value>西班牙語</value>
+    <value>西班牙文</value>
   </data>
   <data name="Control_DiscordRPC_Icon" xml:space="preserve">
     <value>Discord RPC 圖示：</value>
@@ -807,5 +807,8 @@ API列表的格式和使用方法請參見線上幫助。</value>
   </data>
   <data name="FormFleet_ShowHomePortSupplyTimerToolTip" xml:space="preserve">
     <value>在艦隊一覽視窗啟用母港給糧計時器。</value>
+  </data>
+  <data name="Language_TraditionalChinese" xml:space="preserve">
+    <value>繁體中文</value>
   </data>
 </root>

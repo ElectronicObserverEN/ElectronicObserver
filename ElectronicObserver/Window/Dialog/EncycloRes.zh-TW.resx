@@ -124,7 +124,7 @@
     <value>改裝後</value>
   </data>
   <data name="AirPower" xml:space="preserve">
-    <value>制空值</value>
+    <value>制空戰力</value>
   </data>
   <data name="AntiAir" xml:space="preserve">
     <value>對空</value>

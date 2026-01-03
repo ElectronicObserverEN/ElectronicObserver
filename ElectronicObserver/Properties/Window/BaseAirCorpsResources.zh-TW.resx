@@ -133,7 +133,7 @@
     <value>未補給</value>
   </data>
   <data name="AirControlSummary" xml:space="preserve">
-    <value>合計制空: 防空 {0} / 對高空 {1}</value>
+    <value>合計制空: 防空 {0} / 對高高度 {1}</value>
   </data>
   <data name="TotalDistance" xml:space="preserve">
     <value>合計航程: {0}</value>

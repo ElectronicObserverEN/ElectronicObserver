@@ -163,7 +163,7 @@
     <value>儲存(&amp;S)</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>顯示(&amp;V)</value>
+    <value>顯示(_V)</value>
   </data>
   <data name="View_Fleet" xml:space="preserve">
     <value>艦隊(&amp;F)</value>
@@ -220,7 +220,7 @@
     <value>視窗捕捉(&amp;W)</value>
   </data>
   <data name="WindowCapture_SubWindow" xml:space="preserve">
-    <value>子視窗(&amp;C)</value>
+    <value>分割視窗(&amp;C)</value>
   </data>
   <data name="WindowCapture_AttachAll" xml:space="preserve">
     <value>搜尋並全部擷取(&amp;S)</value>
@@ -265,7 +265,7 @@
     <value>基地航空隊編成(&amp;B)</value>
   </data>
   <data name="Tool_ExpChecker" xml:space="preserve">
-    <value>計算所需經驗值(&amp;X)</value>
+    <value>經驗值計算機(&amp;X)</value>
   </data>
   <data name="Tool_ExpeditionCheck" xml:space="preserve">
     <value>遠征檢查(&amp;M)</value>
@@ -310,7 +310,7 @@
     <value>時鐘</value>
   </data>
   <data name="View_FleetPreset" xml:space="preserve">
-    <value>自訂編成(&amp;P)</value>
+    <value>編成紀錄(&amp;P)</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>試制七四式電子觀測儀</value>
@@ -427,7 +427,7 @@
     <value>下載更新 (_D)</value>
   </data>
   <data name="Update_OpenReleaseNotes" xml:space="preserve">
-    <value>リリースノートを開く (_O)</value>
+    <value>打開發佈日誌 (_O)</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>有可用更新 (_U)</value>
@@ -445,7 +445,7 @@
     <value>無法讀取捕獲的視窗資料</value>
   </data>
   <data name="OperationRoom" xml:space="preserve">
-    <value>作戰室</value>
+    <value>Jervis作戰室</value>
   </data>
   <data name="GitHubWikiLink" xml:space="preserve">
     <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>

@@ -466,7 +466,7 @@
     <value>成功</value>
   </data>
   <data name="SuccessNoPlane" xml:space="preserve">
-    <value>成功(無偵查機)</value>
+    <value>成功(無索敵機)</value>
   </data>
   <data name="SuccessNoReturn" xml:space="preserve">
     <value>成功(部分未歸還)</value>
@@ -583,7 +583,7 @@
     <value>對陸攻擊(內火艇)</value>
   </data>
   <data name="AirDefense" xml:space="preserve">
-    <value>對空</value>
+    <value>防空</value>
   </data>
   <data name="Rest" xml:space="preserve">
     <value>休息</value>

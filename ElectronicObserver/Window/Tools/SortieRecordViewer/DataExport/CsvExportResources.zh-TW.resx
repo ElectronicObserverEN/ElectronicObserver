@@ -127,7 +127,7 @@
     <value>海域</value>
   </data>
   <data name="Map" xml:space="preserve">
-    <value>地圖</value>
+    <value>海域</value>
   </data>
   <data name="Cell" xml:space="preserve">
     <value>節點</value>
@@ -586,7 +586,7 @@
     <value>被害</value>
   </data>
   <data name="AirBaseAirDefense" xml:space="preserve">
-    <value>基地航空隊(對空)</value>
+    <value>基地航空隊(防空)</value>
   </data>
   <data name="ActualRank" xml:space="preserve">
     <value>實際排名</value>

@@ -121,13 +121,13 @@
     <value>自動重整</value>
   </data>
   <data name="SingleMapMode" xml:space="preserve">
-    <value>單地圖模式</value>
+    <value>單海域模式</value>
   </data>
   <data name="SingleMapModeToolTip" xml:space="preserve">
-    <value>啟用後，您將只能出擊到選定的地圖。</value>
+    <value>啟用後，您將只能出擊到選定的海域。</value>
   </data>
   <data name="SingleMapModeIsEnabled" xml:space="preserve">
-    <value>單地圖模式已啟用。您只能出擊到選定的地圖：</value>
+    <value>單海域模式已啟用。您只能出擊到選定的海域：</value>
   </data>
   <data name="RemoveRule" xml:space="preserve">
     <value>移除規則</value>
