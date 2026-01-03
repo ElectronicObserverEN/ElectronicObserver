@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ElectronicObserver.Window.Support;
+using System.ComponentModel;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -10,6 +11,7 @@ public partial class DialogTextInput : Form
 	/// <summary>
 	/// 入力されたテキスト
 	/// </summary>
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public string InputtedText
 	{
 		get { return TextInput.Text; }

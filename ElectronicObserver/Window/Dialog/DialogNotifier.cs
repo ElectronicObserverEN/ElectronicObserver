@@ -4,6 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ElectronicObserver.Notifier;
+using System.ComponentModel;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -14,6 +15,7 @@ public partial class DialogNotifier : Form
 {
 
 
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public NotifierDialogData DialogData { get; set; }
 
 

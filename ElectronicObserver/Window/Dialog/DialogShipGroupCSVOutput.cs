@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ElectronicObserver.ViewModels;
+using System.ComponentModel;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -37,6 +38,7 @@ public partial class DialogShipGroupCSVOutput : Form
 	/// <summary>
 	/// 出力ファイルのパス
 	/// </summary>
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public string OutputPath
 	{
 		get { return TextOutputPath.Text; }
@@ -46,6 +48,7 @@ public partial class DialogShipGroupCSVOutput : Form
 	/// <summary>
 	/// 出力フィルタ
 	/// </summary>
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public FilterModeConstants FilterMode
 	{
 		get
@@ -71,6 +74,7 @@ public partial class DialogShipGroupCSVOutput : Form
 	/// <summary>
 	/// 出力フォーマット
 	/// </summary>
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public OutputFormatConstants OutputFormat
 	{
 		get

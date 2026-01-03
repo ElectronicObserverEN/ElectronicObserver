@@ -66,6 +66,7 @@ public partial class ShipStatusHP : UserControl
 	private DateTime _repairTime;
 	[Browsable(true), Category("Data")]
 	[Description("修復が完了する日時です。")]
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public DateTime RepairTime
 	{
 		get { return _repairTime; }

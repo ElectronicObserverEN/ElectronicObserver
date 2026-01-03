@@ -11,6 +11,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using MessagePack;
+using System.ComponentModel;
 
 
 namespace ElectronicObserver.Window.Integrate;
@@ -149,6 +150,7 @@ public partial class FormIntegrate : Form
 	/// <summary>
 	/// 次のウィンドウキャプチャ時に必要な情報
 	/// </summary>
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public WindowInfo WindowData
 	{
 		get

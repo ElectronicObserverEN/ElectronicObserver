@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+		<TargetFramework>net10.0-windows10.0.17763.0</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -98,10 +98,10 @@
 		<PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
 		<PackageReference Include="HanumanInstitute.MvvmDialogs.Wpf" Version="2.1.0" />
 		<PackageReference Include="Jot" Version="2.1.17" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.11" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -114,7 +114,7 @@
 		<PackageReference Include="ScottPlot" Version="4.1.70" />
 		<PackageReference Include="ScottPlot.WPF" Version="4.1.70" />
 		<PackageReference Include="System.Diagnostics.EventLog" Version="8.0.1" />
-		<PackageReference Include="System.Linq.Async" Version="6.0.3" />
+		<PackageReference Include="System.Linq.Async" Version="7.0.0" />
 		<PackageReference Include="System.Management" Version="8.0.0" />
 		<PackageReference Include="DiscordRichPresence" Version="1.6.1.70" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
@@ -126,11 +126,11 @@
 		<PackageReference Include="MagicOnion.Hosting" Version="3.0.13" />
 		<PackageReference Include="MessagePack" Version="3.1.4" />
 		<PackageReference Include="MessagePack.Annotations" Version="3.1.4" />
-		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.1" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
 		<PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />

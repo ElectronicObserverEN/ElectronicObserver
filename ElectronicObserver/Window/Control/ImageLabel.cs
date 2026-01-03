@@ -135,6 +135,7 @@ public partial class ImageLabel : Label
 		set { base.Margin = value; }
 	}
 
+	[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 	public new BorderStyle BorderStyle
 	{
 		get { return base.BorderStyle; }
