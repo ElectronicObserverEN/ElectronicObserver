@@ -83,7 +83,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Aigamo.ResXGenerator" Version="4.2.0">
+		<PackageReference Include="Aigamo.ResXGenerator" Version="4.3.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -113,13 +113,13 @@
 		<PackageReference Include="DynaJson" Version="2.2.0" />
 		<PackageReference Include="ScottPlot" Version="4.1.70" />
 		<PackageReference Include="ScottPlot.WPF" Version="4.1.70" />
-		<PackageReference Include="System.Diagnostics.EventLog" Version="8.0.1" />
+		<PackageReference Include="System.Diagnostics.EventLog" Version="10.0.1" />
 		<PackageReference Include="System.Linq.Async" Version="7.0.0" />
-		<PackageReference Include="System.Management" Version="8.0.0" />
+		<PackageReference Include="System.Management" Version="10.0.1" />
 		<PackageReference Include="DiscordRichPresence" Version="1.6.1.70" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.71.0" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.76.0" />
 		<PackageReference Include="log4net" Version="3.2.0" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />

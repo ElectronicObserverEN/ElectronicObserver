@@ -25,18 +25,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Aigamo.ResXGenerator" Version="4.2.0">
+		<PackageReference Include="Aigamo.ResXGenerator" Version="4.3.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Avalonia" Version="11.3.7" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.7" />
-		<PackageReference Include="Avalonia.Desktop" Version="11.3.7" />
-		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.7" />
-		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.7" />
+		<PackageReference Include="Avalonia" Version="11.3.10" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.10" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.3.10" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.10" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.10" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="HanumanInstitute.MvvmDialogs.Avalonia" Version="2.1.0" />
-		<PackageReference Include="Xaml.Behaviors.Avalonia" Version="11.3.6.5" />
+		<PackageReference Include="Xaml.Behaviors.Avalonia" Version="11.3.9" />
 	</ItemGroup>
 
 	<ItemGroup>
