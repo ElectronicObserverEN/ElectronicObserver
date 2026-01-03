@@ -187,6 +187,6 @@
     <value>서버로부터 에러가 발생했습니다. (에러 코드: {0} )</value>
   </data>
   <data name="ErrorResponse" xml:space="preserve">
-    <value>Respons 수신 중에 에러가 발생했습니다.</value>
+    <value>Response 수신 중에 에러가 발생했습니다.</value>
   </data>
 </root>
