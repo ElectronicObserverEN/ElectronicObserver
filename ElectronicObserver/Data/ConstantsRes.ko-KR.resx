@@ -769,10 +769,10 @@
     <value>대공 컷인 ( {0}, {1}({2}) )</value>
   </data>
   <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
-    <value>구축 컷인 (어뢰/어뢰/수뇌견인원)</value>
+    <value>구축 컷인 (어뢰/어뢰/수뢰견시원)</value>
   </data>
   <data name="CutinTorpedoDrum" xml:space="preserve">
-    <value>구축 컷인 (어뢰/드럼/수뇌견인원)</value>
+    <value>구축 컷인 (어뢰/드럼/수뢰견시원)</value>
   </data>
   <data name="SpecialMutsu" xml:space="preserve">
     <value>나가토, 좋아? 간다! 주포 일제사격!</value>
@@ -784,7 +784,7 @@
     <value>고속+</value>
   </data>
   <data name="Fastest" xml:space="preserve">
-    <value>최속속</value>
+    <value>최속</value>
   </data>
   <data name="SSPlusPlus" xml:space="preserve">
     <value>SS++</value>
@@ -811,13 +811,13 @@
     <value>정</value>
   </data>
   <data name="ABResourcesDamaged" xml:space="preserve">
-    <value>자원에 손해</value>
+    <value>자원 손해</value>
   </data>
   <data name="ABResources_AndPlanesDamaged" xml:space="preserve">
-    <value>자원・항공대에 손해</value>
+    <value>자원・항공대 손해</value>
   </data>
   <data name="ABPlanesDamaged" xml:space="preserve">
-    <value>항공대에 손해</value>
+    <value>항공대 손해</value>
   </data>
   <data name="ABNoDamage" xml:space="preserve">
     <value>손해 없음</value>
@@ -943,7 +943,7 @@
     <value>구축 컷인(주포/어뢰/전탐)</value>
   </data>
   <data name="CutinTorpedoPicket" xml:space="preserve">
-    <value>구축 컷인(어뢰/견인원/전탐)</value>
+    <value>구축 컷인(어뢰/견시원/전탐)</value>
   </data>
   <data name="Akizuki" xml:space="preserve">
     <value>&lt;아키즈키&gt;</value>
@@ -997,7 +997,7 @@
     <value>&lt;텐류&gt;</value>
   </data>
   <data name="BriishAACI" xml:space="preserve">
-    <value>로켓런처x2 or FCR/퐁퐁포 or 로켓런처/퐁퐁포&lt;영국&gt;</value>
+    <value>로켓런처x2 or FCR/폼폼포 or 로켓런처/폼폼포&lt;영국&gt;</value>
   </data>
   <data name="FletcherGun" xml:space="preserve">
     <value>플레처포 개</value>
