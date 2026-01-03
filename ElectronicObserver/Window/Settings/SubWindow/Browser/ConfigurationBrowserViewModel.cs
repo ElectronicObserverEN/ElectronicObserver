@@ -17,13 +17,10 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	public ConfigurationBrowserTranslationViewModel Translation { get; }
 	private Configuration.ConfigurationData.ConfigFormBrowser Config { get; }
 
-	public List<CheckBoxEnumViewModel> EmbeddedBrowsers { get; }
 	public List<DockStyle> DockStyles { get; }
 	public List<CheckBoxEnumViewModel> ScreenshotFormats { get; }
 	public List<ScreenshotSaveMode> ScreenshotSaveModes { get; }
 	public List<ScreenshotMode> ScreenshotModes { get; }
-
-	public BrowserOption Browser { get; set; }
 
 	public bool IsEnabled { get; set; }
 	public double ZoomRate { get; set; }
@@ -52,9 +49,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBrowserTranslationViewModel>();
 
-		EmbeddedBrowsers = Enum.GetValues<BrowserOption>()
-			.Select(b => new CheckBoxEnumViewModel(b))
-			.ToList();
 		DockStyles = Enum.GetValues<DockStyle>().ToList();
 		ScreenshotSaveModes = Enum.GetValues<ScreenshotSaveMode>().ToList();
 
@@ -63,30 +57,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 			.ToList();
 
 		ScreenshotModes = [.. Enum.GetValues<ScreenshotMode>()];
-
-		foreach (CheckBoxEnumViewModel browser in EmbeddedBrowsers)
-		{
-			browser.IsChecked = browser.Value is BrowserOption bo && bo == Browser;
-			browser.PropertyChanged += (sender, args) =>
-			{
-				if (args.PropertyName is not nameof(browser.IsChecked)) return;
-				if (sender is not CheckBoxEnumViewModel { IsChecked: true, Value: BrowserOption b }) return;
-
-				Browser = b;
-			};
-		}
-
-		PropertyChanged += (sender, args) =>
-		{
-			if (args.PropertyName is not nameof(Browser)) return;
-
-			foreach (CheckBoxEnumViewModel browser in EmbeddedBrowsers)
-			{
-				if (browser.Value is not BrowserOption b) return;
-
-				browser.IsChecked = b == Browser;
-			}
-		};
 
 		foreach (CheckBoxEnumViewModel format in ScreenshotFormats)
 		{
@@ -118,7 +88,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	private void Load()
 	{
-		Browser = Config.Browser;
 		ZoomRate = Config.ZoomRate * 100;
 		ZoomFit = Config.ZoomFit;
 		LogInPageURL = Config.LogInPageURL;
@@ -154,7 +123,6 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	public override void Save()
 	{
-		Config.Browser = Browser;
 		Config.ZoomRate = ZoomRate / 100;
 		Config.ZoomFit = ZoomFit;
 		Config.LogInPageURL = LogInPageURL;
