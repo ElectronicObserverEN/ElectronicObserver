@@ -39,7 +39,6 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="CefSharp.WinForms.NETCore" Version="124.3.50" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
@@ -87,13 +86,4 @@
 	<Target Name="PostPublish" AfterTargets="Publish">
 		<Exec Command="cd $(MSBuildProjectDirectory)&#xD;&#xA;cd ..\ElectronicObserver\bin\x64\publish\&#xD;&#xA;del vk_swiftshader.dll&#xD;&#xA;del vk_swiftshader_icd.json&#xD;&#xA;del vulkan-1.dll" />
 	</Target>
-	<ItemGroup>
-	  <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="124.3.5" />
-	</ItemGroup>
-	<ItemGroup>
-	  <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="124.3.5" />
-	</ItemGroup>
-	<ItemGroup>
-	  <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="124.3.5" />
-	</ItemGroup>
 </Project>
