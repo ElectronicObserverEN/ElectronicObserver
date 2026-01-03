@@ -77,6 +77,13 @@ public class HomePortSupplyService
 				if (shipIndex > 1) return;
 				if (movedShipDropId is -1) return;
 			}
+			else if (IsHomePortSupplyShip(replacedShip))
+			{
+				if (movedShipDropId < 1) return;
+				if (fleet.Members is null) return;
+				if (!fleet.Members.Contains(movedShipDropId)) return;
+				if (fleet.Members.IndexOf(movedShipDropId) > 1) return;
+			}
 			else
 			{
 				if (!IsHomePortSupplyFleet(fleet)) return;

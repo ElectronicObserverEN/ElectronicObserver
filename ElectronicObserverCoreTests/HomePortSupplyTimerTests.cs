@@ -471,4 +471,90 @@ public class HomePortSupplyTimerTests(DatabaseFixture db)
 
 		Assert.NotEqual(homePortSupplyTimer, service.HomePortSupplyTimer);
 	}
+
+	[Fact(DisplayName = "Replacing Nosaki in a home port supply fleet with a ship that's not in a fleet doesn't reset the timer")]
+	public void HomePortSupplyTimerTest17()
+	{
+		DateTime homePortSupplyTimer = DateTime.Now.AddMinutes(-10);
+
+		HomePortSupplyService service = new();
+		service.SetTimer(homePortSupplyTimer);
+
+		FleetDataMock fleet1 = new()
+		{
+			FleetID = 1,
+			MembersInstance = new(
+			[
+				Kamikaze,
+				Nosaki,
+				Asakaze,
+				Harukaze,
+				Matsukaze,
+			]),
+		};
+
+		Assert.Equal(homePortSupplyTimer, service.HomePortSupplyTimer);
+
+		service.FleetUpdated(fleet1, 1, 1, Hatakaze.ID, Hatakaze, Nosaki);
+
+		Assert.Equal(homePortSupplyTimer, service.HomePortSupplyTimer);
+	}
+
+	[Fact(DisplayName = "Replacing Nosaki in a home port supply fleet with a ship that's not in position 1 or 2 doesn't reset the timer")]
+	public void HomePortSupplyTimerTest18()
+	{
+		DateTime homePortSupplyTimer = DateTime.Now.AddMinutes(-10);
+
+		HomePortSupplyService service = new();
+		service.SetTimer(homePortSupplyTimer);
+
+		FleetDataMock fleet1 = new()
+		{
+			FleetID = 1,
+			MembersInstance = new(
+			[
+				Kamikaze,
+				Nosaki,
+				Asakaze,
+				Harukaze,
+				Matsukaze,
+				Hatakaze,
+			]),
+		};
+
+		Assert.Equal(homePortSupplyTimer, service.HomePortSupplyTimer);
+
+		service.FleetUpdated(fleet1, 1, 1, Hatakaze.ID, Hatakaze, Nosaki);
+
+		Assert.Equal(homePortSupplyTimer, service.HomePortSupplyTimer);
+	}
+
+	[Fact(DisplayName = "Replacing Nosaki in a home port supply fleet with a ship that's in position 1 or 2 resets the timer")]
+	public void HomePortSupplyTimerTest19()
+	{
+		DateTime homePortSupplyTimer = DateTime.Now.AddMinutes(-10);
+
+		HomePortSupplyService service = new();
+		service.SetTimer(homePortSupplyTimer);
+
+		FleetDataMock fleet1 = new()
+		{
+			FleetID = 1,
+			MembersInstance = new(
+			[
+				Kamikaze,
+				Nosaki,
+				Asakaze,
+				Harukaze,
+				Matsukaze,
+				Hatakaze,
+			]),
+		};
+
+		Assert.Equal(homePortSupplyTimer, service.HomePortSupplyTimer);
+
+		service.FleetUpdated(fleet1, 1, 1, Kamikaze.ID, Kamikaze, Nosaki);
+
+		Assert.NotEqual(homePortSupplyTimer, service.HomePortSupplyTimer);
+	}
 }
