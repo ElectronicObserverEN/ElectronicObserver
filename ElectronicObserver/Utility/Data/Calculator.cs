@@ -537,13 +537,15 @@ public static class Calculator
 	/// </summary>
 	public static double GetExpeditionBonus(IFleetData fleet)
 	{
-		var eqs = fleet.MembersInstance
-			.Where(s => s != null)
-			.SelectMany(s => s.SlotInstance)
-			.Where(eq => eq != null && EquipmentExpeditionBonus.ContainsKey(eq.EquipmentId));
+		List<IEquipmentData> eqs = fleet.MembersInstance
+			.OfType<IShipData>()
+			.SelectMany(s => s.AllSlotInstance)
+			.OfType<IEquipmentData>()
+			.Where(eq => EquipmentExpeditionBonus.ContainsKey(eq.EquipmentId))
+			.ToList();
 
 		double normalBonus = eqs.Sum(eq => EquipmentExpeditionBonus[eq.EquipmentId])
-							 + fleet.MembersInstance.Count(s => s != null && s.ShipID == 487) * 0.05;        // 鬼怒改二
+			+ fleet.MembersInstance.Count(s => s?.MasterShip.ShipId is ShipId.KinuKaiNi) * 0.05;
 
 		normalBonus = Math.Min(normalBonus, 0.2);
 		double levelBonus = eqs.Any() ? (0.01 * normalBonus * eqs.Average(eq => eq.Level)) : 0;
