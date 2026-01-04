@@ -369,19 +369,19 @@
     <value>레이아웃 파일 저장</value>
   </data>
   <data name="EventStartsIn" xml:space="preserve">
-    <value>이벤트 시작까지 {0}</value>
+    <value>이벤트 시작까지 {0} 남았습니다.</value>
   </data>
   <data name="EventHasStarted" xml:space="preserve">
     <value>이벤트가 시작했습니다.</value>
   </data>
   <data name="EventEndsIn" xml:space="preserve">
-    <value>이벤트는 {0}에 종료</value>
+    <value>이벤트는 {0}에 종료됩니다.</value>
   </data>
   <data name="EventHasEnded" xml:space="preserve">
     <value>이벤트 기간이 끝났습니다.</value>
   </data>
   <data name="MaintenanceStartsIn" xml:space="preserve">
-    <value>{0}후에 점검 시작</value>
+    <value>{0}후에 점검 시작합니다.</value>
   </data>
   <data name="MaintenanceHasEnded" xml:space="preserve">
     <value>점검 종료</value>
@@ -451,7 +451,7 @@ github issue 페이지로 이동하시겠습니까?</value>
     <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
   </data>
   <data name="MaintenanceEndsIn" xml:space="preserve">
-    <value>점검은 {0}에 종료</value>
+    <value>점검은 {0}에 종료됩니다.</value>
   </data>
   <data name="MaintenanceHasStarted" xml:space="preserve">
     <value>점검이 시작되었습니다.</value>

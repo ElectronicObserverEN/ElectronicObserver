@@ -133,7 +133,7 @@
     <value>공모계</value>
   </data>
   <data name="MissionClearSubmarineCount" xml:space="preserve">
-    <value>잠수함계계</value>
+    <value>잠수함계</value>
   </data>
   <data name="MissionClearEscortLeaderCount" xml:space="preserve">
     <value>(경순+연순+호위공모)</value>
