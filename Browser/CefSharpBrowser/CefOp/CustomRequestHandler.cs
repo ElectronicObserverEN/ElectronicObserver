@@ -28,6 +28,7 @@ public class CustomRequestHandler : RequestHandler
 		{
 			return true;
 		}
+
 		return base.OnBeforeBrowse(browserControl, browser, frame, request, userGesture, isRedirect);
 	}
 

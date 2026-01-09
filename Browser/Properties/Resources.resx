@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+	<!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,315 +26,324 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Alignment_Bottom" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Alignment_Bottom" xml:space="preserve">
     <value>下(&amp;B)</value>
   </data>
-  <data name="Alignment_Invisible" xml:space="preserve">
+	<data name="Alignment_Invisible" xml:space="preserve">
     <value>非表示(&amp;I)</value>
   </data>
-  <data name="Alignment_Left" xml:space="preserve">
+	<data name="Alignment_Left" xml:space="preserve">
     <value>左(&amp;L)</value>
   </data>
-  <data name="Alignment_Right" xml:space="preserve">
+	<data name="Alignment_Right" xml:space="preserve">
     <value>右(&amp;R)</value>
   </data>
-  <data name="Alignment_Top" xml:space="preserve">
+	<data name="Alignment_Top" xml:space="preserve">
     <value>上(&amp;T)</value>
   </data>
-  <data name="RefreshIgnoreCache" xml:space="preserve">
+	<data name="RefreshIgnoreCache" xml:space="preserve">
     <value>キャッシュを無視して更新(&amp;C)</value>
   </data>
-  <data name="NavigateToLogInPage" xml:space="preserve">
+	<data name="NavigateToLogInPage" xml:space="preserve">
     <value>Go to Login Page</value>
   </data>
-  <data name="Other_Zoom_Current" xml:space="preserve">
+	<data name="Other_Zoom_Current" xml:space="preserve">
     <value>現在:</value>
   </data>
-  <data name="FailedToApplyStylesheet" xml:space="preserve">
+	<data name="FailedToApplyStylesheet" xml:space="preserve">
     <value>スタイルシートの適用に失敗しました。</value>
   </data>
-  <data name="LoginDialog" xml:space="preserve">
+	<data name="LoginDialog" xml:space="preserve">
     <value>ログインページへ移動します。
 よろしいですか？</value>
   </data>
-  <data name="Other" xml:space="preserve">
+	<data name="Other" xml:space="preserve">
     <value>その他</value>
   </data>
-  <data name="Other_Zoom_Current_Fit" xml:space="preserve">
+	<data name="Other_Zoom_Current_Fit" xml:space="preserve">
     <value>現在: ぴったり</value>
   </data>
-  <data name="ReloadDialog" xml:space="preserve">
+	<data name="ReloadDialog" xml:space="preserve">
     <value>再読み込みします。
 よろしいですか？</value>
   </data>
-  <data name="ScreenshotError" xml:space="preserve">
+	<data name="ScreenshotError" xml:space="preserve">
     <value>スクリーンショットの撮影に失敗しました。</value>
   </data>
-  <data name="LastScreenShot_CopyToClipboard" xml:space="preserve">
+	<data name="LastScreenShot_CopyToClipboard" xml:space="preserve">
     <value>クリップボードにコピー(&amp;C)</value>
   </data>
-  <data name="Strip_Mute" xml:space="preserve">
+	<data name="Strip_Mute" xml:space="preserve">
     <value>ミュート</value>
   </data>
-  <data name="Strip_Refresh" xml:space="preserve">
+	<data name="Strip_Refresh" xml:space="preserve">
     <value>更新</value>
   </data>
-  <data name="Strip_ScreenShot" xml:space="preserve">
+	<data name="Strip_ScreenShot" xml:space="preserve">
     <value>スクリーンショット</value>
   </data>
-  <data name="Strip_Zoom" xml:space="preserve">
+	<data name="Strip_Zoom" xml:space="preserve">
     <value>ズーム</value>
   </data>
-  <data name="Title" xml:space="preserve">
+	<data name="Title" xml:space="preserve">
     <value>七四式電子観測儀 ブラウザ</value>
   </data>
-  <data name="RemoveWelcomePopup" xml:space="preserve">
+	<data name="RemoveWelcomePopup" xml:space="preserve">
     <value>var element = document.getElementById('welcome'); element.parentNode.removeChild(element);</value>
   </data>
-  <data name="RemoveServicePopup" xml:space="preserve">
+	<data name="RemoveServicePopup" xml:space="preserve">
     <value>var element = document.getElementById('page-popup'); element.parentNode.removeChild(element);</value>
   </data>
-  <data name="Confirmation" xml:space="preserve">
+	<data name="Confirmation" xml:space="preserve">
     <value>確認</value>
   </data>
-  <data name="ReloadHardDialog" xml:space="preserve">
+	<data name="ReloadHardDialog" xml:space="preserve">
     <value>キャッシュを無視して再読み込みします。
 よろしいですか？</value>
   </data>
-  <data name="ShowToolMenu" xml:space="preserve">
+	<data name="ShowToolMenu" xml:space="preserve">
     <value>ツールメニューを表示</value>
   </data>
-  <data name="OpenDevTool" xml:space="preserve">
+	<data name="OpenDevTool" xml:space="preserve">
     <value>開発者ツールを開く</value>
   </data>
-  <data name="Zoom_to_Fit" xml:space="preserve">
+	<data name="Zoom_to_Fit" xml:space="preserve">
     <value>現在: ぴったり</value>
   </data>
-  <data name="ClearCache" xml:space="preserve">
+	<data name="ClearCache" xml:space="preserve">
     <value>キャッシュを削除</value>
   </data>
-  <data name="RenderProcessTerminatedBy" xml:space="preserve">
+	<data name="RenderProcessTerminatedBy" xml:space="preserve">
     <value>ブラウザの描画プロセスが</value>
   </data>
-  <data name="RenderProcessAbnormalTermination" xml:space="preserve">
+	<data name="RenderProcessAbnormalTermination" xml:space="preserve">
     <value>正常に終了しませんでした。</value>
   </data>
-  <data name="RenderProcessProcessWasKilled" xml:space="preserve">
+	<data name="RenderProcessProcessWasKilled" xml:space="preserve">
     <value>何者かによって殺害されました。</value>
   </data>
-  <data name="RenderProcessProcessCrashed" xml:space="preserve">
+	<data name="RenderProcessProcessCrashed" xml:space="preserve">
     <value>クラッシュしました。</value>
   </data>
-  <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
+	<data name="RenderProcessUnexpectedTermination" xml:space="preserve">
     <value>謎の死を遂げました。</value>
   </data>
-  <data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
+	<data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
     <value>再読み込みすると復帰します。</value>
   </data>
-  <data name="ClearCacheMessage" xml:space="preserve">
+	<data name="ClearCacheMessage" xml:space="preserve">
     <value>本当にキャッシュをクリアするのですか？</value>
   </data>
-  <data name="ClearCacheTitle" xml:space="preserve">
+	<data name="ClearCacheTitle" xml:space="preserve">
     <value>ブラウザ再起動確認</value>
   </data>
-  <data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
+	<data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
     <value>スクリーンショット(&amp;S)</value>
   </data>
-  <data name="ToolMenu_Other_LastScreenShot" xml:space="preserve">
+	<data name="ToolMenu_Other_LastScreenShot" xml:space="preserve">
     <value>直前のスクリーンショット(&amp;P)</value>
   </data>
-  <data name="ToolMenu_Other_LastScreenShot_OpenScreenShotFolder" xml:space="preserve">
+	<data name="ToolMenu_Other_LastScreenShot_OpenScreenShotFolder" xml:space="preserve">
     <value>保存フォルダを開く(&amp;O)</value>
   </data>
-  <data name="ToolMenu_Other_Volume" xml:space="preserve">
+	<data name="ToolMenu_Other_Volume" xml:space="preserve">
     <value>音量(&amp;V)</value>
   </data>
-  <data name="ToolMenu_Other_Mute" xml:space="preserve">
+	<data name="ToolMenu_Other_Mute" xml:space="preserve">
     <value>ミュート(&amp;M)</value>
   </data>
-  <data name="ToolMenu_Other_Refresh" xml:space="preserve">
+	<data name="ToolMenu_Other_Refresh" xml:space="preserve">
     <value>更新(&amp;R)</value>
   </data>
-  <data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
+	<data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
     <value>ログインページへ移動(&amp;L)</value>
   </data>
-  <data name="ToolMenu_Other_Navigate" xml:space="preserve">
+	<data name="ToolMenu_Other_Navigate" xml:space="preserve">
     <value>移動(&amp;N)...</value>
   </data>
-  <data name="ToolMenu_Other_AppliesStyleSheet" xml:space="preserve">
+	<data name="ToolMenu_Other_AppliesStyleSheet" xml:space="preserve">
     <value>スタイルシートを適用する</value>
   </data>
-  <data name="ToolMenu_Other_Alignment" xml:space="preserve">
+	<data name="ToolMenu_Other_Alignment" xml:space="preserve">
     <value>配置(&amp;A)</value>
   </data>
-  <data name="NoScreenshotYet" xml:space="preserve">
+	<data name="NoScreenshotYet" xml:space="preserve">
     <value>スクリーンショットをまだ撮影していません。</value>
   </data>
-  <data name="InstallVisualCpp" xml:space="preserve">
+	<data name="InstallVisualCpp" xml:space="preserve">
     <value>ブラウザのコンポーネントを読み込めませんでした。
 Microsoft Visual C++ 2019 Redistributableが必要です。
 ダウンロードページを開きますか？
 (vc_redist.x64.exeをインストールしてください)</value>
   </data>
-  <data name="CefSharpLoadErrorTitle" xml:space="preserve">
+	<data name="CefSharpLoadErrorTitle" xml:space="preserve">
     <value>CefSharpロードエラー</value>
   </data>
-  <data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
+	<data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
     <value>DMMによるページ更新ダイアログの非表示に失敗しました。</value>
   </data>
-  <data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
+	<data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
     <value>艦これが読み込まれていないため、スクリーンショットを撮ることはできません。</value>
   </data>
-  <data name="ScreenshotSavedTo" xml:space="preserve">
+	<data name="ScreenshotSavedTo" xml:space="preserve">
     <value>スクリーンショットを {0} に保存しました。</value>
   </data>
-  <data name="FailedToSaveScreenshot" xml:space="preserve">
+	<data name="FailedToSaveScreenshot" xml:space="preserve">
     <value>スクリーンショットの保存に失敗しました。</value>
   </data>
-  <data name="ScreenshotCopiedToClipboard" xml:space="preserve">
+	<data name="ScreenshotCopiedToClipboard" xml:space="preserve">
     <value>スクリーンショットをクリップボードにコピーしました。</value>
   </data>
-  <data name="FailedToCopyScreenshotToClipboard" xml:space="preserve">
+	<data name="FailedToCopyScreenshotToClipboard" xml:space="preserve">
     <value>スクリーンショットのクリップボードへのコピーに失敗しました。</value>
   </data>
-  <data name="LastScreenshotCopiedToClipboard" xml:space="preserve">
+	<data name="LastScreenshotCopiedToClipboard" xml:space="preserve">
     <value>スクリーンショット {0} をクリップボードにコピーしました。</value>
   </data>
-  <data name="ToolMenu_Other_Zoom" xml:space="preserve">
+	<data name="ToolMenu_Other_Zoom" xml:space="preserve">
     <value>ズーム(&amp;Z)</value>
   </data>
-  <data name="File" xml:space="preserve">
+	<data name="File" xml:space="preserve">
     <value>ファイル(_F)</value>
   </data>
-  <data name="Back" xml:space="preserve">
+	<data name="Back" xml:space="preserve">
     <value>バック</value>
   </data>
-  <data name="Forward" xml:space="preserve">
+	<data name="Forward" xml:space="preserve">
     <value>フォワード</value>
   </data>
-  <data name="DmmPoints" xml:space="preserve">
+	<data name="DmmPoints" xml:space="preserve">
     <value>DMMポイント</value>
   </data>
-  <data name="AkashiList" xml:space="preserve">
+	<data name="AkashiList" xml:space="preserve">
     <value>明石リスト</value>
   </data>
-  <data name="WebView2NotFound" xml:space="preserve">
+	<data name="WebView2NotFound" xml:space="preserve">
     <value>WebView2 が見つかりません。ダウンロードを開始します。</value>
   </data>
-  <data name="WebView2DownloadComplete" xml:space="preserve">
+	<data name="WebView2DownloadComplete" xml:space="preserve">
     <value>WebView2のダウンロードが完了しました。インストールを開始します。</value>
   </data>
-  <data name="WebView2InstallationComplete" xml:space="preserve">
+	<data name="WebView2InstallationComplete" xml:space="preserve">
     <value>WebView2のインストールが完了しました。</value>
   </data>
-  <data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
+	<data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
     <value>パーミッションがないため、vulkan の回避策を適用できない。七四式を管理者として実行すると、回避策が機能します。</value>
   </data>
-  <data name="OlderBrowserVersionDetected" xml:space="preserve">
+	<data name="OlderBrowserVersionDetected" xml:space="preserve">
     <value>古いバージョンのWebView2が検出されました。最新版をダウンロードします。</value>
   </data>
-  <data name="InstallationFailed" xml:space="preserve">
+	<data name="InstallationFailed" xml:space="preserve">
     <value>WebView2をインストールしようとしたときにエラーが発生しました。WebView2を手動でインストールしてください。</value>
   </data>
-  <data name="CacheCleared" xml:space="preserve">
+	<data name="CacheCleared" xml:space="preserve">
     <value>キャッシュの削除処理が終了しました。</value>
   </data>
-  <data name="AutoRefreshNotification" xml:space="preserve">
+	<data name="AutoRefreshNotification" xml:space="preserve">
     <value>進撃を断る設定のセルに進もうとしています。
 再読み込みしますか？</value>
   </data>
-  <data name="FailedToApplyBrowserFont" xml:space="preserve">
+	<data name="FailedToApplyBrowserFont" xml:space="preserve">
     <value>ブラウザフォントの適用に失敗しました。</value>
+  </data>
+	<data name="ExtensionManager" xml:space="preserve">
+    <value>??? (Extension manager)</value>
+  </data>
+	<data name="AddExtension" xml:space="preserve">
+    <value>??? (Add extension)</value>
+  </data>
+	<data name="RemoveExtension" xml:space="preserve">
+    <value>??? (Remove extension)</value>
   </data>
 </root>

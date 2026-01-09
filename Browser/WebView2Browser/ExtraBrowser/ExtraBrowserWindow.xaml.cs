@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Browser.WebView2Browser.Extensions;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 using Microsoft.Web.WebView2.Core;
@@ -92,6 +93,11 @@ public partial class ExtraBrowserWindow : Window
 		txtBoxAddress.Text = "https://akashi-list.me/";
 	}
 
+	private void ExtensionButtonClick(object sender, RoutedEventArgs e)
+	{
+		ExtensionManagerWindow view = new(Browser);
+		view.ShowDialog();
+	}
 
 	private void ShowDevToolsMenuItemClick(object sender, RoutedEventArgs e)
 	{
