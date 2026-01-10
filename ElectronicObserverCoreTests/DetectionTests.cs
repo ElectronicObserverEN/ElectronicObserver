@@ -145,4 +145,35 @@ public class DetectionTests(DatabaseFixture db)
 		Assert.Contains(DetectionType.FailureNoPlane, detectionProbabilities.Keys);
 		Assert.Equal(0.15, detectionProbabilities[DetectionType.FailureNoPlane], 3);
 	}
+
+	[Fact(DisplayName = "0 slot recons don't contribute to detection")]
+	public void DetectionTests7()
+	{
+		ShipDataMock iyo = new(Db.MasterShips[ShipId.I14Kai])
+		{
+			SlotInstance =
+			[
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Shiun_Skilled])
+				{
+					AircraftLevel = 7,
+				},
+			],
+		};
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new([iyo]),
+		};
+
+		Dictionary<DetectionType, double> detectionProbabilities = fleet.GetDetectionProbabilities();
+
+		Assert.NotEmpty(detectionProbabilities);
+
+		Assert.DoesNotContain(DetectionType.Success, detectionProbabilities.Keys);
+		Assert.DoesNotContain(DetectionType.SuccessNoReturn, detectionProbabilities.Keys);
+		Assert.DoesNotContain(DetectionType.NoReturn, detectionProbabilities.Keys);
+		Assert.DoesNotContain(DetectionType.Failure, detectionProbabilities.Keys);
+	}
 }

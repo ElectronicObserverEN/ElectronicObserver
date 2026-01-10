@@ -305,6 +305,7 @@ public static class FleetDataExtensions
 			foreach ((IEquipmentData? equipment, int aircraftCount) in ship.AllSlotInstance.Zip(ship.Aircraft))
 			{
 				if (equipment is null) continue;
+				if (aircraftCount is 0) continue;
 				if (!CountsForDetection(equipment)) continue;
 
 				attack += aircraftCount + ProficiencyBonus(equipment);
