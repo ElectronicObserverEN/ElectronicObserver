@@ -237,7 +237,7 @@ public partial class FormBrowserHost : Form
 		try
 		{
 			// プロセス起動
-			string arguments = $"{Host} {Port} {Utility.Configuration.Config.UI.Culture} {Utility.Configuration.Config.FormBrowser.Browser}";
+			string arguments = $"{Host} {Port} {Utility.Configuration.Config.UI.Culture}";
 
 			if (File.Exists(BrowserExeName))
 			{

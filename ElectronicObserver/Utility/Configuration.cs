@@ -1261,8 +1261,6 @@ public sealed class Configuration
 		/// </summary>
 		public class ConfigFormBrowser : ConfigPartBase
 		{
-			public BrowserOption Browser { get; set; }
-
 			/// <summary>
 			/// ブラウザの拡大率 10-1000(%)
 			/// </summary>
@@ -1377,7 +1375,6 @@ public sealed class Configuration
 
 			public ConfigFormBrowser()
 			{
-				Browser = BrowserOption.CefSharp;
 				ZoomRate = 1;
 				ZoomFit = false;
 				LogInPageURL = @"https://play.games.dmm.com/game/kancolle/";

@@ -197,29 +197,6 @@ public class VolumeManager
 	}
 
 	/// <summary>
-	/// 音量操作のためのデータを取得します。 CefSharp
-	/// </summary>
-	/// <param name="processName">対象のプロセス名。</param>
-	/// <returns>データ。取得に失敗した場合は null。</returns>
-	private static ISimpleAudioVolume GetVolumeObject(string processName, out uint processID)
-	{
-		var currentProcess = Process.GetCurrentProcess();
-		var processes = Process.GetProcessesByName(processName).Where(p => GetParentProcess(p)?.Id == currentProcess.Id).ToArray();
-		uint succeededId = 0;
-		var volume = GetVolumeObject(pid =>
-		{
-			if (processes.Any(p => p.Id == pid))
-			{
-				succeededId = pid;
-				return true;
-			}
-			return false;
-		});
-		processID = succeededId;
-		return volume;
-	}
-
-	/// <summary>
 	/// WebView2 implementation.
 	/// </summary>
 	public static VolumeManager? CreateInstanceByProcessName(string processName, string proxySettings)
@@ -233,41 +210,6 @@ public class VolumeManager
 		else
 		{
 			return null;
-		}
-	}
-
-	/// <summary>
-	/// CefSharp implementation.
-	/// </summary>
-	public static VolumeManager CreateInstanceByProcessName(string processName)
-	{
-		var volume = GetVolumeObject(processName, out uint processID);
-		if (volume != null)
-		{
-			Marshal.ReleaseComObject(volume);
-			return new VolumeManager(processID);
-		}
-		else
-		{
-			return null;
-		}
-	}
-
-
-	private static Process? GetParentProcess(Process process)
-	{
-		var pbi = new PROCESS_BASIC_INFORMATION();
-		int status = NtQueryInformationProcess(process.Handle, 0, out pbi, Marshal.SizeOf(pbi), out int returnLength);
-		if (status != 0)
-			throw new System.ComponentModel.Win32Exception(status);
-
-		try
-		{
-			return Process.GetProcessById((int)pbi.InheritedFromUniqueProcessId.ToUInt32());
-		}
-		catch (ArgumentException)
-		{
-			return null;        // process not found
 		}
 	}
 

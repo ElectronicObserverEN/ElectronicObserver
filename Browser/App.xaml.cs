@@ -46,7 +46,6 @@ public partial class App : Application
 		System.Windows.Forms.Application.EnableVisualStyles();
 		System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 		*/
-		System.AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
 		string host = e.Args[0];
 
@@ -67,11 +66,6 @@ public partial class App : Application
 			},
 		};
 
-		if (!Enum.TryParse(e.Args.Skip(3).FirstOrDefault(), out BrowserOption browserOption))
-		{
-			browserOption = BrowserOption.CefSharp;
-		}
-
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<FormBrowserTranslationViewModel>()
 			.AddSingleton<AirControlSimulatorTranslationViewModel>()
@@ -87,7 +81,7 @@ public partial class App : Application
 		ToolTipService.ShowDurationProperty.OverrideMetadata(
 			typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
 
-		BrowserView browser = new(host, port, culture, browserOption);
+		BrowserView browser = new(host, port, culture);
 
 		MainWindow = browser;
 
@@ -114,66 +108,4 @@ public partial class App : Application
 
 		return tracker;
 	}
-
-	private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-	{
-		if (args.Name.StartsWith("CefSharp"))
-		{
-			string asmname = args.Name.Split(",".ToCharArray(), 2)[0] + ".dll";
-			string arch = System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, Environment.Is64BitProcess ? "x64" : "x86", asmname);
-
-			if (!System.IO.File.Exists(arch))
-				return null;
-
-			try
-			{
-				return System.Reflection.Assembly.LoadFile(arch);
-			}
-			catch (IOException ex) when (ex is FileNotFoundException || ex is FileLoadException)
-			{
-				if (MessageBox.Show(
-						$@"The browser component could not be loaded.
-Microsoft Visual C++ 2015 Redistributable is required.
-Open the download page?
-(Please install vc_redist.{(Environment.Is64BitProcess ? "x64" : "x86")}.exe)",
-						"CefSharp Load Error", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
-					== MessageBoxResult.Yes)
-				{
-					ProcessStartInfo psi = new ProcessStartInfo
-					{
-						FileName = @"https://www.microsoft.com/en-US/download/details.aspx?id=53587",
-						UseShellExecute = true
-					};
-					Process.Start(psi);
-				}
-
-				// なんにせよ今回は起動できないのであきらめる
-				throw;
-			}
-			catch (NotSupportedException)
-			{
-				// 概ね ZoneID を外し忘れているのが原因
-
-				if (MessageBox.Show(
-						@"Browser startup failed.
-This may be caused by the fact that the operation required for installation has not been performed.
-Do you want to open the installation guide?",
-						"Browser Load Failed", MessageBoxButton.YesNo, MessageBoxImage.Error)
-					== MessageBoxResult.Yes)
-				{
-					ProcessStartInfo psi = new ProcessStartInfo
-					{
-						FileName = @"https://github.com/andanteyk/ElectronicObserver/wiki/Install",
-						UseShellExecute = true
-					};
-					Process.Start(psi);
-				}
-
-				// なんにせよ今回は起動できないのであきらめる
-				throw;
-			}
-		}
-		return null;
-	}
-
 }

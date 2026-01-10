@@ -38,31 +38,6 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" Orientation="Horizontal">
-			<ItemsControl ItemsSource="{Binding EmbeddedBrowsers}">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<StackPanel Orientation="Horizontal" />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-
-				<ItemsControl.ItemTemplate>
-					<DataTemplate DataType="{x:Type common:CheckBoxEnumViewModel}">
-						<RadioButton
-							MinWidth="0"
-							Margin="4 0"
-							Padding="2 0"
-							VerticalContentAlignment="Center"
-							Content="{Binding Value}"
-							IsChecked="{Binding IsChecked}"
-							/>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-
-			<TextBlock Text="*" />
-		</StackPanel>
-
 		<Grid Grid.Row="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
