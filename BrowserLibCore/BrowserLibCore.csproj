@@ -18,7 +18,7 @@
 	<ItemGroup>
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MessagePack" Version="3.1.4" />
-		<PackageReference Include="System.Management" Version="10.0.1" />
+		<PackageReference Include="System.Management" Version="10.0.2" />
 	</ItemGroup>
 
 </Project>
