@@ -12,6 +12,7 @@
 		<DebugType>embedded</DebugType>
 		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
 		<Configurations>Debug;Release;Browser Debug</Configurations>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<PropertyGroup>
