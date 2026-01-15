@@ -1,0 +1,24 @@
+﻿<Window
+	x:Class="ElectronicObserver.Window.Dialog.UiBlocker.UiBlockerOverlayWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.UiBlocker"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
+	d:DataContext="{d:DesignInstance local:UiBlockerViewModel}"
+	AllowsTransparency="True"
+	ShowInTaskbar="False"
+	Topmost="True"
+	WindowStyle="None"
+	mc:Ignorable="d"
+	>
+	<Border Background="{Binding BackgroundColor, Converter={StaticResource HexToBrushConverter}, Mode=OneWay}" ToolTip="{x:Static translations:UiBlockerResources.BlockerBypassToolTip}">
+		<Image
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Source="{Binding ImagePath}"
+			Stretch="Uniform"
+			/>
+	</Border>
+</Window>

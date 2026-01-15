@@ -8,9 +8,10 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
 // prefix with Form so it doesn't clash with the wpf versions
 public class FormBrowserHostViewModel : WinformsHostViewModel
 {
+	public static string ContentId => "Browser";
 	public FormBrowserHostTranslationViewModel FormBrowserHost { get; }
 
-	public FormBrowserHostViewModel() : base("Browser", "Browser", IconContent.FormBrowser)
+	public FormBrowserHostViewModel() : base("Browser", ContentId, IconContent.FormBrowser)
 	{
 		FormBrowserHost = Ioc.Default.GetService<FormBrowserHostTranslationViewModel>()!;
 
