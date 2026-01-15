@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -65,12 +64,9 @@ public sealed partial class UiBlockerManagerViewModel : WindowViewModelBase
 		}
 
 		if (!bm.IsCombinedBattle) return;
+		if (!CanAnyShipSink(battle.Initial.FriendFleetEscort, battle.ResultHPs.Skip(6))) return;
 
-		if (CanAnyShipSink(battle.Initial.FriendFleetEscort, battle.ResultHPs.Skip(6)))
-		{
-			ShowBlocker(TaihaBlocker);
-			return;
-		}
+		ShowBlocker(TaihaBlocker);
 
 		static bool CanAnyShipSink(FleetData fleet, IEnumerable<int> hps)
 		{
