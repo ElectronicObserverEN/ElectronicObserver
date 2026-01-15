@@ -98,6 +98,6 @@ public partial class UiBlockerOverlayWindow
 		base.OnClosed(e);
 	}
 
-	[DllImport("user32.dll")]
-	private static extern short GetKeyState(int nVirtKey);
+	[LibraryImport("user32.dll")]
+	private static partial short GetKeyState(int nVirtKey);
 }
