@@ -83,5 +83,3 @@ public sealed partial class MouseHook : IDisposable
 
 	private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
 }
-
-
