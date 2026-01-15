@@ -4,14 +4,14 @@ using System.Runtime.InteropServices;
 
 namespace ElectronicObserver.Window.Dialog.UiBlocker;
 
-public class MouseHook : IDisposable
+public sealed class MouseHook : IDisposable
 {
 	private const int WH_MOUSE_LL = 14;
 
 	private IntPtr HookId { get; set; } = IntPtr.Zero;
 	private LowLevelMouseProc Proc { get; }
 
-	public Func<MouseMessage, RawPoint, bool> Filter { get; set; }
+	private Func<MouseMessage, RawPoint, bool> Filter { get; }
 
 	public MouseHook(Func<MouseMessage, RawPoint, bool> filter)
 	{
@@ -46,7 +46,6 @@ public class MouseHook : IDisposable
 	public void Dispose()
 	{
 		Uninstall();
-		GC.SuppressFinalize(this);
 	}
 
 	private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
