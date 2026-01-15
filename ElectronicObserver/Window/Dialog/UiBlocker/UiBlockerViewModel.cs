@@ -33,8 +33,6 @@ public abstract partial class UiBlockerViewModel : ObservableObject
 	{
 		Configuration = configuration;
 
-		Loaded();
-
 		PropertyChanged += (_, e) =>
 		{
 			bool isDesiredPositionChanged = e.PropertyName is
@@ -79,10 +77,12 @@ public abstract partial class UiBlockerViewModel : ObservableObject
 
 		ImagePath = newPath;
 	}
+	
+	protected abstract void LoadConfiguration();
 
 	public virtual void Loaded()
 	{
-		Configuration.ApplyToViewModel(this);
+		LoadConfiguration();
 	}
 
 	public virtual void Closed()

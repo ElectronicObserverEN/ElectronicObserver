@@ -17,4 +17,9 @@ public sealed class TaihaBlockerViewModel(UiBlockerConfiguration configuration)
 		DesiredHeight = DefaultDesiredHeight;
 		DesiredWidth = DefaultDesiredWidth;
 	}
+	
+	protected override void LoadConfiguration()
+	{
+		Configuration.ApplyToViewModel(this);
+	}
 }
