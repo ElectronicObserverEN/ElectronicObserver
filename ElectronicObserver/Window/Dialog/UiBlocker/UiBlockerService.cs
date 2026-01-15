@@ -70,7 +70,7 @@ public class UiBlockerService(DockingManager dockingManager, Configuration.Confi
 		=> dockingManager.Layout
 			.Descendents()
 			.OfType<LayoutAnchorable>()
-			.FirstOrDefault(a => a.ContentId == FormBrowserHostViewModel.ContentId);
+			.FirstOrDefault(a => a.ContentId == FormBrowserHostViewModel.BrowserContentId);
 
 	private static LayoutDocumentControl? GetBrowserControl(DockingManager dockingManager)
 	{
