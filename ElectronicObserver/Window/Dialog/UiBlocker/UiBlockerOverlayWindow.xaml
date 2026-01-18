@@ -8,6 +8,7 @@
 	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
 	d:DataContext="{d:DesignInstance local:UiBlockerViewModel}"
 	AllowsTransparency="True"
+	Background="Transparent"
 	ShowInTaskbar="False"
 	Topmost="True"
 	WindowStyle="None"
