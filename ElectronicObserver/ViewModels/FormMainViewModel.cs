@@ -78,8 +78,7 @@ using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 using AvalonDock.Controls;
 using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
-
-
+using ElectronicObserver.Window.Dialog.UiBlocker;
 
 #if DEBUG
 using System.Text.Encodings.Web;
@@ -93,6 +92,7 @@ public partial class FormMainViewModel : ObservableObject
 	private FormMainWpf Window { get; }
 	private DockingManager DockingManager { get; }
 	private Configuration.ConfigurationData Config { get; }
+	private UiBlockerManagerViewModel UiBlockerManager { get; }
 	public FormMainTranslationViewModel FormMain { get; }
 	private ToolService ToolService { get; }
 	private FileService FileService { get; }
@@ -196,9 +196,10 @@ public partial class FormMainViewModel : ObservableObject
 		DockingManager = dockingManager;
 
 		Config = Configuration.Config;
-		FormMain = Ioc.Default.GetService<FormMainTranslationViewModel>()!;
-		ToolService = Ioc.Default.GetService<ToolService>()!;
-		FileService = Ioc.Default.GetService<FileService>()!;
+		UiBlockerManager = new(new(DockingManager, Config), Config);
+		FormMain = Ioc.Default.GetRequiredService<FormMainTranslationViewModel>();
+		ToolService = Ioc.Default.GetRequiredService<ToolService>();
+		FileService = Ioc.Default.GetRequiredService<FileService>();
 
 		CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
 
@@ -893,6 +894,13 @@ public partial class FormMainViewModel : ObservableObject
 	private void OpenExpeditionCalculator()
 	{
 		new ExpeditionCalculatorWindow(new()).Show();
+	}
+
+	[RelayCommand]
+	private void OpenUiBlockerManager()
+	{
+		UiBlockerWindow blocker = new(UiBlockerManager);
+		blocker.Show(Window);
 	}
 
 	[RelayCommand]

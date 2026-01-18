@@ -89,6 +89,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlannerResources.Title; 
 	public string AutoRefreshTitle => AutoRefreshResources.Title;
 	public string ExpeditionCalculatorTitle => ExpeditionCalculatorResources.Title;
+	public string UiBlocker => UiBlockerResources.UiBlocker;
 
 	public string StripMenu_Debug => MainResources.Debug.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Debug_LoadAPIFromFile => MainResources.Debug_LoadAPIFromFile.Replace("_", "__").Replace("&", "_");
