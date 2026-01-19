@@ -38,6 +38,8 @@
 			<converters:ShipClassDisplayConverter x:Key="ShipClassDisplayConverter" />
 			<converters:FontFamilyDisplayConverter x:Key="FontFamilyDisplayConverter" />
 			<converters:DateTimeDisplayConverter x:Key="DateTimeDisplayConverter" />
+			<converters:HexToColorConverter x:Key="HexToColorConverter" />
+			<converters:HexToBrushConverter x:Key="HexToBrushConverter" />
 
 			<!--
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml

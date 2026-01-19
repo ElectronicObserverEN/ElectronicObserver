@@ -418,8 +418,8 @@ public static class ShipDataExtensions
 		ShipId.TaiyouKaiNi or
 		ShipId.ShinyouKaiNi or
 		ShipId.UnyouKaiNi or
-		ShipId.KagaKaiNiGo or 
-		ShipId.Lexington or 
+		ShipId.KagaKaiNiGo or
+		ShipId.Lexington or
 		ShipId.LexingtonKai;
 
 	public static bool IsArkRoyal(this IShipData ship) => ship.MasterShip.ShipId switch
@@ -631,9 +631,12 @@ public static class ShipDataExtensions
 			EquipmentId.Autogyro_S51JKai);
 	}
 
-	public static bool CanSink(this IShipData ship, IFleetData fleet)
+	public static bool CanSink(this IShipData ship, IFleetData fleet) => ship.CanSink(fleet, ship.HPCurrent);
+
+	public static bool CanSink(this IShipData? ship, IFleetData fleet, int hp)
 	{
-		if (ship.HPRate > 0.25) return false;
+		if (ship is null) return false;
+		if ((double)hp / ship.HPMax > 0.25) return false;
 		if (fleet.MembersInstance.FirstOrDefault() == ship) return false;
 		if (ship.HasDamecon()) return false;
 		if (ship.RepairingDockID > -1) return false;
@@ -668,10 +671,10 @@ public static class ShipDataExtensions
 		EquipmentTypes.ExtraArmorMedium,
 		EquipmentTypes.ExtraArmorLarge,
 	];
-	
+
 	public static bool CanEquipBulge(this IShipData ship)
 		=> ship.MasterShip.EquippableCategoriesTyped.Intersect(BulgeTypes).Any();
-	
+
 	public static bool CanEquipSeaplaneFighter(this IShipData ship)
 		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SeaplaneFighter);
 
