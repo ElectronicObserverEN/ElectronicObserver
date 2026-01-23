@@ -1,7 +1,6 @@
 ﻿namespace ElectronicObserver.Window.Dialog.UiBlocker.Taiha;
 
-public sealed class TaihaBlockerViewModel(UiBlockerConfiguration configuration)
-	: UiBlockerViewModel(configuration)
+public sealed class TaihaBlockerViewModel : UiBlockerViewModel
 {
 	public override string Header => UiBlockerResources.Taiha;
 
@@ -9,6 +8,11 @@ public sealed class TaihaBlockerViewModel(UiBlockerConfiguration configuration)
 	public static double DefaultDesiredLeft => 330;
 	public static double DefaultDesiredHeight => 190;
 	public static double DefaultDesiredWidth => 210;
+
+	public TaihaBlockerViewModel(UiBlockerConfiguration configuration) : base(configuration)
+	{
+		LoadConfiguration();
+	}
 
 	protected override void SetDesiredValuesToDefault()
 	{
