@@ -25,14 +25,7 @@ public sealed partial class MouseHook : IDisposable
 	{
 		if (HookId != IntPtr.Zero) return;
 
-		using Process curProcess = Process.GetCurrentProcess();
-		using ProcessModule curModule = curProcess.MainModule!;
-
-		HookId = SetWindowsHookExW(
-			WH_MOUSE_LL,
-			Proc,
-			GetModuleHandleW(curModule.ModuleName),
-			0);
+		HookId = SetWindowsHookExW(WH_MOUSE_LL, Proc, IntPtr.Zero, 0);
 	}
 
 	private void Uninstall()
@@ -77,9 +70,6 @@ public sealed partial class MouseHook : IDisposable
 	[LibraryImport("user32.dll")]
 	[UnmanagedCallConv(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
 	private static partial IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
-
-	[LibraryImport("kernel32.dll", EntryPoint = "GetModuleHandleW", StringMarshalling = StringMarshalling.Utf16)]
-	private static partial IntPtr GetModuleHandleW(string? lpModuleName);
 
 	private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
 }

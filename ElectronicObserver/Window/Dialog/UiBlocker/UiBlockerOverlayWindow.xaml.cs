@@ -7,7 +7,7 @@ namespace ElectronicObserver.Window.Dialog.UiBlocker;
 
 public partial class UiBlockerOverlayWindow
 {
-	private MouseHook MouseHook { get; set; } = null!;
+	private MouseHook? MouseHook { get; set; }
 
 	public UiBlockerOverlayWindow(UiBlockerViewModel viewModel)
 	{
@@ -19,8 +19,20 @@ public partial class UiBlockerOverlayWindow
 		Width = viewModel.Width;
 
 		viewModel.PropertyChanged += UpdatePosition;
+		IsVisibleChanged += OverlayIsVisibleChanged;
 
 		InitializeComponent();
+	}
+
+	private void OverlayIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+	{
+		MouseHook?.Dispose();
+
+		MouseHook = e.NewValue switch
+		{
+			true => new(MouseFilter),
+			_ => null,
+		};
 	}
 
 	/// <summary>
@@ -48,13 +60,6 @@ public partial class UiBlockerOverlayWindow
 		}
 	}
 
-	protected override void OnSourceInitialized(EventArgs e)
-	{
-		base.OnSourceInitialized(e);
-
-		MouseHook = new(MouseFilter);
-	}
-
 	private bool MouseFilter(MouseMessage message, RawPoint point)
 	{
 		if (!IsVisible) return false;
@@ -63,7 +68,11 @@ public partial class UiBlockerOverlayWindow
 			MouseMessage.WM_LBUTTONUP or
 			MouseMessage.WM_LBUTTONDOWN or
 			MouseMessage.WM_RBUTTONUP or
-			MouseMessage.WM_RBUTTONDOWN;
+			MouseMessage.WM_RBUTTONDOWN or
+			MouseMessage.WM_MBUTTONUP or
+			MouseMessage.WM_MBUTTONDOWN or
+			MouseMessage.WM_XBUTTONUP or
+			MouseMessage.WM_XBUTTONDOWN;
 
 		if (!isBlockedMessage) return false;
 
@@ -79,7 +88,7 @@ public partial class UiBlockerOverlayWindow
 		// hide overlay with ctrl + click
 		if (isClickWithinBlocker && IsCtrlDown())
 		{
-			Dispatcher.Invoke(Hide);
+			Dispatcher.BeginInvoke(Hide);
 			return true;
 		}
 
@@ -95,6 +104,7 @@ public partial class UiBlockerOverlayWindow
 	protected override void OnClosed(EventArgs e)
 	{
 		MouseHook?.Dispose();
+		IsVisibleChanged -= OverlayIsVisibleChanged;
 		base.OnClosed(e);
 	}
 
