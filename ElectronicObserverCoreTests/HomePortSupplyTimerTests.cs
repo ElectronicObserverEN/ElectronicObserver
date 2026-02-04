@@ -557,4 +557,41 @@ public class HomePortSupplyTimerTests(DatabaseFixture db)
 
 		Assert.NotEqual(homePortSupplyTimer, service.HomePortSupplyTimer);
 	}
+
+	[Fact(DisplayName = "Moving ships between 2 non-home port supply fleets doesn't reset the timer")]
+	public void HomePortSupplyTimerTest20()
+	{
+		DateTime homePortSupplyTimer = DateTime.Now.AddMinutes(-10);
+
+		HomePortSupplyService service = new();
+		service.SetTimer(homePortSupplyTimer);
+
+		FleetDataMock fleet1 = new()
+		{
+			FleetID = 1,
+			MembersInstance = new(
+			[
+				Kamikaze,
+				Asakaze,
+			]),
+		};
+
+		FleetDataMock fleet2 = new()
+		{
+			FleetID = 2,
+			MembersInstance = new(
+			[
+				Harukaze,
+				Matsukaze,
+				Hatakaze,
+			]),
+		};
+
+		service.FleetUpdated(fleet1, 2, 2, Kamikaze.ID, Kamikaze, Hatakaze);
+		service.FleetUpdated(fleet2, 2, 2, Kamikaze.ID, Kamikaze, Hatakaze);
+
+		Assert.False(HomePortSupplyService.IsHomePortSupplyFleet(fleet1));
+		Assert.False(HomePortSupplyService.IsHomePortSupplyFleet(fleet2));
+		Assert.Equal(homePortSupplyTimer, service.HomePortSupplyTimer);
+	}
 }

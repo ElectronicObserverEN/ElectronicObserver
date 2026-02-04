@@ -100,6 +100,10 @@ public class HomePortSupplyService
 			{
 				if (fleet.Members.IndexOf(movedShipDropId) > 1) return;
 			}
+			else
+			{
+				if (!IsHomePortSupplyFleet(fleet)) return;
+			}
 		}
 
 		ResetTimer();
