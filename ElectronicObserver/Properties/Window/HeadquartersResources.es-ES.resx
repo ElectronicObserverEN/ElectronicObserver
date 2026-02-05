@@ -404,4 +404,7 @@ Este mes: {2:+##;-##;±0}</value>
   <data name="SpecialAviationRation" xml:space="preserve">
     <value>Ración especial de aviación</value>
   </data>
+  <data name="ArsenalExpansionKey" xml:space="preserve">
+    <value>Llave de Expansión de Arsenal</value>
+  </data>
 </root>
