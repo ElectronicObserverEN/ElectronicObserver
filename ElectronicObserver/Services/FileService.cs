@@ -77,7 +77,7 @@ public class FileService
 
 		OpenFolderDialog dialog = new()
 		{
-			InitialDirectory = fullPath,
+			InitialDirectory = Directory.Exists(fullPath) ? Path.GetFullPath(path) : "",
 		};
 
 		return dialog.ShowDialog(MainWindow) switch
