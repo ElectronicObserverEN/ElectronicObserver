@@ -75,4 +75,5 @@ public enum UseItemId
 	LatestOverseasWarshipTechnology = 100,
 	NightSkilledCrewMember = 101,
 	SpecialAviationRation = 102,
+	ArsenalExpansionKey = 103,
 }

@@ -449,4 +449,7 @@
   <data name="SpecialAviationRation" xml:space="preserve">
     <value>航空特別増加食</value>
   </data>
+  <data name="ArsenalExpansionKey" xml:space="preserve">
+    <value>工廠拡張キー</value>
+  </data>
 </root>

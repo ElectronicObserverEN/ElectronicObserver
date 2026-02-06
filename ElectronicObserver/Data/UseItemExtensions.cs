@@ -74,7 +74,8 @@ public static class UseItemExtensions
 	    UseItemId.LatestOverseasWarshipTechnology => HeadquartersResources.LatestOverseasWarshipTechnology,
 	    UseItemId.NightSkilledCrewMember => HeadquartersResources.NightSkilledCrewMember,
 	    UseItemId.SpecialAviationRation => HeadquartersResources.SpecialAviationRation,
-	    _ => ConstantsRes.Unknown,
+	    UseItemId.ArsenalExpansionKey => HeadquartersResources.ArsenalExpansionKey,
+		_ => ConstantsRes.Unknown,
     };
 
 }

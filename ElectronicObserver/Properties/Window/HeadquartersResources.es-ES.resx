@@ -117,44 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdmiralComment" xml:space="preserve">
+    <value>(Comentario)</value>
+  </data>
   <data name="Ammo" xml:space="preserve">
     <value>(Munición)</value>
-  </data>
-  <data name="WrappingOffset" xml:space="preserve">
-    <value>Desplazamiento de envoltura</value>
-  </data>
-  <data name="WhiteSash" xml:space="preserve">
-    <value>Banda blanca</value>
-  </data>
-  <data name="Rice" xml:space="preserve">
-    <value>Arroz</value>
-  </data>
-  <data name="ItemNameBauxite" xml:space="preserve">
-    <value>Bauxita</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>FCF</value>
   </data>
-  <data name="ItemNameAmmo" xml:space="preserve">
-    <value>Munición</value>
-  </data>
   <data name="ItemNameName" xml:space="preserve">
     <value>Barco:</value>
   </data>
-  <data name="ItemNameSardine" xml:space="preserve">
-    <value>Sardina</value>
+  <data name="ItemNameComment" xml:space="preserve">
+    <value>Comentario del almirante</value>
   </data>
-  <data name="AdmiralComment" xml:space="preserve">
-    <value>(Comentario)</value>
+  <data name="ItemNameHQLevel" xml:space="preserve">
+    <value>Nivel del cuartel general</value>
   </data>
-  <data name="AdmiralNameToolTipExpedition" xml:space="preserve">
-    <value>Expediciones: {0} / Éxito: {1} ({2:p2}) / Fallidas: {3}</value>
+  <data name="ItemNameShipSlots" xml:space="preserve">
+    <value>Espacios para barcos</value>
   </data>
-  <data name="AdmiralNameToolTipFirstClassMedals" xml:space="preserve">
-    <value>Medallas de primera clase: {0}</value>
+  <data name="ItemNameEquipmentSlots" xml:space="preserve">
+    <value>Espacios para equipamiento</value>
   </data>
-  <data name="AdmiralNameToolTipPractice" xml:space="preserve">
-    <value>Ejercicios navales: {0} / Victorias: {1} ({2:p2}) / Derrotas: {3}</value>
+  <data name="ItemNameInstantRepair" xml:space="preserve">
+    <value>Reparación instantánea</value>
+  </data>
+  <data name="ItemNameInstantConstruction" xml:space="preserve">
+    <value>Construcción instantánea</value>
+  </data>
+  <data name="ItemNameDevelopmentMaterial" xml:space="preserve">
+    <value>Material de desarrollo</value>
+  </data>
+  <data name="ItemNameImproveMaterial" xml:space="preserve">
+    <value>Material de mejora</value>
+  </data>
+  <data name="ItemNameFurnitureCoin" xml:space="preserve">
+    <value>Moneda de mobiliario</value>
+  </data>
+  <data name="ItemNameFuel" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="ItemNameAmmo" xml:space="preserve">
+    <value>Munición</value>
+  </data>
+  <data name="ItemNameSteel" xml:space="preserve">
+    <value>Acero</value>
+  </data>
+  <data name="ItemNameBauxite" xml:space="preserve">
+    <value>Bauxita</value>
+  </data>
+  <data name="ItemNameOtherItem" xml:space="preserve">
+    <value>Otro Item</value>
   </data>
   <data name="AdmiralNameToolTipSortie" xml:space="preserve">
     <value>Salidas: {0} / Victorias: {1} ({2:p2}) / Derrotas: {3}</value>
@@ -162,68 +177,73 @@
   <data name="AdmiralNameToolTipSortieExp" xml:space="preserve">
     <value>Experiencia promedio por salida: {0:n2} / por victoria: {1:n2}</value>
   </data>
-  <data name="UnknownItem" xml:space="preserve">
-    <value>Artículo desconocido (ID: {0})</value>
+  <data name="AdmiralNameToolTipExpedition" xml:space="preserve">
+    <value>Expediciones: {0} / Éxito: {1} ({2:p2}) / Fallidas: {3}</value>
   </data>
-  <data name="DisplayUseItemToolTipHint" xml:space="preserve">
-    <value>(puede cambiarse en configuraciones)
-(clic derecho para mostrar todos los ítems)</value>
+  <data name="AdmiralNameToolTipPractice" xml:space="preserve">
+    <value>Ejercicios navales: {0} / Victorias: {1} ({2:p2}) / Derrotas: {3}</value>
   </data>
-  <data name="ItemNameXmasSelectGiftBox" xml:space="preserve">
-    <value>Caja de regalo navideña seleccionada</value>
+  <data name="AdmiralNameToolTipFirstClassMedals" xml:space="preserve">
+    <value>Medallas de primera clase: {0}</value>
   </data>
-  <data name="SenkaDay" xml:space="preserve">
-    <value>Puntos diarios</value>
+  <data name="HQLevelToolTipSenkaSession" xml:space="preserve">
+    <value>Sesión: +{0} exp / {1:n2} pt</value>
   </data>
-  <data name="SenkaMonth" xml:space="preserve">
-    <value>Puntos mensuales</value>
+  <data name="HQLevelToolTipSenkaDay" xml:space="preserve">
+    <value>Diario: +{0} exp / {1:n2} pt</value>
   </data>
-  <data name="SenkaSession" xml:space="preserve">
-    <value>Puntos de sesión</value>
+  <data name="HQLevelToolTipSenkaMonth" xml:space="preserve">
+    <value>Mensual: +{0} exp / {1:n2} pt</value>
   </data>
-  <data name="LatestOverseasWarshipTechnology" xml:space="preserve">
-    <value>Tecnología naval extranjera más reciente</value>
-  </data>
-  <data name="NightSkilledCrewMember" xml:space="preserve">
-    <value>Miembro de tripulación nocturna experto</value>
+  <data name="ResourceToolTip" xml:space="preserve">
+    <value>Hoy: {0:+##;-##;±0}
+Esta semana: {1:+##;-##;±0}
+Este mes: {2:+##;-##;±0}</value>
   </data>
   <data name="FurnitureCoinToolTip" xml:space="preserve">
     <value>(S) x {0} ( +{1} )
 (M) x {2} ( +{3} )
 (L) x {4} ( +{5} )</value>
   </data>
-  <data name="ItemNameInstantConstruction" xml:space="preserve">
-    <value>Construcción instantánea</value>
+  <data name="CopyToClipboardBuckets" xml:space="preserve">
+    <value>cubos</value>
   </data>
-  <data name="ItemNameInstantRepair" xml:space="preserve">
-    <value>Reparación instantánea</value>
+  <data name="CopyToClipboardDevelopmentMaterials" xml:space="preserve">
+    <value>mats de desarrollo</value>
   </data>
-  <data name="ItemNameValentineChocolate" xml:space="preserve">
-    <value>Chocolate de San Valentín</value>
+  <data name="CopyToClipboardInstantConstruction" xml:space="preserve">
+    <value>Lanzallamas</value>
   </data>
-  <data name="ItemNameUnderwayReplenishment" xml:space="preserve">
-    <value>Suministro en ruta</value>
+  <data name="CopyToClipboardImproveMaterial" xml:space="preserve">
+    <value>tornillos</value>
+  </data>
+  <data name="FailedToCopyToClipboard" xml:space="preserve">
+    <value>Error al copiar los recursos al portapapeles.</value>
+  </data>
+  <data name="DisplayUseItemToolTipHint" xml:space="preserve">
+    <value>(puede cambiarse en configuraciones)
+(clic derecho para mostrar todos los ítems)</value>
+  </data>
+  <data name="UnknownItem" xml:space="preserve">
+    <value>Artículo desconocido (ID: {0})</value>
+  </data>
+  <data name="Rice" xml:space="preserve">
+    <value>Arroz</value>
   </data>
   <data name="Umeboshi" xml:space="preserve">
     <value>Umeboshi</value>
   </data>
-  <data name="ItemNameFurnitureCoin" xml:space="preserve">
-    <value>Moneda de mobiliario</value>
-  </data>
-  <data name="ItemNameImproveMaterial" xml:space="preserve">
-    <value>Material de mejora</value>
-  </data>
-  <data name="ItemNameMedals" xml:space="preserve">
-    <value>Medallas</value>
-  </data>
   <data name="Nori" xml:space="preserve">
     <value>Nori</value>
   </data>
-  <data name="ItemNameOtherItem" xml:space="preserve">
-    <value>Otro Item</value>
-  </data>
   <data name="Tea" xml:space="preserve">
     <value>Te</value>
+  </data>
+  <data name="ListOfOwnedItems" xml:space="preserve">
+    <value>Lista de objetos en posesión</value>
+  </data>
+  <data name="WrappingOffset" xml:space="preserve">
+    <value>Desplazamiento de envoltura</value>
   </data>
   <data name="ItemNameActionReport" xml:space="preserve">
     <value>Informe de combate</value>
@@ -249,115 +269,44 @@
   <data name="ItemNameEmergencyRepairMaterial" xml:space="preserve">
     <value> Material de reparación de emergencia</value>
   </data>
-  <data name="ItemNameMarriageRingAndPapers" xml:space="preserve">
-    <value>Anillo de matrimonio y documentos</value>
-  </data>
-  <data name="ItemNameHoushouDinnerTicket" xml:space="preserve">
-    <value>Ticket de cena de Houshou</value>
-  </data>
-  <data name="ItemNameHishimochi" xml:space="preserve">
-    <value>Hishimochi</value>
-  </data>
-  <data name="ItemNameHeadquartersPersonnel" xml:space="preserve">
-    <value>Personal del cuartel general</value>
-  </data>
-  <data name="ItemNameFurnitureFairy" xml:space="preserve">
-    <value>Hada de los muebles</value>
-  </data>
-  <data name="ItemNameFurnitureBoxSmall" xml:space="preserve">
-    <value>Caja de muebles (pequeña)</value>
-  </data>
-  <data name="ItemNameFurnitureBoxMedium" xml:space="preserve">
-    <value>Caja de muebles (mediana)</value>
+  <data name="ItemNameFirstClassMedal" xml:space="preserve">
+    <value>Medalla de primera clase</value>
   </data>
   <data name="ItemNameFurnitureBoxLarge" xml:space="preserve">
     <value>Caja de muebles (grande)</value>
   </data>
-  <data name="ItemNameFirstClassMedal" xml:space="preserve">
-    <value>Medalla de primera clase</value>
+  <data name="ItemNameFurnitureBoxMedium" xml:space="preserve">
+    <value>Caja de muebles (mediana)</value>
   </data>
-  <data name="ListOfOwnedItems" xml:space="preserve">
-    <value>Lista de objetos en posesión</value>
+  <data name="ItemNameFurnitureBoxSmall" xml:space="preserve">
+    <value>Caja de muebles (pequeña)</value>
   </data>
-  <data name="CopyToClipboardBuckets" xml:space="preserve">
-    <value>cubos</value>
+  <data name="ItemNameFurnitureFairy" xml:space="preserve">
+    <value>Hada de los muebles</value>
   </data>
-  <data name="CopyToClipboardDevelopmentMaterials" xml:space="preserve">
-    <value>mats de desarrollo</value>
+  <data name="ItemNameHeadquartersPersonnel" xml:space="preserve">
+    <value>Personal del cuartel general</value>
   </data>
-  <data name="CopyToClipboardInstantConstruction" xml:space="preserve">
-    <value>Lanzallamas</value>
+  <data name="ItemNameHishimochi" xml:space="preserve">
+    <value>Hishimochi</value>
   </data>
-  <data name="CopyToClipboardImproveMaterial" xml:space="preserve">
-    <value>tornillos</value>
+  <data name="ItemNameHoushouDinnerTicket" xml:space="preserve">
+    <value>Ticket de cena de Houshou</value>
   </data>
-  <data name="FailedToCopyToClipboard" xml:space="preserve">
-    <value>Error al copiar los recursos al portapapeles.</value>
+  <data name="ItemNameMarriageRingAndPapers" xml:space="preserve">
+    <value>Anillo de matrimonio y documentos</value>
   </data>
-  <data name="ItemNameSteel" xml:space="preserve">
-    <value>Acero</value>
-  </data>
-  <data name="ItemNameFuel" xml:space="preserve">
-    <value>Fuel</value>
-  </data>
-  <data name="HQLevelToolTipSenkaSession" xml:space="preserve">
-    <value>Sesión: +{0} exp / {1:n2} pt</value>
-  </data>
-  <data name="HQLevelToolTipSenkaDay" xml:space="preserve">
-    <value>Diario: +{0} exp / {1:n2} pt</value>
-  </data>
-  <data name="HQLevelToolTipSenkaMonth" xml:space="preserve">
-    <value>Mensual: +{0} exp / {1:n2} pt</value>
-  </data>
-  <data name="ResourceToolTip" xml:space="preserve">
-    <value>Hoy: {0:+##;-##;±0}
-Esta semana: {1:+##;-##;±0}
-Este mes: {2:+##;-##;±0}</value>
-  </data>
-  <data name="ItemNameDevelopmentMaterial" xml:space="preserve">
-    <value>Material de desarrollo</value>
-  </data>
-  <data name="ItemNameComment" xml:space="preserve">
-    <value>Comentario del almirante</value>
-  </data>
-  <data name="ItemNameHQLevel" xml:space="preserve">
-    <value>Nivel del cuartel general</value>
-  </data>
-  <data name="ItemNameShipSlots" xml:space="preserve">
-    <value>Espacios para barcos</value>
-  </data>
-  <data name="ItemNameEquipmentSlots" xml:space="preserve">
-    <value>Espacios para equipamiento</value>
-  </data>
-  <data name="ItemNameRepairGoddess" xml:space="preserve">
-    <value>Diosa de reparación</value>
-  </data>
-  <data name="ItemNameRepairTeam" xml:space="preserve">
-    <value>Equipo de reparación</value>
-  </data>
-  <data name="ItemNameMoraleFoodMamiya" xml:space="preserve">
-    <value>Buque de provisiones 'Mamiya'  </value>
+  <data name="ItemNameMedals" xml:space="preserve">
+    <value>Medallas</value>
   </data>
   <data name="ItemNameMoraleFoodIrako" xml:space="preserve">
     <value>Buque de provisiones 'Irako'  </value>
   </data>
-  <data name="TeruTeruBozu" xml:space="preserve">
-    <value>Teru Teru Bōzu</value>
-  </data>
-  <data name="ItemNameSaury" xml:space="preserve">
-    <value>Saury</value>
-  </data>
-  <data name="ItemNameRemodelBlueprints" xml:space="preserve">
-    <value>Planos de remodelación</value>
-  </data>
-  <data name="ItemNameReinforcementExpansion" xml:space="preserve">
-    <value>Ampliación de refuerzo</value>
+  <data name="ItemNameMoraleFoodMamiya" xml:space="preserve">
+    <value>Buque de provisiones 'Mamiya'  </value>
   </data>
   <data name="ItemNameNeTypeEngine" xml:space="preserve">
     <value>Motor tipo Ne </value>
-  </data>
-  <data name="ItemNameShoGoMedal" xml:space="preserve">
-    <value>Medalla de la operación Sho-go </value>
   </data>
   <data name="ItemNameNewModelAircraftBlueprint" xml:space="preserve">
     <value>Planos de aeronaves de nuevo modelo</value>
@@ -383,25 +332,79 @@ Este mes: {2:+##;-##;±0}</value>
   <data name="ItemNamePrototypeFlightDeckCatapult" xml:space="preserve">
     <value>Catapulta de cubierta prototipo </value>
   </data>
-  <data name="SpecialAviationRation" xml:space="preserve">
-    <value>Ración especial de aviación</value>
+  <data name="ItemNameReinforcementExpansion" xml:space="preserve">
+    <value>Ampliación de refuerzo</value>
   </data>
-  <data name="SeaColoredRibbon" xml:space="preserve">
-    <value>Cinta color mar</value>
+  <data name="ItemNameRemodelBlueprints" xml:space="preserve">
+    <value>Planos de remodelación</value>
   </data>
-  <data name="Pumpkin" xml:space="preserve">
-    <value>Calabaza</value>
+  <data name="ItemNameRepairGoddess" xml:space="preserve">
+    <value>Diosa de reparación</value>
   </data>
-  <data name="ItemNameSubmarineSupplyMaterials" xml:space="preserve">
-    <value>Materiales de suministro para submarino</value>
+  <data name="ItemNameRepairTeam" xml:space="preserve">
+    <value>Equipo de reparación</value>
+  </data>
+  <data name="ItemNameSardine" xml:space="preserve">
+    <value>Sardina</value>
+  </data>
+  <data name="ItemNameSaury" xml:space="preserve">
+    <value>Saury</value>
   </data>
   <data name="ItemNameSetsubunBeans" xml:space="preserve">
     <value>Habas de Setsubun</value>
+  </data>
+  <data name="ItemNameShoGoMedal" xml:space="preserve">
+    <value>Medalla de la operación Sho-go </value>
   </data>
   <data name="ItemNameSkilledCrewMember" xml:space="preserve">
     <value>Tripulante especializado </value>
   </data>
   <data name="ItemNameStraitMedal" xml:space="preserve">
     <value>Medalla del estrecho</value>
+  </data>
+  <data name="ItemNameSubmarineSupplyMaterials" xml:space="preserve">
+    <value>Materiales de suministro para submarino</value>
+  </data>
+  <data name="ItemNameUnderwayReplenishment" xml:space="preserve">
+    <value>Suministro en ruta</value>
+  </data>
+  <data name="ItemNameValentineChocolate" xml:space="preserve">
+    <value>Chocolate de San Valentín</value>
+  </data>
+  <data name="ItemNameXmasSelectGiftBox" xml:space="preserve">
+    <value>Caja de regalo navideña seleccionada</value>
+  </data>
+  <data name="Pumpkin" xml:space="preserve">
+    <value>Calabaza</value>
+  </data>
+  <data name="TeruTeruBozu" xml:space="preserve">
+    <value>Teru Teru Bōzu</value>
+  </data>
+  <data name="SeaColoredRibbon" xml:space="preserve">
+    <value>Cinta color mar</value>
+  </data>
+  <data name="WhiteSash" xml:space="preserve">
+    <value>Banda blanca</value>
+  </data>
+  <data name="SenkaSession" xml:space="preserve">
+    <value>Puntos de sesión</value>
+  </data>
+  <data name="SenkaDay" xml:space="preserve">
+    <value>Puntos diarios</value>
+  </data>
+  <data name="SenkaMonth" xml:space="preserve">
+    <value>Puntos mensuales</value>
+  </data>
+  <data name="LatestOverseasWarshipTechnology" xml:space="preserve">
+    <value>Tecnología naval extranjera más reciente</value>
+  </data>
+  <data name="NightSkilledCrewMember" xml:space="preserve">
+    <value>Miembro de tripulación nocturna experto</value>
+  </data>
+  <data name="SpecialAviationRation" xml:space="preserve">
+    <value>Ración especial de aviación</value>
+  </data>
+  <data name="ArsenalExpansionKey" xml:space="preserve">
+    <value>Llave de Expansión de Arsenal</value>
   </data>
 </root>
