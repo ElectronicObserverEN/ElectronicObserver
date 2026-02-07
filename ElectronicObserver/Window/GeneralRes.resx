@@ -848,6 +848,6 @@
     <value>士気最大</value>
   </data>
   <data name="ProgressResetsDaily" xml:space="preserve">
-    <value>??? (Progress resets daily)</value>
+    <value>デイリーリセット</value>
   </data>
 </root>
