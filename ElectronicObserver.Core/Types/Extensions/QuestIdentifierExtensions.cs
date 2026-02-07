@@ -6,7 +6,7 @@ namespace ElectronicObserver.Core.Types.Extensions;
 
 public static class QuestIdentifierExtensions
 {
-	public static bool ResetsDaily(this IQuestIdentifier questData, List<TimeLimitedQuestData> timeLimitedQuests)
+	public static bool ProgressResetsDaily(this IQuestIdentifier questData, List<QuestMetadata> questsMetadata)
 	{
 		// Dailies
 		if (questData.QuestResetType is QuestResetType.Daily) return true;
@@ -26,9 +26,8 @@ public static class QuestIdentifierExtensions
 			341 => true,
 			342 => true,
 			348 => true,
-			// I think we can assume all PVP quest resets daily but for some reason EO is only listing the above IDs as reseting daily ?
-			// For time limited quests, we are using a data json file to handle special cases
-			_ => timeLimitedQuests.Find(quest => quest.ApiId == questData.QuestID)?.ProgressResetsDaily is true,
+
+			_ => questsMetadata.Find(quest => quest.ApiId == questData.QuestID)?.QuestProgressResetType is QuestProgressResetType.Daily,
 		};
 	}
 }

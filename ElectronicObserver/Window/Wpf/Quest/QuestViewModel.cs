@@ -418,7 +418,7 @@ public partial class QuestViewModel : AnchorableViewModel
 					row.QuestView_NameToolTip += $"\r\n{tracker?.GroupConditions.Display}";
 				}
 
-				if (q.Type != 1 && q.ResetsDaily(KCDatabase.Instance.Translation.TimeLimitedQuests.TimeLimitedQuests))
+				if (q.Type != 1 && q.ProgressResetsDaily(KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList))
 				{
 					row.QuestView_NameToolTip += "\r\n";
 					row.QuestView_NameToolTipExtra = $"{FormQuest.QuestView_ProgressResetsDaily}";

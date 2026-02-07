@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using ElectronicObserver.Core.Types.Quests;
 
 namespace ElectronicObserver.Core.Types.Serialization.Quests;
 
-public record TimeLimitedQuestData
+public record QuestMetadata
 {
 	[JsonPropertyName("id")]
 	public required int ApiId { get; set; }
@@ -11,6 +12,6 @@ public record TimeLimitedQuestData
 	[JsonPropertyName("endTime")]
 	public DateTime? EndTime { get; set; }
 
-	[JsonPropertyName("dailyReset")]
-	public bool ProgressResetsDaily { get; set; }
+	[JsonPropertyName("resetType")]
+	public QuestProgressResetType? QuestProgressResetType { get; set; }
 }

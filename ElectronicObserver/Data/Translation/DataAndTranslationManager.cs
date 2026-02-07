@@ -19,7 +19,7 @@ public class DataAndTranslationManager
 
 	public DestinationData Destination { get; private set; }
 	public QuestTranslationData Quest { get; private set; }
-	public TimeLimitedQuestsData TimeLimitedQuests { get; private set; }
+	public QuestsMetadata QuestsMetadata { get; private set; }
 	public EquipmentTranslationData Equipment { get; private set; }
 	public MissionTranslationData Mission { get; private set; }
 	public ShipTranslationData Ship { get; private set; }
@@ -44,6 +44,6 @@ public class DataAndTranslationManager
 		Lock = new();
 		FitBonus = new();
 		EquipmentUpgrade = new();
-		TimeLimitedQuests = new();
+		QuestsMetadata = new();
 	}
 }
