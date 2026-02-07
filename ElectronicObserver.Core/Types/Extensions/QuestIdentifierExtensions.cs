@@ -26,8 +26,6 @@ public static class QuestIdentifierExtensions
 			341 => true,
 			342 => true,
 			348 => true,
-			// TODO : remove (testing purpose only) : 
-			875 => true,
 			// I think we can assume all PVP quest resets daily but for some reason EO is only listing the above IDs as reseting daily ?
 			// For time limited quests, we are using a data json file to handle special cases
 			_ => timeLimitedQuests.Find(quest => quest.ApiId == questData.QuestID)?.ProgressResetsDaily is true,
