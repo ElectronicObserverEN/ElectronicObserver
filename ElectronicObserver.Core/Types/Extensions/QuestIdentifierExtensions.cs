@@ -11,14 +11,13 @@ public static class QuestIdentifierExtensions
 		// Dailies
 		if (questData.QuestResetType is QuestResetType.Daily) return true;
 
-		// PvP quests
 		return questData.QuestID switch
 		{
 			// Quests that are not daily but only appear on some days : 
 			211 => true, // 空母3
 			212 => true, // 輸送5
 
-			// PVP quests
+			// Some PVP quests
 			311 => true,
 			330 => true,
 			337 => true,
@@ -27,6 +26,7 @@ public static class QuestIdentifierExtensions
 			342 => true,
 			348 => true,
 
+			// Special cases
 			_ => questsMetadata.Find(quest => quest.ApiId == questData.QuestID)?.QuestProgressResetType is QuestProgressResetType.Daily,
 		};
 	}
