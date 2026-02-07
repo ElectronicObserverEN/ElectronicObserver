@@ -8,6 +8,7 @@ public class FormQuestTranslationViewModel : TranslationBaseViewModel
 	public string QuestView_Category => GeneralRes.Category.Replace("_", "__").Replace("&", "_");
 	public string QuestView_Name => GeneralRes.QuestName.Replace("_", "__").Replace("&", "_");
 	public string QuestView_Progress => GeneralRes.Progress.Replace("_", "__").Replace("&", "_");
+	public string QuestView_ProgressResetsDaily => GeneralRes.ProgressResetsDaily;
 
 	public string MenuMain_QuestFilter => QuestResources.MenuMain_QuestFilter.Replace("_", "__").Replace("&", "_");
 	public string ShowInProgressOnly => GeneralRes.ShowInProgressOnly.Replace("_", "__").Replace("&", "_");

@@ -785,14 +785,14 @@ Denial: {3}</value>
   <data name="RightClickMenu_ShowBattleResult" xml:space="preserve">
     <value>Temporarily show battle details (&amp;V)</value>
   </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments" xml:space="preserve">
+    <value>Check for aircraft being transferred (&amp;R)</value>
+  </data>
   <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail" xml:space="preserve">
     <value>There is no aircraft being transferred.</value>
   </data>
   <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title" xml:space="preserve">
     <value>Aircraft Transfer</value>
-  </data>
-  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments" xml:space="preserve">
-    <value>Check for aircraft being transferred (&amp;R)</value>
   </data>
   <data name="AntiAirPower" xml:space="preserve">
     <value>Fleet AA
@@ -847,5 +847,8 @@ Please click here to restart.</value>
   </data>
   <data name="MaximumMorale" xml:space="preserve">
     <value>Maximum morale</value>
+  </data>
+  <data name="ProgressResetsDaily" xml:space="preserve">
+    <value>Progress resets daily</value>
   </data>
 </root>

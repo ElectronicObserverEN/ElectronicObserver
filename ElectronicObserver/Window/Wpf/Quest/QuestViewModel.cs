@@ -12,6 +12,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
 using ElectronicObserver.Core.Services;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Resource;
@@ -402,15 +403,26 @@ public partial class QuestViewModel : AnchorableViewModel
 				var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
 				var tracker = KCDatabase.Instance.QuestTrackerManagers.GetTrackerById(q.QuestID) ??
 							  KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
-				// var code = q.Code != "" ? $"{q.Code}: " : "";
-				// row.Cells[QuestView_Name.Index].ToolTipText =
-				// 	$"{code}{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
 
-				row.QuestView_NameToolTip =
-					$"{row.QuestView_Name} (ID: {q.QuestID})\r\n" +
-					$"{q.Description}\r\n" +
-					$"{tracker?.ClearCondition ?? progress?.GetClearCondition() ?? ""}\r\n" +
-					$"{tracker?.GroupConditions.Display ?? ""}";
+				row.QuestView_NameToolTip = $"{row.QuestView_Name} (ID: {q.QuestID})\r\n{q.Description}";
+
+				string? clearCondition = tracker?.ClearCondition ?? progress?.GetClearCondition();
+
+				if (!string.IsNullOrEmpty(clearCondition))
+				{
+					row.QuestView_NameToolTip += $"\r\n{clearCondition}";
+				}
+
+				if (!string.IsNullOrEmpty(tracker?.GroupConditions.Display))
+				{
+					row.QuestView_NameToolTip += $"\r\n{tracker?.GroupConditions.Display}";
+				}
+
+				if (q.Type != 1 && q.ResetsDaily(KCDatabase.Instance.Translation.TimeLimitedQuests.TimeLimitedQuests))
+				{
+					row.QuestView_NameToolTip += "\r\n";
+					row.QuestView_NameToolTipExtra = $"{FormQuest.QuestView_ProgressResetsDaily}";
+				}
 			}
 			{
 				string value;

@@ -290,7 +290,13 @@
 					>
 					<DataGridTextColumn.CellStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
-							<Setter Property="ToolTip" Value="{Binding QuestView_NameToolTip}" />
+							<Setter Property="ToolTip" >
+								<Setter.Value>
+									<TextBlock>
+										<Run Text="{Binding QuestView_NameToolTip}" /><Run FontStyle="Italic" Text="{Binding QuestView_NameToolTipExtra}" />
+									</TextBlock>
+								</Setter.Value>
+							</Setter>
 							<Setter Property="ContextMenu" Value="{StaticResource MainContextMenu}" />
 						</Style>
 					</DataGridTextColumn.CellStyle>

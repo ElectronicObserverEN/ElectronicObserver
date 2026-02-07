@@ -1,11 +1,12 @@
 ﻿using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Quests;
 
 namespace ElectronicObserver.Data;
 
 /// <summary>
 /// 任務のデータを保持します。
 /// </summary>
-public class QuestData : ResponseWrapper, IIdentifiable
+public class QuestData : ResponseWrapper, IIdentifiable, IQuestIdentifier
 {
 
 	/// <summary>
@@ -23,6 +24,8 @@ public class QuestData : ResponseWrapper, IIdentifiable
 	/// 1=デイリー, 2=ウィークリー, 3=マンスリー, 4=単発, 5=他
 	/// </summary>
 	public int Type => (int)RawData.api_type;
+
+	public QuestResetType QuestResetType => (QuestResetType)Type;
 
 	/// <summary>
 	/// 周期アイコン種別

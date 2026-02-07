@@ -1,4 +1,4 @@
-﻿namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+﻿namespace ElectronicObserver.Core.Types.Quests;
 
 public enum QuestResetType
 {

@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Data;
+﻿using ElectronicObserver.Core.Types.Quests;
+using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using MessagePack;
 

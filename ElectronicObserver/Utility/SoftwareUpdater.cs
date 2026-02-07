@@ -142,6 +142,11 @@ public class SoftwareUpdater
 				downloadList.Add(("QuestTrackers.json", DataType.Data));
 			}
 
+			if (CurrentVersion.TimeLimitedQuest < LatestVersion.TimeLimitedQuest)
+			{
+				downloadList.Add(("TimeLimitedQuests.json", DataType.Data));
+			}
+
 			if (CurrentVersion.EventLocks < LatestVersion.EventLocks)
 			{
 				downloadList.Add(("Locks.json", DataType.Data));
@@ -329,6 +334,13 @@ public class SoftwareUpdater
 				true => (int)dataJson.QuestTrackers,
 				_ => 0,
 			};
+
+			int timeLimitedQuestsVersion = dataJson.TimeLimitedQuest() switch
+			{
+				true => (int)dataJson.TimeLimitedQuest,
+				_ => 0,
+			};
+
 			int eventLocksVersion = (int)dataJson.Locks;
 
 			int equipmentUpgradesVersion = dataJson.EquipmentUpgrades() switch
@@ -361,6 +373,7 @@ public class SoftwareUpdater
 				Quest = questVersion,
 				Ship = shipVersion,
 				QuestTrackers = questTrackersVersion,
+				TimeLimitedQuest = timeLimitedQuestsVersion,
 				EventLocks = eventLocksVersion,
 				LockTranslations = lockTranslationsVersion,
 				MaintenanceStart = maintenanceStartDate,
@@ -427,6 +440,7 @@ public class UpdateData
 	public string Quest { get; set; } = "";
 	public string Ship { get; set; } = "";
 	public int QuestTrackers { get; set; }
+	public int TimeLimitedQuest { get; set; }
 	public int EventLocks { get; set; }
 	public int LockTranslations { get; set; }
 	public int FitBonuses { get; set; }

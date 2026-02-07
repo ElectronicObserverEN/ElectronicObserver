@@ -847,4 +847,7 @@
   <data name="MaximumMorale" xml:space="preserve">
     <value>士気最大</value>
   </data>
+  <data name="ProgressResetsDaily" xml:space="preserve">
+    <value>??? (Progress resets daily)</value>
+  </data>
 </root>
