@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Quests;
 
 namespace ElectronicObserver.Data.Quest;
 
@@ -8,7 +9,7 @@ namespace ElectronicObserver.Data.Quest;
 /// 任務の進捗を管理する基底クラスです。
 /// </summary>
 [DataContract(Name = "ProgressData")]
-public abstract class ProgressData : IIdentifiable
+public abstract class ProgressData : IIdentifiable, IQuestIdentifier
 {
 
 	/// <summary>
@@ -35,6 +36,8 @@ public abstract class ProgressData : IIdentifiable
 	/// </summary>
 	[DataMember]
 	public int QuestType { get; protected set; }
+
+	public QuestResetType QuestResetType => (QuestResetType)QuestType;
 
 	/// <summary>
 	/// 未ロード時の進捗

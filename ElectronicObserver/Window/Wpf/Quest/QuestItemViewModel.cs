@@ -63,6 +63,7 @@ public class QuestItemViewModel
 
 	public string? QuestView_Name { get; set; }
 	public string? QuestView_NameToolTip { get; set; }
+	public string? QuestView_NameToolTipExtra { get; set; }
 
 	public double QuestView_Progress { get; set; }
 	public string? QuestView_ProgressText { get; set; }

@@ -19,6 +19,7 @@ public class DataAndTranslationManager
 
 	public DestinationData Destination { get; private set; }
 	public QuestTranslationData Quest { get; private set; }
+	public QuestsMetadata QuestsMetadata { get; private set; }
 	public EquipmentTranslationData Equipment { get; private set; }
 	public MissionTranslationData Mission { get; private set; }
 	public ShipTranslationData Ship { get; private set; }
@@ -34,14 +35,15 @@ public class DataAndTranslationManager
 
 	public void Initialize()
 	{
-		Destination = new DestinationData();
-		Equipment = new EquipmentTranslationData();
-		Mission = new MissionTranslationData();
-		Operation = new OperationData();
-		Quest = new QuestTranslationData();
-		Ship = new ShipTranslationData();
-		Lock = new LockTranslationData();
-		FitBonus = new FitBonusData();
-		EquipmentUpgrade = new EquipmentUpgradeData();
+		Destination = new();
+		Equipment = new();
+		Mission = new();
+		Operation = new();
+		Quest = new();
+		Ship = new();
+		Lock = new();
+		FitBonus = new();
+		EquipmentUpgrade = new();
+		QuestsMetadata = new();
 	}
 }
