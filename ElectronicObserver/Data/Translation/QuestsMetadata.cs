@@ -8,9 +8,9 @@ public class QuestsMetadata : TranslationBase
 {
 	private string QuestMetadataPath => Path.Join(DataAndTranslationManager.DataFolder, "QuestsMetadata.json");
 
-	public List<QuestMetadata> QuestsMetadataList = [];
+	public List<QuestMetadata> QuestsMetadataList { get; private set; } = [];
 
-	public override void Initialize()
+	public sealed override void Initialize()
 	{
 		LoadDictionary(QuestMetadataPath);
 	}

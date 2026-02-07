@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -116,58 +115,9 @@ public class SoftwareUpdater
 				UpdateSoftware();
 			}*/
 
-			List<(string FileName, DataType Type)> downloadList = new();
-			bool needReload = false;
+			List<(string FileName, DataType Type)> downloadList = GetDownloadList();
 
-			if (CurrentVersion.Equipment != LatestVersion.Equipment)
-				downloadList.Add(("equipment.json", DataType.Translation));
-
-			if (CurrentVersion.Expedition != LatestVersion.Expedition)
-				downloadList.Add(("expedition.json", DataType.Translation));
-
-			if (CurrentVersion.Destination != LatestVersion.Destination)
-				downloadList.Add((("destination.json", DataType.Data)));
-
-			if (CurrentVersion.Operation != LatestVersion.Operation)
-				downloadList.Add(("operation.json", DataType.Translation));
-
-			if (CurrentVersion.Quest != LatestVersion.Quest)
-				downloadList.Add(("quest.json", DataType.Translation));
-
-			if (CurrentVersion.Ship != LatestVersion.Ship)
-				downloadList.Add(("ship.json", DataType.Translation));
-
-			if (CurrentVersion.QuestTrackers < LatestVersion.QuestTrackers)
-			{
-				downloadList.Add(("QuestTrackers.json", DataType.Data));
-			}
-
-			if (CurrentVersion.TimeLimitedQuest < LatestVersion.TimeLimitedQuest)
-			{
-				downloadList.Add(("TimeLimitedQuests.json", DataType.Data));
-			}
-
-			if (CurrentVersion.EventLocks < LatestVersion.EventLocks)
-			{
-				downloadList.Add(("Locks.json", DataType.Data));
-			}
-
-			if (CurrentVersion.LockTranslations < LatestVersion.LockTranslations)
-			{
-				downloadList.Add(("Locks.json", DataType.Translation));
-			}
-
-			if (CurrentVersion.FitBonuses < LatestVersion.FitBonuses)
-			{
-				downloadList.Add(("FitBonuses.json", DataType.Data));
-			}
-
-			if (CurrentVersion.EquipmentUpgrades < LatestVersion.EquipmentUpgrades)
-			{
-				downloadList.Add(("EquipmentUpgrades.json", DataType.Data));
-			}
-
-			needReload = downloadList.Any();
+			bool needReload = downloadList.Count > 0;
 
 			List<Task> taskList = new();
 
@@ -204,6 +154,61 @@ public class SoftwareUpdater
 		{
 			Logger.Add(3, SoftwareInformationResources.FailedToObtainUpdateData + e);
 		}
+	}
+
+	private static List<(string FileName, DataType Type)> GetDownloadList()
+	{
+		List<(string FileName, DataType Type)> downloadList = [];
+
+		if (CurrentVersion.Equipment != LatestVersion.Equipment)
+			downloadList.Add(("equipment.json", DataType.Translation));
+
+		if (CurrentVersion.Expedition != LatestVersion.Expedition)
+			downloadList.Add(("expedition.json", DataType.Translation));
+
+		if (CurrentVersion.Destination != LatestVersion.Destination)
+			downloadList.Add((("destination.json", DataType.Data)));
+
+		if (CurrentVersion.Operation != LatestVersion.Operation)
+			downloadList.Add(("operation.json", DataType.Translation));
+
+		if (CurrentVersion.Quest != LatestVersion.Quest)
+			downloadList.Add(("quest.json", DataType.Translation));
+
+		if (CurrentVersion.Ship != LatestVersion.Ship)
+			downloadList.Add(("ship.json", DataType.Translation));
+
+		if (CurrentVersion.QuestTrackers < LatestVersion.QuestTrackers)
+		{
+			downloadList.Add(("QuestTrackers.json", DataType.Data));
+		}
+
+		if (CurrentVersion.TimeLimitedQuest < LatestVersion.TimeLimitedQuest)
+		{
+			downloadList.Add(("TimeLimitedQuests.json", DataType.Data));
+		}
+
+		if (CurrentVersion.EventLocks < LatestVersion.EventLocks)
+		{
+			downloadList.Add(("Locks.json", DataType.Data));
+		}
+
+		if (CurrentVersion.LockTranslations < LatestVersion.LockTranslations)
+		{
+			downloadList.Add(("Locks.json", DataType.Translation));
+		}
+
+		if (CurrentVersion.FitBonuses < LatestVersion.FitBonuses)
+		{
+			downloadList.Add(("FitBonuses.json", DataType.Data));
+		}
+
+		if (CurrentVersion.EquipmentUpgrades < LatestVersion.EquipmentUpgrades)
+		{
+			downloadList.Add(("EquipmentUpgrades.json", DataType.Data));
+		}
+
+		return downloadList;
 	}
 
 	/// <summary>
