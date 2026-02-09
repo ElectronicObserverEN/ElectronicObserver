@@ -14,6 +14,7 @@ using DynaJson;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Quests;
+using ElectronicObserver.Core.Types.Serialization.Quests;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Resource;
@@ -419,10 +420,22 @@ public partial class QuestViewModel : AnchorableViewModel
 					row.QuestView_NameToolTip += $"\r\n{tracker?.GroupConditions.Display}";
 				}
 
+				row.QuestView_NameToolTipExtra = "";
+
 				if (q.Type != 1 && q.GetProgressResetType() is QuestResetType.Daily)
 				{
+					row.QuestView_NameToolTipExtra += $"{FormQuest.QuestView_ProgressResetsDaily}";
+				}
+
+				if (KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList.TryGetValue(q.ID, out QuestMetadata? metadata) && metadata.EndTime is DateTime endTime)
+				{
+					endTime = endTime - TimeSpan.FromHours(9) + TimeZoneInfo.Local.BaseUtcOffset;
+					row.QuestView_NameToolTipExtra += string.Format(FormQuest.QuestView_EndsOn, endTime);
+				}
+
+				if (row.QuestView_NameToolTipExtra?.Length > 0)
+				{
 					row.QuestView_NameToolTip += "\r\n";
-					row.QuestView_NameToolTipExtra = $"{FormQuest.QuestView_ProgressResetsDaily}";
 				}
 			}
 			{

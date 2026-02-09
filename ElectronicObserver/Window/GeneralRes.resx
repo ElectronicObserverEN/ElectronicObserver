@@ -850,4 +850,7 @@
   <data name="ProgressResetsDaily" xml:space="preserve">
     <value>デイリーリセット</value>
   </data>
+  <data name="QuestEndsOn" xml:space="preserve">
+    <value>??? (Ends on {0:f})</value>
+  </data>
 </root>

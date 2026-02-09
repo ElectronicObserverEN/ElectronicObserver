@@ -851,4 +851,7 @@ Please click here to restart.</value>
   <data name="ProgressResetsDaily" xml:space="preserve">
     <value>Progress resets daily</value>
   </data>
+  <data name="QuestEndsOn" xml:space="preserve">
+    <value>Ends on {0:f}</value>
+  </data>
 </root>
