@@ -137,21 +137,6 @@ public class QuestData : ResponseWrapper, IIdentifiable
 
 			_ => QuestResetType.Unknown
 		};
-		/*
-		return questData.QuestID switch
-		{
-			// Some PVP quests
-			311 => true,
-			330 => true,
-			337 => true,
-			339 => true,
-			341 => true,
-			342 => true,
-			348 => true,
-
-			// Special cases
-			_ => questsMetadata.Find(quest => quest.ApiId == questData.QuestID)?.QuestProgressResetType is QuestProgressResetType.Daily,
-		};*/
 	}
 
 	public int ID => QuestID;
