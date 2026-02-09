@@ -9,7 +9,7 @@ namespace ElectronicObserver.Data.Quest;
 /// 任務の進捗を管理する基底クラスです。
 /// </summary>
 [DataContract(Name = "ProgressData")]
-public abstract class ProgressData : IIdentifiable, IQuestIdentifier
+public abstract class ProgressData : IIdentifiable
 {
 
 	/// <summary>
@@ -198,6 +198,14 @@ public abstract class ProgressData : IIdentifiable, IQuestIdentifier
 		}
 	}
 
+	public QuestResetType GetProgressResetType() => TryGetQuest()?.GetProgressResetType() ?? QuestResetType.Unknown;
+
+	private QuestData? TryGetQuest()
+	{
+		if (!KCDatabase.Instance.Quest.Quests.ContainsKey(QuestID)) return null;
+
+		return KCDatabase.Instance.Quest[QuestID];
+	}
 
 	/// <summary>
 	/// この任務の達成に必要な条件を表す文字列を返します。

@@ -13,5 +13,5 @@ public record QuestMetadata
 	public DateTime? EndTime { get; set; }
 
 	[JsonPropertyName("resetType")]
-	public QuestProgressResetType? QuestProgressResetType { get; set; }
+	public QuestResetType? QuestProgressResetType { get; set; }
 }
