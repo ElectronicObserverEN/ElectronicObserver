@@ -6,13 +6,8 @@ namespace ElectronicObserver.Core.Types;
 public class SoftwareUpdateData
 {
 	[JsonPropertyName("bld_date")]
-	public string BuildDateRaw
-	{
-		set => BuildDate = DateTimeHelper.CSVStringToTime(value);
-		get => throw new NotSupportedException();
-	}
-
-	public DateTime BuildDate { get; private set; }
+	[JsonConverter(typeof(CsvDateConverter))]
+	public DateTime BuildDate { get; set; }
 
 	[JsonPropertyName("ver")]
 	public string AppVersion { get; set; } = "0.0.0.0";
@@ -42,33 +37,16 @@ public class SoftwareUpdateData
 	public int EquipmentUpgrades { get; set; }
 
 	[JsonPropertyName("MaintStart")]
-	public string MaintenanceStartRaw
-	{
-		set => MaintenanceStart = DateTimeHelper.CSVStringToTime(value);
-		get => throw new NotSupportedException();
-	}
-
+	[JsonConverter(typeof(CsvDateConverter))]
 	public DateTime MaintenanceStart { get; set; }
 
 	[JsonPropertyName("MaintEnd")]
-	public string? MaintenanceEndRaw
-	{
-		set => MaintenanceEnd = value switch
-		{
-			not null => DateTimeHelper.CSVStringToTime(value),
-			_ => null,
-		};
-		get => throw new NotSupportedException();
-	}
-
+	[JsonConverter(typeof(CsvNullableDateConverter))]
 	public DateTime? MaintenanceEnd { get; set; }
 
 	[JsonPropertyName("MaintInfoLink")]
 	public string MaintenanceInformationLink { get; set; } = "";
 
-	/// <summary>
-	/// 1=event start, 2=event end, 3=regular maintenance
-	/// </summary>
 	[JsonPropertyName("MaintEventState")]
 	public MaintenanceState EventState { get; set; }
 }
