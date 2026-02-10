@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Quests;
 using ElectronicObserver.Core.Types.Serialization.Quests;
@@ -137,6 +138,16 @@ public class QuestData : ResponseWrapper, IIdentifiable
 
 			_ => QuestResetType.Unknown
 		};
+	}
+
+	public DateTime? GetEndDateTime() 
+	{
+		if (KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList.TryGetValue(QuestID, out QuestMetadata? metadata) && metadata.EndTime is { } endTime)
+		{
+			return endTime - TimeSpan.FromHours(9) + TimeZoneInfo.Local.BaseUtcOffset;
+		}
+
+		return null;
 	}
 
 	public int ID => QuestID;

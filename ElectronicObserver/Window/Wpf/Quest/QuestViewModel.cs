@@ -427,9 +427,8 @@ public partial class QuestViewModel : AnchorableViewModel
 					row.QuestView_NameToolTipExtra += $"{FormQuest.QuestView_ProgressResetsDaily}";
 				}
 
-				if (KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList.TryGetValue(q.ID, out QuestMetadata? metadata) && metadata.EndTime is DateTime endTime)
+				if (q.GetEndDateTime() is DateTime endTime)
 				{
-					endTime = endTime - TimeSpan.FromHours(9) + TimeZoneInfo.Local.BaseUtcOffset;
 					row.QuestView_NameToolTipExtra += string.Format(FormQuest.QuestView_EndsOn, endTime);
 				}
 

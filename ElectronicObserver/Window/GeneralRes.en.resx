@@ -854,4 +854,7 @@ Please click here to restart.</value>
   <data name="QuestEndsOn" xml:space="preserve">
     <value>Ends on {0:f}</value>
   </data>
+  <data name="QuestListEndsOn" xml:space="preserve">
+    <value>Quests that ends on {0:f}</value>
+  </data>
 </root>

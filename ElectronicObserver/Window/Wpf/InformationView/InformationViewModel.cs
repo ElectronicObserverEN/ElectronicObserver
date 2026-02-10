@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -6,6 +7,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
+using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
@@ -46,6 +48,7 @@ public class InformationViewModel : AnchorableViewModel
 		o.ApiReqMap_Next.ResponseReceived += Updated;
 		o.ApiReqPractice_Battle.ResponseReceived += Updated;
 		o.ApiGetMember_SortieConditions.ResponseReceived += Updated;
+		o.ApiGetMember_QuestList.ResponseReceived += (_, _) => QuestListUpdated();
 		o.ApiReqMission_Start.RequestReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
@@ -162,6 +165,30 @@ public class InformationViewModel : AnchorableViewModel
 		}
 
 	}
+
+	private void QuestListUpdated()
+	{
+		StringBuilder info = new();
+		KCDatabase db = KCDatabase.Instance;
+
+		IEnumerable<IGrouping<DateTime, QuestData>> questListByEndDate = db.Quest.Quests.Values
+			.OrderBy(q => q.ID)
+			.Where(q => q.GetEndDateTime() is not null)
+			.GroupBy(q => (DateTime)q.GetEndDateTime()!);
+
+		foreach (IGrouping<DateTime, QuestData> questByEndDate in questListByEndDate)
+		{
+			info.AppendLine(string.Format(GeneralRes.QuestListEndsOn, questByEndDate.Key));
+
+			foreach (QuestData quest in questByEndDate)
+			{
+				info.AppendLine($"{quest.Code}: {quest.Name}");
+			}
+		}
+
+		Text = info.ToString();
+	}
+
 	private string GetPracticeEnemyInfo(dynamic data)
 	{
 		StringBuilder sb = new();
