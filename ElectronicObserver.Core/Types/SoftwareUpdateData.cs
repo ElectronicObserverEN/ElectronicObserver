@@ -9,6 +9,7 @@ public class SoftwareUpdateData
 	public string BuildDateRaw
 	{
 		set => BuildDate = DateTimeHelper.CSVStringToTime(value);
+		get => throw new NotSupportedException();
 	}
 
 	public DateTime BuildDate { get; private set; }
@@ -44,6 +45,7 @@ public class SoftwareUpdateData
 	public string MaintenanceStartRaw
 	{
 		set => MaintenanceStart = DateTimeHelper.CSVStringToTime(value);
+		get => throw new NotSupportedException();
 	}
 
 	public DateTime MaintenanceStart { get; set; }
@@ -55,7 +57,8 @@ public class SoftwareUpdateData
 		{
 			not null => DateTimeHelper.CSVStringToTime(value),
 			_ => null,
-		}; 
+		};
+		get => throw new NotSupportedException();
 	}
 
 	public DateTime? MaintenanceEnd { get; set; }
