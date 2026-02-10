@@ -72,7 +72,7 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 	{
 		FitBonusIssueModel issue = new FitBonusIssueModel()
 		{
-			DataVersion = SoftwareUpdater.CurrentVersion.FitBonuses,
+			DataVersion = SoftwareUpdater.CurrentDataVersion.FitBonuses,
 			SoftwareVersion = SoftwareInformation.VersionEnglish,
 			SoftwareDataSource = Configuration.Config.Control.UpdateRepoURL.ToString(),
 

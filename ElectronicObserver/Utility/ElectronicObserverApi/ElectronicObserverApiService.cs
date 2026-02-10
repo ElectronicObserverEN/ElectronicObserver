@@ -19,7 +19,7 @@ public class ElectronicObserverApiService(ElectronicObserverApiTranslationViewMo
 	private string Url => Configuration.Config.Debug.ElectronicObserverApiUrl switch
 	{
 		{ Length: >0 } => Configuration.Config.Debug.ElectronicObserverApiUrl,
-		_ => SoftwareUpdater.CurrentVersion.AppApiServerUrl,
+		_ => SoftwareUpdater.CurrentDataVersion.AppApiServerUrl,
 	};
 
 	private ElectronicObserverApiTranslationViewModel Translations { get; } = translations;

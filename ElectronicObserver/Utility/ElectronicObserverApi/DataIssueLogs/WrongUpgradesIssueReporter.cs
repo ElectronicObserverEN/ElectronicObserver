@@ -34,7 +34,7 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 		{
 			EquipmentUpgradeIssueModel report = new()
 			{
-				DataVersion = SoftwareUpdater.CurrentVersion.EquipmentUpgrades,
+				DataVersion = SoftwareUpdater.CurrentDataVersion.EquipmentUpgrades,
 				SoftwareVersion = SoftwareInformation.VersionEnglish,
 				SoftwareDataSource = Configuration.Config.Control.UpdateRepoURL.ToString(),
 

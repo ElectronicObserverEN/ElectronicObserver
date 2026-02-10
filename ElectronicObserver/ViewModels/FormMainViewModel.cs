@@ -1665,7 +1665,7 @@ public partial class FormMainViewModel : ObservableObject
 	#region Maintenance timer
 	[RelayCommand]
 	private void OpenMaintenanceInformationLink()
-		=> OpenLink(SoftwareUpdater.LatestVersion.MaintenanceInformationLink);
+		=> OpenLink(SoftwareUpdater.LatestDataVersion.MaintenanceInformationLink);
 	#endregion
 
 	private void CallPumpkinHead(string apiname, dynamic data)
@@ -1770,7 +1770,7 @@ public partial class FormMainViewModel : ObservableObject
 		DateTime now = DateTimeHelper.GetJapanStandardTimeNow();
 
 		MaintenanceText = GetMaintenanceText(FormMain, now);
-		UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestVersion.BuildDate;
+		UpdateAvailable = SoftwareInformation.UpdateTime < SoftwareUpdater.LatestDataVersion.BuildDate;
 
 		DownloadProgressString = SoftwareUpdater.DownloadProgressString;
 
@@ -1858,10 +1858,10 @@ public partial class FormMainViewModel : ObservableObject
 	private static string GetMaintenanceText(FormMainTranslationViewModel formMain, DateTime now)
 	{
 		TimeSpan maintTimer = new(0);
-		MaintenanceState eventState = SoftwareUpdater.LatestVersion.EventState;
+		MaintenanceState eventState = SoftwareUpdater.LatestDataVersion.EventState;
 
-		DateTime maintStartDate = SoftwareUpdater.LatestVersion.MaintenanceStart;
-		DateTime? maintEndDate = SoftwareUpdater.LatestVersion.MaintenanceEnd;
+		DateTime maintStartDate = SoftwareUpdater.LatestDataVersion.MaintenanceStart;
+		DateTime? maintEndDate = SoftwareUpdater.LatestDataVersion.MaintenanceEnd;
 
 		if (eventState != MaintenanceState.None)
 		{
