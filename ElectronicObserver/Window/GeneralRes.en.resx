@@ -852,9 +852,9 @@ Please click here to restart.</value>
     <value>Progress resets daily</value>
   </data>
   <data name="QuestEndsOn" xml:space="preserve">
-    <value>Ends on {0:f}</value>
+    <value>Ends on {0}</value>
   </data>
   <data name="QuestListEndsOn" xml:space="preserve">
-    <value>Quests that ends on {0:f}</value>
+    <value>Quests that end on {0}</value>
   </data>
 </root>

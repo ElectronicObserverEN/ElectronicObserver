@@ -851,9 +851,9 @@
     <value>デイリーリセット</value>
   </data>
   <data name="QuestEndsOn" xml:space="preserve">
-    <value>??? (Ends on {0:f})</value>
+    <value>{0}で終わる</value>
   </data>
   <data name="QuestListEndsOn" xml:space="preserve">
-    <value>??? (Quests that ends on {0:f})</value>
+    <value>{0}で終わるクエスト</value>
   </data>
 </root>
