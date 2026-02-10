@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Core.Types.Quests;
 
 namespace ElectronicObserver.Data;
 
@@ -56,7 +57,7 @@ public class QuestManager : APIWrapper
 		//周期任務削除
 		if (DateTimeHelper.IsCrossedDay(progress.LastUpdateTime, 5, 0, 0))
 		{
-			progress.Progresses.RemoveAll(p => p.ProgressResetsDaily(KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList));
+			progress.Progresses.RemoveAll(p => p.GetProgressResetType() is QuestResetType.Daily);
 			Quests.RemoveAll(q => q.Type == 1 || q.QuestID == 211 /* 空母3 */ || q.QuestID == 212 /* 輸送5 */ || q.QuestID == 311 /* 演習勝利7 */  );
 		}
 		if (DateTimeHelper.IsCrossedWeek(progress.LastUpdateTime, DayOfWeek.Monday, 5, 0, 0))

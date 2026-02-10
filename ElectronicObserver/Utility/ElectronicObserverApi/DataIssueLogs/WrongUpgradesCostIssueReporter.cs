@@ -104,7 +104,7 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 		return new()
 		{
 			SoftwareVersion = SoftwareInformation.VersionEnglish,
-			DataVersion = SoftwareUpdater.CurrentVersion.EquipmentUpgrades,
+			DataVersion = SoftwareUpdater.CurrentDataVersion.EquipmentUpgrades,
 			SoftwareDataSource = Configuration.Config.Control.UpdateRepoURL.ToString(),
 
 			EquipmentId = Equipment.EquipmentId,
