@@ -1164,6 +1164,7 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.AkizukiKai,
+						ShipId.AkizukiKaiNi,
 						ShipId.TeruzukiKai,
 						ShipId.SuzutsukiKai,
 						ShipId.HatsuzukiKai,
