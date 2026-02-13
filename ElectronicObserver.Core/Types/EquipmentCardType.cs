@@ -145,4 +145,7 @@ public enum EquipmentCardType
 
 	/// <summary>Ho229</summary>
 	AllFlyingWingJetBomber = 51,
+
+	/// <summary>試作ジェット戦闘機</summary>
+	PrototypeJetFighter = 52,
 }
