@@ -156,18 +156,6 @@
   <data name="SupportTypeTorpedo" xml:space="preserve">
     <value>Ataque de torpedos de largo alcance</value>
   </data>
-  <data name="FleetNameToolTip" xml:space="preserve">
-    <value>Suma de niveles: {0} / Promedio: {1:0.00}  
-{2} flota  
-Apoyo de expedición: {3}  
-FP total {4} ({20}) / Torp {5} / AA {6} ({21}) / ASW {7} ({22}) / LOS {8} ({23}){26}  
-Bidones: {9} ({10} barcos)  
-Daihatsu: {11} ({12} barcos, +{13:p1})  
-TP: S {14} / A {15}{27}
-Radar de superficie: {24} ({25} barcos)  
-Consumo: {16} de combustible / {17} de munición  
-({18} combustible / {19} munición por batalla)</value>
-  </data>
   <data name="WithoutProficiency" xml:space="preserve">
     <value>Sin competencia</value>
   </data>
@@ -279,5 +267,39 @@ Alcance: {20} / Velocidad: {21}
   </data>
   <data name="SmokeScreen" xml:space="preserve">
     <value>Pantalla de humo</value>
+  </data>
+  <data name="FleetNameToolTip_ZeroSlotAircraftWarning" xml:space="preserve">
+    <value>Las estadísticas de aeronaves en una ranura de aeronave 0 no se tendrán en cuenta para los requisitos de la expedición.
+No hay garantía de que cumplas los requisitos de la expedición.</value>
+  </data>
+  <data name="FleetNameToolTip_Level" xml:space="preserve">
+    <value>Suma de niveles: {0} / Promedio: {1:0.00}</value>
+  </data>
+  <data name="FleetNameToolTip_Speed" xml:space="preserve">
+    <value>{0} flota</value>
+  </data>
+  <data name="FleetNameToolTip_Support" xml:space="preserve">
+    <value>Apoyo de expedición: {0}</value>
+  </data>
+  <data name="FleetNameToolTip_Stats" xml:space="preserve">
+    <value>FP total {0} ({1}) / Torp {2} / AA {3} ({4}) / ASW {5} ({6}) / LOS {7} ({8})</value>
+  </data>
+  <data name="FleetNameToolTip_Drum" xml:space="preserve">
+    <value>Bidones: {0} ({1} barcos)</value>
+  </data>
+  <data name="FleetNameToolTip_Daihatsu" xml:space="preserve">
+    <value>Daihatsu: {0} ({1} barcos, +{2:p1})</value>
+  </data>
+  <data name="FleetNameToolTip_Tp" xml:space="preserve">
+    <value>TP: S {0} / A {1}</value>
+  </data>
+  <data name="FleetNameToolTip_SurfaceRadar" xml:space="preserve">
+    <value>Radar de superficie: {0} ({1} barcos)</value>
+  </data>
+  <data name="FleetNameToolTip_Consumption" xml:space="preserve">
+    <value>Consumo: {0} de combustible / {1} de munición</value>
+  </data>
+  <data name="FleetNameToolTip_ConsumptionPerBattle" xml:space="preserve">
+    <value>({0} combustible / {1} munición por batalla)</value>
   </data>
 </root>

@@ -9,9 +9,11 @@ using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
+using ScottPlot.Drawing.Colormaps;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
@@ -66,78 +68,11 @@ public partial class FleetStatusViewModel : ObservableObject
 		int speed = members.Select(s => s.Speed).DefaultIfEmpty(20).Min();
 
 		Name.Text = fleet.Name;
-		{
-			int levelSum = members.Sum(s => s.Level);
+		Name.ToolTip = GetFleetNameToolTip(fleet, members, speed);
 
-			int fueltotal = members.Sum(s => Math.Max((int)Math.Floor(s.FuelMax * (s.IsMarried ? 0.85 : 1.00)), 1));
-			int ammototal = members.Sum(s => Math.Max((int)Math.Floor(s.AmmoMax * (s.IsMarried ? 0.85 : 1.00)), 1));
-
-			int fuelunit = members.Sum(s => Math.Max((int)Math.Floor(s.FuelMax * 0.2 * (s.IsMarried ? 0.85 : 1.00)), 1));
-			int ammounit = members.Sum(s => Math.Max((int)Math.Floor(s.AmmoMax * 0.2 * (s.IsMarried ? 0.85 : 1.00)), 1));
-
-			string supporttype = fleet.SupportType switch
-			{
-				SupportType.None => FleetResources.SupportTypeNone,
-				SupportType.Aerial => FleetResources.SupportTypeAerial,
-				SupportType.Shelling => FleetResources.SupportTypeShelling,
-				SupportType.Torpedo => FleetResources.SupportTypeTorpedo,
-				SupportType.AntiSubmarine => FleetResources.SupportTypeAntiSubmarine,
-				_ => FormFleet.SupportTypeNone,
-			};
-
-			double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
-			int tp = TpGauge.Normal.GetTp([fleet]);
-
-			bool hasZeroSlotAircraft = fleet.MembersInstance!
-				.Where(s => s is not null)
-				.Any(s => s.HasZeroSlotAircraft());
-
-			string? zeroSlotWarning = hasZeroSlotAircraft switch
-			{
-				true => $"\n{DataRes.ZeroSlotAircraftWarning}",
-				_ => null,
-			};
-
-			// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
-			IEnumerable<int> transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
-			IEnumerable<int> landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType is EquipmentTypes.LandingCraft or EquipmentTypes.SpecialAmphibiousTank));
-			IEnumerable<int> radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
-
-			Name.ToolTip = string.Format(FleetResources.FleetNameToolTip,
-				levelSum,
-				(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
-				Constants.GetSpeed(speed),
-				supporttype,
-				members.Sum(s => s.FirepowerTotal),
-				members.Sum(s => s.TorpedoTotal),
-				members.Sum(s => s.AATotal),
-				members.Sum(s => s.ASWTotal),
-				members.Sum(s => s.LOSTotal),
-				transport.Sum(),
-				transport.Count(i => i > 0),
-				landing.Sum(),
-				landing.Count(i => i > 0),
-				expeditionBonus,
-				tp,
-				(int)(tp * 0.7),
-				fueltotal,
-				ammototal,
-				fuelunit,
-				ammounit,
-				members.Sum(s => s.ExpeditionFirepowerTotal),
-				members.Sum(s => s.ExpeditionAATotal),
-				members.Sum(s => s.ExpeditionASWTotal),
-				members.Sum(s => s.ExpeditionLOSTotal),
-				radar.Sum(),
-				radar.Count(i => i > 0),
-				zeroSlotWarning,
-				GetTankTpTooltip(fleet)
-			);
-
-			NightRecons = fleet.NightRecons().TotalRate();
-			Flares = fleet.Flares().TotalRate();
-			SmokeGeneratorRates = fleet.GetSmokeTriggerRates().TotalRate();
-		}
+		NightRecons = fleet.NightRecons().TotalRate();
+		Flares = fleet.Flares().TotalRate();
+		SmokeGeneratorRates = fleet.GetSmokeTriggerRates().TotalRate();
 
 		State.UpdateFleetState(fleet);
 
@@ -212,6 +147,91 @@ public partial class FleetStatusViewModel : ObservableObject
 
 		Speed.Text = Constants.GetSpeed(speed);
 		Speed.ToolTip = string.Join("\r\n", members.Select(s => $"{s.Name}：{Constants.GetSpeed(s.Speed)}"));
+	}
+
+	private string GetFleetNameToolTip(IFleetData fleet, List<IShipData> members, int speed)
+	{
+		int levelSum = members.Sum(s => s.Level);
+		double levelAverage = (double)levelSum / Math.Max(fleet.Members?.Count(id => id != -1) ?? 0, 1);
+
+		int fueltotal = members.Sum(s => Math.Max((int)Math.Floor(s.FuelMax * (s.IsMarried ? 0.85 : 1.00)), 1));
+		int ammototal = members.Sum(s => Math.Max((int)Math.Floor(s.AmmoMax * (s.IsMarried ? 0.85 : 1.00)), 1));
+
+		int fuelunit = members.Sum(s => Math.Max((int)Math.Floor(s.FuelMax * 0.2 * (s.IsMarried ? 0.85 : 1.00)), 1));
+		int ammounit = members.Sum(s => Math.Max((int)Math.Floor(s.AmmoMax * 0.2 * (s.IsMarried ? 0.85 : 1.00)), 1));
+
+		int jetSteelConsumption = members
+			.SelectMany(s => s.AllSlotInstanceMaster.Zip(s.Aircraft, (eq, s) => (Equipment: eq, Aircraft: s)))
+			.Sum(t => t.Equipment.JetSteelCost(t.Aircraft));
+
+		string supporttype = fleet.SupportType switch
+		{
+			SupportType.None => FleetResources.SupportTypeNone,
+			SupportType.Aerial => FleetResources.SupportTypeAerial,
+			SupportType.Shelling => FleetResources.SupportTypeShelling,
+			SupportType.Torpedo => FleetResources.SupportTypeTorpedo,
+			SupportType.AntiSubmarine => FleetResources.SupportTypeAntiSubmarine,
+			_ => FleetResources.SupportTypeNone,
+		};
+
+		double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
+		int tp = TpGauge.Normal.GetTp([fleet]);
+
+		bool hasZeroSlotAircraft = members.Any(s => s.HasZeroSlotAircraft());
+
+		string? zeroSlotWarning = hasZeroSlotAircraft switch
+		{
+			true => $"\n{DataRes.ZeroSlotAircraftWarning}",
+			_ => FleetResources.FleetNameToolTip_ZeroSlotAircraftWarning,
+		};
+
+		// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
+		IEnumerable<int> transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
+		IEnumerable<int> landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType is EquipmentTypes.LandingCraft or EquipmentTypes.SpecialAmphibiousTank));
+		IEnumerable<int> radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
+
+		StringBuilder sb = new();
+
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_Level, levelSum, levelAverage);
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_Speed, Constants.GetSpeed(speed));
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_Support, supporttype);
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_Stats,
+			members.Sum(s => s.FirepowerTotal),
+			members.Sum(s => s.ExpeditionFirepowerTotal),
+			members.Sum(s => s.TorpedoTotal),
+			members.Sum(s => s.AATotal),
+			members.Sum(s => s.ExpeditionAATotal),
+			members.Sum(s => s.ASWTotal),
+			members.Sum(s => s.ExpeditionASWTotal),
+			members.Sum(s => s.LOSTotal),
+			members.Sum(s => s.ExpeditionLOSTotal)
+			);
+
+		if (hasZeroSlotAircraft)
+		{
+			sb.AppendLine(DataRes.ZeroSlotAircraftWarning);
+		}
+
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_Drum, transport.Sum(), transport.Count(i => i > 0));
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_Daihatsu, landing.Sum(), landing.Count(i => i > 0), expeditionBonus);
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_Tp, tp, (int)(tp * 0.7));
+
+		if (GetTankTpTooltip(fleet) is string s && !string.IsNullOrEmpty(s))
+		{
+			sb.AppendLine(s);
+		}
+
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_SurfaceRadar, radar.Sum(), radar.Count(i => i > 0));
+		sb.AppendFormatLine(FleetResources.FleetNameToolTip_Consumption, fueltotal, ammototal);
+		sb.AppendFormat(FleetResources.FleetNameToolTip_ConsumptionPerBattle, fuelunit, ammounit);
+
+		if (jetSteelConsumption > 0)
+		{
+			sb.AppendLine();
+			sb.AppendFormat(FleetResources.FleetNameToolTip_JetConsumption, jetSteelConsumption);
+		}
+
+		return sb.ToString();
 	}
 
 	private string GetTankTpTooltip(IFleetData fleet)

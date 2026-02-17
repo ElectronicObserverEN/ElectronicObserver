@@ -156,18 +156,6 @@
   <data name="SupportTypeTorpedo" xml:space="preserve">
     <value>지원 장거리 뇌격</value>
   </data>
-  <data name="FleetNameToolTip" xml:space="preserve">
-    <value>Lv 합계: {0} / 평균: {1:0.00}
-{2}함대
-지원 공격: {3}
-합계 화력 {4} ({20})  / 뇌장 {5} / 대공 {6} ({21}) / 대잠 {7} ({22}) / 색적 {8} ({23}){26}
-드럼통 탑재: {9}개 ({10}함)
-대발동정 탑재: {11}개 ({12}함, +{13:p1})
-유송량(TP): S {14} / A {15}{27}
-수상 전탐: {24}개 ({25}함)
-총 적재: 연료 {16} / 탄약 {17}
-(전투당 연료 {18} / 탄약 {19})</value>
-  </data>
   <data name="WithoutProficiency" xml:space="preserve">
     <value>숙련도 없음</value>
   </data>
@@ -280,5 +268,39 @@
   </data>
   <data name="SmokeScreen" xml:space="preserve">
     <value>연막</value>
+  </data>
+  <data name="FleetNameToolTip_ZeroSlotAircraftWarning" xml:space="preserve">
+    <value>탑재수가 0인 기체가 있습니다.
+원정 성공 조건을 충족하고 있지 않을 수 있습니다.</value>
+  </data>
+  <data name="FleetNameToolTip_Level" xml:space="preserve">
+    <value>Lv 합계: {0} / 평균: {1:0.00}</value>
+  </data>
+  <data name="FleetNameToolTip_Speed" xml:space="preserve">
+    <value>{0}함대</value>
+  </data>
+  <data name="FleetNameToolTip_Support" xml:space="preserve">
+    <value>지원 공격: {0}</value>
+  </data>
+  <data name="FleetNameToolTip_Stats" xml:space="preserve">
+    <value>합계 화력 {0} ({1})  / 뇌장 {2} / 대공 {3} ({4}) / 대잠 {5} ({6}) / 색적 {7} ({8})</value>
+  </data>
+  <data name="FleetNameToolTip_Drum" xml:space="preserve">
+    <value>드럼통 탑재: {0}개 ({1}함)</value>
+  </data>
+  <data name="FleetNameToolTip_Daihatsu" xml:space="preserve">
+    <value>대발동정 탑재: {0}개 ({1}함, +{2:p1})</value>
+  </data>
+  <data name="FleetNameToolTip_Tp" xml:space="preserve">
+    <value>유송량(TP): S {0} / A {1}</value>
+  </data>
+  <data name="FleetNameToolTip_SurfaceRadar" xml:space="preserve">
+    <value>수상 전탐: {0}개 ({1}함)</value>
+  </data>
+  <data name="FleetNameToolTip_Consumption" xml:space="preserve">
+    <value>총 적재: 연료 {0} / 탄약 {1}</value>
+  </data>
+  <data name="FleetNameToolTip_ConsumptionPerBattle" xml:space="preserve">
+    <value>(전투당 연료 {0} / 탄약 {1})</value>
   </data>
 </root>

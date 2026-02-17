@@ -42,7 +42,6 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string SupportTypeShelling => FleetResources.SupportTypeShelling;
 	public string SupportTypeTorpedo => FleetResources.SupportTypeTorpedo;
 
-	public string FleetNameToolTip => FleetResources.FleetNameToolTip;
 	public string WithoutProficiency => FleetResources.WithoutProficiency;
 	public string WithProficiency => FleetResources.WithProficiency;
 	public string FleetLosToolTip => FleetResources.FleetLosToolTip;
