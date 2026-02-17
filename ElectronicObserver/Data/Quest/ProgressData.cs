@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Core.Types.Quests;
 
 namespace ElectronicObserver.Data.Quest;
@@ -36,8 +38,6 @@ public abstract class ProgressData : IIdentifiable
 	/// </summary>
 	[DataMember]
 	public int QuestType { get; protected set; }
-
-	public QuestResetType QuestResetType => (QuestResetType)QuestType;
 
 	/// <summary>
 	/// 未ロード時の進捗
@@ -198,11 +198,19 @@ public abstract class ProgressData : IIdentifiable
 		}
 	}
 
-	public QuestResetType GetProgressResetType() => TryGetQuest()?.GetProgressResetType() ?? QuestResetType.Unknown;
+	public QuestResetType GetProgressResetType() => GetQuest().GetProgressResetType(KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList);
 
-	private QuestData? TryGetQuest()
+	private IQuestData GetQuest()
 	{
-		if (!KCDatabase.Instance.Quest.Quests.ContainsKey(QuestID)) return null;
+		if (!KCDatabase.Instance.Quest.Quests.ContainsKey(QuestID))
+		{
+			return new QuestDataMock()
+			{
+				QuestID = QuestID,
+				Type = QuestType >= 100 ? 5 : QuestType,
+				LabelType = QuestType >= 100 ? QuestType : 0,
+			};
+		}
 
 		return KCDatabase.Instance.Quest[QuestID];
 	}

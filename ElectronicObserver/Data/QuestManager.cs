@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
@@ -52,7 +53,6 @@ public class QuestManager : APIWrapper
 		base.LoadFromResponse(apiname, (object)data);
 
 		var progress = KCDatabase.Instance.QuestProgress;
-
 
 		//周期任務削除
 		if (DateTimeHelper.IsCrossedDay(progress.LastUpdateTime, 5, 0, 0))
