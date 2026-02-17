@@ -548,6 +548,8 @@ public enum EquipmentId
 	CarrierBasedBomber_SBDVB2_BomberSquadron = 544,
 	CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar = 545,
 	Interceptor_PrototypeShinden_LandbasedFighter = 546,
+	CarrierBasedFighter_ShindenKaiNi_CarrierFighterKaiNi = 547,
+	JetFighter_ShindenKai3_PrototypeJetShinden = 548,
 	ASPatrol_Type3CommandLiaisonAircraftKaiNi = 549,
 	CarrierBasedBomber_PrototypeMyoujou_AdditionalPrototypeAircraft = 550,
 	CarrierBasedBomber_MyoujouKai = 551,
@@ -567,4 +569,6 @@ public enum EquipmentId
 	SecondaryGun_10_2cmTripleSecondaryGunMount = 566,
 	CarrierBasedFighter_SeaGladiator = 567,
 	SeaplaneFighter_KyoufuuKaiNi_Skilled = 568,
+	DepthCharge_Type3DepthChargeProjectorKai = 569,
+	CarrierBasedTorpedo_RyuuseiKai_TomonagaSquadron = 570,
 }
