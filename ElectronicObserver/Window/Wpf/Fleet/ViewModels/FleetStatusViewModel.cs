@@ -177,12 +177,6 @@ public partial class FleetStatusViewModel : ObservableObject
 
 		bool hasZeroSlotAircraft = members.Any(s => s.HasZeroSlotAircraft());
 
-		string? zeroSlotWarning = hasZeroSlotAircraft switch
-		{
-			true => $"\n{DataRes.ZeroSlotAircraftWarning}",
-			_ => FleetResources.FleetNameToolTip_ZeroSlotAircraftWarning,
-		};
-
 		// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
 		IEnumerable<int> transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
 		IEnumerable<int> landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType is EquipmentTypes.LandingCraft or EquipmentTypes.SpecialAmphibiousTank));
