@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -322,4 +323,15 @@ public static class Extensions
 
 	public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IList<T> enumerable)
 		=> new(enumerable);
+
+	public static StringBuilder AppendFormatLine(
+		this StringBuilder sb,
+		[StringSyntax(StringSyntaxAttribute.CompositeFormat)] string format,
+		params ReadOnlySpan<object?> args)
+	{
+		sb.AppendFormat(format, args);
+		sb.AppendLine();
+
+		return sb;
+	}
 }

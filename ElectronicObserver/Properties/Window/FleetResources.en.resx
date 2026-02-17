@@ -156,19 +156,6 @@
   <data name="SupportTypeTorpedo" xml:space="preserve">
     <value>Long-range Torpedo Attack</value>
   </data>
-  <data name="FleetNameToolTip" xml:space="preserve">
-    <value>Lv sum: {0} / avg: {1:0.00}
-{2} fleet
-Support Expedition: {3}
-Total FP {4} ({20}) / Torp {5} / AA {6} ({21}) / ASW {7} ({22}) / LOS {8} ({23}){26}
-Drum: {9} ({10} ships)
-Daihatsu: {11} ({12} ships, +{13:p1})
-TP: S {14} / A {15}{27}
-Surface Radar: {24} ({25} ships)
-Consumption: {16} fuel / {17} ammo
-({18} fuel / {19} ammo per battle)
-</value>
-  </data>
   <data name="WithoutProficiency" xml:space="preserve">
     <value>w/o Proficiency</value>
   </data>
@@ -284,5 +271,38 @@ Range: {20} / Speed: {21}
   </data>
   <data name="SearchingPhase" xml:space="preserve">
     <value>Searching phase</value>
+  </data>
+  <data name="FleetNameToolTip_Level" xml:space="preserve">
+    <value>Lv sum: {0} / avg: {1:0.00}</value>
+  </data>
+  <data name="FleetNameToolTip_Speed" xml:space="preserve">
+    <value>{0} fleet</value>
+  </data>
+  <data name="FleetNameToolTip_Support" xml:space="preserve">
+    <value>Support Expedition: {0}</value>
+  </data>
+  <data name="FleetNameToolTip_Stats" xml:space="preserve">
+    <value>Total FP {0} ({1}) / Torp {2} / AA {3} ({4}) / ASW {5} ({6}) / LOS {7} ({8})</value>
+  </data>
+  <data name="FleetNameToolTip_Drum" xml:space="preserve">
+    <value>Drum: {0} ({1} ships)</value>
+  </data>
+  <data name="FleetNameToolTip_Daihatsu" xml:space="preserve">
+    <value>Daihatsu: {0} ({1} ships, +{2:p1})</value>
+  </data>
+  <data name="FleetNameToolTip_Tp" xml:space="preserve">
+    <value>TP: S {0} / A {1}</value>
+  </data>
+  <data name="FleetNameToolTip_SurfaceRadar" xml:space="preserve">
+    <value>Surface Radar: {0} ({1} ships)</value>
+  </data>
+  <data name="FleetNameToolTip_Consumption" xml:space="preserve">
+    <value>Consumption: {0} fuel / {1} ammo</value>
+  </data>
+  <data name="FleetNameToolTip_ConsumptionPerBattle" xml:space="preserve">
+    <value>({0} fuel / {1} ammo per battle)</value>
+  </data>
+  <data name="FleetNameToolTip_JetConsumption" xml:space="preserve">
+    <value>Jet: {0} steel per battle</value>
   </data>
 </root>

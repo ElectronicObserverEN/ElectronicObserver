@@ -67,7 +67,10 @@ public class TransportGaugeService : ITransportGaugeService
 
 		if (sb.Length is 0) return "";
 
-		return $"\n{Translations.LandingOperationTooltip}:\n{sb.ToString().TrimEnd()}";
+		return $"""
+			{Translations.LandingOperationTooltip}:
+			{sb.ToString().TrimEnd()}
+			""";
 	}
 
 	public List<TpGauge> GetEventLandingGauges(bool includeNone)

@@ -156,18 +156,6 @@
   <data name="SupportTypeTorpedo" xml:space="preserve">
     <value>長距離支援雷擊</value>
   </data>
-  <data name="FleetNameToolTip" xml:space="preserve">
-    <value>總等級: {0} / 平均: {1:0.00}
-{2}艦隊
-支援攻擊: {3}
-總計火力 {4} ({20})  / 雷裝 {5} / 對空 {6} ({21}) / 反潛 {7} ({22}) / 索敵 {8} ({23}){26}
-搭載運輸罐: {9}個 ({10}艦)
-搭載大發動艇: {11}個 ({12}艦, +{13:p1})
-運送量(TP): S {14} / A {15}{27}
-水上電探: {24}個 ({25}艦)
-總消耗: 油 {16} / 彈 {17}
-(每場戰鬥 油 {18} / 彈 {19})</value>
-  </data>
   <data name="WithoutProficiency" xml:space="preserve">
     <value>無熟練度</value>
   </data>
@@ -283,5 +271,35 @@
   </data>
   <data name="SearchingPhase" xml:space="preserve">
     <value>索敵階段</value>
+  </data>
+  <data name="FleetNameToolTip_Support" xml:space="preserve">
+    <value>支援攻擊: {0}</value>
+  </data>
+  <data name="FleetNameToolTip_Level" xml:space="preserve">
+    <value>總等級: {0} / 平均: {1:0.00}</value>
+  </data>
+  <data name="FleetNameToolTip_Speed" xml:space="preserve">
+    <value>{0}艦隊</value>
+  </data>
+  <data name="FleetNameToolTip_Stats" xml:space="preserve">
+    <value>總計火力 {0} ({1})  / 雷裝 {2} / 對空 {3} ({4}) / 反潛 {5} ({6}) / 索敵 {7} ({8})</value>
+  </data>
+  <data name="FleetNameToolTip_Drum" xml:space="preserve">
+    <value>搭載運輸罐: {0}個 ({1}艦)</value>
+  </data>
+  <data name="FleetNameToolTip_Daihatsu" xml:space="preserve">
+    <value>搭載大發動艇: {0}個 ({1}艦, +{2:p1})</value>
+  </data>
+  <data name="FleetNameToolTip_Tp" xml:space="preserve">
+    <value>運送量(TP): S {0} / A {1}</value>
+  </data>
+  <data name="FleetNameToolTip_SurfaceRadar" xml:space="preserve">
+    <value>水上電探: {0}個 ({1}艦)</value>
+  </data>
+  <data name="FleetNameToolTip_Consumption" xml:space="preserve">
+    <value>總消耗: 油 {0} / 彈 {1}</value>
+  </data>
+  <data name="FleetNameToolTip_ConsumptionPerBattle" xml:space="preserve">
+    <value>(每場戰鬥 油 {0} / 彈 {1})</value>
   </data>
 </root>
