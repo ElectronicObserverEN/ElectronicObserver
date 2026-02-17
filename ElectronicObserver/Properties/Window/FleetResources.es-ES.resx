@@ -268,10 +268,6 @@ Alcance: {20} / Velocidad: {21}
   <data name="SmokeScreen" xml:space="preserve">
     <value>Pantalla de humo</value>
   </data>
-  <data name="FleetNameToolTip_ZeroSlotAircraftWarning" xml:space="preserve">
-    <value>Las estadísticas de aeronaves en una ranura de aeronave 0 no se tendrán en cuenta para los requisitos de la expedición.
-No hay garantía de que cumplas los requisitos de la expedición.</value>
-  </data>
   <data name="FleetNameToolTip_Level" xml:space="preserve">
     <value>Suma de niveles: {0} / Promedio: {1:0.00}</value>
   </data>

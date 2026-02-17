@@ -272,10 +272,6 @@
   <data name="SearchingPhase" xml:space="preserve">
     <value>索敵階段</value>
   </data>
-  <data name="FleetNameToolTip_ZeroSlotAircraftWarning" xml:space="preserve">
-    <value>有搭載數為0的飛機
-可能不滿足遠征成功的條件</value>
-  </data>
   <data name="FleetNameToolTip_Support" xml:space="preserve">
     <value>支援攻擊: {0}</value>
   </data>

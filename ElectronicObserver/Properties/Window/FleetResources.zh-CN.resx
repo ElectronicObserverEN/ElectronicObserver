@@ -254,10 +254,6 @@
   <data name="SearchingPhase" xml:space="preserve">
     <value>索敌阶段</value>
   </data>
-  <data name="FleetNameToolTip_ZeroSlotAircraftWarning" xml:space="preserve">
-    <value>存在搭载数为0的机体
-可能导致不满足远征成功条件</value>
-  </data>
   <data name="FleetNameToolTip_Level" xml:space="preserve">
     <value>Lv合计: {0} / 平均: {1:0.00}</value>
   </data>

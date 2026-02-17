@@ -272,10 +272,6 @@ Range: {20} / Speed: {21}
   <data name="SearchingPhase" xml:space="preserve">
     <value>Searching phase</value>
   </data>
-  <data name="FleetNameToolTip_ZeroSlotAircraftWarning" xml:space="preserve">
-    <value>Aircraft stats in a 0 aircraft slot won't count towards expedition requirements
-There is no guarantee you will meet expedition requirements</value>
-  </data>
   <data name="FleetNameToolTip_Level" xml:space="preserve">
     <value>Lv sum: {0} / avg: {1:0.00}</value>
   </data>
