@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ElectronicObserver.Core.Types.Extensions;
 
@@ -258,4 +259,16 @@ public static class EquipmentDataExtensions
 	};
 
 	public static int GetAircraftExp(this IEquipmentData equipment) => GetAircraftExp(equipment.AircraftLevel);
+
+	public static int JetSteelCost(this IEquipmentDataMaster? equipment, int aircraft)
+		=> (int)Math.Round(aircraft * JetCostMultiplier(equipment) * 0.2);
+
+	private static double JetCostMultiplier(IEquipmentDataMaster? equipment) => equipment switch
+	{
+		{ CardType: EquipmentCardType.AllFlyingWingJetBomber } => equipment.AircraftCost * 1.2,
+		{ CardType: EquipmentCardType.JetFightingBomber } => equipment.AircraftCost,
+		{ CardType: EquipmentCardType.PrototypeJetFighter } => equipment.AircraftCost * 1.1,
+
+		_ => 0,
+	};
 }

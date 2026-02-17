@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
@@ -57,7 +57,7 @@ public class JetCostCalculator(ElectronicObserverContext db, ToolService toolSer
 			List<int>? costs = node.FirstBattle.FleetsBeforeBattle.Fleet.MembersWithoutEscaped?
 				.OfType<IShipData>()
 				.SelectMany(s => s.AllSlotInstance.Zip(s.Aircraft, (e, a) => (Equipment: e, Aicraft: a)))
-				.Select(s => JetSteelCost(s.Equipment?.MasterEquipment, s.Aicraft))
+				.Select(s => s.Equipment?.MasterEquipment.JetSteelCost(s.Aicraft) ?? 0)
 				.ToList();
 
 			if (costs is null) return null;
@@ -94,21 +94,8 @@ public class JetCostCalculator(ElectronicObserverContext db, ToolService toolSer
 			.SelectMany(b => b.AllPhases.OfType<PhaseJetBaseAirAttack>())
 			.SelectMany(p => p.Units)
 			.SelectMany(u => u.Squadrons)
-			.Select(s => JetSteelCost(s.Equipment, s.AircraftCount))
-			.Sum();
+			.Sum(s => s.Equipment.JetSteelCost(s.AircraftCount));
 
 		return new() { Steel = steelCost };
 	}
-
-	private static int JetSteelCost(IEquipmentDataMaster? equipment, int aircraft)
-		=> (int)Math.Round(aircraft * JetCostMultiplier(equipment) * 0.2);
-
-	private static double JetCostMultiplier(IEquipmentDataMaster? equipment) => equipment switch
-	{
-		{ CardType: EquipmentCardType.AllFlyingWingJetBomber } => equipment.AircraftCost * 1.2,
-		{ CardType: EquipmentCardType.JetFightingBomber } => equipment.AircraftCost,
-		{ CardType: EquipmentCardType.PrototypeJetFighter } => equipment.AircraftCost * 1.1,
-
-		_ => 0,
-	};
 }
