@@ -107,6 +107,7 @@ public class JetCostCalculator(ElectronicObserverContext db, ToolService toolSer
 	{
 		{ CardType: EquipmentCardType.AllFlyingWingJetBomber } => equipment.AircraftCost * 1.2,
 		{ CardType: EquipmentCardType.JetFightingBomber } => equipment.AircraftCost,
+		{ CardType: EquipmentCardType.PrototypeJetFighter } => equipment.AircraftCost * 1.1,
 
 		_ => 0,
 	};
