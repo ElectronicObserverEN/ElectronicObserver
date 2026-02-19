@@ -1,5 +1,4 @@
 ﻿using ElectronicObserver.Core.Types.Quests;
-using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using MessagePack;
@@ -15,7 +14,7 @@ public record QuestModel([property: Key(0)] int Id)
 	[IgnoreMember] public QuestCategory Category => (QuestCategory)(TryGetQuest()?.Category ?? 0);
 	[IgnoreMember] public int State => TryGetQuest()?.State ?? 0;
 	[IgnoreMember]
-	public QuestResetType ResetType => TryGetQuest()?.GetProgressResetType(KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList) ?? QuestResetType.Unknown;
+	public QuestResetType ResetType => TryGetQuest()?.GetProgressResetType() ?? QuestResetType.Unknown;
 
 	[IgnoreMember] public string Display => $"{Code}: {Name} (ID: {Id})";
 

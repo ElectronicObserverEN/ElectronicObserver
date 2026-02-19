@@ -422,7 +422,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 				row.QuestView_NameToolTipExtra = "";
 
-				if (q.Type != 1 && q.GetProgressResetType(KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList) is QuestResetType.Daily)
+				if (q.Type != 1 && q.GetProgressResetType() is QuestResetType.Daily)
 				{
 					row.QuestView_NameToolTipExtra += $"{FormQuest.QuestView_ProgressResetsDaily}";
 				}
