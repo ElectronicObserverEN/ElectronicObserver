@@ -52,13 +52,6 @@ public class QuestManager : APIWrapper
 
 		var progress = KCDatabase.Instance.QuestProgress;
 
-		Dictionary<int, (ResetType, ResetType)> resetTypes = new Dictionary<int, (ResetType, ResetType)>();
-
-		foreach (var p in progress.Progresses)
-		{
-
-		}
-
 		//周期任務削除
 		if (DateTimeHelper.IsCrossedDay(progress.LastUpdateTime, 5, 0, 0))
 		{
