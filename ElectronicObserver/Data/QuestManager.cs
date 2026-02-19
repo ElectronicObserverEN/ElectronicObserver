@@ -53,7 +53,6 @@ public class QuestManager : APIWrapper
 
 		var progress = KCDatabase.Instance.QuestProgress;
 
-
 		//周期任務削除
 		if (DateTimeHelper.IsCrossedDay(progress.LastUpdateTime, 5, 0, 0))
 		{

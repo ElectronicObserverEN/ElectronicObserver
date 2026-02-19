@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Quests;
+using ElectronicObserver.Core.Types.Serialization.Quests;
 
 namespace ElectronicObserver.Data.Quest;
 
@@ -198,13 +200,20 @@ public abstract class ProgressData : IIdentifiable
 		}
 	}
 
-	public QuestResetType GetProgressResetType() => TryGetQuest()?.GetProgressResetType() ?? QuestResetType.Unknown;
-
-	private QuestData? TryGetQuest()
+	public QuestResetType GetProgressResetType()
 	{
-		if (!KCDatabase.Instance.Quest.Quests.ContainsKey(QuestID)) return null;
+		// Quests that are not daily but only appear on some days : 
+		if (QuestID is 211 or 212) // 空母3 or 輸送5
+			return QuestResetType.Daily;
 
-		return KCDatabase.Instance.Quest[QuestID];
+		Dictionary<int, QuestMetadata> questsMetadata = KCDatabase.Instance.Translation.QuestsMetadata.QuestsMetadataList;
+
+		if (questsMetadata.TryGetValue(QuestID, out QuestMetadata? metadata) && metadata.QuestProgressResetType is { } resetType)
+		{
+			return resetType;
+		}
+
+		return QuestResetType;
 	}
 
 	/// <summary>
