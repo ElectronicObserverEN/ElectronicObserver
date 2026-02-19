@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types.Data;
+using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Quests;
 
 namespace ElectronicObserver.Data;
