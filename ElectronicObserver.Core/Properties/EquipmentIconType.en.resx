@@ -294,4 +294,7 @@
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
+  <data name="JetFighterShinden" xml:space="preserve">
+    <value>Jet Fighter Shinden</value>
+  </data>
 </root>

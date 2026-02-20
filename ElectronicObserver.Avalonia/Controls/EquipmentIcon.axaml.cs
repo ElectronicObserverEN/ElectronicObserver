@@ -89,6 +89,7 @@ public partial class EquipmentIcon : UserControl
 			EquipmentIconType.JetBomberKeiun => "Assets/Equipment/JetFightingBomberKeiun.png",
 			EquipmentIconType.JetBomberKikka => "Assets/Equipment/JetFightingBomberKikka.png",
 			EquipmentIconType.JetBomberHo229 => "Assets/Equipment/JetFightingBomberHo229.png",
+			EquipmentIconType.JetFighterShinden => "Assets/Equipment/JetFighterShinden.png",
 			EquipmentIconType.TransportMaterial => "Assets/Equipment/TransportMaterials.png",
 			EquipmentIconType.SubmarineEquipment => "Assets/Equipment/SubmarineEquipment.png",
 			EquipmentIconType.SeaplaneFighter => "Assets/Equipment/SeaplaneFighter.png",
