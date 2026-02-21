@@ -61,6 +61,7 @@ public static class EquipmentIconTypeExtensions
 		EquipmentIconType.LandBasedFighterJet => Properties.EquipmentIconType.LandBasedFighterJet,
 		EquipmentIconType.LandBasedFighterShinden => Properties.EquipmentIconType.LandBasedFighter,
 		EquipmentIconType.JetBomberHo229 => Properties.EquipmentIconType.JetBomberHo229,
+		EquipmentIconType.JetFighterShinden => Properties.EquipmentIconType.JetFighterShinden,
 		EquipmentIconType.Locked => Properties.EquipmentIconType.Locked,
 		_ => Properties.EquipmentIconType.Unknown,
 	};
