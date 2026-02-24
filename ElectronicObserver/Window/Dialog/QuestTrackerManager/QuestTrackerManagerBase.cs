@@ -22,6 +22,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 	public ObservableCollection<TrackerViewModel> Trackers { get; } = new();
 
 	protected DateTime LastQuestListUpdate { get; set; } = new(2000, 1, 1);
+	protected DateTime LastTrackerSave { get; set; } = DateTime.Now;
 
 	// MessagePack has a bug when converting DateTime to json
 	// adding these options avoids it by using a different DateTime representation
@@ -56,9 +57,9 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 
 	private void TimerSave(string apiname, dynamic data)
 	{
-		if (!DateTimeHelper.IsCrossedHour(LastQuestListUpdate)) return;
+		if (!DateTimeHelper.IsCrossedHour(LastTrackerSave)) return;
 
-		LastQuestListUpdate = DateTime.Now;
+		LastTrackerSave = DateTime.Now;
 
 		Save();
 		Utility.Logger.Add(1, QuestTracking.AutoSavedProgress);
