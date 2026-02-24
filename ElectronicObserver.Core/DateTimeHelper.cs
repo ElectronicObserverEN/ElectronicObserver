@@ -1,4 +1,5 @@
 ﻿using System;
+using ElectronicObserver.Core.Types.Quests;
 
 namespace ElectronicObserver.Core;
 
@@ -320,4 +321,27 @@ public static class DateTimeHelper
 	{
 		return TimeZoneInfo.Local.BaseUtcOffset - new TimeSpan(9, 0, 0);
 	}
+
+	public static bool ShouldQuestReset(QuestResetType resetType, DateTime lastUpdate) => resetType switch
+	{
+		QuestResetType.Daily => IsCrossedDailyQuestReset(lastUpdate),
+		QuestResetType.Weekly => IsCrossedWeeklyQuestReset(lastUpdate),
+		QuestResetType.Monthly => IsCrossedMonthlyQuestReset(lastUpdate),
+		QuestResetType.Quarterly => IsCrossedQuarterlyQuestReset(lastUpdate),
+
+		QuestResetType.January => IsCrossedYearlyQuestReset(lastUpdate, 1),
+		QuestResetType.February => IsCrossedYearlyQuestReset(lastUpdate, 2),
+		QuestResetType.March => IsCrossedYearlyQuestReset(lastUpdate, 3),
+		QuestResetType.April => IsCrossedYearlyQuestReset(lastUpdate, 4),
+		QuestResetType.May => IsCrossedYearlyQuestReset(lastUpdate, 5),
+		QuestResetType.June => IsCrossedYearlyQuestReset(lastUpdate, 6),
+		QuestResetType.July => IsCrossedYearlyQuestReset(lastUpdate, 7),
+		QuestResetType.August => IsCrossedYearlyQuestReset(lastUpdate, 8),
+		QuestResetType.September => IsCrossedYearlyQuestReset(lastUpdate, 9),
+		QuestResetType.October => IsCrossedYearlyQuestReset(lastUpdate, 10),
+		QuestResetType.November => IsCrossedYearlyQuestReset(lastUpdate, 11),
+		QuestResetType.December => IsCrossedYearlyQuestReset(lastUpdate, 12),
+
+		_ => false
+	};
 }

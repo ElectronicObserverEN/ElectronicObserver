@@ -73,7 +73,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase, IQuestTrack
 		//消えている・達成済みの任務の進捗情報を削除
 		if (!quests.IsLoadCompleted) return;
 
-		IEnumerable<TrackerViewModel> trackersToReset = Trackers.Where(t => !quests.Quests.ContainsKey(t.QuestId) || (this as IQuestTrackerManager).ShouldQuestReset(t.Model.Quest.ResetType));
+		IEnumerable<TrackerViewModel> trackersToReset = Trackers.Where(t => !quests.Quests.ContainsKey(t.QuestId) || DateTimeHelper.ShouldQuestReset(t.Model.Quest.ResetType, LastQuestListUpdate));
 
 		foreach (TrackerViewModel tracker in trackersToReset)
 		{

@@ -22,10 +22,10 @@ public class QuestTrackerManagerMock : IQuestTrackerManager
 
 	public void QuestUpdated()
 	{
-		DailyProgressReset = (this as IQuestTrackerManager).ShouldQuestReset(QuestResetType.Daily);
-		WeeklyProgressReset = (this as IQuestTrackerManager).ShouldQuestReset(QuestResetType.Weekly);
-		MonthlyProgressReset = (this as IQuestTrackerManager).ShouldQuestReset(QuestResetType.Monthly);
-		QuaterlyProgressReset = (this as IQuestTrackerManager).ShouldQuestReset(QuestResetType.Quarterly);
+		DailyProgressReset = DateTimeHelper.ShouldQuestReset(QuestResetType.Daily, LastQuestListUpdate);
+		WeeklyProgressReset = DateTimeHelper.ShouldQuestReset(QuestResetType.Weekly, LastQuestListUpdate);
+		MonthlyProgressReset = DateTimeHelper.ShouldQuestReset(QuestResetType.Monthly, LastQuestListUpdate);
+		QuaterlyProgressReset = DateTimeHelper.ShouldQuestReset(QuestResetType.Quarterly, LastQuestListUpdate);
 
 		LastQuestListUpdate = DateTime.Now;
 	}
