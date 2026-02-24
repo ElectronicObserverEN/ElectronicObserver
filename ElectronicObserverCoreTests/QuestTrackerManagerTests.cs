@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Mocks;
@@ -213,5 +214,78 @@ public class QuestTrackerManagerTests(DatabaseFixture db)
 
 		Assert.False(conditionViewModel.ConditionMet(failFleet));
 		Assert.True(conditionViewModel.ConditionMet(successFleet));
+	}
+
+	[Fact(DisplayName = "Daily progress reset")]
+	public void QuestTrackerReset1()
+	{
+		QuestTrackerManagerMock trackerManager = new()
+		{
+			LastQuestListUpdate = DateTime.Now.AddDays(-2),
+		};
+
+		trackerManager.QuestUpdated();
+
+		Assert.True(trackerManager.DailyProgressReset);
+	}
+
+	[Fact(DisplayName = "Daily progress reset after timer save")]
+	public void QuestTrackerReset2()
+	{
+		QuestTrackerManagerMock trackerManager = new()
+		{
+			LastQuestListUpdate = DateTime.Now.AddDays(-2),
+		};
+
+		trackerManager.TimerSave();
+		trackerManager.QuestUpdated();
+
+		Assert.True(trackerManager.DailyProgressReset);
+	}
+
+	[Fact(DisplayName = "Weekly progress reset")]
+	public void QuestTrackerReset3()
+	{
+		QuestTrackerManagerMock trackerManager = new()
+		{
+			LastQuestListUpdate = DateTime.Now.AddDays(-8),
+		};
+
+		trackerManager.QuestUpdated();
+
+		Assert.True(trackerManager.DailyProgressReset);
+		Assert.True(trackerManager.WeeklyProgressReset);
+	}
+
+	[Fact(DisplayName = "Monthly progress reset")]
+	public void QuestTrackerReset4()
+	{
+		QuestTrackerManagerMock trackerManager = new()
+		{
+			LastQuestListUpdate = DateTime.Now.AddMonths(-2),
+		};
+
+		trackerManager.QuestUpdated();
+
+		Assert.True(trackerManager.DailyProgressReset);
+		Assert.True(trackerManager.WeeklyProgressReset);
+		Assert.True(trackerManager.MonthlyProgressReset);
+	}
+
+
+	[Fact(DisplayName = "Quaterly progress reset")]
+	public void QuestTrackerReset5()
+	{
+		QuestTrackerManagerMock trackerManager = new()
+		{
+			LastQuestListUpdate = DateTime.Now.AddMonths(-4),
+		};
+
+		trackerManager.QuestUpdated();
+
+		Assert.True(trackerManager.DailyProgressReset);
+		Assert.True(trackerManager.WeeklyProgressReset);
+		Assert.True(trackerManager.MonthlyProgressReset);
+		Assert.True(trackerManager.QuaterlyProgressReset);
 	}
 }

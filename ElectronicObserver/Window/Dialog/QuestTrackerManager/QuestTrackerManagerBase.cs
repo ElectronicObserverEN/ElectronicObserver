@@ -4,12 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
-using ElectronicObserver.Core.Types.Quests;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using MessagePack;
@@ -17,11 +15,11 @@ using MessagePack.Resolvers;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
-public abstract class QuestTrackerManagerBase : WindowViewModelBase
+public abstract class QuestTrackerManagerBase : WindowViewModelBase, IQuestTrackerManager
 {
 	public ObservableCollection<TrackerViewModel> Trackers { get; } = new();
 
-	protected DateTime LastQuestListUpdate { get; set; } = new(2000, 1, 1);
+	public DateTime LastQuestListUpdate { get; set; } = new(2000, 1, 1);
 
 	// MessagePack has a bug when converting DateTime to json
 	// adding these options avoids it by using a different DateTime representation
@@ -54,7 +52,9 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		ao.ApiReqMission_Result.ResponseReceived += ExpeditionCompleted;
 	}
 
-	private void TimerSave(string apiname, dynamic data)
+	private void TimerSave(string apiname, dynamic data) => TimerSave();
+
+	public void TimerSave()
 	{
 		if (!DateTimeHelper.IsCrossedHour(LastQuestListUpdate)) return;
 
@@ -64,37 +64,16 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		Utility.Logger.Add(1, QuestTracking.AutoSavedProgress);
 	}
 
-	private void QuestUpdated(string apiname, dynamic data)
+	private void QuestUpdated(string apiname, dynamic data) => QuestUpdated();
+
+	public void QuestUpdated()
 	{
 		QuestManager quests = KCDatabase.Instance.Quest;
-
-		bool ShouldQuestReset(QuestModel quest) => quest.ResetType switch
-		{
-			QuestResetType.Daily => DateTimeHelper.IsCrossedDailyQuestReset(LastQuestListUpdate),
-			QuestResetType.Weekly => DateTimeHelper.IsCrossedWeeklyQuestReset(LastQuestListUpdate),
-			QuestResetType.Monthly => DateTimeHelper.IsCrossedMonthlyQuestReset(LastQuestListUpdate),
-			QuestResetType.Quarterly => DateTimeHelper.IsCrossedQuarterlyQuestReset(LastQuestListUpdate),
-
-			QuestResetType.January => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 1),
-			QuestResetType.February => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 2),
-			QuestResetType.March => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 3),
-			QuestResetType.April => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 4),
-			QuestResetType.May => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 5),
-			QuestResetType.June => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 6),
-			QuestResetType.July => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 7),
-			QuestResetType.August => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 8),
-			QuestResetType.September => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 9),
-			QuestResetType.October => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 10),
-			QuestResetType.November => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 11),
-			QuestResetType.December => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 12),
-
-			_ => false
-		};
 
 		//消えている・達成済みの任務の進捗情報を削除
 		if (!quests.IsLoadCompleted) return;
 
-		IEnumerable<TrackerViewModel> trackersToReset = Trackers.Where(t => !quests.Quests.ContainsKey(t.QuestId) || ShouldQuestReset(t.Model.Quest));
+		IEnumerable<TrackerViewModel> trackersToReset = Trackers.Where(t => !quests.Quests.ContainsKey(t.QuestId) || (this as IQuestTrackerManager).ShouldQuestReset(t.Model.Quest.ResetType));
 
 		foreach (TrackerViewModel tracker in trackersToReset)
 		{
