@@ -7,13 +7,13 @@
 	xmlns:helpers="clr-namespace:ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	d:DataContext="{d:DesignInstance local:AlbumMasterEquipmentUpgradeViewModel}"
+	d:DataContext="{d:DesignInstance local:AlbumMasterEquipmentUpgradeGroupViewModel}"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	mc:Ignorable="d"
 	>
 	<Control.Resources>
-		<local:AlbumMasterEquipmentUpgradeViewModelProxy x:Key="Proxy" DataContext="{Binding}" />
+		<local:AlbumMasterEquipmentUpgradeGroupViewModelProxy x:Key="Proxy" DataContext="{Binding}" />
 
 		<DataTemplate x:Key="ItemCostTemplate" DataType="{x:Type local:EquipmentUpgradeItemCostViewModel}">
 			<StackPanel>
@@ -83,31 +83,9 @@
 	</Control.Resources>
 
 	<Grid HorizontalAlignment="Left">
-
-		<Grid.Style>
-			<Style TargetType="Grid">
-				<Style.Triggers>
-					<DataTrigger Binding="{Binding CanBeUpgraded}" Value="False">
-						<Setter Property="Visibility" Value="Collapsed" />
-					</DataTrigger>
-				</Style.Triggers>
-			</Style>
-		</Grid.Style>
-
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-
-		<Border
-			Grid.Row="0"
-			Padding="2"
-			BorderBrush="Gray"
-			BorderThickness="1"
-			>
-			<TextBlock HorizontalAlignment="Center" Text="{Binding EquipmentUpgradeTranslation.EquipmentUpgrades}" />
-		</Border>
-
 		<Border
 			Grid.Row="1"
 			Padding="5"
@@ -119,7 +97,7 @@
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
-
+				
 				<StackPanel Grid.Column="0">
 					<Grid>
 						<Grid.ColumnDefinitions>
