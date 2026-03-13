@@ -44,10 +44,22 @@ public class AlbumMasterEquipmentUpgradeViewModel
 		Steel = firstImprovement.Costs.Steel;
 		Bauxite = firstImprovement.Costs.Bauxite;
 
-		UpgradeViewModels = data.Improvement
-			.GroupBy(improvement => improvement, new UpgradeCostDataEqualityComparer())
-			.Select(group => new AlbumMasterEquipmentUpgradeGroupViewModel(group.ToList(), EquipmentUpgradeTranslation, Equipment))
-			.ToList();
+		List<int> conversions = data.Improvement.Select(i => i.ConversionData?.IdEquipmentAfter).OfType<int>().ToList();
+
+		if (conversions.Count != conversions.Distinct().Count())
+		{
+			// Special case : 12.7cm連装砲A型 conversion cost is different depending on ship
+			UpgradeViewModels = data.Improvement
+				.Select(improvement => new AlbumMasterEquipmentUpgradeGroupViewModel([improvement], EquipmentUpgradeTranslation, Equipment))
+				.ToList();
+		}
+		else
+		{
+			UpgradeViewModels = data.Improvement
+				.GroupBy(improvement => improvement, new UpgradeCostDataEqualityComparer())
+				.Select(group => new AlbumMasterEquipmentUpgradeGroupViewModel(group.ToList(), EquipmentUpgradeTranslation, Equipment))
+				.ToList();
+		}
 	}
 
 	public void UnsubscribeFromApis()
