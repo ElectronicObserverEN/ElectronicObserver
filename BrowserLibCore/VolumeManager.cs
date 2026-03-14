@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Management;
 using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace BrowserLibCore;
 
@@ -108,36 +106,13 @@ public class VolumeManager
 	// https://stackoverflow.com/questions/23454396/rpc-e-cantcallout-ininputsynccall-when-trying-to-access-usb-device
 	private static Dictionary<uint, string> GetCommandLine(string processName)
 	{
-		Dictionary<uint, string> processes = new();
+		string search = "--utility-sub-type=audio.mojom.AudioService";
 
-		// this throws if there's problems with WMI
-		// https://github.com/ElectronicObserverEN/ElectronicObserver/issues/231
-		try
-		{
-			Thread thread = new(() =>
-			{
-				string query =
-					"SELECT ProcessId, CommandLine " +
-					"FROM Win32_Process " +
-					$"WHERE Name = \"{processName}\"" +
-					"AND CommandLine LIKE \"%--utility-sub-type=audio.mojom.AudioService%\"";
-
-				using ManagementObjectSearcher searcher = new(query);
-				using ManagementObjectCollection objects = searcher.Get();
-
-				foreach (ManagementBaseObject o in objects)
-				{
-					processes.Add((uint)o["ProcessId"], (string)o["CommandLine"]);
-				}
-			});
-			thread.Start();
-			thread.Join();
-		}
-		catch
-		{
-			// log?
-		}
-		
+		Dictionary<uint, string> processes = Process
+			.GetProcessesByName(processName)
+			.Select(p => (p.Id, CommandLine: p.GetCommandLine() ?? ""))
+			.Where(t => t.CommandLine.Contains(search, StringComparison.OrdinalIgnoreCase))
+			.ToDictionary(t => (uint)t.Id, t => t.CommandLine);
 
 		return processes;
 	}
@@ -165,7 +140,7 @@ public class VolumeManager
 			.ToList();
 		*/
 
-		Dictionary<uint, string> webView2AudioProcessArgs = GetCommandLine($"{processName}.exe");
+		Dictionary<uint, string> webView2AudioProcessArgs = GetCommandLine(processName);
 
 		string? TryGetArgs(uint pid)
 		{

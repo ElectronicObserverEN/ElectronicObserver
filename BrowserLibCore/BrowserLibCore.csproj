@@ -5,6 +5,7 @@
 		<Platforms>x64</Platforms>
 		<Nullable>enable</Nullable>
 		<LangVersion>preview</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
