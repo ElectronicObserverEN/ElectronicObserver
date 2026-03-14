@@ -10,7 +10,6 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUp
 public class AlbumMasterEquipmentUpgradeGroupViewModel
 {
 	public IEquipmentDataMaster Equipment { get; }
-	public EquipmentUpgradeDataModel? UpgradeData { get; private set; }
 
 	/// <summary>
 	/// Equipment upgrade cost, its the first cost found for this equipment so it's accurate for fuel, ammo, ... and devmats/screws for 0 -> 9 upgrades
@@ -19,9 +18,9 @@ public class AlbumMasterEquipmentUpgradeGroupViewModel
 
 	public List<AlbumMasterEquipmentUpgradeLevelViewModel> RequiredItemsPerLevel { get; set; } = [];
 
-	public List<EquipmentUpgradeConversionViewModel> ConversionViewModel { get; private set; } = new();
+	public List<EquipmentUpgradeConversionViewModel> ConversionViewModel { get; private set; } = [];
 
-	public List<EquipmentUpgradeHelpersViewModel> Helpers { get; private set; } = new();
+	public List<EquipmentUpgradeHelpersViewModel> Helpers { get; private set; } = [];
 
 	public AlbumMasterEquipmentUpgradeTranslationViewModel EquipmentUpgradeTranslation { get; }
 
