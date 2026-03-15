@@ -73,7 +73,7 @@ public class UpgradeCostDataEqualityComparer : IEqualityComparer<EquipmentUpgrad
 		return true;
 	}
 
-	public int GetHashCode([DisallowNull] EquipmentUpgradeImprovementModel obj) => GetHashCode(obj.Costs);
+	public int GetHashCode(EquipmentUpgradeImprovementModel obj) => GetHashCode(obj.Costs);
 
 	private int GetHashCode(EquipmentUpgradeImprovementCost cost)
 	{
