@@ -2,6 +2,6 @@
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 
-public class AlbumMasterEquipmentUpgradeViewModelProxy : BindingProxy<AlbumMasterEquipmentUpgradeViewModel>
+public class AlbumMasterEquipmentUpgradeGroupViewModelProxy : BindingProxy<AlbumMasterEquipmentUpgradeGroupViewModel>
 {
 }
