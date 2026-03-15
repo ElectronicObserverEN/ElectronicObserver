@@ -5,28 +5,18 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.Helpers;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 
 public class AlbumMasterEquipmentUpgradeViewModel
 {
-	public EquipmentUpgradeDataModel? UpgradeData { get; private set; }
-	public IEquipmentDataMaster Equipment { get; }
+	public int Fuel { get; set; }
+	public int Ammo { get; set; }
+	public int Steel { get; set; }
+	public int Bauxite { get; set; }
 
-	public bool CanBeUpgraded => UpgradeData?.Improvement.FirstOrDefault() is not null;
-
-	/// <summary>
-	/// Equipment upgrade cost, its the first cost found for this equipment so it's accurate for fuel, ammo, ... and devmats/screws for 0 -> 9 upgrades
-	/// </summary>
-	public EquipmentUpgradeImprovementCost EquipmentUpgradeCost { get; private set; } = new();
-
-	public List<AlbumMasterEquipmentUpgradeLevelViewModel> RequiredItemsPerLevel { get; set; } = [];
-
-	public List<EquipmentUpgradeConversionViewModel> ConversionViewModel { get; private set; } = new();
-
-	public List<EquipmentUpgradeHelpersViewModel> Helpers { get; private set; } = new();
+	public List<AlbumMasterEquipmentUpgradeGroupViewModel> UpgradeViewModels { get; private set; } = [];
+	private IEquipmentDataMaster Equipment { get; }
 
 	public AlbumMasterEquipmentUpgradeTranslationViewModel EquipmentUpgradeTranslation { get; }
 
@@ -41,44 +31,39 @@ public class AlbumMasterEquipmentUpgradeViewModel
 	private void LoadUpgradeData()
 	{
 		EquipmentUpgradeData upgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
-		UpgradeData = upgradeData.UpgradeList.FirstOrDefault(upgrade => upgrade.EquipmentId == Equipment.ID);
+		EquipmentUpgradeDataModel? data = upgradeData.UpgradeList.FirstOrDefault(upgrade => upgrade.EquipmentId == Equipment.ID);
 
-		if (UpgradeData is null) return;
+		if (data is null) return;
 
-		EquipmentUpgradeImprovementModel? firstImprovement = UpgradeData.Improvement.FirstOrDefault();
+		EquipmentUpgradeImprovementModel? firstImprovement = data.Improvement.FirstOrDefault();
 
 		if (firstImprovement is null) return;
 
-		EquipmentUpgradeCost = firstImprovement.Costs;
+		Fuel = firstImprovement.Costs.Fuel;
+		Ammo = firstImprovement.Costs.Ammo;
+		Steel = firstImprovement.Costs.Steel;
+		Bauxite = firstImprovement.Costs.Bauxite;
 
-		Helpers = UpgradeData.Improvement
-			.SelectMany(improvement => improvement.Helpers)
-			.Select(helperGroup => new EquipmentUpgradeHelpersViewModel(helperGroup))
-			.ToList();
+		List<int> conversions = data.Improvement.Select(i => i.ConversionData?.IdEquipmentAfter).OfType<int>().ToList();
 
-		InitializeCostPerLevel();
-
-		ConversionViewModel = UpgradeData
-			.Improvement
-			.Where(improvement => improvement.ConversionData is not null)
-			.Where(improvement => improvement.Costs.CostMax is not null)
-			.Select(improvement => new EquipmentUpgradeConversionViewModel(improvement))
-			.ToList();
-	}
-
-	private void InitializeCostPerLevel()
-	{
-		RequiredItemsPerLevel = EquipmentUpgradeCost
-			.GetCostPerLevelRange()
-			.Where(range => range.StartLevel != UpgradeLevel.Conversion)
-			.Select(range => new AlbumMasterEquipmentUpgradeLevelViewModel(range))
-			.ToList();
+		if (conversions.Count != conversions.Distinct().Count())
+		{
+			// Special case : 12.7cm連装砲A型 conversion cost is different depending on ship
+			UpgradeViewModels = data.Improvement
+				.Select(improvement => new AlbumMasterEquipmentUpgradeGroupViewModel([improvement], EquipmentUpgradeTranslation, Equipment))
+				.ToList();
+		}
+		else
+		{
+			UpgradeViewModels = data.Improvement
+				.GroupBy(improvement => improvement, new UpgradeCostDataEqualityComparer())
+				.Select(group => new AlbumMasterEquipmentUpgradeGroupViewModel(group.ToList(), EquipmentUpgradeTranslation, Equipment))
+				.ToList();
+		}
 	}
 
 	public void UnsubscribeFromApis()
 	{
-		ConversionViewModel.ForEach(viewModel => viewModel.UnsubscribeFromApis());
-		Helpers.ForEach(viewModel => viewModel.UnsubscribeFromApis());
-		RequiredItemsPerLevel.ForEach(viewModel => viewModel.UnsubscribeFromApis());
+		UpgradeViewModels.ForEach(vm => vm.UnsubscribeFromApis());
 	}
 }
