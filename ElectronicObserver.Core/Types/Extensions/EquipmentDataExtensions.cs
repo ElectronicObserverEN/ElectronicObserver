@@ -282,7 +282,7 @@ public static class EquipmentDataExtensions
 		int jetBomberCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.JetBomber);
 		int fighterCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.CarrierBasedFighter);
 		int bomberCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.CarrierBasedBomber);
-		int attackerCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.CarrierBasedBomber);
+		int attackerCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.CarrierBasedTorpedo);
 
 		if (jetFighterCount > 0 && jetBomberCount > 1) return DayAirAttackCutinKind.JetFighterJetBomberJetBomber;
 		if (jetFighterCount > 0 && jetBomberCount > 0) return DayAirAttackCutinKind.JetFighterJetBomber;
