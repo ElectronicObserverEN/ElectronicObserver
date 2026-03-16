@@ -59,7 +59,7 @@ public sealed class PhaseShellingAttackViewModel : AttackViewModelBase
 		}
 
 		DamageDisplay =
-			$"[{Core.Types.Attacks.DayAttack.AttackDisplay(AttackType)}] " +
+			$"[{Core.Types.Attacks.DayAttack.AttackDisplay(AttackType, DisplayEquipment)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
 
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Core.Types;
@@ -275,7 +276,12 @@ public class BattleDayDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return DayAttack.AttackDisplay((DayAttackKind)AttackType);
+		List<IEquipmentDataMaster> displayEquipment = EquipmentIDs
+			.Select(i => KCDatabase.Instance.MasterEquipments[i])
+			.OfType<IEquipmentDataMaster>()
+			.ToList();
+
+		return DayAttack.AttackDisplay((DayAttackKind)AttackType, displayEquipment);
 	}
 }
 

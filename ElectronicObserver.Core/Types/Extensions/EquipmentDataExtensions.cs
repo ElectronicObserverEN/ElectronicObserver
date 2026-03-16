@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using ElectronicObserver.Core.Types.Attacks;
 
 namespace ElectronicObserver.Core.Types.Extensions;
 
@@ -271,4 +273,25 @@ public static class EquipmentDataExtensions
 
 		_ => 0,
 	};
+
+	public static DayAirAttackCutinKind GetDayAirAttackCutinKind(this List<IEquipmentDataMaster>? displayEquipment)
+	{
+		if (displayEquipment is null) return DayAirAttackCutinKind.None;
+
+		int jetFighterCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.JetFighter);
+		int jetBomberCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.JetBomber);
+		int fighterCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.CarrierBasedFighter);
+		int bomberCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.CarrierBasedBomber);
+		int attackerCount = displayEquipment.Count(e => e.CategoryType is EquipmentTypes.CarrierBasedBomber);
+
+		if (jetFighterCount > 0 && jetBomberCount > 1) return DayAirAttackCutinKind.JetFighterJetBomberJetBomber;
+		if (jetFighterCount > 0 && jetBomberCount > 0) return DayAirAttackCutinKind.JetFighterJetBomber;
+		if (jetFighterCount > 0 && bomberCount > 0 && attackerCount > 0) return DayAirAttackCutinKind.JetFighterBomberAttacker;
+		
+		if (fighterCount > 0 && bomberCount > 0 && attackerCount > 0) return DayAirAttackCutinKind.FighterBomberAttacker;
+		if (bomberCount > 1 && attackerCount > 0) return DayAirAttackCutinKind.BomberBomberAttacker;
+		if (bomberCount > 0 && attackerCount > 0) return DayAirAttackCutinKind.BomberAttacker;
+
+		return DayAirAttackCutinKind.None;
+	}
 }

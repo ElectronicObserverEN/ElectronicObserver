@@ -193,15 +193,6 @@ Alcance: {20} / Velocidad: {21}
   <data name="ExpCalcHint" xml:space="preserve">
     <value>(Haz clic derecho para calcular la Exp necesaria)</value>
   </data>
-  <data name="CvciFba" xml:space="preserve">
-    <value>CI (FBA)</value>
-  </data>
-  <data name="CvciBba" xml:space="preserve">
-    <value>CI (BBA)</value>
-  </data>
-  <data name="CvciBa" xml:space="preserve">
-    <value>CI (BA)</value>
-  </data>
   <data name="Power" xml:space="preserve">
     <value>Potencia</value>
   </data>
