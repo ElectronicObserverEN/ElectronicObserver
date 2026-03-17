@@ -118,6 +118,14 @@ public static class ShipDataExtensions
 	public static bool HasZuiun(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e.IsZuiun()) >= count;
 
+	public static bool HasJetFighter(this IShipData ship) => ship.AllSlotInstance
+		.Zip(ship.Aircraft, (e, size) => (e, size))
+		.Any(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.JetFighter);
+
+	public static bool HasJetBomber(this IShipData ship) => ship.AllSlotInstance
+		.Zip(ship.Aircraft, (e, size) => (e, size))
+		.Any(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.JetBomber);
+
 	public static bool HasFighter(this IShipData ship) => ship.AllSlotInstance
 		.Zip(ship.Aircraft, (e, size) => (e, size))
 		.Any(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedFighter);

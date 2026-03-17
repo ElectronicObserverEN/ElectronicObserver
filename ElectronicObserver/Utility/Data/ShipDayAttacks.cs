@@ -11,61 +11,64 @@ public static class ShipDayAttacks
 {
 	public static IEnumerable<Enum> GetDayAttacks(this IShipData ship)
 	{
-		IEnumerable<Enum> dayAttacks = new List<Enum>();
+		IEnumerable<Enum> dayAttacks = [];
 
 		if (ship.IsIseClassK2())
 		{
-			dayAttacks = dayAttacks.Concat(IseClassSpecialAttacks.Cast<Enum>());
+			dayAttacks = dayAttacks.Concat(IseClassSpecialAttacks());
 		}
 
 		if (ship.IsSurfaceShip())
 		{
 			dayAttacks = dayAttacks
-				.Concat(SurfaceShipDaySpecialAttacks.Cast<Enum>())
-				.Concat(SurfaceShipDayNormalAttacks.Cast<Enum>());
+				.Concat(SurfaceShipDaySpecialAttacks())
+				.Concat(SurfaceShipDayNormalAttacks());
 		}
 
 		if (ship.MasterShip.IsAircraftCarrier)
 		{
 			dayAttacks = dayAttacks
-				.Concat(CarrierDaySpecialAttacks.Cast<Enum>())
-				.Concat(CarrierDayNormalAttacks.Cast<Enum>());
+				.Concat(CarrierDaySpecialAttacks())
+				.Concat(CarrierDayNormalAttacks());
 		}
 
 		return dayAttacks.Where(ship.CanDo);
 	}
 
-	private static List<DayAttackKind> IseClassSpecialAttacks => new List<DayAttackKind>
+	private static IEnumerable<Enum> IseClassSpecialAttacks()
 	{
-		DayAttackKind.SeaAirMultiAngle,
-		DayAttackKind.ZuiunMultiAngle
-	};
+		yield return DayAttackKind.SeaAirMultiAngle;
+		yield return DayAttackKind.ZuiunMultiAngle;
+	}
 
-	private static List<DayAttackKind> SurfaceShipDaySpecialAttacks => new List<DayAttackKind>
+	private static IEnumerable<Enum> SurfaceShipDaySpecialAttacks()
 	{
-		DayAttackKind.CutinMainMain,
-		DayAttackKind.CutinMainAP,
-		DayAttackKind.CutinMainRadar,
-		DayAttackKind.CutinMainSub,
-		DayAttackKind.DoubleShelling
-	};
+		yield return DayAttackKind.CutinMainMain;
+		yield return DayAttackKind.CutinMainAP;
+		yield return DayAttackKind.CutinMainRadar;
+		yield return DayAttackKind.CutinMainSub;
+		yield return DayAttackKind.DoubleShelling;
+	}
 
-	private static List<DayAttackKind> SurfaceShipDayNormalAttacks => new List<DayAttackKind>
+	private static IEnumerable<Enum> SurfaceShipDayNormalAttacks()
 	{
-		DayAttackKind.Shelling
-	};
+		yield return DayAttackKind.Shelling;
+	}
 
-	private static List<DayAttackKind> CarrierDayNormalAttacks => new List<DayAttackKind>
+	private static IEnumerable<Enum> CarrierDayNormalAttacks()
 	{
-		DayAttackKind.AirAttack
-	};
+		yield return DayAttackKind.AirAttack;
+	}
 
-	private static List<DayAirAttackCutinKind> CarrierDaySpecialAttacks => new List<DayAirAttackCutinKind>
+	private static IEnumerable<Enum> CarrierDaySpecialAttacks()
 	{
-		DayAirAttackCutinKind.FighterBomberAttacker,
-		DayAirAttackCutinKind.BomberBomberAttacker,
-		DayAirAttackCutinKind.BomberAttacker
-	};
+		yield return DayAirAttackCutinKind.JetFighterJetBomberJetBomber;
+		yield return DayAirAttackCutinKind.JetFighterJetBomber;
+		yield return DayAirAttackCutinKind.JetFighterBomberAttacker;
+		yield return DayAirAttackCutinKind.FighterBomberAttacker;
+		yield return DayAirAttackCutinKind.BomberBomberAttacker;
+		yield return DayAirAttackCutinKind.BomberAttacker;
+	}
 
 	private static bool CanDo(this IShipData ship, Enum attack) => attack switch
 	{
@@ -81,6 +84,10 @@ public static class ShipDayAttacks
 		DayAttackKind.DoubleShelling => ship.HasSeaplane() && ship.HasMainGun(2),
 
 		DayAttackKind.Shelling => ship.IsSurfaceShip(),
+
+		DayAirAttackCutinKind.JetFighterJetBomberJetBomber => ship.HasJetFighter() && ship.HasJetBomber(2),
+		DayAirAttackCutinKind.JetFighterJetBomber => ship.HasJetFighter() && ship.HasJetBomber(),
+		DayAirAttackCutinKind.JetFighterBomberAttacker => ship.HasJetFighter() && ship.HasBomber() && ship.HasAttacker(),
 
 		DayAirAttackCutinKind.FighterBomberAttacker => ship.HasFighter() && ship.HasBomber() && ship.HasAttacker(),
 		DayAirAttackCutinKind.BomberBomberAttacker => ship.HasBomber(2) && ship.HasAttacker(),

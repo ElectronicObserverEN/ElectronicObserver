@@ -103,6 +103,10 @@ public static class DayAttackRate
 		DayAttackKind.CutinMainSub => 120,
 		DayAttackKind.DoubleShelling => 130,
 
+		DayAirAttackCutinKind.JetFighterJetBomberJetBomber => 135,
+		DayAirAttackCutinKind.JetFighterJetBomber => 125,
+		DayAirAttackCutinKind.JetFighterBomberAttacker => 115,
+
 		DayAirAttackCutinKind.FighterBomberAttacker => 125,
 		DayAirAttackCutinKind.BomberBomberAttacker => 135,
 		DayAirAttackCutinKind.BomberAttacker => 150,

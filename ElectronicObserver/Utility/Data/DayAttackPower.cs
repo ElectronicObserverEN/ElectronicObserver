@@ -133,6 +133,10 @@ public static class DayAttackPower
 		DayAttackKind.ZuiunMultiAngle => 1.35,
 		DayAttackKind.SeaAirMultiAngle => 1.3,
 
+		DayAirAttackCutinKind.JetFighterJetBomberJetBomber => 1.35,
+		DayAirAttackCutinKind.JetFighterJetBomber => 1.3,
+		DayAirAttackCutinKind.JetFighterBomberAttacker => 1.27,
+
 		DayAirAttackCutinKind.FighterBomberAttacker => 1.25,
 		DayAirAttackCutinKind.BomberBomberAttacker => 1.20,
 		DayAirAttackCutinKind.BomberAttacker => 1.15,

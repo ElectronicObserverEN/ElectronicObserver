@@ -11,9 +11,9 @@ using Xunit;
 namespace ElectronicObserverCoreTests;
 
 [Collection(DatabaseCollection.Name)]
-public class DayAttackTests
+public class DayAttackTests(DatabaseFixture db)
 {
-	private DatabaseFixture Db { get; }
+	private DatabaseFixture Db { get; } = db;
 	private int Precision => 3;
 
 	private ShipDataMock BismarckMock => new(Db.MasterShips[ShipId.BismarckDrei])
@@ -21,8 +21,8 @@ public class DayAttackTests
 		Level = 175,
 		Fleet = 1,
 		LuckBase = 84,
-		SlotInstance = new List<IEquipmentData?>
-		{
+		SlotInstance =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai])
 			{
 				Level = 10,
@@ -36,8 +36,8 @@ public class DayAttackTests
 			{
 				Level = 8,
 			},
-		},
-		Aircraft = new List<int> { 4, 4, 4, 4 },
+		],
+		Aircraft = [4, 4, 4, 4],
 	};
 
 	private ShipDataMock Isek2Mock => new(Db.MasterShips[ShipId.IseKaiNi])
@@ -46,8 +46,8 @@ public class DayAttackTests
 		Fleet = 1,
 		LuckBase = 46,
 		FirepowerFit = 3 + 3 + 5 + 3,
-		SlotInstance = new List<IEquipmentData?>
-		{
+		SlotInstance =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_41cmTripleGunKaiNi])
 			{
 				Level = 6,
@@ -68,8 +68,8 @@ public class DayAttackTests
 			{
 				Level = 8,
 			},
-		},
-		Aircraft = new List<int> { 2, 2, 22, 22, 9 },
+		],
+		Aircraft = [2, 2, 22, 22, 9],
 	};
 
 	private ShipDataMock TaihouMock => new(Db.MasterShips[ShipId.TaihouKai])
@@ -77,42 +77,37 @@ public class DayAttackTests
 		Level = 149,
 		Fleet = 1,
 		LuckBase = 7,
-		SlotInstance = new List<IEquipmentData?>
-		{
+		SlotInstance =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_Type97TorpedoBomber_TomonagaSquadron]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type99DiveBomber_EgusaSquadron]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type99DiveBomber_EgusaSquadron]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ZeroFighterModel52C_wIwaiFlight]),
-		},
-		Aircraft = new List<int> { 30, 24, 24, 8 },
+		],
+		Aircraft = [30, 24, 24, 8],
 	};
-
-	public DayAttackTests(DatabaseFixture db)
-	{
-		Db = db;
-	}
 
 	[Fact]
 	public void DayAttackTest1()
 	{
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				BismarckMock,
 				Isek2Mock,
 				TaihouMock,
-			}),
+			]),
 		};
 
-		List<Enum> expected = new List<Enum>
-		{
+		List<Enum> expected =
+		[
 			DayAttackKind.CutinMainMain,
 			DayAttackKind.DoubleShelling,
 			DayAttackKind.Shelling,
-		};
+		];
 
-		List<Enum> actual = BismarckMock.GetDayAttacks().ToList();
+		List<Enum> actual = [.. BismarckMock.GetDayAttacks()];
 
 		Assert.Equal(expected, actual);
 
@@ -120,8 +115,8 @@ public class DayAttackTests
 		Assert.Equal(217, BismarckMock.GetDayAttackPower(actual[1], fleet));
 		Assert.Equal(181, BismarckMock.GetDayAttackPower(actual[2], fleet));
 
-		List<double> asAttackRates = actual.Select(a => BismarckMock.GetDayAttackRate(a, fleet)).ToList();
-		List<double> totalRates = asAttackRates.ToList().TotalRates();
+		List<double> asAttackRates = [.. actual.Select(a => BismarckMock.GetDayAttackRate(a, fleet))];
+		List<double> totalRates = asAttackRates.TotalRates();
 
 		Assert.Equal(0.587, totalRates[0], Precision);
 		Assert.Equal(0.28, totalRates[1], Precision);
@@ -133,23 +128,23 @@ public class DayAttackTests
 	{
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				BismarckMock,
 				Isek2Mock,
 				TaihouMock,
-			}),
+			]),
 		};
 
-		List<Enum> expected = new List<Enum>
-		{
+		List<Enum> expected =
+		[
 			DayAttackKind.ZuiunMultiAngle,
 			DayAttackKind.CutinMainMain,
 			DayAttackKind.DoubleShelling,
 			DayAttackKind.Shelling,
-		};
+		];
 
-		List<Enum> actual = Isek2Mock.GetDayAttacks().ToList();
+		List<Enum> actual = [.. Isek2Mock.GetDayAttacks()];
 
 		Assert.Equal(expected, actual);
 
@@ -158,8 +153,8 @@ public class DayAttackTests
 		Assert.Equal(208, Isek2Mock.GetDayAttackPower(actual[2], fleet));
 		Assert.Equal(174, Isek2Mock.GetDayAttackPower(actual[3], fleet));
 
-		List<double> asAttackRates = actual.Select(a => Isek2Mock.GetDayAttackRate(a, fleet)).ToList();
-		List<double> totalRates = asAttackRates.ToList().TotalRates();
+		List<double> asAttackRates = [.. actual.Select(a => Isek2Mock.GetDayAttackRate(a, fleet))];
+		List<double> totalRates = asAttackRates.TotalRates();
 
 		Assert.Equal(0.625, totalRates[0], Precision);
 		Assert.Equal(0.188, totalRates[1], Precision);
@@ -172,23 +167,23 @@ public class DayAttackTests
 	{
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				BismarckMock,
 				Isek2Mock,
 				TaihouMock,
-			}),
+			]),
 		};
 
-		List<Enum> expected = new List<Enum>
-		{
+		List<Enum> expected =
+		[
 			DayAirAttackCutinKind.FighterBomberAttacker,
 			DayAirAttackCutinKind.BomberBomberAttacker,
 			DayAirAttackCutinKind.BomberAttacker,
 			DayAttackKind.AirAttack,
-		};
+		];
 
-		List<Enum> actual = TaihouMock.GetDayAttacks().ToList();
+		List<Enum> actual = [.. TaihouMock.GetDayAttacks()];
 
 		Assert.Equal(expected, actual);
 		Assert.Equal(248, TaihouMock.GetDayAttackPower(actual[0], fleet));
@@ -196,8 +191,8 @@ public class DayAttackTests
 		Assert.Equal(228, TaihouMock.GetDayAttackPower(actual[2], fleet));
 		Assert.Equal(199, TaihouMock.GetDayAttackPower(actual[3], fleet));
 
-		List<double> asAttackRates = actual.Select(a => TaihouMock.GetDayAttackRate(a, fleet)).ToList();
-		List<double> totalRates = asAttackRates.ToList().TotalRates();
+		List<double> asAttackRates = [.. actual.Select(a => TaihouMock.GetDayAttackRate(a, fleet))];
+		List<double> totalRates = asAttackRates.TotalRates();
 
 		Assert.Equal(0.552, totalRates[0], Precision);
 		Assert.Equal(0.229, totalRates[1], Precision);
@@ -213,8 +208,8 @@ public class DayAttackTests
 			Level = 72,
 			Fleet = 1,
 			LuckBase = 32,
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_35_6cmTwinGun])
 				{
 					Level = 10,
@@ -224,32 +219,32 @@ public class DayAttackTests
 					Level = 10,
 				},
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type0ObservationSeaplane]),
-			},
-			Aircraft = new List<int> { 4, 4, 4, 4 },
+			],
+			Aircraft = [4, 4, 4, 4],
 		};
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				NagatoMock,
-			}),
+			]),
 		};
 
-		List<Enum> expected = new List<Enum>
-		{
+		List<Enum> expected =
+		[
 			DayAttackKind.DoubleShelling,
 			DayAttackKind.Shelling,
-		};
+		];
 
-		List<Enum> actual = NagatoMock.GetDayAttacks().ToList();
+		List<Enum> actual = [.. NagatoMock.GetDayAttacks()];
 
 		Assert.Equal(expected, actual);
 		Assert.Equal(171, NagatoMock.GetDayAttackPower(actual[0], fleet));
 		Assert.Equal(143, NagatoMock.GetDayAttackPower(actual[1], fleet));
 
-		List<double> asAttackRates = actual.Select(a => NagatoMock.GetDayAttackRate(a, fleet)).ToList();
-		List<double> totalRates = asAttackRates.ToList().TotalRates();
+		List<double> asAttackRates = [.. actual.Select(a => NagatoMock.GetDayAttackRate(a, fleet))];
+		List<double> totalRates = asAttackRates.TotalRates();
 
 		Assert.Equal(0.415, totalRates[0], Precision);
 		Assert.Equal(0.585, totalRates[1], Precision);
@@ -260,23 +255,23 @@ public class DayAttackTests
 	{
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				BismarckMock,
 				Isek2Mock,
 				TaihouMock,
-			}),
+			]),
 			FleetType = FleetType.Surface,
 		};
 
-		List<Enum> expected = new List<Enum>
-		{
+		List<Enum> expected =
+		[
 			DayAttackKind.CutinMainMain,
 			DayAttackKind.DoubleShelling,
 			DayAttackKind.Shelling,
-		};
+		];
 
-		List<Enum> actual = BismarckMock.GetDayAttacks().ToList();
+		List<Enum> actual = [.. BismarckMock.GetDayAttacks()];
 
 		Assert.Equal(expected, actual);
 
@@ -284,8 +279,8 @@ public class DayAttackTests
 		Assert.Equal(229, BismarckMock.GetDayAttackPower(actual[1], fleet));
 		Assert.Equal(191, BismarckMock.GetDayAttackPower(actual[2], fleet));
 
-		List<double> asAttackRates = actual.Select(a => BismarckMock.GetDayAttackRate(a, fleet)).ToList();
-		List<double> totalRates = asAttackRates.ToList().TotalRates();
+		List<double> asAttackRates = [.. actual.Select(a => BismarckMock.GetDayAttackRate(a, fleet))];
+		List<double> totalRates = asAttackRates.TotalRates();
 
 		Assert.Equal(0.587, totalRates[0], Precision);
 		Assert.Equal(0.28, totalRates[1], Precision);
@@ -298,32 +293,82 @@ public class DayAttackTests
 		ShipDataMock yamashioMaru = new(Db.MasterShips[ShipId.YamashioMaruKai])
 		{
 			Level = 99,
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Suisei_EgusaSquadron]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_OTO152mmTripleRapidfireGun]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_OTO152mmTripleRapidfireGun]),
-			},
+			],
 		};
 
 		FleetDataMock fleet = new()
 		{
 			FleetType = FleetType.Single,
-			MembersInstance = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
-			{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(
+			[
 				yamashioMaru,
-			}),
-		};
-		
-		List<Enum> expected = new List<Enum>
-		{
-			DayAttackKind.Shelling,
+			]),
 		};
 
-		List<Enum> actual = yamashioMaru.GetDayAttacks().ToList();
+		List<Enum> expected =
+		[
+			DayAttackKind.Shelling,
+		];
+
+		List<Enum> actual = [.. yamashioMaru.GetDayAttacks()];
 
 		Assert.Equal(expected, actual);
 
 		Assert.Equal(137, yamashioMaru.GetDayAttackPower(actual[0], fleet));
+	}
+
+	[Fact(DisplayName = "Jet cut-in")]
+	public void DayAttackTest7()
+	{
+		ShipDataMock hiryuu = new(Db.MasterShips[ShipId.HiryuuKaiSan])
+		{
+			Level = 99,
+			FirepowerFit = 15,
+			SlotInstance =
+			[
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.JetFighter_ShindenKai3_PrototypeJetShinden]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.JetBomber_KikkaKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.JetBomber_JetKeiunKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_RyuuseiKai_TomonagaSquadron]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Suisei_EgusaSquadron]),
+			],
+		};
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new([hiryuu]),
+		};
+
+		List<Enum> expected =
+		[
+			DayAirAttackCutinKind.JetFighterJetBomberJetBomber,
+			DayAirAttackCutinKind.JetFighterJetBomber,
+			DayAirAttackCutinKind.JetFighterBomberAttacker,
+			DayAirAttackCutinKind.BomberAttacker,
+			DayAttackKind.AirAttack,
+		];
+
+		List<Enum> actual = [.. hiryuu.GetDayAttacks()];
+
+		Assert.Equal(expected, actual);
+		Assert.Equal(307, hiryuu.GetDayAttackPower(actual[0], fleet));
+		Assert.Equal(296, hiryuu.GetDayAttackPower(actual[1], fleet));
+		Assert.Equal(289, hiryuu.GetDayAttackPower(actual[2], fleet));
+		Assert.Equal(262, hiryuu.GetDayAttackPower(actual[3], fleet));
+		Assert.Equal(228, hiryuu.GetDayAttackPower(actual[4], fleet));
+
+		List<double> asAttackRates = [.. actual.Select(a => hiryuu.GetDayAttackRate(a, fleet))];
+		List<double> totalRates = asAttackRates.TotalRates();
+
+		Assert.Equal(0.504, totalRates[0], Precision);
+		Assert.Equal(0.270, totalRates[1], Precision);
+		Assert.Equal(0.134, totalRates[2], Precision);
+		Assert.Equal(0.042, totalRates[3], Precision);
+		Assert.Equal(0.050, totalRates[4], Precision);
 	}
 }
