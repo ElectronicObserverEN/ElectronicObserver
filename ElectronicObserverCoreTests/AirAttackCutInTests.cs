@@ -86,4 +86,122 @@ public class AirAttackCutInTests(DatabaseFixture db)
 
 		Assert.Equal(DayAirAttackCutinKind.BomberAttacker, displayEquipment.GetDayAirAttackCutinKind());
 	}
+
+	[Fact(DisplayName = nameof(CvnciKind.FighterFighterAttacker))]
+	public void AirAttackCutInTest7()
+	{
+		List<IEquipmentDataMaster> displayEquipment =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar],
+		];
+
+		Assert.Equal(CvnciKind.FighterFighterAttacker, displayEquipment.GetNightAirAttackCutinKind());
+	}
+
+	[Fact(DisplayName = nameof(CvnciKind.FighterAttacker))]
+	public void AirAttackCutInTest8()
+	{
+		List<IEquipmentDataMaster> displayEquipment =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar],
+		];
+
+		Assert.Equal(CvnciKind.FighterAttacker, displayEquipment.GetNightAirAttackCutinKind());
+	}
+
+	[Fact(DisplayName = nameof(CvnciKind.Phototube))]
+	public void AirAttackCutInTest9()
+	{
+		List<IEquipmentDataMaster> displayEquipment1 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs],
+		];
+
+		Assert.Equal(CvnciKind.Phototube, displayEquipment1.GetNightAirAttackCutinKind());
+
+		List<IEquipmentDataMaster> displayEquipment2 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs],
+		];
+
+		Assert.Equal(CvnciKind.Phototube, displayEquipment2.GetNightAirAttackCutinKind());
+
+		List<IEquipmentDataMaster> displayEquipment3 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type0FighterModel62Kai_SkilledNightFighterbomber],
+		];
+
+		Assert.Equal(CvnciKind.Phototube, displayEquipment3.GetNightAirAttackCutinKind());
+
+		List<IEquipmentDataMaster> displayEquipment4 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type0FighterModel62Kai_SkilledNightFighterbomber],
+		];
+
+		Assert.Equal(CvnciKind.Phototube, displayEquipment4.GetNightAirAttackCutinKind());
+
+		List<IEquipmentDataMaster> displayEquipment5 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type0FighterModel62Kai_SkilledNightFighterbomber],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs],
+		];
+
+		Assert.Equal(CvnciKind.Phototube, displayEquipment5.GetNightAirAttackCutinKind());
+	}
+
+	[Fact(DisplayName = nameof(CvnciKind.FighterOtherOther))]
+	public void AirAttackCutInTest10()
+	{
+		List<IEquipmentDataMaster> displayEquipment1 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs],
+		];
+
+		Assert.Equal(CvnciKind.FighterOtherOther, displayEquipment1.GetNightAirAttackCutinKind());
+
+		List<IEquipmentDataMaster> displayEquipment2 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs],
+			Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_SwordfishMk_III_Skilled],
+		];
+
+		Assert.Equal(CvnciKind.FighterOtherOther, displayEquipment2.GetNightAirAttackCutinKind());
+
+		List<IEquipmentDataMaster> displayEquipment3 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type0FighterModel62Kai_SkilledNightFighterbomber],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron],
+		];
+
+		Assert.Equal(CvnciKind.FighterOtherOther, displayEquipment3.GetNightAirAttackCutinKind());
+
+		List<IEquipmentDataMaster> displayEquipment4 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type0FighterModel62Kai_SkilledNightFighterbomber],
+			Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Type0FighterModel62Kai_SkilledNightFighterbomber],
+		];
+
+		Assert.Equal(CvnciKind.FighterOtherOther, displayEquipment4.GetNightAirAttackCutinKind());
+
+		List<IEquipmentDataMaster> displayEquipment5 =
+		[
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+			Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled],
+		];
+
+		Assert.Equal(CvnciKind.FighterOtherOther, displayEquipment5.GetNightAirAttackCutinKind());
+	}
 }

@@ -10,7 +10,7 @@ public static class ShipNightAttacks
 {
 	public static IEnumerable<NightAttack> GetNightAttacks(this IShipData ship)
 	{
-		IEnumerable<NightAttack> nightAttacks = new List<NightAttack>();
+		IEnumerable<NightAttack> nightAttacks = [];
 
 		// those Souya forms can't attack at night, there might be others
 		if (ship.MasterShip.ShipId is ShipId.Souya645 or ShipId.Souya650) return nightAttacks;
@@ -24,8 +24,8 @@ public static class ShipNightAttacks
 				.Concat(SurfaceShipNightSpecialAttacks())
 				.FirstOrDefault(ship.CanDo) switch
 				{
-					NightAttack attack => new List<NightAttack> { attack },
-					_ => Enumerable.Empty<NightAttack>(),
+					NightAttack attack => [attack],
+					_ => [],
 				};
 
 			nightAttacks = nightAttacks
@@ -48,8 +48,8 @@ public static class ShipNightAttacks
 			IEnumerable<NightAttack> specialAttack =
 				SurfaceShipNightSpecialAttacks().FirstOrDefault(ship.CanDo) switch
 				{
-					NightAttack attack => new List<NightAttack> { attack },
-					_ => Enumerable.Empty<NightAttack>(),
+					NightAttack attack => [attack],
+					_ => [],
 				};
 
 			nightAttacks = nightAttacks
@@ -66,8 +66,8 @@ public static class ShipNightAttacks
 		else if (ship.IsSpecialNightCarrier() || ship.IsArkRoyal() && ship.HasSwordfish())
 		{
 			nightAttacks = nightAttacks
-				.Concat(new List<NightAttack> { NightAttack.DoubleShelling })
-				.Concat(new List<NightAttack> { NightAttack.Shelling });
+				.Concat([NightAttack.DoubleShelling])
+				.Concat([NightAttack.Shelling]);
 		}
 
 		return nightAttacks.Where(ship.CanDo);
@@ -135,8 +135,8 @@ public static class ShipNightAttacks
 	{
 		CvnciAttack { CvnciKind: CvnciKind.FighterFighterAttacker } => ship.HasNightFighter(2) && ship.HasNightAttacker(),
 		CvnciAttack { CvnciKind: CvnciKind.FighterAttacker } => ship.IsNightCarrier() && ship.HasNightFighter() && ship.HasNightAttacker(),
-		CvnciAttack { CvnciKind: CvnciKind.Phototube } => ship.HasNightPhototubePlane() && (ship.HasNightFighter() || ship.HasNightAttacker()),
-		CvnciAttack { CvnciKind: CvnciKind.FighterOtherOther } => ship.HasNightFighter() && ship.HasNightAircraft(3),
+		CvnciAttack { CvnciKind: CvnciKind.Phototube } => PhototubeCondition(ship),
+		CvnciAttack { CvnciKind: CvnciKind.FighterOtherOther } => FighterOtherOtherCondition(ship),
 
 		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment } => ship.HasLateModelTorpedo() && ship.HasSubmarineEquipment(),
 		SubmarineTorpedoCutinAttack { NightTorpedoCutinKind: NightTorpedoCutinKind.LateModelTorpedo2 } => ship.HasLateModelTorpedo(2),
@@ -171,6 +171,38 @@ public static class ShipNightAttacks
 
 		_ => false,
 	};
+
+	private static bool PhototubeCondition(IShipData ship)
+	{
+		int fighterCount = ship.AllSlotInstance.Count(e => e?.MasterEquipment.IsNightFighter() is true);
+		int attackerCount = ship.AllSlotInstance.Count(e => e?.MasterEquipment.IsNightAttacker() is true);
+		int bomberCount = ship.AllSlotInstance.Count(e => e?.MasterEquipment.IsNightBomber() is true);
+		int phototubeCount = ship.AllSlotInstance.Count(e => e?.MasterEquipment.IsPhototube() is true);
+
+		return (fighterCount, attackerCount, bomberCount, phototubeCount) switch
+		{
+			(1, _, _, 1) => true,
+			(0, 1, _, 1) => true,
+			(1, _, 1, _) => true,
+			(_, 1, 1, _) => true,
+			(_, _, 1, 1) => true,
+
+			_ => false,
+		};
+	}
+
+	private static bool FighterOtherOtherCondition(IShipData ship)
+	{
+		int fighterCount = ship.AllSlotInstance.Count(e => e?.MasterEquipment.IsNightFighter() is true);
+		int attackerCount = ship.AllSlotInstance.Count(e => e?.MasterEquipment.IsNightAttacker() is true);
+		int nightAircraftCount = ship.AllSlotInstance
+			.Count(e => e?.MasterEquipment.IsNightAircraft is true || e?.MasterEquipment.IsNightCapableAircraft() is true);
+
+		// basically you just need a night fighter and 2 other night aircraft
+		// but if you have exactly only the ffa setup, ffa will override foo
+		return fighterCount > 0 && nightAircraftCount > 2
+			&& !(fighterCount == 2 && attackerCount == 1 && nightAircraftCount == 3);
+	}
 
 	public static bool DestroyerCutinTwoHitAvailable(this IShipData ship) => ship.Level >= 80;
 }

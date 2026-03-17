@@ -357,7 +357,12 @@ public class BattleNightDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return NightAttack.AttackDisplay((NightAttackKind)AttackType);
+		List<IEquipmentDataMaster> displayEquipment = EquipmentIDs
+			.Select(i => KCDatabase.Instance.MasterEquipments[i])
+			.OfType<IEquipmentDataMaster>()
+			.ToList();
+
+		return NightAttack.AttackDisplay((NightAttackKind)AttackType, displayEquipment);
 	}
 }
 
@@ -464,7 +469,12 @@ public class BattleFriendlyShellingDetail : BattleDetail
 
 	protected override string GetAttackKind()
 	{
-		return NightAttack.AttackDisplay((NightAttackKind)AttackType);
+		List<IEquipmentDataMaster> displayEquipment = EquipmentIDs
+			.Select(i => KCDatabase.Instance.MasterEquipments[i])
+			.OfType<IEquipmentDataMaster>()
+			.ToList();
+
+		return NightAttack.AttackDisplay((NightAttackKind)AttackType, displayEquipment);
 	}
 }
 

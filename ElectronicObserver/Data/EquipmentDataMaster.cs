@@ -320,7 +320,7 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	}
 
 	/// <summary> 夜間行動可能な航空機かどうか </summary>
-	public bool IsNightAircraft => IsNightFighter || IsNightAttacker;
+	public bool IsNightAircraft => IsNightFighter || IsNightAttacker || this.IsNightBomber();
 
 	/// <summary> 夜間戦闘機かどうか </summary>
 	public bool IsNightFighter => IconType == 45;
