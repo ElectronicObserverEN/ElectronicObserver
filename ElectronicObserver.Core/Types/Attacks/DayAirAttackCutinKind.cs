@@ -7,6 +7,10 @@ public enum DayAirAttackCutinKind
 {
 	None = 0,
 
+	JetFighterJetBomberJetBomber,
+	JetFighterJetBomber,
+	JetFighterBomberAttacker,
+
 	FighterBomberAttacker,
 	BomberBomberAttacker,
 	BomberAttacker,

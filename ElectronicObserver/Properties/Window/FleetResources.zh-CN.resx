@@ -185,15 +185,6 @@
   <data name="ExpCalcHint" xml:space="preserve">
     <value>(右键计算必要Exp)</value>
   </data>
-  <data name="CvciFba" xml:space="preserve">
-    <value>空母Cut In(FBA)</value>
-  </data>
-  <data name="CvciBba" xml:space="preserve">
-    <value>空母Cut In(BBA)</value>
-  </data>
-  <data name="CvciBa" xml:space="preserve">
-    <value>空母Cut In(BA)</value>
-  </data>
   <data name="Asw" xml:space="preserve">
     <value>对潜</value>
   </data>

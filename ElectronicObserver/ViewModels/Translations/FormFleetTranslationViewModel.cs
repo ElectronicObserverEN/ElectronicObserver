@@ -7,10 +7,6 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string RightClickToOpenEncyclopedia => FleetResources.RightClickToOpenEncyclopedia;
 	public string ExpCalcHint => FleetResources.ExpCalcHint;
 
-	public string CvciFba => FleetResources.CvciFba;
-	public string CvciBba => FleetResources.CvciBba;
-	public string CvciBa => FleetResources.CvciBa;
-
 	public string Power => FleetResources.Power;
 	public string Accuracy => FleetResources.Accuracy;
 

@@ -195,15 +195,6 @@
   <data name="ExpCalcHint" xml:space="preserve">
     <value>(右クリックで必要Exp計算)</value>
   </data>
-  <data name="CvciFba" xml:space="preserve">
-    <value>空母カットイン(FBA)</value>
-  </data>
-  <data name="CvciBba" xml:space="preserve">
-    <value>空母カットイン(BBA)</value>
-  </data>
-  <data name="CvciBa" xml:space="preserve">
-    <value>空母カットイン(BA)</value>
-  </data>
   <data name="Power" xml:space="preserve">
     <value>威力</value>
   </data>

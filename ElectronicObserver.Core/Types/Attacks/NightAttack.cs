@@ -1,4 +1,7 @@
-﻿namespace ElectronicObserver.Core.Types.Attacks;
+﻿using System.Collections.Generic;
+using ElectronicObserver.Core.Types.Extensions;
+
+namespace ElectronicObserver.Core.Types.Attacks;
 
 public record NightAttack : Attack
 {
@@ -245,57 +248,67 @@ public record NightAttack : Attack
 	/// <summary>
 	/// 夜戦攻撃種別を表す文字列を取得します。
 	/// </summary>
-	public static string AttackDisplay(NightAttackKind attack) => attack switch
-	{
-		NightAttackKind.NormalAttack => AttackResources.NormalAttack,
-		NightAttackKind.DoubleShelling => AttackResources.DoubleShelling,
-		NightAttackKind.CutinMainTorpedo => AttackResources.CutinMainTorpedo,
-		NightAttackKind.CutinTorpedoTorpedo => AttackResources.CutinTorpedoTorpedo,
-		NightAttackKind.CutinMainSub => AttackResources.CutinNightMainSub,
-		NightAttackKind.CutinMainMain => AttackResources.CutinNightMainMain,
-		NightAttackKind.CutinAirAttack => AttackResources.CutinAirAttack,
+	public static string AttackDisplay(NightAttackKind attack, List<IEquipmentDataMaster>? displayEquipment = null)
+		=> attack switch
+		{
+			NightAttackKind.NormalAttack => AttackResources.NormalAttack,
+			NightAttackKind.DoubleShelling => AttackResources.DoubleShelling,
+			NightAttackKind.CutinMainTorpedo => AttackResources.CutinMainTorpedo,
+			NightAttackKind.CutinTorpedoTorpedo => AttackResources.CutinTorpedoTorpedo,
+			NightAttackKind.CutinMainSub => AttackResources.CutinNightMainSub,
+			NightAttackKind.CutinMainMain => AttackResources.CutinNightMainMain,
 
-		NightAttackKind.CutinTorpedoRadar or
-		NightAttackKind.CutinTorpedoRadar2 => AttackResources.CutinTorpedoRadar,
+			NightAttackKind.CutinAirAttack => displayEquipment.GetNightAirAttackCutinKind() switch
+			{
+				CvnciKind.FighterFighterAttacker => AttackResources.CvnciFfa,
+				CvnciKind.FighterAttacker => AttackResources.CvnciFa,
+				CvnciKind.Phototube => AttackResources.CvnciPhoto,
+				CvnciKind.FighterOtherOther => AttackResources.CvnciFoo,
 
-		NightAttackKind.CutinTorpedoPicket or
-		NightAttackKind.CutinTorpedoPicket2 => AttackResources.CutinTorpedoPicket,
+				_ => AttackResources.CutinAirAttack,
+			},
 
-		NightAttackKind.CutinTorpedoDestroyerPicket or
-		NightAttackKind.CutinTorpedoDestroyerPicket2 => AttackResources.CutinTorpedoDestroyerPicket,
+			NightAttackKind.CutinTorpedoRadar or
+			NightAttackKind.CutinTorpedoRadar2 => AttackResources.CutinTorpedoRadar,
 
-		NightAttackKind.CutinTorpedoDrum or
-		NightAttackKind.CutinTorpedoDrum2 => AttackResources.CutinTorpedoDrum,
+			NightAttackKind.CutinTorpedoPicket or
+			NightAttackKind.CutinTorpedoPicket2 => AttackResources.CutinTorpedoPicket,
 
-		NightAttackKind.SpecialNelson => AttackResources.SpecialNelson,
-		NightAttackKind.SpecialNagato => AttackResources.SpecialNagato,
-		NightAttackKind.SpecialMutsu => AttackResources.SpecialMutsu,
-		NightAttackKind.SpecialColorado => AttackResources.SpecialColorado,
-		NightAttackKind.SpecialKongou => AttackResources.SpecialKongou,
-		NightAttackKind.SpecialRichelieu => AttackResources.SpecialRichelieu,
-		NightAttackKind.SpecialQueenElizabethClass => AttackResources.SpecialQueenElizabeth,
+			NightAttackKind.CutinTorpedoDestroyerPicket or
+			NightAttackKind.CutinTorpedoDestroyerPicket2 => AttackResources.CutinTorpedoDestroyerPicket,
 
-		NightAttackKind.CutinZuiun => AttackResources.CutinZuiun,
+			NightAttackKind.CutinTorpedoDrum or
+			NightAttackKind.CutinTorpedoDrum2 => AttackResources.CutinTorpedoDrum,
 
-		NightAttackKind.SpecialSubmarineTender23 => AttackResources.SpecialSubmarineTender23,
-		NightAttackKind.SpecialSubmarineTender34 => AttackResources.SpecialSubmarineTender34,
-		NightAttackKind.SpecialSubmarineTender24 => AttackResources.SpecialSubmarineTender24,
+			NightAttackKind.SpecialNelson => AttackResources.SpecialNelson,
+			NightAttackKind.SpecialNagato => AttackResources.SpecialNagato,
+			NightAttackKind.SpecialMutsu => AttackResources.SpecialMutsu,
+			NightAttackKind.SpecialColorado => AttackResources.SpecialColorado,
+			NightAttackKind.SpecialKongou => AttackResources.SpecialKongou,
+			NightAttackKind.SpecialRichelieu => AttackResources.SpecialRichelieu,
+			NightAttackKind.SpecialQueenElizabethClass => AttackResources.SpecialQueenElizabeth,
 
-		NightAttackKind.SpecialYamato3Ships => AttackResources.SpecialYamato123,
-		NightAttackKind.SpecialYamato2Ships => AttackResources.SpecialYamato12,
+			NightAttackKind.CutinZuiun => AttackResources.CutinZuiun,
 
-		NightAttackKind.Shelling => AttackResources.Shelling,
-		NightAttackKind.AirAttack => AttackResources.AirAttack,
-		NightAttackKind.DepthCharge => AttackResources.DepthChargeAttack,
-		NightAttackKind.Torpedo => AttackResources.TorpedoAttack,
+			NightAttackKind.SpecialSubmarineTender23 => AttackResources.SpecialSubmarineTender23,
+			NightAttackKind.SpecialSubmarineTender34 => AttackResources.SpecialSubmarineTender34,
+			NightAttackKind.SpecialSubmarineTender24 => AttackResources.SpecialSubmarineTender24,
 
-		NightAttackKind.Rocket => AttackResources.RocketAttack,
-		NightAttackKind.LandingDaihatsu => AttackResources.LandingDaihatsu,
-		NightAttackKind.LandingTokuDaihatsu => AttackResources.LandingTokuDaihatsu,
-		NightAttackKind.LandingDaihatsuTank => AttackResources.LandingDaihatsuTank,
-		NightAttackKind.LandingAmphibious => AttackResources.TankAttack,
-		NightAttackKind.LandingTokuDaihatsuTank => AttackResources.LandingTokuDaihatsuTank,
+			NightAttackKind.SpecialYamato3Ships => AttackResources.SpecialYamato123,
+			NightAttackKind.SpecialYamato2Ships => AttackResources.SpecialYamato12,
 
-		_ => $"{AttackResources.Unknown}({(int)attack})",
-	};
+			NightAttackKind.Shelling => AttackResources.Shelling,
+			NightAttackKind.AirAttack => AttackResources.AirAttack,
+			NightAttackKind.DepthCharge => AttackResources.DepthChargeAttack,
+			NightAttackKind.Torpedo => AttackResources.TorpedoAttack,
+
+			NightAttackKind.Rocket => AttackResources.RocketAttack,
+			NightAttackKind.LandingDaihatsu => AttackResources.LandingDaihatsu,
+			NightAttackKind.LandingTokuDaihatsu => AttackResources.LandingTokuDaihatsu,
+			NightAttackKind.LandingDaihatsuTank => AttackResources.LandingDaihatsuTank,
+			NightAttackKind.LandingAmphibious => AttackResources.TankAttack,
+			NightAttackKind.LandingTokuDaihatsuTank => AttackResources.LandingTokuDaihatsuTank,
+
+			_ => $"{AttackResources.Unknown}({(int)attack})",
+		};
 }

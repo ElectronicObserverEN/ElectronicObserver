@@ -22,8 +22,8 @@ public class NightAttackTests(DatabaseFixture db)
 			Level = 175,
 			LuckBase = 84,
 			Condition = 49,
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai])
 				{
 					Level = 10,
@@ -36,32 +36,32 @@ public class NightAttackTests(DatabaseFixture db)
 				{
 					Level = 10,
 				},
-			},
+			],
 		};
 
 		ShipDataMock gotland = new(Db.MasterShips[ShipId.Gotlandandra])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]),
-			},
+			],
 		};
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				bismarck,
 				gotland,
-			})
+			])
 		};
 
-		List<NightAttack> expected = new()
-		{
+		List<NightAttack> expected =
+		[
 			NightAttack.CutinTorpedoTorpedo,
 			NightAttack.Shelling,
-		};
+		];
 
 		List<NightAttack> actual = bismarck.GetNightAttacks().ToList();
 
@@ -87,31 +87,31 @@ public class NightAttackTests(DatabaseFixture db)
 		{
 			Level = 122,
 			LuckBase = 25,
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_NightOperationAviationPersonnel]),
-			},
+			],
 		};
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				akagi,
-			}),
+			]),
 		};
 
-		List<NightAttack> expected = new()
-		{
+		List<NightAttack> expected =
+		[
 			CvnciAttack.CutinAirAttackFighterFighterAttacker,
 			CvnciAttack.CutinAirAttackFighterAttacker,
 			CvnciAttack.CutinAirAttackFighterOtherOther,
 			NightAttack.AirAttack,
-		};
+		];
 
 		List<NightAttack> actual = akagi.GetNightAttacks().ToList();
 
@@ -138,30 +138,30 @@ public class NightAttackTests(DatabaseFixture db)
 		{
 			Level = 125,
 			LuckBase = 17,
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_NightOperationAviationPersonnel]),
 
-			},
+			],
 		};
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				taiyou,
-			}),
+			]),
 		};
 
-		List<NightAttack> expected = new()
-		{
+		List<NightAttack> expected =
+		[
 			CvnciAttack.CutinAirAttackFighterAttacker,
 			CvnciAttack.CutinAirAttackFighterOtherOther,
 			NightAttack.AirAttack,
-		};
+		];
 
 		List<NightAttack> actual = taiyou.GetNightAttacks().ToList();
 
@@ -187,8 +187,8 @@ public class NightAttackTests(DatabaseFixture db)
 			Level = 130,
 			LuckBase = 16,
 			FirepowerFit = 4,
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_SwordfishMk_III_Skilled]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_OTO152mmTripleRapidfireGun])
@@ -199,22 +199,22 @@ public class NightAttackTests(DatabaseFixture db)
 				{
 					Level = 10,
 				},
-			},
+			],
 		};
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				ark,
-			}),
+			]),
 		};
 
-		List<NightAttack> expected = new()
-		{
+		List<NightAttack> expected =
+		[
 			NightAttack.DoubleShelling,
 			NightAttack.Shelling,
-		};
+		];
 
 		List<NightAttack> actual = ark.GetNightAttacks().ToList();
 
@@ -237,22 +237,22 @@ public class NightAttackTests(DatabaseFixture db)
 		{
 			Level = 175,
 			Condition = 49,
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SubmarineTorpedo_SkilledSonarPersonnel_LateModelBowTorpedoMount_4tubes]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Engine_NewHighPressureTemperatureSteamBoiler]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SubmarineEquipment_LateModelRadar_PassiveRadiolocator_SnorkelEquipment])
 				{
 					Level = 2,
 				},
-			},
+			],
 		};
 
-		List<NightAttack> expected = new()
-		{
+		List<NightAttack> expected =
+		[
 			SubmarineTorpedoCutinAttack.CutinTorpedoTorpedoLateModelTorpedoSubmarineEquipment,
 			NightAttack.Torpedo,
-		};
+		];
 
 		List<NightAttack> actual = fuumii.GetNightAttacks().ToList();
 
@@ -264,21 +264,21 @@ public class NightAttackTests(DatabaseFixture db)
 	{
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>()),
+			MembersInstance = new([]),
 		};
 
-		List<IEquipmentData?> torpedoes = new()
-		{
+		List<IEquipmentData?> torpedoes =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
-		};
+		];
 
-		List<IEquipmentData?> torpedoesWithDestroyerLookouts = new()
-		{
+		List<IEquipmentData?> torpedoesWithDestroyerLookouts =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts]),
-		};
+		];
 
 		ShipDataMock mogami = new(Db.MasterShips[ShipId.MogamiKaiNiToku])
 		{
@@ -338,31 +338,31 @@ public class NightAttackTests(DatabaseFixture db)
 	{
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>()),
+			MembersInstance = new([]),
 		};
 
-		List<IEquipmentData?> zuiunCutIn = new()
-		{
+		List<IEquipmentData?> zuiunCutIn =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
-		};
+		];
 
-		List<IEquipmentData?> zuiunCutInWithLookouts = new()
-		{
+		List<IEquipmentData?> zuiunCutInWithLookouts =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
-		};
+		];
 
-		List<IEquipmentData?> zuiunCutInWithDestroyerLookouts = new()
-		{
+		List<IEquipmentData?> zuiunCutInWithDestroyerLookouts =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts]),
-		};
+		];
 
 		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu])
 		{
@@ -386,33 +386,33 @@ public class NightAttackTests(DatabaseFixture db)
 	[Fact(DisplayName = "Night Zuiun cut-in rate bonus - reduced for Zuiun cut-in, increased for others")]
 	public void NightAttackTest8()
 	{
-		List<IEquipmentData?> zuiunCutIn = new()
-		{
+		List<IEquipmentData?> zuiunCutIn =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
-		};
+		];
 
 		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu]);
 
 		ShipDataMock mogami = new(Db.MasterShips[ShipId.MogamiKaiNiToku])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunMedium_20_3cm_No_3TwinGun]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunMedium_20_3cm_No_3TwinGun]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
-			},
+			],
 		};
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				yamato,
 				mogami,
-			}),
+			]),
 		};
 
 		double noCutInZuiunCutInRate = mogami.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
@@ -432,31 +432,31 @@ public class NightAttackTests(DatabaseFixture db)
 	{
 		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
-			},
+			],
 		};
 
 		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai]);
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				yamato,
 				kamikaze,
-			}),
+			]),
 		};
 
 		double normalRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
 
-		kamikaze.SlotInstance = new List<IEquipmentData?>
-		{
+		kamikaze.SlotInstance =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Searchlight_Searchlight]),
-		};
+		];
 
 		double searchlightRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
 
@@ -468,31 +468,31 @@ public class NightAttackTests(DatabaseFixture db)
 	{
 		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
-			},
+			],
 		};
 
 		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai]);
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				yamato,
 				kamikaze,
-			}),
+			]),
 		};
 
 		double normalRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
 
-		kamikaze.SlotInstance = new List<IEquipmentData?>
-		{
+		kamikaze.SlotInstance =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]),
-		};
+		];
 
 		double searchlightRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
 
@@ -502,31 +502,31 @@ public class NightAttackTests(DatabaseFixture db)
 	[Fact(DisplayName = "Night Zuiun cut-in bonus and flare bonus don't stack")]
 	public void NightAttackTest11()
 	{
-		List<IEquipmentData?> zuiunCutIn = new()
-		{
+		List<IEquipmentData?> zuiunCutIn =
+		[
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
 			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
-		};
+		];
 
 		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu]);
 
 		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
-			},
+			],
 		};
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				yamato,
 				kamikaze,
-			}),
+			]),
 		};
 
 		double normalRate = kamikaze.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
@@ -551,31 +551,31 @@ public class NightAttackTests(DatabaseFixture db)
 			Level = 180,
 			LuckBase = 99,
 			HPCurrent = 10,
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts]),
-			},
+			],
 		};
 
 		ShipDataMock perth = new(Db.MasterShips[ShipId.PerthKai])
 		{
-			SlotInstance = new List<IEquipmentData?>
-			{
+			SlotInstance =
+			[
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]),
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Searchlight_Searchlight]),
-			},
+			],
 		};
 
 		FleetDataMock fleet = new()
 		{
-			MembersInstance = new(new List<IShipData?>
-			{
+			MembersInstance = new(
+			[
 				kamikaze,
 				perth,
-			}),
+			]),
 		};
 
 		List<NightAttack> attacks = kamikaze.GetNightAttacks().ToList();
@@ -640,5 +640,54 @@ public class NightAttackTests(DatabaseFixture db)
 		List<NightAttack> attacks = ryuuhou.GetNightAttacks().ToList();
 
 		Assert.Single(attacks);
+	}
+
+	[Fact(DisplayName = "Fighter other other edge case - can't happen with 2 fighters 1 attacker")]
+	public void NightAttackTest16()
+	{
+		ShipDataMock kaga = new(Db.MasterShips[ShipId.KagaKaiNiE])
+		{
+			SlotInstance =
+			[
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TenzanModel12AKaiNi_MurataSquadronwRadar]),
+			],
+		};
+
+		List<NightAttack> expected =
+		[
+			CvnciAttack.CutinAirAttackFighterFighterAttacker,
+			CvnciAttack.CutinAirAttackFighterAttacker,
+			NightAttack.AirAttack,
+		];
+
+		List<NightAttack> attacks = [.. kaga.GetNightAttacks()];
+
+		Assert.Equal(expected, attacks);
+	}
+
+	[Fact(DisplayName = "Fighter other other edge case - all fighters")]
+	public void NightAttackTest17()
+	{
+		ShipDataMock kaga = new(Db.MasterShips[ShipId.KagaKaiNiE])
+		{
+			SlotInstance =
+			[
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+			],
+		};
+
+		List<NightAttack> expected =
+		[
+			CvnciAttack.CutinAirAttackFighterOtherOther,
+			NightAttack.AirAttack,
+		];
+
+		List<NightAttack> attacks = [.. kaga.GetNightAttacks()];
+
+		Assert.Equal(expected, attacks);
 	}
 }

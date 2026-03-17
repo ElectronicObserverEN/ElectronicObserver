@@ -194,9 +194,6 @@ public static class ShipDataExtensions
 		.Count(e => e?.MasterEquipment.IsNightAircraft == true || e?.IsNightCapableAircraft() == true)
 		>= count;
 
-	public static bool HasNightPhototubePlane(this IShipData ship) => ship.AllSlotInstance
-		.Any(e => e?.EquipmentId == EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs);
-
 	public static bool HasSwordfish(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsSwordfish ?? false);
 

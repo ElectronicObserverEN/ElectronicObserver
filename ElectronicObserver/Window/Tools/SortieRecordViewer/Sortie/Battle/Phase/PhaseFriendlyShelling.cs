@@ -6,6 +6,7 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;
+using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
@@ -30,8 +31,8 @@ public class PhaseFriendlyShelling : PhaseBase
 
 	public string InitialDisplay => GetDisplay();
 
-	private List<PhaseNightBattleAttack> Attacks { get; } = new();
-	public List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = new();
+	private List<PhaseNightBattleAttack> Attacks { get; } = [];
+	public List<PhaseFriendNightBattleAttackViewModel> AttackDisplays { get; } = [];
 
 	public PhaseFriendlyShelling(IKCDatabase kcDatabase, ApiFriendlyBattle apiFriendlyBattle)
 	{
@@ -106,10 +107,42 @@ public class PhaseFriendlyShelling : PhaseBase
 
 		foreach (PhaseNightBattleAttack atk in Attacks)
 		{
-			foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
+			if (atk.AttackType.IsSpecialAttack())
 			{
-				AttackDisplays.Add(new PhaseFriendNightBattleAttackViewModel(FleetsAfterPhase, atk.Attacker, defs.Key, atk.AttackType, defs.ToList()));
-				AddFriendDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
+				List<int> attackers = atk.AttackType switch
+				{
+					NightAttackKind.CutinZuiun => [.. Enumerable.Repeat(atk.Attacker.Index, 2)],
+					_ => atk.AttackType.SpecialAttackIndexes(),
+				};
+
+				int fleetCount = KCDatabase.Instance.Fleet.Fleets.Values
+					.Count(f => f.IsInSortie);
+
+				for (int i = 0; i < atk.Defenders.Count; i++)
+				{
+					int attackerIndex = attackers[i];
+
+					PhaseNightBattleAttack comboAttack = atk with
+					{
+						Attacker = fleetCount switch
+						{
+							2 => new(attackerIndex + 6, FleetFlag.Player),
+							_ => new(attackerIndex, FleetFlag.Player),
+						},
+						Defenders = [atk.Defenders[i]],
+					};
+
+					AttackDisplays.Add(new PhaseFriendNightBattleAttackViewModel(FleetsAfterPhase, comboAttack, comboAttack.Defenders.First().Defender));
+					AddDamage(FleetsAfterPhase, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+				}
+			}
+			else
+			{
+				foreach (IGrouping<BattleIndex, PhaseNightBattleDefender> defs in atk.Defenders.GroupBy(d => d.Defender))
+				{
+					AttackDisplays.Add(new PhaseFriendNightBattleAttackViewModel(FleetsAfterPhase, atk, defs.Key));
+					AddFriendDamage(FleetsAfterPhase, defs.Key, defs.Sum(d => d.Damage));
+				}
 			}
 		}
 
@@ -141,7 +174,7 @@ public class PhaseFriendlyShelling : PhaseBase
 
 	private string GetDisplay()
 	{
-		List<string> values = new();
+		List<string> values = [];
 
 		if (SearchlightFriend is not null)
 		{

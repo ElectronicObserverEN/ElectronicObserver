@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types;
-using ElectronicObserver.Core.Types.Attacks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -14,30 +13,32 @@ public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public List<int> DefenderHpBeforeAttacks { get; } = new();
+	public List<int> DefenderHpBeforeAttacks { get; } = [];
 
+	public List<IEquipmentDataMaster> DisplayEquipment { get; }
 	private List<NightAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
 
-	public PhaseFriendNightBattleAttackViewModel(BattleFleets fleets, BattleIndex attacker,
-		BattleIndex defender, NightAttackKind attackType, List<PhaseNightBattleDefender> defenders)
+	public PhaseFriendNightBattleAttackViewModel(BattleFleets fleets, PhaseNightBattleAttack attack,
+		BattleIndex defenderIndex)
 	{
-		AttackerIndex = attacker;
+		AttackerIndex = attack.Attacker;
 		Attacker = fleets.GetFriendShip(AttackerIndex)!;
-		DefenderIndex = defender;
+		DefenderIndex = defenderIndex;
 		Defender = fleets.GetFriendShip(DefenderIndex)!;
-		Attacks = defenders
+		Attacks = attack.Defenders
 			.Select(d => new NightAttack
 			{
 				Attacker = Attacker,
 				Defender = fleets.GetShip(d.Defender)!,
-				AttackKind = attackType,
+				AttackKind = attack.AttackType,
 				Damage = d.Damage,
 				GuardsFlagship = d.GuardsFlagship,
 				CriticalFlag = d.CriticalFlag,
 			})
 			.ToList();
+		DisplayEquipment = attack.DisplayEquipments;
 
 		AttackerHpBeforeAttack = Attacker.HPCurrent;
 		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
@@ -55,7 +56,7 @@ public sealed class PhaseFriendNightBattleAttackViewModel : AttackViewModelBase
 		}
 
 		DamageDisplay =
-			$"[{Core.Types.Attacks.NightAttack.AttackDisplay(attackType)}] " +
+			$"[{Core.Types.Attacks.NightAttack.AttackDisplay(attack.AttackType, DisplayEquipment)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
 
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)

@@ -194,15 +194,6 @@
   <data name="ExpCalcHint" xml:space="preserve">
     <value>(右鍵計算所需Exp)</value>
   </data>
-  <data name="CvciFba" xml:space="preserve">
-    <value>航母CI(戰爆攻-FBA)</value>
-  </data>
-  <data name="CvciBba" xml:space="preserve">
-    <value>航母CI(爆爆攻-BBA)</value>
-  </data>
-  <data name="CvciBa" xml:space="preserve">
-    <value>航母CI(爆攻-BA)</value>
-  </data>
   <data name="Power" xml:space="preserve">
     <value>戰力</value>
   </data>

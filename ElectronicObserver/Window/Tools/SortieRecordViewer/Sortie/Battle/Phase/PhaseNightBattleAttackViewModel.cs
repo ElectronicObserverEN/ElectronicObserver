@@ -57,7 +57,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 		}
 
 		DamageDisplay =
-			$"[{Core.Types.Attacks.NightAttack.AttackDisplay(attack.AttackType)}] " +
+			$"[{Core.Types.Attacks.NightAttack.AttackDisplay(attack.AttackType, DisplayEquipment)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
 
 		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
