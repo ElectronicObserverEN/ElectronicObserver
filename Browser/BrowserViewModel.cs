@@ -163,11 +163,14 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 					}
 
 					/* hide ads */
-					.gamesResetStyle > header,
-					.gamesResetStyle > footer,
-					.gamesResetStyle > aside
+					.gamesResetStyle > *
 					{
 						display: none;
+					}
+
+					.gamesResetStyle > main
+					{
+						display: flex;
 					}
 
 					#game_frame
