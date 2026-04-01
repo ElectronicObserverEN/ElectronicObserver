@@ -55,4 +55,38 @@ public class AswAttackTest
 
 		Assert.Equal(54, kamikaze.GetAswAttackPower(DayAttackKind.DepthCharge, fleet));
 	}
+
+	[Fact]
+	public void AswPenetrationTest1()
+	{
+		ShipDataMock hibiki = new(Db.MasterShips[ShipId.Hibiki])
+		{
+			Level = 185,
+			LuckBase = 99,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.DepthCharge_Mk_32ASWTorpedo_Mk_2Thrower]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.DepthCharge_LightweightASWTorpedo_InitialTestModel]),
+			},
+		};
+
+		Assert.Equal(8.369, hibiki.GetAswArmorPenetration(), 2);
+	}
+
+	[Fact]
+	public void AswPenetrationTest2()
+	{
+		ShipDataMock hachijou = new(Db.MasterShips[ShipId.HachijouKai])
+		{
+			Level = 185,
+			LuckBase = 99,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.DepthCharge_Mk_32ASWTorpedo_Mk_2Thrower]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.DepthCharge_LightweightASWTorpedo_InitialTestModel]),
+			},
+		};
+
+		Assert.Equal(10.369, hachijou.GetAswArmorPenetration(), 2);
+	}
 }
