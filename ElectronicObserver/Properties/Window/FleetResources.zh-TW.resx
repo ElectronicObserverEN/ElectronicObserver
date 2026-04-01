@@ -263,14 +263,14 @@
   <data name="SearchingPhase" xml:space="preserve">
     <value>索敵階段</value>
   </data>
-  <data name="FleetNameToolTip_Support" xml:space="preserve">
-    <value>支援攻擊: {0}</value>
-  </data>
   <data name="FleetNameToolTip_Level" xml:space="preserve">
     <value>總等級: {0} / 平均: {1:0.00}</value>
   </data>
   <data name="FleetNameToolTip_Speed" xml:space="preserve">
     <value>{0}艦隊</value>
+  </data>
+  <data name="FleetNameToolTip_Support" xml:space="preserve">
+    <value>支援攻擊: {0}</value>
   </data>
   <data name="FleetNameToolTip_Stats" xml:space="preserve">
     <value>總計火力 {0} ({1})  / 雷裝 {2} / 對空 {3} ({4}) / 反潛 {5} ({6}) / 索敵 {7} ({8})</value>

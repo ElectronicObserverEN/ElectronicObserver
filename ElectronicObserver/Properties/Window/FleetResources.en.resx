@@ -296,4 +296,7 @@ Range: {20} / Speed: {21}
   <data name="FleetNameToolTip_JetConsumption" xml:space="preserve">
     <value>Jet: {0} steel per battle</value>
   </data>
+  <data name="ArmorPenetration" xml:space="preserve">
+    <value>Armor pen</value>
+  </data>
 </root>

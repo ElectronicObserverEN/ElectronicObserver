@@ -12,6 +12,7 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 
 	public string Asw => FleetResources.Asw;
 	public string OpeningAsw => FleetResources.OpeningAsw;
+	public string ArmorPenetration => FleetResources.ArmorPenetration;
 	public string Aarb => FleetResources.Aarb;
 	public string AirstrikePower => FleetResources.AirstrikePower;
 
