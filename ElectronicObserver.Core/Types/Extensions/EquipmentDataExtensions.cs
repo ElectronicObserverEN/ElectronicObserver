@@ -177,6 +177,7 @@ public static class EquipmentDataExtensions
 		EquipmentId.DepthCharge_Type94DepthChargeProjector or
 		EquipmentId.DepthCharge_Type3DepthChargeProjector or
 		EquipmentId.DepthCharge_Type3DepthChargeProjector_CD or
+		EquipmentId.DepthCharge_Type3DepthChargeProjectorKai or
 		EquipmentId.DepthCharge_Prototype15cm9tubeASWRocketLauncher or
 		EquipmentId.DepthCharge_RUR4AWeaponAlphaKai or
 		EquipmentId.DepthCharge_Mk_32ASWTorpedo_Mk_2Thrower;
