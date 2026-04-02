@@ -22,12 +22,10 @@ public static class AswAttackArmorPenetration
 		if (eq is null) return 0;
 		if (!IsArmorPenetrationEquipment(eq)) return 0;
 
-
 		return Math.Sqrt(eq.ASW - 2) + shipBonus;
 	}
 
-	private static bool IsArmorPenetrationEquipment(IEquipmentDataMaster? eq) => eq?.EquipmentId switch
-	{
+	private static bool IsArmorPenetrationEquipment(IEquipmentDataMaster? eq) => eq?.EquipmentId is
 		EquipmentId.DepthCharge_Type95DepthCharge or
 		EquipmentId.DepthCharge_Type2DepthCharge or
 		EquipmentId.DepthCharge_Type2DepthChargeKaiNi or
@@ -35,8 +33,5 @@ public static class AswAttackArmorPenetration
 		EquipmentId.DepthCharge_Hedgehog_InitialModel or
 		
 		EquipmentId.DepthCharge_RUR4AWeaponAlphaKai or 
-		EquipmentId.DepthCharge_Mk_32ASWTorpedo_Mk_2Thrower => true,
-
-		_ => false
-	};
+		EquipmentId.DepthCharge_Mk_32ASWTorpedo_Mk_2Thrower;
 }
