@@ -529,6 +529,13 @@ public class FleetItemViewModel : ObservableObject
 
 			sb.Append($" (x{ship.AswMod():0.##})");
 
+			double aswPen = ship.GetAswArmorPenetration();
+
+			if (aswPen > 0)
+			{
+				sb.Append($" ({FormFleet.ArmorPenetration}: {aswPen:0.##})");
+			}
+
 			if (ship.CanOpeningASW)
 			{
 				sb.Append(FormFleet.OpeningAsw);

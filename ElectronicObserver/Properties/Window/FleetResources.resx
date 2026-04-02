@@ -297,4 +297,7 @@
   <data name="FleetNameToolTip_JetConsumption" xml:space="preserve">
     <value>ジェット1戦当たり: 鋼材 {0}</value>
   </data>
+  <data name="ArmorPenetration" xml:space="preserve">
+    <value>装甲減少効果</value>
+  </data>
 </root>
