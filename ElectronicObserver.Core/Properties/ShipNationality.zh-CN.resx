@@ -144,4 +144,10 @@
   <data name="Australian" xml:space="preserve">
     <value>澳大利亚</value>
   </data>
+  <data name="Thai" xml:space="preserve">
+    <value>泰国</value>
+  </data>
+  <data name="Norwegian" xml:space="preserve">
+    <value>挪威</value>
+  </data>
 </root>

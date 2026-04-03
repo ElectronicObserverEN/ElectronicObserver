@@ -276,4 +276,7 @@
   <data name="TransportMaterial" xml:space="preserve">
     <value>输送机件</value>
   </data>
+  <data name="JetFighterShinden" xml:space="preserve">
+    <value>喷气式舰载战斗机(震电)</value>
+  </data>
 </root>
