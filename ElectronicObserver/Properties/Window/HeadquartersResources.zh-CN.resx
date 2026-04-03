@@ -315,7 +315,7 @@
     <value>新型喷进装备开发资材</value>
   </data>
   <data name="ItemNamePortExpensionSet" xml:space="preserve">
-    <value>母港扩张</value>
+    <value>母港扩建</value>
   </data>
   <data name="ItemNamePresentBox" xml:space="preserve">
     <value>礼物箱</value>
@@ -385,5 +385,8 @@
   </data>
   <data name="SpecialAviationRation" xml:space="preserve">
     <value>航空特别增加食</value>
+  </data>
+  <data name="ArsenalExpansionKey" xml:space="preserve">
+    <value>工厂扩建钥匙</value>
   </data>
 </root>

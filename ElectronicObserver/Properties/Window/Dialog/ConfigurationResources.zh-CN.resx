@@ -298,9 +298,9 @@
     <value>启用DEBUG菜单</value>
   </data>
   <data name="Debug_EnableDebugMenuToolTip" xml:space="preserve">
-    <value>在主界面启用[DEBUG]菜单。
-该功能仅适用于DEBUG操作，不建议普通用户使用。
-启用该功能时无法保证程序正常运行，请＊责任自负＊。</value>
+    <value>启用主窗口[调试]菜单。
+由于是调试用功能，不建议用于通常使用。
+使用时无法保证正常运作，＊请自行承担使用风险。</value>
   </data>
   <data name="Life_CanCloseFloatWindowInLockToolTip" xml:space="preserve">
     <value>设置启用了上述「锁定布局」选项情况下，
@@ -799,5 +799,8 @@
   </data>
   <data name="FormFleet_ShowHomePortSupplyTimerToolTip" xml:space="preserve">
     <value>设置是否在舰队一览中显示母港刷闪计时器。</value>
+  </data>
+  <data name="Language_TraditionalChinese" xml:space="preserve">
+    <value>繁体中文</value>
   </data>
 </root>

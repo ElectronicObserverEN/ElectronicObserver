@@ -117,112 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnchorageRepair" xml:space="preserve">
-    <value>泊地修理发动</value>
+  <data name="UiBlocker" xml:space="preserve">
+    <value>UI拦截器</value>
   </data>
-  <data name="AnchorageRepairFinished" xml:space="preserve">
-    <value>自泊地修理开始已经过20分钟。</value>
+  <data name="Enabled" xml:space="preserve">
+    <value>启用</value>
   </data>
-  <data name="ConditionText" xml:space="preserve">
-    <value>#{0} 「{1}」所属舰娘的疲劳已恢复。</value>
+  <data name="Height" xml:space="preserve">
+    <value>高度</value>
   </data>
-  <data name="ConditionTitle" xml:space="preserve">
-    <value>疲劳恢复</value>
+  <data name="Width" xml:space="preserve">
+    <value>宽度</value>
   </data>
-  <data name="ConstructionText" xml:space="preserve">
-    <value>工厂船坞 #{0} 号的「{1}」建造完成。</value>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
   </data>
-  <data name="ConstructionTitle" xml:space="preserve">
-    <value>建造完毕</value>
+  <data name="Image" xml:space="preserve">
+    <value>图片</value>
   </data>
-  <data name="DamagedText" xml:space="preserve">
-    <value>{0} 大破了！</value>
+  <data name="Show" xml:space="preserve">
+    <value>测试</value>
   </data>
-  <data name="ExpeditionText" xml:space="preserve">
-    <value>#{0} 「{1}」从远征「{2}: {3}」归来。</value>
-  </data>
-  <data name="ExpeditionTitle" xml:space="preserve">
-    <value>远征归来</value>
-  </data>
-  <data name="FailedPlaySound" xml:space="preserve">
-    <value>通知系统: 通知提示音播放失败。</value>
-  </data>
-  <data name="FailedToLoadImage" xml:space="preserve">
-    <value>通知系统: 加载通知图片 {0} 失败。</value>
-  </data>
-  <data name="FailedToLoadSound" xml:space="preserve">
-    <value>通知系统: 通知提示音 {0} 加载失败。</value>
-  </data>
-  <data name="RemodelText" xml:space="preserve">
-    <value>{0}可以改造成{1}了。</value>
-  </data>
-  <data name="RemodelTitle" xml:space="preserve">
-    <value>改造可行</value>
-  </data>
-  <data name="RepairText" xml:space="preserve">
-    <value>入渠船坞 #{0} 号的「{1}」维修已完成。</value>
-  </data>
-  <data name="RepairTitle" xml:space="preserve">
-    <value>入渠完毕</value>
-  </data>
-  <data name="ShipExp" xml:space="preserve">
-    <value>舰娘Exp+</value>
-  </data>
-  <data name="ExpeditionResult" xml:space="preserve">
-    <value>远征结果 - </value>
-  </data>
-  <data name="NoResourcesGained" xml:space="preserve">
-    <value>未获得资源</value>
-  </data>
-  <data name="ShipLevelUp" xml:space="preserve">
-    <value>{0} 等级提升至 Lv. {1} 。</value>
-  </data>
-  <data name="ShipsResupplied" xml:space="preserve">
-    <value>进行了补给。消耗: </value>
-  </data>
-  <data name="BauxiteConsumedByAddingPlaneToAirBase" xml:space="preserve">
-    <value>由于基地航空队的编成变动，消耗了 {0} 铝土。</value>
-  </data>
-  <data name="AirBaseResupplyCost" xml:space="preserve">
-    <value>对#{0}「{1}」进行了补给。消耗: 燃料x{2}, 铝土x{3}</value>
-  </data>
-  <data name="ExpansionSlotOpened" xml:space="preserve">
-    <value>{0} 的补强装备增设改修已完成。</value>
-  </data>
-  <data name="ShipSuccessfullyRemodeled" xml:space="preserve">
-    <value>{0} Lv. {1} 的改造已完成。</value>
-  </data>
-  <data name="EquipmentHasBenScrapped" xml:space="preserve">
-    <value>{0}{1} 已废弃。</value>
-  </data>
-  <data name="ShipHasBeenScrapped" xml:space="preserve">
-    <value>{0} 已解体。</value>
-  </data>
-  <data name="SortieingTo" xml:space="preserve">
-    <value>⚓ {0}-{1}-{2}: {3}已出击</value>
-  </data>
-  <data name="HasSortiedTo" xml:space="preserve">
-    <value>#{0}「{1}」已出击前往「{2}-{3} {4}」。</value>
-  </data>
-  <data name="HasBeenSentToExpedition" xml:space="preserve">
-    <value>#{0}「{1}」已出发前往远征「{2}: {3}」。</value>
-  </data>
-  <data name="StartedRepairingShip" xml:space="preserve">
-    <value>入渠船坞 #{0}号的 {1} ({2}/{3}) 维修已开始。(消耗燃料x{4}, 钢材x{5}, {6})</value>
-  </data>
-  <data name="BucketUsed" xml:space="preserve">
-    <value>高速修复材x1</value>
-  </data>
-  <data name="ETA" xml:space="preserve">
-    <value>预计修理完成: </value>
-  </data>
-  <data name="HomePortSupplyFinished" xml:space="preserve">
-    <value>自母港补给开始已经过15分钟。</value>
-  </data>
-  <data name="HomePortSupply" xml:space="preserve">
-    <value>母港补给</value>
-  </data>
-  <data name="HomePortSupplyExpeditionFinished" xml:space="preserve">
-    <value>母港补给舰队「{0}」还有{1}分钟从远征归港。</value>
+  <data name="BlockerBypassToolTip" xml:space="preserve">
+    <value>出击舰队有大破舰，按住Ctrl键点击可绕过本次拦截。</value>
   </data>
 </root>

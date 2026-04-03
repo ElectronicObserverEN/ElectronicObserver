@@ -232,4 +232,34 @@
   <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
     <value>出击前存在任何中队未编成或配置转换中时显示通知。</value>
   </data>
+  <data name="HomePortSupplyNotificationLevel_Always" xml:space="preserve">
+    <value>随时</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_HomePortSupplyFleet" xml:space="preserve">
+    <value>母港补给舰队</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_HomePortSupplyAvailable" xml:space="preserve">
+    <value>存在母港补给时</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevel_IncludingPresets" xml:space="preserve">
+    <value>预设编成时</value>
+  </data>
+  <data name="HomePortSupplyNotificationLevelToolTip" xml:space="preserve">
+    <value>随时：经过15分钟后通知。
+母港补给舰队：附加条件 仅母港满足补给舰队编成时通知（野埼位于1或2号位）。
+需要母港补给时：附加条件 仅在实际满足补给条件时通知。
+预设编成时：附加条件 存在满足补给条件的预设编成时通知。</value>
+  </data>
+  <data name="GroupHomePortSupply" xml:space="preserve">
+    <value>母港补给设置</value>
+  </data>
+  <data name="HomePortSupply_NotifyForExpeditions" xml:space="preserve">
+    <value>在远征时通知</value>
+  </data>
+  <data name="HomePortSupply_NotifyForExpeditionsToolTip" xml:space="preserve">
+    <value>母港补给舰队远征计时15分钟＋远征通知提前显示时，发送通知信息</value>
+  </data>
+  <data name="HomePortSupply_ExpeditionHurryBy" xml:space="preserve">
+    <value>远征通知提前</value>
+  </data>
 </root>

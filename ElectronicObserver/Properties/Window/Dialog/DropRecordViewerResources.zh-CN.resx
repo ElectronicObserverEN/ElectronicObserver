@@ -181,6 +181,9 @@
   <data name="RecordView_RankB" xml:space="preserve">
     <value>B胜利</value>
   </data>
+  <data name="IsBossOnly" xml:space="preserve">
+    <value>Boss点</value>
+  </data>
   <data name="MapAreaIDToolTip" xml:space="preserve">
     <value>请设定海域ID。
 选择 * 时所有的海域都将纳入搜索范围。

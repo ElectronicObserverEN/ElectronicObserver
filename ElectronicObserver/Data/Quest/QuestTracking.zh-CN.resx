@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Boss" xml:space="preserve">
-    <value>BOSS</value>
+    <value>BOSS点</value>
   </data>
   <data name="BossVictory" xml:space="preserve">
     <value>BOSS胜利</value>
@@ -172,7 +172,7 @@
     <value>出击 {0}, S胜利 {1}, BOSS {2}, BOSS胜利 {3}</value>
   </data>
   <data name="ClearConditionBoss" xml:space="preserve">
-    <value>BOSS</value>
+    <value>BOSS点</value>
   </data>
   <data name="ClearConditionClear" xml:space="preserve">
     <value>到达</value>

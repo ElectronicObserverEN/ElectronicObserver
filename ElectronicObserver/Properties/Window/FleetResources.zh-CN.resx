@@ -255,24 +255,30 @@
     <value>支援攻击: {0}</value>
   </data>
   <data name="FleetNameToolTip_Stats" xml:space="preserve">
-    <value>总火力 {0} ({1})  / 雷装 {2} / 对空 {3} ({4}) / 对潜 {5} ({6}) / 索敌 {7} ({8})</value>
+    <value>合计火力 {0} ({1}) / 雷装 {2} / 对空 {3} ({4}) / 对潜 {5} ({6}) / 索敌 {7} ({8})</value>
   </data>
   <data name="FleetNameToolTip_Drum" xml:space="preserve">
-    <value>运输桶搭载: {0}个 ({1}舰)</value>
+    <value>鼓桶搭载: {0}个 ({1}舰)</value>
   </data>
   <data name="FleetNameToolTip_Daihatsu" xml:space="preserve">
     <value>大发动艇搭载: {0}个 ({1}舰, +{2:p1})</value>
   </data>
   <data name="FleetNameToolTip_Tp" xml:space="preserve">
-    <value>运输量(TP): S {0} / A {1}</value>
+    <value>输送量(TP): S {0} / A {1}</value>
   </data>
   <data name="FleetNameToolTip_SurfaceRadar" xml:space="preserve">
     <value>水上电探: {0}个 ({1}舰)</value>
   </data>
   <data name="FleetNameToolTip_Consumption" xml:space="preserve">
-    <value>总搭载: 燃 {0} / 弹 {1}</value>
+    <value>总装载: 燃 {0} / 弹 {1}</value>
   </data>
   <data name="FleetNameToolTip_ConsumptionPerBattle" xml:space="preserve">
-    <value>(1次战斗消耗 燃 {0} / 弹 {1})</value>
+    <value>(1战消耗 燃 {0} / 弹 {1})</value>
+  </data>
+  <data name="FleetNameToolTip_JetConsumption" xml:space="preserve">
+    <value>喷式1战消耗: 钢材 {0}</value>
+  </data>
+  <data name="ArmorPenetration" xml:space="preserve">
+    <value>装甲穿透效果</value>
   </data>
 </root>
