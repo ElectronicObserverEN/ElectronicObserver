@@ -124,7 +124,7 @@
     <value>！！正在大破进击！！</value>
   </data>
   <data name="CriticallyDamagedShip" xml:space="preserve">
-    <value>存在大破舰！</value>
+    <value>有大破舰！</value>
   </data>
   <data name="Docking" xml:space="preserve">
     <value>正在入渠 </value>
