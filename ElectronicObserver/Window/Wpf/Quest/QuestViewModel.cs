@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
@@ -420,17 +421,21 @@ public partial class QuestViewModel : AnchorableViewModel
 					row.QuestView_NameToolTip += $"\r\n{tracker?.GroupConditions.Display}";
 				}
 
-				row.QuestView_NameToolTipExtra = "";
+				StringBuilder toolTipExtra = new(); 
 
 				if (q.Type != 1 && q.GetProgressResetType() is QuestResetType.Daily)
 				{
-					row.QuestView_NameToolTipExtra += $"{FormQuest.QuestView_ProgressResetsDaily}";
+					toolTipExtra.AppendLine();
+					toolTipExtra.Append(FormQuest.QuestView_ProgressResetsDaily);
 				}
 
 				if (q.GetEndDateTime() is DateTime endTime)
 				{
-					row.QuestView_NameToolTipExtra += string.Format(FormQuest.QuestView_EndsOn, endTime);
+					toolTipExtra.AppendLine();
+					toolTipExtra.AppendFormat(FormQuest.QuestView_EndsOn, endTime);
 				}
+
+				row.QuestView_NameToolTipExtra = toolTipExtra.ToString();
 
 				if (row.QuestView_NameToolTipExtra?.Length > 0)
 				{
