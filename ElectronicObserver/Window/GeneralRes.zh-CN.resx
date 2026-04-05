@@ -775,4 +775,13 @@ Cut In种类: {1} ({2})</value>
   <data name="MaximumMorale" xml:space="preserve">
     <value>士气已最高</value>
   </data>
+  <data name="ProgressResetsDaily" xml:space="preserve">
+    <value>每日重置</value>
+  </data>
+  <data name="QuestEndsOn" xml:space="preserve">
+    <value>{0}已截止</value>
+  </data>
+  <data name="QuestListEndsOn" xml:space="preserve">
+    <value>{0}任务已截止</value>
+  </data>
 </root>

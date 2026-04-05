@@ -229,7 +229,7 @@
     <value>保护</value>
   </data>
   <data name="BossNode" xml:space="preserve">
-    <value>BOSS</value>
+    <value>BOSS点</value>
   </data>
   <data name="FleetType" xml:space="preserve">
     <value>舰队种类</value>

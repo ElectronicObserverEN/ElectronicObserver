@@ -117,85 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompletionTime" xml:space="preserve">
-    <value>完成时间 </value>
+  <data name="UiBlocker" xml:space="preserve">
+    <value>UI拦截器</value>
   </data>
-  <data name="CriticalDamageAdvance" xml:space="preserve">
-    <value>！！正在大破进击！！</value>
+  <data name="Enabled" xml:space="preserve">
+    <value>启用</value>
   </data>
-  <data name="CriticallyDamagedShip" xml:space="preserve">
-    <value>有大破舰！</value>
+  <data name="Height" xml:space="preserve">
+    <value>高度</value>
   </data>
-  <data name="Docking" xml:space="preserve">
-    <value>正在入渠 </value>
+  <data name="Width" xml:space="preserve">
+    <value>宽度</value>
   </data>
-  <data name="EstimatedRecoveryTime" xml:space="preserve">
-    <value>预计恢复时间</value>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
   </data>
-  <data name="Fatigued" xml:space="preserve">
-    <value>疲劳 </value>
+  <data name="Image" xml:space="preserve">
+    <value>图片</value>
   </data>
-  <data name="FightingSpiritHigh" xml:space="preserve">
-    <value>战意高昂！</value>
+  <data name="Show" xml:space="preserve">
+    <value>测试</value>
   </data>
-  <data name="HasReturned" xml:space="preserve">
-    <value>#{0}「{1}」已返回母港。</value>
-  </data>
-  <data name="NoShips" xml:space="preserve">
-    <value>无所属舰</value>
-  </data>
-  <data name="OnExped" xml:space="preserve">
-    <value>远征中 </value>
-  </data>
-  <data name="OnSortie" xml:space="preserve">
-    <value>出击中</value>
-  </data>
-  <data name="ReadyToSortie" xml:space="preserve">
-    <value>可以出击！</value>
-  </data>
-  <data name="ResupplyTooltip" xml:space="preserve">
-    <value>油 : {0}
-弹 : {1}
-铝 : {2} ({3}架)</value>
-  </data>
-  <data name="SparkledTooltip" xml:space="preserve">
-    <value>最低士气: {0}
-还能远征 {1} 次</value>
-  </data>
-  <data name="SupplyNeeded" xml:space="preserve">
-    <value>未补给</value>
-  </data>
-  <data name="ExpeditionToolTip" xml:space="preserve">
-    <value>{0} : {1}
-完成时间 : {2}</value>
-  </data>
-  <data name="RepairTimeHeader" xml:space="preserve">
-    <value>开始时间 : {0}
-修理时长 :
-</value>
-  </data>
-  <data name="RepairTimeDetail" xml:space="preserve">
-    <value>#{0} : {1} @ {2} x -{3} HP
-</value>
-  </data>
-  <data name="OnDock" xml:space="preserve">
-    <value>正在入渠 </value>
-  </data>
-  <data name="DockCompletionTime" xml:space="preserve">
-    <value>完成时间 : </value>
-  </data>
-  <data name="RecoveryTimeToolTip" xml:space="preserve">
-    <value>预计恢复时间: {0}
-(预测误差: {1})</value>
-  </data>
-  <data name="ResourceToolTip" xml:space="preserve">
-    <value>油 : {0}/{1} ({2}%)
-弹 : {3}/{4} ({5}%)</value>
-  </data>
-  <data name="ChuuhaShip" xml:space="preserve">
-    <value>有中破舰</value>
-  </data>
-  <data name="ShouhaShip" xml:space="preserve">
-    <value>有小破舰</value>
+  <data name="BlockerBypassToolTip" xml:space="preserve">
+    <value>出击舰队有大破舰，按住Ctrl键点击可绕过本次拦截。</value>
   </data>
 </root>

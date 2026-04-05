@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CvciFba" xml:space="preserve">
-    <value>空母Cut In(FBA)</value>
+    <value>空母Cut In(战爆攻)</value>
   </data>
   <data name="CvciBba" xml:space="preserve">
-    <value>空母Cut In(BBA)</value>
+    <value>空母Cut In(爆爆攻)</value>
   </data>
   <data name="CvciBa" xml:space="preserve">
-    <value>空母Cut In(BA)</value>
+    <value>空母Cut In(爆攻)</value>
   </data>
   <data name="CvciJfjbjb" xml:space="preserve">
-    <value>空母Cut In(JFJBJB)</value>
+    <value>空母Cut In(喷战喷爆喷爆)</value>
   </data>
   <data name="CvciJfjb" xml:space="preserve">
-    <value>空母Cut In(JFJB)</value>
+    <value>空母Cut In(喷战喷爆)</value>
   </data>
   <data name="CvciJfba" xml:space="preserve">
-    <value>空母Cut In(JFBA)</value>
+    <value>空母Cut In(喷战爆攻)</value>
   </data>
 </root>

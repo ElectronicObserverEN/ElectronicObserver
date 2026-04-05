@@ -216,4 +216,13 @@
   <data name="ETA" xml:space="preserve">
     <value>预计修理完成: </value>
   </data>
+  <data name="HomePortSupplyFinished" xml:space="preserve">
+    <value>自母港补给开始已经过15分钟。</value>
+  </data>
+  <data name="HomePortSupply" xml:space="preserve">
+    <value>母港补给</value>
+  </data>
+  <data name="HomePortSupplyExpeditionFinished" xml:space="preserve">
+    <value>母港补给舰队「{0}」还有{1}分钟从远征归港。</value>
+  </data>
 </root>
