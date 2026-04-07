@@ -352,6 +352,11 @@
 					<MenuItem Command="{Binding CopyOperationRoomLinkCommand}" Header="{Binding SortieDetail.CopyLink}" />
 					<MenuItem Command="{Binding OpenOperationRoomCommand}" Header="{Binding SortieDetail.Open}" />
 				</MenuItem>
+				<MenuItem
+					Command="{Binding OpenLocalApiLoaderCommand}"
+					Header="Local api loader"
+					Visibility="{Binding IsDebug, Converter={StaticResource BooleanToVisibilityConverter}}"
+					/>
 			</MenuItem>
 		</Menu>
 
