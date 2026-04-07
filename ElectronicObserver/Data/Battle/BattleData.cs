@@ -25,6 +25,11 @@ public abstract class BattleData : ResponseWrapper
 	/// </summary>
 	public ReadOnlyCollection<int> AttackDamages => Array.AsReadOnly(_attackDamages);
 
+	/// <summary>
+	/// MasterID (drop id) of ships that used damecon during battle.
+	/// </summary>
+	public List<int> UsedDamecons { get; } = [];
+
 
 	public PhaseInitial Initial { get; protected set; }
 	public PhaseSearching Searching { get; protected set; }

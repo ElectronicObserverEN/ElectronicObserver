@@ -633,19 +633,20 @@ public static class ShipDataExtensions
 
 	public static bool CanSink(this IShipData ship, IFleetData fleet) => ship.CanSink(fleet, ship.HPCurrent);
 
-	public static bool CanSink(this IShipData? ship, IFleetData fleet, int hp)
+	public static bool CanSink(this IShipData? ship, IFleetData fleet, int hp, bool usedDamecon = false)
 	{
 		if (ship is null) return false;
 		if ((double)hp / ship.HPMax > 0.25) return false;
 		if (fleet.MembersInstance.FirstOrDefault() == ship) return false;
-		if (ship.HasDamecon()) return false;
+		if (ship.HasDamecon(usedDamecon ? 2 : 1)) return false;
 		if (ship.RepairingDockID > -1) return false;
 
 		return fleet.MembersWithoutEscaped!.Contains(ship);
 	}
 
-	private static bool HasDamecon(this IShipData ship) => ship.AllSlotInstance
-		.Any(e => e?.MasterEquipment.CategoryType is EquipmentTypes.DamageControl);
+	private static bool HasDamecon(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.CategoryType is EquipmentTypes.DamageControl)
+		>= count;
 
 	public static DamageState GetDamageState(this IShipData ship) => ship.HPRate switch
 	{
