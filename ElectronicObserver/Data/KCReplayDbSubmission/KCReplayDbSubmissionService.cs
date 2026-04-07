@@ -55,7 +55,6 @@ public class KCReplayDbSubmissionService
 	{
 		KCReplayDbQuestSubmissionService questSubmissionService = new(httpClient, logError);
 
-		APIObserver.Instance.ApiReqQuest_ClearItemGet.RequestReceived += questSubmissionService.ApiReqQuest_ClearItemGetOnRequestReceived;
 		APIObserver.Instance.ApiGetMember_QuestList.ResponseReceived += questSubmissionService.ApiGetMember_QuestListOnResponseReceived;
 
 		return questSubmissionService;
@@ -63,7 +62,6 @@ public class KCReplayDbSubmissionService
 
 	private static void UnsubscribeFromQuestApis(KCReplayDbQuestSubmissionService questSubmissionService)
 	{
-		APIObserver.Instance.ApiReqQuest_ClearItemGet.RequestReceived -= questSubmissionService.ApiReqQuest_ClearItemGetOnRequestReceived;
 		APIObserver.Instance.ApiGetMember_QuestList.ResponseReceived -= questSubmissionService.ApiGetMember_QuestListOnResponseReceived;
 	}
 

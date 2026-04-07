@@ -15,56 +15,14 @@ public class KCReplayDbQuestSubmissionService(
 	private Action<Exception> LogError { get; } = logError;
 
 	private dynamic? LastRawQuestList { get; set; }
-	private int? CompletedQuestId { get; set; }
-	private List<int>? OldQuestIds { get; set; }
+	private List<int> OldQuestIds { get; set; } = [];
 	private List<int>? NewQuestIds { get; set; }
-	private List<JsonNode>? OldQuestList { get; set; }
+	private List<JsonNode> OldQuestList { get; set; } = [];
 	private List<JsonNode>? NewQuestList { get; set; }
-
-	private void ClearState()
-	{
-		CompletedQuestId = null;
-		OldQuestIds = null;
-		NewQuestIds = null;
-		OldQuestList = null;
-		NewQuestList = null;
-	}
-
-	public void ApiReqQuest_ClearItemGetOnRequestReceived(string apiName, dynamic data)
-	{
-		if (LastRawQuestList is null) return;
-
-		ClearState();
-
-		try
-		{
-			CompletedQuestId = int.Parse(data["api_quest_id"]);
-
-			OldQuestList = QuestsFromRawList((string)LastRawQuestList.ToString());
-
-			OldQuestIds = OldQuestList
-				?.Select(n => n["api_no"])
-				.Select(n => n?.GetValueKind() switch
-				{
-					JsonValueKind.Number => n.GetValue<int>(),
-					_ => (int?)null,
-				})
-				.OfType<int>()
-				.Where(i => i != CompletedQuestId)
-				.ToList();
-		}
-		catch (Exception e)
-		{
-			LogError(e);
-			ClearState();
-		}
-	}
 
 	public void ApiGetMember_QuestListOnResponseReceived(string apiName, dynamic data)
 	{
 		LastRawQuestList = data;
-
-		if (CompletedQuestId is null) return;
 
 		try
 		{
@@ -85,17 +43,13 @@ public class KCReplayDbQuestSubmissionService(
 		catch (Exception e)
 		{
 			LogError(e);
-			ClearState();
 		}
 	}
 
 	private void SubmitData()
 	{
-		if (OldQuestIds is null) return;
 		if (NewQuestIds is null) return;
-		if (OldQuestList is null) return;
 		if (NewQuestList is null) return;
-		if (CompletedQuestId is not int completedQuestId) return;
 
 		try
 		{
@@ -105,11 +59,8 @@ public class KCReplayDbQuestSubmissionService(
 
 			if (newlyUnlockedQuestIds.Count is 0)
 			{
-				ClearState();
 				return;
 			}
-
-			List<int> questDataIds = [completedQuestId, .. newlyUnlockedQuestIds];
 
 			List<JsonNode> newQuestData = OldQuestList
 				.Concat(NewQuestList)
@@ -121,11 +72,14 @@ public class KCReplayDbQuestSubmissionService(
 				.DistinctBy(t => t.ApiNo)
 				.Where(t => t.ApiNo switch
 				{
-					int apiNo => questDataIds.Contains(apiNo),
+					int apiNo => newlyUnlockedQuestIds.Contains(apiNo),
 					_ => false,
 				})
 				.Select(t => t.Node)
 				.ToList();
+
+			OldQuestIds.AddRange(NewQuestIds);
+			OldQuestList.AddRange(NewQuestList);
 
 			KCReplayDbQuestSubmissionData submissionData = new()
 			{
@@ -147,7 +101,6 @@ public class KCReplayDbQuestSubmissionService(
 		catch (Exception e)
 		{
 			LogError(e);
-			ClearState();
 		}
 	}
 
