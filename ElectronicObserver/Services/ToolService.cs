@@ -763,8 +763,8 @@ public class ToolService(DataSerializationService dataSerializationService, ICli
 	{
 		try
 		{
-			List<SortieRecord>? sorties = JsonSerializer
-				.Deserialize<List<SortieRecord>>(Clipboard.GetText());
+			List<ImportedSortieRecord>? sorties = JsonSerializer
+				.Deserialize<List<ImportedSortieRecord>>(Clipboard.GetText());
 
 			if (sorties is null) return;
 

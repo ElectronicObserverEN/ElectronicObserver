@@ -79,6 +79,10 @@ public partial class DialogLocalAPILoader2 : Form
 		{
 			LoadFiles(Utility.Configuration.Config.Connection.SaveDataPath);
 		}
+		else if (SortieRecord is ImportedSortieRecord)
+		{
+			LoadSortieRecordFilesByFetchingRequiredMissingApiInDb(SortieRecord);
+		}
 		else
 		{
 			LoadSortieRecordFiles(SortieRecord);
@@ -197,6 +201,44 @@ public partial class DialogLocalAPILoader2 : Form
 		APIView.Rows.AddRange(rows.ToArray());
 		APIView.Sort(APIView_FileName, ListSortDirection.Ascending);
 
+	}
+
+	private void LoadSortieRecordFilesByFetchingRequiredMissingApiInDb(SortieRecord sortieRecord)
+	{
+		if (sortieRecord.ApiFiles.Count is 0) return;
+
+		ElectronicObserverContext db = new();
+		db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+		IEnumerable<ApiFile?> GetRequiredApiFile(string url)
+		{
+			ApiFile? request = db.ApiFiles
+				.OrderByDescending(f => f.Id)
+				.FirstOrDefault(f => f.Name == url && f.ApiFileType == ApiFileType.Request);
+
+			ApiFile? response = db.ApiFiles
+				.OrderByDescending(f => f.Id)
+				.FirstOrDefault(f => f.Name == url && f.ApiFileType == ApiFileType.Response);
+
+			return [request, response];
+		}
+
+		string[] requiredApi = ["api_port/port", "api_get_member/mapinfo", "api_get_member/useitem"];
+
+		ApiFilesBeforeSortie = requiredApi.Select(GetRequiredApiFile)
+			.SelectMany(files => files)
+			.OfType<ApiFile>()
+			.ToList();
+
+		// Force API files ID to sort them in the view
+		foreach ((ApiFile api, int index) in ApiFilesBeforeSortie.Select((api, index) => (api, index)))
+		{
+			api.Id = index;
+		}
+
+		ApiFilesAfterSortie = [];
+
+		ApiFilesToLoad = [.. ApiFilesBeforeSortie, .. sortieRecord.ApiFiles, .. ApiFilesAfterSortie];
 	}
 
 	private void LoadSortieRecordFiles(SortieRecord sortieRecord)
