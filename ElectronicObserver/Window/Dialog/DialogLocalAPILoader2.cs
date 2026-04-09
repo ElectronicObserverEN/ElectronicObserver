@@ -470,7 +470,7 @@ public partial class DialogLocalAPILoader2 : Form
 	private static List<ApiShip>? TryGetSortieShipData(SortieRecord? sortieRecord)
 	{
 		ApiFile? sortieEquipmentDataFile = sortieRecord?.ApiFiles
-			.FirstOrDefault(f => f.Name is "api_get_member/ship_deck");
+			.FirstOrDefault(f => f.Name is "api_get_member/ship_deck" && f.ApiFileType == ApiFileType.Response);
 
 		if (sortieEquipmentDataFile?.Content is null) return null;
 
