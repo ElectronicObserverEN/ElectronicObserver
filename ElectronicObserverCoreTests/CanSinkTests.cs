@@ -180,4 +180,26 @@ public class CanSinkTests(DatabaseFixture db)
 		Assert.False(kamikaze.CanSink(fleet, kamikaze.HPCurrent, false));
 		Assert.False(asakaze.CanSink(fleet, asakaze.HPCurrent, true));
 	}
+
+	[Fact(DisplayName = "Sunken ships can't sink")]
+	public void CanSinkTest8()
+	{
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai]);
+		ShipDataMock asakaze = new(Db.MasterShips[ShipId.AsakazeKai])
+		{
+			HPCurrent = -1,
+		};
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>(
+			[
+				kamikaze,
+				asakaze,
+			]),
+		};
+
+		Assert.False(kamikaze.CanSink(fleet));
+		Assert.False(asakaze.CanSink(fleet));
+	}
 }

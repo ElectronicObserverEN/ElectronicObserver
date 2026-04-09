@@ -636,6 +636,7 @@ public static class ShipDataExtensions
 	public static bool CanSink(this IShipData? ship, IFleetData fleet, int hp, bool usedDamecon = false)
 	{
 		if (ship is null) return false;
+		if (hp < 1) return false;
 		if ((double)hp / ship.HPMax > 0.25) return false;
 		if (fleet.MembersInstance.FirstOrDefault() == ship) return false;
 		if (ship.HasDamecon(usedDamecon ? 2 : 1)) return false;
