@@ -57,24 +57,30 @@ public sealed partial class UiBlockerManagerViewModel : WindowViewModelBase
 
 		BattleData battle = bm.SecondBattle ?? bm.FirstBattle;
 
-		if (CanAnyShipSink(battle.Initial.FriendFleet, battle.ResultHPs))
+		List<int> usedDamecons = bm.SecondBattle switch
+		{
+			null => bm.FirstBattle.UsedDamecons,
+			_ => [.. bm.FirstBattle.UsedDamecons, .. bm.SecondBattle.UsedDamecons],
+		};
+
+		if (CanAnyShipSink(battle.Initial.FriendFleet, battle.ResultHPs, usedDamecons))
 		{
 			ShowBlocker(TaihaBlocker);
 			return;
 		}
 
 		if (!bm.IsCombinedBattle) return;
-		if (!CanAnyShipSink(battle.Initial.FriendFleetEscort, battle.ResultHPs.Skip(6))) return;
+		if (!CanAnyShipSink(battle.Initial.FriendFleetEscort, battle.ResultHPs.Skip(6), usedDamecons)) return;
 
 		ShowBlocker(TaihaBlocker);
 
-		static bool CanAnyShipSink(FleetData fleet, IEnumerable<int> hps)
+		static bool CanAnyShipSink(FleetData fleet, IEnumerable<int> hps, List<int> usedDamecons)
 		{
 			if (fleet.MembersInstance is null) return false;
 
 			return fleet.MembersInstance
 				.Zip(hps, (s, hp) => (Ship: s, Hp: hp))
-				.Any(t => t.Ship.CanSink(fleet, t.Hp));
+				.Any(t => t.Ship.CanSink(fleet, t.Hp, usedDamecons.Contains(t.Ship?.MasterID ?? 0)));
 		}
 	}
 

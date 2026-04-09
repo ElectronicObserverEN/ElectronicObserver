@@ -11,6 +11,8 @@ using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.KancolleApi.Types;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.RequireInfo;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Observer;
@@ -77,6 +79,10 @@ public partial class DialogLocalAPILoader2 : Form
 		{
 			LoadFiles(Utility.Configuration.Config.Connection.SaveDataPath);
 		}
+		else if (SortieRecord is ImportedSortieRecord)
+		{
+			LoadSortieRecordFilesByFetchingRequiredMissingApiInDb(SortieRecord);
+		}
 		else
 		{
 			LoadSortieRecordFiles(SortieRecord);
@@ -119,11 +125,11 @@ public partial class DialogLocalAPILoader2 : Form
 		if (!APICaller.IsBusy)
 			APICaller.RunWorkerAsync(APIView.SelectedRows.Cast<DataGridViewRow>().Select(row => row.Cells[APIView_FileName.Index].Value as string).OrderBy(s => s));
 		else
-		if (MessageBox.Show(LocalAPILoader2Resources.OperationAlreadyInProgress, LocalAPILoader2Resources.Confirmation, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
-			== System.Windows.Forms.DialogResult.Yes)
-		{
-			APICaller.CancelAsync();
-		}
+			if (MessageBox.Show(LocalAPILoader2Resources.OperationAlreadyInProgress, LocalAPILoader2Resources.Confirmation, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+				== System.Windows.Forms.DialogResult.Yes)
+			{
+				APICaller.CancelAsync();
+			}
 		//*/
 	}
 
@@ -195,6 +201,44 @@ public partial class DialogLocalAPILoader2 : Form
 		APIView.Rows.AddRange(rows.ToArray());
 		APIView.Sort(APIView_FileName, ListSortDirection.Ascending);
 
+	}
+
+	private void LoadSortieRecordFilesByFetchingRequiredMissingApiInDb(SortieRecord sortieRecord)
+	{
+		if (sortieRecord.ApiFiles.Count is 0) return;
+
+		ElectronicObserverContext db = new();
+		db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+		IEnumerable<ApiFile?> GetRequiredApiFile(string url)
+		{
+			ApiFile? request = db.ApiFiles
+				.OrderByDescending(f => f.Id)
+				.FirstOrDefault(f => f.Name == url && f.ApiFileType == ApiFileType.Request);
+
+			ApiFile? response = db.ApiFiles
+				.OrderByDescending(f => f.Id)
+				.FirstOrDefault(f => f.Name == url && f.ApiFileType == ApiFileType.Response);
+
+			return [request, response];
+		}
+
+		string[] requiredApi = ["api_port/port", "api_get_member/mapinfo", "api_get_member/useitem"];
+
+		ApiFilesBeforeSortie = requiredApi.Select(GetRequiredApiFile)
+			.SelectMany(files => files)
+			.OfType<ApiFile>()
+			.ToList();
+
+		// Force API files ID to sort them in the view
+		foreach ((ApiFile api, int index) in ApiFilesBeforeSortie.Select((api, index) => (api, index)))
+		{
+			api.Id = index;
+		}
+
+		ApiFilesAfterSortie = [];
+
+		ApiFilesToLoad = [.. ApiFilesBeforeSortie, .. sortieRecord.ApiFiles, .. ApiFilesAfterSortie];
 	}
 
 	private void LoadSortieRecordFiles(SortieRecord sortieRecord)
@@ -334,6 +378,9 @@ public partial class DialogLocalAPILoader2 : Form
 
 		if (apiFile is { Name: "api_port/port", ApiFileType: ApiFileType.Response })
 		{
+			List<ApiShip>? sortieShips = TryGetSortieShipData(SortieRecord);
+			Dictionary<SortieShip, (List<int>, int)> shipEquip = LoadEquipmentData(sortieShips);
+
 			string? savedPortResponseJson = LoadApiResponse("api_port/port");
 
 			if (savedPortResponseJson is not null)
@@ -360,12 +407,43 @@ public partial class DialogLocalAPILoader2 : Form
 							_ => new FleetDataDto
 							{
 								ApiId = i + 1,
-								ApiShip = f.Ships.Select(s => s.DropId ?? 0).ToList(),
+								ApiShip = [.. f.Ships.Select(s => s.DropId ?? 0)],
 								ApiMission = [0, 0, 0, 0],
 							},
 						})
 						.OfType<FleetDataDto>()
 						.ToList();
+
+					// Ensures that the ship data from the sortie record exists in KCDatabase with the correct ID.
+					foreach (SortieShip ship in SortieRecord.FleetData.Fleets.OfType<SortieFleet>().SelectMany(f => f.Ships))
+					{
+						if (ship.DropId is not int dropId) continue;
+
+						if (apiFilePortResponse.ApiData.ApiShip.FirstOrDefault(s => s.ApiId == dropId) is { } s)
+						{
+							apiFilePortResponse.ApiData.ApiShip.Remove(s);
+						}
+
+						(List<int> equipmentIds, int apiSlotEx) = shipEquip.ContainsKey(ship) switch
+						{
+							true => shipEquip[ship],
+							_ => ([-1], -1),
+						};
+
+						if (sortieShips?.FirstOrDefault(s => s.ApiId == dropId) is ApiShip apiShip)
+						{
+							apiShip.ApiNowhp = ship.Hp ?? apiShip.ApiNowhp;
+							apiShip.ApiFuel = ship.Fuel;
+							apiShip.ApiBull = ship.Ammo;
+							apiShip.ApiOnslot = ship.Aircraft ?? apiShip.ApiOnslot;
+						}
+						else
+						{
+							apiShip = ship.ToApiShip(equipmentIds, equipmentIds.Count, apiSlotEx);
+						}
+
+						apiFilePortResponse.ApiData.ApiShip.Add(apiShip);
+					}
 				}
 
 				apiFile.Content = JsonSerializer.Serialize(apiFilePortResponse, JsonSerializerOptions);
@@ -387,6 +465,104 @@ public partial class DialogLocalAPILoader2 : Form
 				APIObserver.Instance.LoadResponse("/kcsapi/" + apiName, $"svdata={apiFile.Content}");
 				break;
 		}
+	}
+
+	private static List<ApiShip>? TryGetSortieShipData(SortieRecord? sortieRecord)
+	{
+		ApiFile? sortieEquipmentDataFile = sortieRecord?.ApiFiles
+			.FirstOrDefault(f => f.Name is "api_get_member/ship_deck" && f.ApiFileType == ApiFileType.Response);
+
+		if (sortieEquipmentDataFile?.Content is null) return null;
+
+		ApiResponse<ApiGetMemberShipDeckResponse>? sortieEquipmentData = JsonSerializer
+			.Deserialize<ApiResponse<ApiGetMemberShipDeckResponse>>(sortieEquipmentDataFile.Content);
+
+		return sortieEquipmentData?.ApiData.ApiShipData;
+	}
+
+	/// <summary>
+	/// Ensures that the equip data from the sortie record exists in KCDatabase with the correct ID.
+	/// </summary>
+	private Dictionary<SortieShip, (List<int>, int)> LoadEquipmentData(List<ApiShip>? sortieShips)
+	{
+		if (SortieRecord is null) return [];
+
+		string? savedRequireInfoResponseJson = LoadApiResponse("api_get_member/require_info");
+
+		Dictionary<SortieShip, (List<int>, int)> shipEquip = [];
+
+		if (savedRequireInfoResponseJson is null) return [];
+
+		ApiResponse<ApiGetMemberRequireInfoResponse> savedRequireInfoResponse = JsonSerializer
+			.Deserialize<ApiResponse<ApiGetMemberRequireInfoResponse>>(savedRequireInfoResponseJson[7..])
+			?? throw new NotImplementedException();
+
+		int equipmentDropId = 1;
+
+		foreach ((SortieShip ship, List<SortieEquipmentSlot> slots, SortieEquipmentSlot? exSlot) in SortieRecord.FleetData.Fleets
+			.OfType<SortieFleet>()
+			.SelectMany(f => f.Ships)
+			.Select(s => (s, s.EquipmentSlots, s.ExpansionSlot)))
+		{
+			List<int> equipmentIds = [];
+
+			ApiShip? apiShip = sortieShips?.FirstOrDefault(s => s.ApiId == ship.DropId);
+
+			foreach ((SortieEquipment? eq, int i) in slots.Select((s, i) => (s.Equipment, i)))
+			{
+				if (eq is null) continue;
+
+				ApiSlotItem slotItem = AddSlotItem(eq, apiShip?.ApiSlot.Skip(i).FirstOrDefault());
+				equipmentIds.Add(slotItem.ApiId);
+			}
+
+			int exSlotId = -1;
+
+			if (exSlot is not null)
+			{
+				if (exSlot.Equipment is not null)
+				{
+					ApiSlotItem slotItem = AddSlotItem(exSlot.Equipment, apiShip?.ApiSlotEx);
+					exSlotId = slotItem.ApiId;
+				}
+				else
+				{
+					exSlotId = 0;
+				}
+			}
+
+			shipEquip.Add(ship, (equipmentIds, exSlotId));
+
+			ApiSlotItem AddSlotItem(SortieEquipment eq, int? apiId)
+			{
+				ApiSlotItem slotItem;
+
+				if (apiId is int id)
+				{
+					slotItem = eq.ToApiSlotItem(id);
+				}
+				else
+				{
+					slotItem = eq.ToApiSlotItem(equipmentDropId);
+					equipmentDropId++;
+				}
+
+				if (savedRequireInfoResponse.ApiData.ApiSlotItem.FirstOrDefault(s => s.ApiId == slotItem.ApiId) is { } e)
+				{
+					savedRequireInfoResponse.ApiData.ApiSlotItem.Remove(e);
+				}
+
+				savedRequireInfoResponse.ApiData.ApiSlotItem.Add(slotItem);
+
+				return slotItem;
+			}
+		}
+
+		savedRequireInfoResponseJson = JsonSerializer.Serialize(savedRequireInfoResponse, JsonSerializerOptions);
+
+		APIObserver.Instance.LoadResponse("/kcsapi/api_get_member/require_info", $"svdata={savedRequireInfoResponseJson}");
+
+		return shipEquip;
 	}
 
 	private void APICaller_DoWork(object sender, DoWorkEventArgs e)

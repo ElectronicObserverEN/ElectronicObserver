@@ -433,7 +433,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// Bonus items applied to that ship
 	/// </summary>
 	public List<SpecialEffectItem> SpecialEffectItems { get; private set; } = new();
-	
+
 	/// <summary>
 	/// Bonus firepower from special items
 	/// </summary>
@@ -1099,7 +1099,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 		return (int)(basepower * GetAmmoDamageRate());
 	}
-	
+
 	/// <summary>
 	/// 砲撃戦での空撃威力を求めます。
 	/// </summary>

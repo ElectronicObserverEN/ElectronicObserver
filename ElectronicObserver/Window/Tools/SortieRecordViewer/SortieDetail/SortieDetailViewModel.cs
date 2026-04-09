@@ -38,6 +38,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqSortie.LdShooting;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 using ElectronicObserver.Services;
+using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Wpf;
@@ -59,9 +60,16 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	public BattleFleets Fleets { get; set; }
 	public BattleFleets FleetsBeforeSortie { get; private set; }
 	private BattleFleets? FleetsAfterSortie { get; }
-	public List<List<int>?> StrikePoints { get; } = new();
+	public List<List<int>?> StrikePoints { get; } = [];
 
-	public ObservableCollection<SortieNode> Nodes { get; } = new();
+	public ObservableCollection<SortieNode> Nodes { get; } = [];
+
+	public bool IsDebug =>
+#if DEBUG
+		true;
+#else
+		false;
+#endif
 
 	public SortieDetailViewModel(ElectronicObserverContext db, SortieRecord sortie,
 		BattleFleets fleets, BattleFleets? fleetsAfterSortie)
@@ -79,7 +87,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		FleetsAfterSortie = fleetsAfterSortie;
 	}
 
-	private List<(object ApiData, DateTime Time)> ApiDataCache { get; } = new();
+	private List<(object ApiData, DateTime Time)> ApiDataCache { get; } = [];
 
 	public void AddApiFile(object apiData, DateTime time)
 	{
@@ -410,5 +418,13 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	private void OpenOperationRoom()
 	{
 		ToolService.OperationRoom(Sortie);
+	}
+
+	[RelayCommand]
+	private async Task OpenLocalApiLoader()
+	{
+		if (!IsDebug) return;
+
+		new DialogLocalAPILoader2(Sortie).Show();
 	}
 }

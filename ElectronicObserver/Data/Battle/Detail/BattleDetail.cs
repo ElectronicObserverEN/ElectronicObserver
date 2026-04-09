@@ -216,11 +216,15 @@ public abstract class BattleDetail
 				int id = defender.DamageControlID;
 
 				if (id == 42)
-					builder.AppendFormat($"　{BattleRes.DameconActivated} HP{0}", (int)(defender.HPMax * 0.2)).AppendLine();
-
+				{
+					Battle.UsedDamecons.Add(defender.MasterID);
+					builder.AppendLine($"　{BattleRes.DameconActivated} HP{(int)(defender.HPMax * 0.2)}");
+				}
 				else if (id == 43)
-					builder.AppendFormat($"　{BattleRes.GoddessActivated} HP{0}", defender.HPMax).AppendLine();
-
+				{
+					Battle.UsedDamecons.Add(defender.MasterID);
+					builder.AppendLine($"　{BattleRes.GoddessActivated} HP{defender.HPMax}");
+				}
 			}
 		}
 		return builder.ToString();

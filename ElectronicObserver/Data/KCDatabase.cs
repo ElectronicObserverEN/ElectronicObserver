@@ -217,7 +217,7 @@ public sealed class KCDatabase : IKCDatabase
 #if DEBUG
 		// data needed for loading old event battles via local api loader
 		// the values don't really matter, they just need to exist
-		for (int i = 56; i <= 59; i++)
+		for (int i = 56; i <= 61; i++)
 		{
 			AddWorld(i);
 		}
