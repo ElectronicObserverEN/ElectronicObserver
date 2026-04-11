@@ -30,9 +30,9 @@
 		<Copyright>Copyright ©  2014 Andante</Copyright>
 		<Trademark />
 		<Culture />
-		<AssemblyVersion>5.4.0.1</AssemblyVersion>
-		<FileVersion>5.4.0.1</FileVersion>
-		<Version>5.4.0.1</Version>
+		<AssemblyVersion>5.4.0.2</AssemblyVersion>
+		<FileVersion>5.4.0.2</FileVersion>
+		<Version>5.4.0.2</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
