@@ -75,6 +75,7 @@ public static class UseItemExtensions
 	    UseItemId.NightSkilledCrewMember => HeadquartersResources.NightSkilledCrewMember,
 	    UseItemId.SpecialAviationRation => HeadquartersResources.SpecialAviationRation,
 	    UseItemId.ArsenalExpansionKey => HeadquartersResources.ArsenalExpansionKey,
+	    UseItemId.ArsenalResources => HeadquartersResources.ArsenalResources,
 		_ => ConstantsRes.Unknown,
     };
 

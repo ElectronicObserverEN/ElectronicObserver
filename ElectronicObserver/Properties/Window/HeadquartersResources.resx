@@ -452,4 +452,7 @@
   <data name="ArsenalExpansionKey" xml:space="preserve">
     <value>工廠拡張キー</value>
   </data>
+  <data name="ArsenalResources" xml:space="preserve">
+    <value>工廠資源</value>
+  </data>
 </root>
