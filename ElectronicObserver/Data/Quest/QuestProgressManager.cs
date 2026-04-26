@@ -1085,6 +1085,12 @@ public sealed class QuestProgressManager : DataStorage
 					case 619:   //|619|装備の改修強化|装備改修1(失敗可)
 						Progresses.Add(new ProgressImprovement(q, 1));
 						break;
+					case 1166:   // Fd9
+						Progresses.Add(new ProgressImprovement(q, 1));
+						break;
+					case 1167:   // Fw5
+						Progresses.Add(new ProgressImprovement(q, 3));
+						break;
 					case 673:   //|673|装備開発力の整備|小口径主砲廃棄4個|進捗は1/5から始まる(3個廃棄時点で80%達成になる)
 						Progresses.Add(new ProgressDiscard(q, 4, true, new[] { 1 }));
 						Progresses[q.QuestID].SharedCounterShift = 1;
