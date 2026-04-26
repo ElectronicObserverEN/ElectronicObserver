@@ -847,4 +847,13 @@
   <data name="MaximumMorale" xml:space="preserve">
     <value>最高士氣</value>
   </data>
+  <data name="ProgressResetsDaily" xml:space="preserve">
+    <value>每日重置</value>
+  </data>
+  <data name="QuestEndsOn" xml:space="preserve">
+    <value>截止於 {0}</value>
+  </data>
+  <data name="QuestListEndsOn" xml:space="preserve">
+    <value>任務已截止於 {0}</value>
+  </data>
 </root>

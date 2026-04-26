@@ -199,7 +199,7 @@
 </value>
   </data>
   <data name="MergeRowsToolTip" xml:space="preserve">
-    <value>合併相同掉落物。
+    <value>合併相同掉落項目。
 </value>
   </data>
   <data name="LabelShipName" xml:space="preserve">
@@ -218,7 +218,7 @@
     <value>狀態條1</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>移除日誌</value>
+    <value>掉落紀錄</value>
   </data>
   <data name="NameAny" xml:space="preserve">
     <value>(全部)</value>

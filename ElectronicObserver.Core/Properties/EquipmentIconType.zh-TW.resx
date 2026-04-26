@@ -294,4 +294,7 @@
   <data name="Unknown" xml:space="preserve">
     <value>不明</value>
   </data>
+  <data name="JetFighterShinden" xml:space="preserve">
+    <value>噴式艦上戰鬥機(震電)</value>
+  </data>
 </root>

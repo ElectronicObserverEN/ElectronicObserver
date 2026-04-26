@@ -293,4 +293,10 @@
   <data name="FleetNameToolTip_ConsumptionPerBattle" xml:space="preserve">
     <value>(每場戰鬥 油 {0} / 彈 {1})</value>
   </data>
+  <data name="ArmorPenetration" xml:space="preserve">
+    <value>裝甲穿透效果</value>
+  </data>
+  <data name="FleetNameToolTip_JetConsumption" xml:space="preserve">
+    <value>噴式1戰消耗: 鋼材 {0}</value>
+  </data>
 </root>
