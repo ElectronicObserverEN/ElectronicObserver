@@ -103,6 +103,12 @@ public partial class UiBlockerOverlayWindow
 
 	protected override void OnClosed(EventArgs e)
 	{
+		// Detach the view model handler before the overlay is recreated for another host window.
+		if (DataContext is UiBlockerViewModel viewModel)
+		{
+			viewModel.PropertyChanged -= UpdatePosition;
+		}
+
 		MouseHook?.Dispose();
 		IsVisibleChanged -= OverlayIsVisibleChanged;
 		base.OnClosed(e);
