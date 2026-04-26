@@ -335,6 +335,15 @@ Use it at your own risk.</value>
   <data name="Life_ConfirmOnClosing" xml:space="preserve">
     <value>Confirm on exit</value>
   </data>
+  <data name="Life_MinimizeBehavior" xml:space="preserve">
+    <value>Minimize behavior:</value>
+  </data>
+  <data name="Life_MinimizeBehavior_Taskbar" xml:space="preserve">
+    <value>Taskbar</value>
+  </data>
+  <data name="Life_MinimizeBehavior_SystemTray" xml:space="preserve">
+    <value>System tray</value>
+  </data>
   <data name="Window" xml:space="preserve">
     <value>Subwindow</value>
   </data>

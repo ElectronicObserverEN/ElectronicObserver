@@ -45,6 +45,50 @@
 				/>
 		</StackPanel>
 
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="{Binding Translation.Life_MinimizeBehavior}" />
+
+			<RadioButton Command="{Binding SetMinimizeBehaviorCommand}" Content="{Binding Translation.Life_MinimizeBehavior_Taskbar}">
+				<RadioButton.CommandParameter>
+					<local:MinimizeBehavior>Taskbar</local:MinimizeBehavior>
+				</RadioButton.CommandParameter>
+
+				<RadioButton.Style>
+					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+						<Setter Property="IsChecked" Value="False" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding MinimizeBehavior}">
+								<DataTrigger.Value>
+									<local:MinimizeBehavior>Taskbar</local:MinimizeBehavior>
+								</DataTrigger.Value>
+								<Setter Property="IsChecked" Value="True" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</RadioButton.Style>
+			</RadioButton>
+
+			<RadioButton Command="{Binding SetMinimizeBehaviorCommand}" Content="{Binding Translation.Life_MinimizeBehavior_SystemTray}">
+				<RadioButton.CommandParameter>
+					<local:MinimizeBehavior>SystemTray</local:MinimizeBehavior>
+				</RadioButton.CommandParameter>
+
+				<RadioButton.Style>
+					<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+						<Setter Property="IsChecked" Value="False" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding MinimizeBehavior}">
+								<DataTrigger.Value>
+									<local:MinimizeBehavior>SystemTray</local:MinimizeBehavior>
+								</DataTrigger.Value>
+								<Setter Property="IsChecked" Value="True" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</RadioButton.Style>
+			</RadioButton>
+		</StackPanel>
+
 		<CheckBox Content="{Binding Translation.Life_CheckUpdateInformation}" IsChecked="{Binding CheckUpdateInformation}" />
 
 		<CheckBox Content="{Binding Translation.Life_ShowStatusBar}" IsChecked="{Binding ShowStatusBar}" />

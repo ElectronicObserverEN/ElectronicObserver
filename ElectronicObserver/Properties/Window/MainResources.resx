@@ -123,6 +123,12 @@
   <data name="File_Close" xml:space="preserve">
     <value>終了(&amp;X)</value>
   </data>
+  <data name="Tray_Restore" xml:space="preserve">
+    <value>復元</value>
+  </data>
+  <data name="Tray_Exit" xml:space="preserve">
+    <value>終了</value>
+  </data>
   <data name="File_Configuration" xml:space="preserve">
     <value>設定(&amp;C)...</value>
   </data>

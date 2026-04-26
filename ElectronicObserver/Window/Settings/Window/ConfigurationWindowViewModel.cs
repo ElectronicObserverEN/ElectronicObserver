@@ -16,6 +16,8 @@ public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 
 	public bool TopMost { get; set; }
 
+	public MinimizeBehavior MinimizeBehavior { get; set; }
+
 	public string LayoutFilePath { get; set; }
 
 	public bool CheckUpdateInformation { get; set; }
@@ -41,6 +43,7 @@ public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 	{
 		ConfirmOnClosing = config.ConfirmOnClosing;
 		TopMost = config.TopMost;
+		MinimizeBehavior = (MinimizeBehavior)config.MinimizeBehavior;
 		LayoutFilePath = config.LayoutFilePath;
 		CheckUpdateInformation = config.CheckUpdateInformation;
 		ShowStatusBar = config.ShowStatusBar;
@@ -53,6 +56,7 @@ public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 	{
 		Config.ConfirmOnClosing = ConfirmOnClosing;
 		Config.TopMost = TopMost;
+		Config.MinimizeBehavior = (int)MinimizeBehavior;
 		Config.LayoutFilePath = LayoutFilePath;
 		Config.CheckUpdateInformation = CheckUpdateInformation;
 		Config.ShowStatusBar = ShowStatusBar;
@@ -67,6 +71,14 @@ public partial class ConfigurationWindowViewModel : ConfigurationViewModelBase
 		if (clockFormat is not { } format) return;
 
 		ClockFormat = format;
+	}
+
+	[RelayCommand]
+	private void SetMinimizeBehavior(MinimizeBehavior? behavior)
+	{
+		if (behavior is not { } minimizeBehavior) return;
+
+		MinimizeBehavior = minimizeBehavior;
 	}
 
 	[RelayCommand]

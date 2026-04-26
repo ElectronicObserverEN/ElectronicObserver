@@ -400,7 +400,7 @@ public partial class FormMainViewModel : ObservableObject
 		Position.Left = window.Left;
 		Position.Height = window.Height;
 		Position.Width = window.Width;
-		Position.WindowState = window.WindowState;
+		Position.WindowState = window.EffectiveWindowStateForPersistence;
 
 		File.WriteAllText(PositionPath, JsonSerializer.Serialize(Position, new JsonSerializerOptions()
 		{

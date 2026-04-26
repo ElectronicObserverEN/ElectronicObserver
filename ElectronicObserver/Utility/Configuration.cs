@@ -819,6 +819,11 @@ public sealed class Configuration
 			public bool TopMost { get; set; }
 
 			/// <summary>
+			/// 最小化時の動作
+			/// </summary>
+			public int MinimizeBehavior { get; set; }
+
+			/// <summary>
 			/// レイアウトファイルのパス
 			/// </summary>
 			public string LayoutFilePath { get; set; }
@@ -854,6 +859,7 @@ public sealed class Configuration
 			{
 				ConfirmOnClosing = true;
 				TopMost = false;
+				MinimizeBehavior = 0;
 				LayoutFilePath = @"Settings\WindowLayout.zip";
 				CheckUpdateInformation = true;
 				ShowStatusBar = true;

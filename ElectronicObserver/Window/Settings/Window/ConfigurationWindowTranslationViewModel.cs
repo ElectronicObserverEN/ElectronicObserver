@@ -18,6 +18,9 @@ public class ConfigurationWindowTranslationViewModel : TranslationBaseViewModel
 
 	public string Life_ShowStatusBar => ConfigurationResources.Life_ShowStatusBar;
 	public string Life_CheckUpdateInformation => ConfigurationResources.Life_CheckUpdateInformation;
+	public string Life_MinimizeBehavior => ConfigurationResources.Life_MinimizeBehavior;
+	public string Life_MinimizeBehavior_Taskbar => ConfigurationResources.Life_MinimizeBehavior_Taskbar;
+	public string Life_MinimizeBehavior_SystemTray => ConfigurationResources.Life_MinimizeBehavior_SystemTray;
 	public string LayoutFile => ConfigRes.LayoutFile;
 	public string Life_TopMost => ConfigurationResources.Life_TopMost;
 	public string Life_ConfirmOnClosing => ConfigurationResources.Life_ConfirmOnClosing;
