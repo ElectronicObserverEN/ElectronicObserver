@@ -862,6 +862,17 @@ public sealed class QuestProgressManager : DataStorage
 						}
 						break;
 
+					case 979:
+						if (q.Code == "2604 Bm1")
+						{
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 2, "S", [ 13 ], true),
+								new ProgressSpecialBattle(q, 2, "S", [ 14 ], true),
+								new ProgressSpecialBattle(q, 2, "x", [ 16 ], true),
+							}));
+						}
+						break;
+
 					case 303:   //|303|「演習」で練度向上！|演習3
 						Progresses.Add(new ProgressPractice(q, 3, false));
 						break;
