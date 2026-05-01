@@ -46,20 +46,19 @@ public partial class FormMainWpf : System.Windows.Window
 
 	private void InitializeTrayIcon()
 	{
+		// Create the tray icon and hook its actions. Visibility is controlled separately when minimizing to or restoring from the tray.
 		TrayIcon = new NotifyIcon
 		{
 			Text = "Electronic Observer",
 			Visible = false,
 		};
 
-		System.Drawing.Icon? icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ResourceAssembly.Location);
-		if (icon is not null)
-		{
-			TrayIcon.Icon = icon;
-		}
+		TrayIcon.Icon = Resource.ResourceManager.Instance.AppIcon;
 
+		// Add a double-click action to restore the window.
 		TrayIcon.DoubleClick += (_, _) => RestoreFromTray();
 
+		// Add a right-click menu to the tray icon.
 		ContextMenuStrip menu = new();
 		menu.Items.Add(MainResources.Tray_Restore, null, (_, _) => RestoreFromTray());
 		menu.Items.Add(MainResources.Tray_Exit, null, (_, _) => ExitFromTray());
@@ -68,25 +67,17 @@ public partial class FormMainWpf : System.Windows.Window
 
 	private void MainWindow_StateChanged(object? sender, EventArgs e)
 	{
+		// Remember the last non-minimized state so the window can be restored correctly from the tray.
 		if (WindowState != WindowState.Minimized)
 		{
-			RememberRestoreWindowState();
+			RestoreWindowState = WindowState;
 			return;
 		}
 
-		if (GetConfiguredMinimizeBehavior() != MinimizeBehavior.SystemTray) return;
+		// Only minimize to the tray when that behavior is enabled in the settings.
+		if ((MinimizeBehavior)Utility.Configuration.Config.Life.MinimizeBehavior != MinimizeBehavior.SystemTray) return;
 
 		MinimizeToTray();
-	}
-
-	private MinimizeBehavior GetConfiguredMinimizeBehavior() =>
-		(MinimizeBehavior)Utility.Configuration.Config.Life.MinimizeBehavior;
-
-	private void RememberRestoreWindowState()
-	{
-		if (WindowState == WindowState.Minimized) return;
-
-		RestoreWindowState = WindowState;
 	}
 
 	private void MinimizeToTray()
