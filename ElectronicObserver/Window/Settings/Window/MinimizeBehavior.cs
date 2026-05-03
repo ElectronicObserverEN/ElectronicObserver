@@ -1,4 +1,4 @@
-namespace ElectronicObserver.Window.Settings.Window;
+﻿namespace ElectronicObserver.Window.Settings.Window;
 
 public enum MinimizeBehavior
 {
