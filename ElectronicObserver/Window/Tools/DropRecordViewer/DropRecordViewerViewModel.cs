@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.ComponentModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -372,6 +373,15 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		return (mapAreaId & 0xFF) << 24 | (mapInfoId & 0xFF) << 16 | (cell & 0xFF) << 8 | (difficulty & 0x7F) << 1 | (isboss ? 1 : 0);
 	}
 
+	private static int CountDisplayedRows(ICollectionView view)
+	{
+		view.Refresh();
+
+		return view is System.Collections.ICollection collection
+			? collection.Count
+			: view.Cast<object>().Count();
+	}
+
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task Search(CancellationToken cancellationToken)
 	{
@@ -380,22 +390,31 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		try
 		{
+			int recordCount;
+			int displayRowCount;
+
 			if (MergeRows)
 			{
-				IEnumerable<MergedDropRecordRow> rows = await Task.Run(MakeMergedDropRecordRows, cancellationToken);
+				List<MergedDropRecordRow> rows = (await Task.Run(MakeMergedDropRecordRows, cancellationToken)).ToList();
 
 				MergedRecordRows = new(rows);
 				DataGridMergedRowsViewModel.ItemsSource = MergedRecordRows;
+				recordCount = rows.Sum(row => row.Count);
+				displayRowCount = CountDisplayedRows(DataGridMergedRowsViewModel.Items);
 			}
 			else
 			{
-				IEnumerable<DropRecordRow> rows = await Task.Run(MakeDropRecordRows, cancellationToken);
+				List<DropRecordRow> rows = (await Task.Run(MakeDropRecordRows, cancellationToken)).ToList();
 
 				RecordRows = new(rows);
 				DataGridRawRowsViewModel.ItemsSource = RecordRows;
+				recordCount = rows.Count;
+				displayRowCount = CountDisplayedRows(DataGridRawRowsViewModel.Items);
 			}
 
-			StatusInfoText = $"{EncycloRes.SearchComplete} ({(int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds} ms)";
+			int elapsedMs = (int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds;
+			StatusInfoText =
+				$"{string.Format(EncycloRes.SearchCompleteWithRecordAndRowCount, recordCount, displayRowCount)} ({elapsedMs} ms)";
 		}
 		catch (OperationCanceledException)
 		{

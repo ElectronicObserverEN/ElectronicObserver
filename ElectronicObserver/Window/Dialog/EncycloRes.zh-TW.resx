@@ -336,6 +336,9 @@
   <data name="SearchComplete" xml:space="preserve">
     <value>搜尋完成。</value>
   </data>
+  <data name="SearchCompleteWithRecordAndRowCount" xml:space="preserve">
+    <value>搜尋完成。共 {0} 筆紀錄，顯示 {1} 列</value>
+  </data>
   <data name="Searching" xml:space="preserve">
     <value>搜尋中</value>
   </data>
