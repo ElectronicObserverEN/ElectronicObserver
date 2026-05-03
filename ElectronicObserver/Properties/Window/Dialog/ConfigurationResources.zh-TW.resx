@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -339,6 +339,15 @@ API列表的格式和使用方法請參見線上幫助。</value>
   </data>
   <data name="Life_ConfirmOnClosing" xml:space="preserve">
     <value>關閉時確認</value>
+  </data>
+  <data name="Life_MinimizeBehavior" xml:space="preserve">
+    <value>最小化行為:</value>
+  </data>
+  <data name="Life_MinimizeBehavior_Taskbar" xml:space="preserve">
+    <value>工作列</value>
+  </data>
+  <data name="Life_MinimizeBehavior_SystemTray" xml:space="preserve">
+    <value>系統匣</value>
   </data>
   <data name="Window" xml:space="preserve">
     <value>分割視窗</value>
