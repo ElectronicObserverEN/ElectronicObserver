@@ -337,7 +337,7 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
     <value>検索が完了しました。</value>
   </data>
   <data name="SearchCompleteWithRecordAndRowCount" xml:space="preserve">
-    <value>検索が完了しました。全 {0} 件、表示 {1} 行</value>
+    <value>検索が完了しました。全 {0} 件、まとめ後 {1} 行</value>
   </data>
   <data name="Searching" xml:space="preserve">
     <value>検索中です</value>

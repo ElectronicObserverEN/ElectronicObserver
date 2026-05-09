@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.ComponentModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -373,15 +372,6 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 		return (mapAreaId & 0xFF) << 24 | (mapInfoId & 0xFF) << 16 | (cell & 0xFF) << 8 | (difficulty & 0x7F) << 1 | (isboss ? 1 : 0);
 	}
 
-	private static int CountDisplayedRows(ICollectionView view)
-	{
-		view.Refresh();
-
-		return view is System.Collections.ICollection collection
-			? collection.Count
-			: view.Cast<object>().Count();
-	}
-
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task Search(CancellationToken cancellationToken)
 	{
@@ -400,7 +390,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 				MergedRecordRows = new(rows);
 				DataGridMergedRowsViewModel.ItemsSource = MergedRecordRows;
 				recordCount = rows.Sum(row => row.Count);
-				displayRowCount = CountDisplayedRows(DataGridMergedRowsViewModel.Items);
+				displayRowCount = rows.Count;
 			}
 			else
 			{
@@ -409,7 +399,7 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 				RecordRows = new(rows);
 				DataGridRawRowsViewModel.ItemsSource = RecordRows;
 				recordCount = rows.Count;
-				displayRowCount = CountDisplayedRows(DataGridRawRowsViewModel.Items);
+				displayRowCount = rows.Count;
 			}
 
 			int elapsedMs = (int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds;
