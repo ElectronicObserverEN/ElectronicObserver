@@ -812,4 +812,7 @@ When enabled, the preview will be ignored and all compositions will be shown.</v
   <data name="Language_TraditionalChinese" xml:space="preserve">
     <value>Chinese (Traditional)</value>
   </data>
+  <data name="Notification_QuestCompletion" xml:space="preserve">
+    <value>Quest completion notification</value>
+  </data>
 </root>
