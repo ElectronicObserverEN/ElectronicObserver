@@ -7,6 +7,7 @@ using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Quests;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
@@ -108,6 +109,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		}
 
 		LastQuestListUpdate = DateTime.Now;
+		QuestCompletionEvaluator.Instance.RefreshBaseline();
 	}
 
 	private void StartSortie(string apiname, dynamic data)
@@ -122,6 +124,8 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		{
 			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.CellId);
 		}
+
+		QuestCompletionEvaluator.Instance.Evaluate();
 	}
 
 	private void NextSortie(string apiname, dynamic data)
@@ -136,6 +140,8 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		{
 			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.CellId);
 		}
+
+		QuestCompletionEvaluator.Instance.Evaluate();
 	}
 
 	private void BattleFinished(string apiname, dynamic data)
@@ -152,6 +158,8 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		{
 			tracker.Increment(fleet, bm.Result.Rank, bm.Compass.MapAreaID, bm.Compass.MapInfoID, bm.Compass.CellId);
 		}
+
+		QuestCompletionEvaluator.Instance.Evaluate();
 	}
 
 	private void BossBattleFinished(string apiname, dynamic data)
@@ -169,6 +177,8 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		{
 			tracker.Increment(fleet, bm.Result.Rank, bm.Compass.MapAreaID, bm.Compass.MapInfoID);
 		}
+
+		QuestCompletionEvaluator.Instance.Evaluate();
 
 		// p.Increment(bm.Result.Rank, bm.Compass.MapAreaID * 10 + bm.Compass.MapInfoID, bm.Compass.EventID == 5);
 
@@ -190,6 +200,8 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		{
 			tracker.Increment(fleet, bm.Compass.MapAreaID, bm.Compass.MapInfoID);
 		}
+
+		QuestCompletionEvaluator.Instance.Evaluate();
 	}
 
 	private void PracticeFinished(string apiname, dynamic data)
@@ -203,6 +215,8 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		{
 			tracker.Increment(fleet, (string)data.api_win_rank);
 		}
+
+		QuestCompletionEvaluator.Instance.Evaluate();
 	}
 
 	private void ExpeditionCompleted(string apiname, dynamic data)
@@ -221,6 +235,8 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		{
 			tracker.Increment(fleet, areaId);
 		}
+
+		QuestCompletionEvaluator.Instance.Evaluate();
 	}
 
 	public void EquipmentDiscarded(string apiname, Dictionary<string, string> data)
@@ -248,6 +264,8 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		{
 			tracker.Increment(discardedEquipment.Select(e => e.MasterEquipment.IconTypeTyped));
 		}
+
+		QuestCompletionEvaluator.Instance.Evaluate();
 	}
 
 	public abstract void Save();
