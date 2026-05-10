@@ -13,10 +13,6 @@ public abstract class FitBonusTest(DatabaseFixture db)
 	static FitBonusTest()
 	{
 		BonusData = new(null!, new SoftwareUpdaterService(), new EoLogger());
-
-		while (BonusData.FitBonusList.Count is 0)
-		{
-			Task.Delay(10).Wait();
-		}
+		BonusData.Initialize().Wait();
 	}
 }

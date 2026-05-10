@@ -22,11 +22,7 @@ public class UpgradeCostTests(DatabaseFixture db)
 	static UpgradeCostTests()
 	{
 		UpgradeData = new(null!, new SoftwareUpdaterService(), new EoLogger());
-
-		while (UpgradeData.UpgradeList.Count is 0)
-		{
-			Task.Delay(10).Wait();
-		}
+		UpgradeData.Initialize().Wait();
 	}
 
 	[Fact]

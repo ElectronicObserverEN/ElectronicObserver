@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using ElectronicObserver.Avalonia.Translation.Destination;
+﻿using ElectronicObserver.Avalonia.Translation.Destination;
 using ElectronicObserver.Avalonia.Translation.Equipment;
 using ElectronicObserver.Avalonia.Translation.EquipmentUpgrade;
 using ElectronicObserver.Avalonia.Translation.FitBonus;
@@ -19,16 +18,16 @@ public class DataService
 	private ISoftwareUpdaterService SoftwareUpdaterService { get; }
 	private IEoLogger EoLogger { get; }
 
-	public DestinationDataService Destination { get; private set; }
-	public QuestDataService Quest { get; private set; }
-	public QuestMetadataDataService QuestsMetadata { get; private set; }
-	public EquipmentDataService Equipment { get; private set; }
-	public MissionDataService Mission { get; private set; }
-	public ShipDataService Ship { get; private set; }
-	public OperationDataService Operation { get; private set; }
-	public LockDataService Lock { get; private set; }
-	public FitBonusDataService FitBonus { get; private set; }
-	public EquipmentUpgradeDataService EquipmentUpgrade { get; private set; }
+	public DestinationDataService Destination { get; }
+	public QuestDataService Quest { get; }
+	public QuestMetadataDataService QuestsMetadata { get; }
+	public EquipmentDataService Equipment { get; }
+	public MissionDataService Mission { get; }
+	public ShipDataService Ship { get; }
+	public OperationDataService Operation { get; }
+	public LockDataService Lock { get; }
+	public FitBonusDataService FitBonus { get; }
+	public EquipmentUpgradeDataService EquipmentUpgrade { get; }
 
 	public DataService(
 		IConfigurationUi configurationUi,
@@ -39,21 +38,6 @@ public class DataService
 		SoftwareUpdaterService = softwareUpdaterService;
 		EoLogger = eoLogger;
 
-		Initialize();
-	}
-
-	[MemberNotNull(nameof(Destination))]
-	[MemberNotNull(nameof(Quest))]
-	[MemberNotNull(nameof(QuestsMetadata))]
-	[MemberNotNull(nameof(Equipment))]
-	[MemberNotNull(nameof(Mission))]
-	[MemberNotNull(nameof(Ship))]
-	[MemberNotNull(nameof(Operation))]
-	[MemberNotNull(nameof(Lock))]
-	[MemberNotNull(nameof(FitBonus))]
-	[MemberNotNull(nameof(EquipmentUpgrade))]
-	public void Initialize()
-	{
 		Destination = new(ConfigurationUi, SoftwareUpdaterService, EoLogger);
 		Quest = new(ConfigurationUi, SoftwareUpdaterService, EoLogger);
 		QuestsMetadata = new(ConfigurationUi, SoftwareUpdaterService, EoLogger);
@@ -64,5 +48,19 @@ public class DataService
 		Lock = new(ConfigurationUi, SoftwareUpdaterService, EoLogger);
 		FitBonus = new(ConfigurationUi, SoftwareUpdaterService, EoLogger);
 		EquipmentUpgrade = new(ConfigurationUi, SoftwareUpdaterService, EoLogger);
+	}
+
+	public async Task Initialize()
+	{
+		await Destination.Initialize();
+		await Quest.Initialize();
+		await QuestsMetadata.Initialize();
+		await Equipment.Initialize();
+		await Mission.Initialize();
+		await Ship.Initialize();
+		await Operation.Initialize();
+		await Lock.Initialize();
+		await FitBonus.Initialize();
+		await EquipmentUpgrade.Initialize();
 	}
 }

@@ -214,9 +214,11 @@ public sealed class KCDatabase : IKCDatabase
 		RelocatedEquipments = new IDDictionary<RelocationData>();
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
-		Translation = new DataService(Configuration.Config.UI, SoftwareUpdaterService, EoLogger);
 		PoiDbSubmission = new(this);
 		KCReplayDbSubmission = new();
+		
+		Translation = new DataService(Configuration.Config.UI, SoftwareUpdaterService, EoLogger);
+		_ = Translation.Initialize();
 
 #if DEBUG
 		// data needed for loading old event battles via local api loader

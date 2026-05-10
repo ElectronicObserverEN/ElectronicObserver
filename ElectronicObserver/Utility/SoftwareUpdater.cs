@@ -133,7 +133,7 @@ public class SoftwareUpdater
 
 			if (needReload)
 			{
-				KCDatabase.Instance.Translation.Initialize();
+				await KCDatabase.Instance.Translation.Initialize();
 				KCDatabase.Instance.SystemQuestTrackerManager.Load();
 				Logger.Add(2, SoftwareInformationResources.TranslationFilesUpdated);
 			}

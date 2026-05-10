@@ -3,23 +3,19 @@ using ElectronicObserver.Core.Types.Serialization.FitBonus;
 
 namespace ElectronicObserver.Avalonia.Translation.FitBonus;
 
-public sealed class FitBonusDataService : DataServiceBase
+public sealed class FitBonusDataService(
+	IConfigurationUi configurationUi,
+	ISoftwareUpdaterService softwareUpdaterService,
+	IEoLogger logger)
+	: DataServiceBase(configurationUi, softwareUpdaterService, logger)
 {
 	protected override string FileName => "FitBonuses.json";
 	protected override DataType DataType => DataType.Data;
 
-	public List<FitBonusPerEquipment> FitBonusList { get; set; } = [];
-
-	public FitBonusDataService(
-		IConfigurationUi configurationUi,
-		ISoftwareUpdaterService softwareUpdaterService,
-		IEoLogger logger) : base(configurationUi, softwareUpdaterService, logger)
-	{
-		_ = Initialize();
-	}
+	public List<FitBonusPerEquipment> FitBonusList { get; private set; } = [];
 
 	/// <inheritdoc />
-	protected override async Task Initialize()
+	public override async Task Initialize()
 	{
 		await LoadDictionary(FilePath);
 	}

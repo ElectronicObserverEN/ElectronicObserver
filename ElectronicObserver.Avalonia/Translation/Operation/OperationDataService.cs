@@ -2,7 +2,11 @@
 
 namespace ElectronicObserver.Avalonia.Translation.Operation;
 
-public sealed class OperationDataService : DataServiceBase
+public sealed class OperationDataService(
+	IConfigurationUi configurationUi,
+	ISoftwareUpdaterService softwareUpdaterService,
+	IEoLogger logger)
+	: DataServiceBase(configurationUi, softwareUpdaterService, logger)
 {
 	protected override string FileName => "operation.json";
 	protected override DataType DataType => DataType.Translation;
@@ -10,16 +14,8 @@ public sealed class OperationDataService : DataServiceBase
 	private Dictionary<string, string> MapList { get; set; } = [];
 	private Dictionary<string, string> FleetList { get; set; } = [];
 
-	public OperationDataService(
-		IConfigurationUi configurationUi,
-		ISoftwareUpdaterService softwareUpdaterService,
-		IEoLogger logger) : base(configurationUi, softwareUpdaterService, logger)
-	{
-		_ = Initialize();
-	}
-
 	/// <inheritdoc />
-	protected override async Task Initialize()
+	public override async Task Initialize()
 	{
 		MapList = [];
 		FleetList = [];

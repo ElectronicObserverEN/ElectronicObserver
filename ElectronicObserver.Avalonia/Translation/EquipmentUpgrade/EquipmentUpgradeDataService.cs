@@ -3,23 +3,19 @@ using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Avalonia.Translation.EquipmentUpgrade;
 
-public sealed class EquipmentUpgradeDataService : DataServiceBase
+public sealed class EquipmentUpgradeDataService(
+	IConfigurationUi configurationUi,
+	ISoftwareUpdaterService softwareUpdaterService,
+	IEoLogger logger)
+	: DataServiceBase(configurationUi, softwareUpdaterService, logger)
 {
 	protected override string FileName => "EquipmentUpgrades.json";
 	protected override DataType DataType => DataType.Data;
 
 	public List<EquipmentUpgradeDataModel> UpgradeList { get; private set; } = [];
 
-	public EquipmentUpgradeDataService(
-		IConfigurationUi configurationUi,
-		ISoftwareUpdaterService softwareUpdaterService,
-		IEoLogger logger) : base(configurationUi, softwareUpdaterService, logger)
-	{
-		_ = Initialize();
-	}
-
 	/// <inheritdoc />
-	protected override async Task Initialize()
+	public override async Task Initialize()
 	{
 		await LoadDictionary(FilePath);
 	}

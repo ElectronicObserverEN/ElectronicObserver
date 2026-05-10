@@ -3,23 +3,19 @@ using ElectronicObserver.Core.Services;
 
 namespace ElectronicObserver.Avalonia.Translation.Mission;
 
-public sealed class MissionDataService : DataServiceBase
+public sealed class MissionDataService(
+	IConfigurationUi configurationUi,
+	ISoftwareUpdaterService softwareUpdaterService,
+	IEoLogger logger)
+	: DataServiceBase(configurationUi, softwareUpdaterService, logger)
 {
 	protected override string FileName => "expedition.json";
 	protected override DataType DataType => DataType.Translation;
 
 	private Dictionary<string, string> NameDictionary { get; set; } = [];
 
-	public MissionDataService(
-		IConfigurationUi configurationUi,
-		ISoftwareUpdaterService softwareUpdaterService,
-		IEoLogger logger) : base(configurationUi, softwareUpdaterService, logger)
-	{
-		_ = Initialize();
-	}
-
 	/// <inheritdoc />
-	protected override async Task Initialize()
+	public override async Task Initialize()
 	{
 		NameDictionary = [];
 		await LoadDictionary(FilePath);

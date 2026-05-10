@@ -32,7 +32,7 @@ public abstract class DataServiceBase(
 	
 	protected abstract string FileName { get; }
 	protected abstract DataType DataType { get; }
-	protected abstract Task Initialize();
+	public abstract Task Initialize();
 
 	protected async Task<T?> Load<T>(string path) where T : class
 	{

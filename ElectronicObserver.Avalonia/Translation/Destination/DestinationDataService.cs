@@ -4,23 +4,19 @@ using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Avalonia.Translation.Destination;
 
-public sealed class DestinationDataService : DataServiceBase
+public sealed class DestinationDataService(
+	IConfigurationUi configurationUi,
+	ISoftwareUpdaterService softwareUpdaterService,
+	IEoLogger logger)
+	: DataServiceBase(configurationUi, softwareUpdaterService, logger)
 {
 	protected override string FileName => "destination.json";
 	protected override DataType DataType => DataType.Data;
 
 	public IDDictionary<Destination> DestinationList { get; private set; } = [];
 
-	public DestinationDataService(
-		IConfigurationUi configurationUi,
-		ISoftwareUpdaterService softwareUpdaterService,
-		IEoLogger logger) : base(configurationUi, softwareUpdaterService, logger)
-	{
-		_ = Initialize();
-	}
-
 	/// <inheritdoc />
-	protected override async Task Initialize()
+	public override async Task Initialize()
 	{
 		DestinationList = [];
 		await LoadDictionary(FilePath);

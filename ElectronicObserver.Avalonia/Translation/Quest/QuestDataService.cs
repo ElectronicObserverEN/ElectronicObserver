@@ -4,23 +4,19 @@ using ElectronicObserver.Core.Services;
 
 namespace ElectronicObserver.Avalonia.Translation.Quest;
 
-public sealed class QuestDataService : DataServiceBase
+public sealed class QuestDataService(
+	IConfigurationUi configurationUi,
+	ISoftwareUpdaterService softwareUpdaterService,
+	IEoLogger logger)
+	: DataServiceBase(configurationUi, softwareUpdaterService, logger)
 {
 	protected override string FileName => "quest.json";
 	protected override DataType DataType => DataType.Translation;
 
 	private Dictionary<int, QuestRecord> QuestList { get; set; } = [];
 
-	public QuestDataService(
-		IConfigurationUi configurationUi,
-		ISoftwareUpdaterService softwareUpdaterService,
-		IEoLogger logger) : base(configurationUi, softwareUpdaterService, logger)
-	{
-		_ = Initialize();
-	}
-
 	/// <inheritdoc />
-	protected override async Task Initialize()
+	public override async Task Initialize()
 	{
 		QuestList = [];
 		await LoadDictionary(FilePath);

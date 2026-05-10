@@ -3,7 +3,11 @@ using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Avalonia.Translation.Ship;
 
-public sealed class ShipDataService : DataServiceBase
+public sealed class ShipDataService(
+	IConfigurationUi configurationUi,
+	ISoftwareUpdaterService softwareUpdaterService,
+	IEoLogger logger)
+	: DataServiceBase(configurationUi, softwareUpdaterService, logger)
 {
 	protected override string FileName => "ship.json";
 	protected override DataType DataType => DataType.Translation;
@@ -15,16 +19,8 @@ public sealed class ShipDataService : DataServiceBase
 
 	private Dictionary<string, string> NameCache { get; } = [];
 
-	public ShipDataService(
-		IConfigurationUi configurationUi,
-		ISoftwareUpdaterService softwareUpdaterService,
-		IEoLogger logger) : base(configurationUi, softwareUpdaterService, logger)
-	{
-		_ = Initialize();
-	}
-
 	/// <inheritdoc />
-	protected override async Task Initialize()
+	public override async Task Initialize()
 	{
 		NameCache.Clear();
 		
