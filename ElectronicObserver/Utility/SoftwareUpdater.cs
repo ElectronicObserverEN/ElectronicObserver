@@ -6,18 +6,15 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using ElectronicObserver.Avalonia.Translation;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.Translation;
 using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Utility;
 
 public class SoftwareUpdater
 {
-	internal static string AppDataFolder =>
-		Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ElectronicObserver");
-
 	private static bool WaitForRestart { get; set; }
 
 	public static SoftwareUpdateData CurrentDataVersion { get; set; } = new();
@@ -26,13 +23,18 @@ public class SoftwareUpdater
 	public static TranslationUpdateData CurrentTranslationVersion { get; set; } = new();
 	public static TranslationUpdateData LatestTranslationVersion { get; set; } = new();
 
+	private static string CurrentTranslationLanguage => Configuration.Config.UI.Culture switch
+	{
+		// Japanese translations don't exist, so fall back to English
+		"ja-JP" => "en-US",
+		string culture => culture,
+	};
+
 	private static Uri DataUpdateURL => new($"{Configuration.Config.Control.UpdateRepoURL}/update.json");
+	private static Uri TranslationUpdateURL => new($"{Configuration.Config.Control.UpdateRepoURL}/Translations/{CurrentTranslationLanguage}/update.json");
 
-	private static Uri TranslationUpdateURL => new($"{Configuration.Config.Control.UpdateRepoURL}/Translations/{DataAndTranslationManager.CurrentTranslationLanguage}/update.json");
-
-	private static string DataUpdateFile => Path.Combine(DataAndTranslationManager.WorkingFolder, "update.json");
-
-	private static string TranslationUpdateFile => Path.Combine(DataAndTranslationManager.TranslationFolder, "update.json");
+	private static string DataUpdateFile => Path.Join(DataConstants.WorkingFolder, "update.json");
+	private static string TranslationUpdateFile => Path.Join(DataConstants.TranslationFolder(CurrentTranslationLanguage), "update.json");
 
 	public static string DownloadProgressString { get; private set; } = "";
 
@@ -45,8 +47,8 @@ public class SoftwareUpdater
 	{
 		if (WaitForRestart) return;
 
-		if (!Directory.Exists(AppDataFolder))
-			Directory.CreateDirectory(AppDataFolder);
+		if (!Directory.Exists(DataConstants.AppDataFolder))
+			Directory.CreateDirectory(DataConstants.AppDataFolder);
 
 		var url = LatestDataVersion.AppDownloadUrl;
 		if (url != string.Empty)
@@ -271,14 +273,14 @@ public class SoftwareUpdater
 		try
 		{
 			using HttpClient client = new();
-			string tempFile = AppDataFolder + @"\latest.zip"; ;
+			string tempFile = Path.Join(DataConstants.AppDataFolder, "latest.zip");
 
 			Console.WriteLine(SoftwareInformationResources.DownloadingUpdate);
 
 			Progress<float> progress = new();
 			progress.ProgressChanged += (_, progress) => DownloadProgressString = string.Format(SoftwareDownload.Update_DownloadingUpdate, progress);
 
-			using FileStream file = new(tempFile, FileMode.Create);
+			await using FileStream file = new(tempFile, FileMode.Create);
 			await client.DownloadDataAsync(url, file, progress);
 		}
 		catch (Exception e)
@@ -315,7 +317,7 @@ public class SoftwareUpdater
 	
 	private static string GetFullPath(string fileName, DataType type) => type switch
 	{
-		DataType.Translation => Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, fileName),
+		DataType.Translation => Path.Combine("Translations", CurrentTranslationLanguage, fileName),
 		DataType.Data => Path.Combine("Data", fileName),
 		DataType.None => fileName,
 	};
@@ -324,7 +326,7 @@ public class SoftwareUpdater
 	{
 		filename = GetFullPath(filename, type);
 
-		string path = Path.Combine(DataAndTranslationManager.WorkingFolder, filename);
+		string path = Path.Combine(DataConstants.WorkingFolder, filename);
 		string url = Path.Combine(Configuration.Config.Control.UpdateRepoURL.AbsoluteUri, filename);
 
 		try

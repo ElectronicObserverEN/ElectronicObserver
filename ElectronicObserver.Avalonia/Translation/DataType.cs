@@ -1,4 +1,4 @@
-﻿namespace ElectronicObserver.Data.Translation;
+﻿namespace ElectronicObserver.Avalonia.Translation;
 
 public enum DataType
 {

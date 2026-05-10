@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Avalonia.Translation.Lock;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Mocks;
-using ElectronicObserver.Data.Translation;
+using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using Xunit;
 
@@ -12,7 +13,7 @@ namespace ElectronicObserverCoreTests;
 public class EventLockPlannerTests
 {
 	private DatabaseFixture Db { get; }
-	private LockTranslationData LockTranslator { get; } = new();
+	private LockDataService LockTranslator { get; } = new(null!, new SoftwareUpdaterService(), new EoLogger());
 	private List<IShipData> AllShips { get; }
 	private List<IShipData> AllShipsCopy => AllShips
 		.Cast<ShipDataMock>()

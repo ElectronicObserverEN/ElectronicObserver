@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ElectronicObserver.Core;
-using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;
 

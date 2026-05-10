@@ -7,11 +7,12 @@ using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Translation;
+using ElectronicObserver.Avalonia.Translation.Lock;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Serialization.EventLockPlanner;
-using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
@@ -20,11 +21,11 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 
 public partial class EventLockPlannerViewModel : WindowViewModelBase
 {
-	private string EventLocksPath => Path.Join(DataAndTranslationManager.DataFolder, "Locks.json");
+	private string EventLocksPath => Path.Join(DataConstants.DataFolder, "Locks.json");
 
 	public EventLockPlannerTranslationViewModel EventLockPlanner { get; }
 	private DataSerializationService DataSerializationService { get; }
-	private LockTranslationData LockTranslator { get; }
+	private LockDataService LockTranslator { get; }
 
 	private List<ShipLockViewModel> AllShipLocks { get; }
 
@@ -39,7 +40,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 	public DataGridViewModel<ShipLockViewModel> DataGridViewModel { get; set; }
 
-	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips, LockTranslationData lockTranslator)
+	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips, LockDataService lockTranslator)
 	{
 		EventLockPlanner = Ioc.Default.GetService<EventLockPlannerTranslationViewModel>()!;
 		DataSerializationService = Ioc.Default.GetService<DataSerializationService>()!;

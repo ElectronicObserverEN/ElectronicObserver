@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ElectronicObserver.Avalonia.Translation.FitBonus;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Mocks;
-using ElectronicObserver.Data.Translation;
+using ElectronicObserver.Services;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;
@@ -12,7 +14,17 @@ public class OpeningAswTests(DatabaseFixture db)
 {
 	private DatabaseFixture Db { get; } = db;
 
-	private static FitBonusData BonusData { get; } = new();
+	private static FitBonusDataService BonusData { get; } 
+
+	static OpeningAswTests()
+	{
+		BonusData = new(null!, new SoftwareUpdaterService(), new EoLogger());
+
+		while (BonusData.FitBonusList.Count is 0)
+		{
+			Task.Delay(10).Wait();
+		}
+	}
 
 	[Fact(DisplayName = "Fit bonus counts for the opening ASW border")]
 	public void OpeningAswTest1()
