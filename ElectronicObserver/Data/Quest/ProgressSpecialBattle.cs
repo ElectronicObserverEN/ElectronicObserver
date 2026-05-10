@@ -851,6 +851,14 @@ public class ProgressSpecialBattle : ProgressBattle
 				isAccepted = carrier && heavyCruiser && lightCruiser;
 			}
 			break;
+			case 979: // 2604 Bm1
+			{
+				if (members.Count >= 3)
+				{
+					isAccepted = members.Take(3).All(ship => ship?.MasterShip.ShipType is ShipTypes.Escort);
+				}
+			}
+			break;
 		}
 
 		// 第二ゲージでも第一ボスに行ける場合があるので、個別対応が必要
