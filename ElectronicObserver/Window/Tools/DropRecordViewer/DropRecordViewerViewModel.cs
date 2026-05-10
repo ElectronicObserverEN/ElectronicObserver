@@ -380,22 +380,31 @@ public sealed partial class DropRecordViewerViewModel : WindowViewModelBase
 
 		try
 		{
+			int recordCount;
+			int displayRowCount;
+
 			if (MergeRows)
 			{
-				IEnumerable<MergedDropRecordRow> rows = await Task.Run(MakeMergedDropRecordRows, cancellationToken);
+				List<MergedDropRecordRow> rows = (await Task.Run(MakeMergedDropRecordRows, cancellationToken)).ToList();
 
 				MergedRecordRows = new(rows);
 				DataGridMergedRowsViewModel.ItemsSource = MergedRecordRows;
+				recordCount = rows.Sum(row => row.Count);
+				displayRowCount = rows.Count;
 			}
 			else
 			{
-				IEnumerable<DropRecordRow> rows = await Task.Run(MakeDropRecordRows, cancellationToken);
+				List<DropRecordRow> rows = (await Task.Run(MakeDropRecordRows, cancellationToken)).ToList();
 
 				RecordRows = new(rows);
 				DataGridRawRowsViewModel.ItemsSource = RecordRows;
+				recordCount = rows.Count;
+				displayRowCount = rows.Count;
 			}
 
-			StatusInfoText = $"{EncycloRes.SearchComplete} ({(int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds} ms)";
+			int elapsedMs = (int)(DateTime.UtcNow - SearchStartTime).TotalMilliseconds;
+			StatusInfoText =
+				$"{string.Format(EncycloRes.SearchCompleteWithRecordAndRowCount, recordCount, displayRowCount)} ({elapsedMs} ms)";
 		}
 		catch (OperationCanceledException)
 		{
