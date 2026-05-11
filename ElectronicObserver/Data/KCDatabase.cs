@@ -1,4 +1,5 @@
 ﻿using DynaJson;
+using ElectronicObserver.Avalonia.Translation;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
@@ -6,9 +7,9 @@ using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.KCReplayDbSubmission;
 using ElectronicObserver.Data.PoiDbSubmission;
 using ElectronicObserver.Data.Quest;
-using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Data.TsunDbSubmission;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
 namespace ElectronicObserver.Data;
@@ -161,7 +162,7 @@ public sealed class KCDatabase : IKCDatabase
 	public IDDictionary<RelocationData> RelocatedEquipments { get; private set; }
 
 	public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
-	public DataAndTranslationManager Translation { get; private set; }
+	public DataService Translation { get; private set; }
 	public PoiDbSubmissionService PoiDbSubmission { get; private set; }
 	public KCReplayDbSubmissionService KCReplayDbSubmission { get; private set; }
 
@@ -180,6 +181,9 @@ public sealed class KCDatabase : IKCDatabase
 	public SystemQuestTrackerManager SystemQuestTrackerManager => _systemQuestTrackerManager ??= new();
 
 	public HomePortSupplyService HomePortSupplyService { get; } = new();
+
+	private SoftwareUpdaterService SoftwareUpdaterService { get; } = new();
+	private EoLogger EoLogger { get; } = new();
 
 	private KCDatabase()
 	{
@@ -210,9 +214,11 @@ public sealed class KCDatabase : IKCDatabase
 		RelocatedEquipments = new IDDictionary<RelocationData>();
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
-		Translation = new DataAndTranslationManager();
 		PoiDbSubmission = new(this);
 		KCReplayDbSubmission = new();
+		
+		Translation = new DataService(Configuration.Config.UI, SoftwareUpdaterService, EoLogger);
+		_ = Translation.Initialize();
 
 #if DEBUG
 		// data needed for loading old event battles via local api loader

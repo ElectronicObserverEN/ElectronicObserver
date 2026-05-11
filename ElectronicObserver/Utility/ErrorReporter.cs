@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using ElectronicObserver.Core;
-using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;
 
@@ -18,7 +17,7 @@ public class ErrorReporter
 	/// <param name="message">追加メッセージ。</param>
 	/// <param name="connectionName">エラーが発生したAPI名。省略可能です。</param>
 	/// <param name="connectionData">エラーが発生したAPIの内容。省略可能です。</param>
-	public static void SendErrorReport(Exception ex, string message, string connectionName = null, string connectionData = null)
+	public static void SendErrorReport(Exception ex, string message, string? connectionName = null, string? connectionData = null)
 	{
 
 		Utility.Logger.Add(3, string.Format("{0} {1}", message, ex.Message));

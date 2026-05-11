@@ -44,7 +44,7 @@ public class QuestData : ResponseWrapper, IIdentifiable
 		set { RawData.api_state = value; }
 	}
 
-	public string Code => KCDatabase.Instance.Translation.Quest[QuestID]?.Code ?? "";
+	public string Code => KCDatabase.Instance.Translation.Quest.Code(QuestID);
 
 	/// <summary>
 	/// Name (Translated)
