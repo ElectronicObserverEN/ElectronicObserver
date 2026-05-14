@@ -1581,6 +1581,37 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
+	private void GenerateShipClassEnum()
+	{
+		static string CleanName(ShipClass shipClass, ShipId shipId)
+		{
+			string className = KCDatabase.Instance.Translation.Ship
+				.GetShipClass(shipClass, shipId)
+				.Replace(" ", "")
+				.Replace("(", "")
+				.Replace(")", "")
+				.Replace("-", "")
+				.Replace(".", "")
+				.Replace("2nd", "Second");
+
+			if (className.EndsWith("Class", StringComparison.Ordinal))
+			{
+				className = className[..^5];
+			}
+
+			return className;
+		}
+
+		List<string> enumValues = KCDatabase.Instance.MasterShips.Values
+			.OrderBy(s => s.ShipClass)
+			.Select(s => $"{CleanName(s.ShipClassTyped, s.ShipId)} = {(int)s.ShipClassTyped}")
+			.Distinct()
+			.ToList();
+
+		System.Windows.Clipboard.SetText(string.Join(",\n", enumValues));
+	}
+
+	[RelayCommand]
 	private void GenerateEquipmentIdEnum()
 	{
 		static string CleanName(string name) => name
