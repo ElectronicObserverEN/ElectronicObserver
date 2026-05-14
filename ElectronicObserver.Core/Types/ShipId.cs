@@ -835,5 +835,8 @@ public enum ShipId
 	Glorious1027 = 1027,
 	WaspKai = 1030,
 	HiryuuKaiSan = 1031,
+	TamanamiKaiNi = 1033,
+	FubukiKaiSan = 1035,
+	FubukiKaiSanGoType6 = 1040,
 	ColoradoKai = 1496,
 }

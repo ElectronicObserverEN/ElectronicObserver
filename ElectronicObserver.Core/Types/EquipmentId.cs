@@ -571,4 +571,8 @@ public enum EquipmentId
 	SeaplaneFighter_KyoufuuKaiNi_Skilled = 568,
 	DepthCharge_Type3DepthChargeProjectorKai = 569,
 	CarrierBasedTorpedo_RyuuseiKai_TomonagaSquadron = 570,
+	Torpedo_53cmTwinTorpedoMountKai_Oxygen = 571,
+	MainGunSmall_12_7cmTwinHighangleGunMountKaiSan = 572,
+	RadarSmall_PrototypeType23RadarKaiSan = 573,
+	RadarSmall_SCRadarKai_CalibratedLateModel = 574,
 }
