@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using ElectronicObserver.Avalonia.Translation.FitBonus;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;

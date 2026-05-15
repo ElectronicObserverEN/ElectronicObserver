@@ -1,5 +1,4 @@
-﻿using System;
-using ElectronicObserver.Core.Services;
+﻿using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Mocks;
 using Xunit;

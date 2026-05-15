@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using ElectronicObserver.Avalonia.Translation.EquipmentUpgrade;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Mocks;

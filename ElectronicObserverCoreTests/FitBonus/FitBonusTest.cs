@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using ElectronicObserver.Avalonia.Translation.FitBonus;
+﻿using ElectronicObserver.Avalonia.Translation.FitBonus;
 using ElectronicObserver.Services;
 
 namespace ElectronicObserverCoreTests.FitBonus;
