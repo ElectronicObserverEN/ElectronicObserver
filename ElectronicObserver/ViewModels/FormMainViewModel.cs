@@ -1585,7 +1585,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		static string CleanName(ShipClass shipClass, ShipId shipId)
 		{
-			string className = KCDatabase.Instance.Translation.Ship
+			string className = Constants
 				.GetShipClass(shipClass, shipId)
 				.Replace(" ", "")
 				.Replace("(", "")
