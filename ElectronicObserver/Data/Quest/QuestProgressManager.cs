@@ -1265,7 +1265,7 @@ public sealed class QuestProgressManager : DataStorage
 		}
 
 		LastUpdateTime = DateTime.Now;
-		OnProgressChanged();
+		OnProgressChanged(false);
 
 	}
 
@@ -1519,8 +1519,17 @@ public sealed class QuestProgressManager : DataStorage
 		Save(DefaultFilePath);
 	}
 
-	private void OnProgressChanged()
+	private void OnProgressChanged(bool evaluateCompletion = true)
 	{
+		if (evaluateCompletion)
+		{
+			QuestCompletionEvaluator.Instance.Evaluate();
+		}
+		else
+		{
+			QuestCompletionEvaluator.Instance.RefreshBaseline();
+		}
+
 		KCDatabase.Instance.Quest.OnQuestUpdated();
 	}
 }

@@ -820,4 +820,7 @@ API列表的格式和使用方法請參見線上幫助。</value>
   <data name="Language_TraditionalChinese" xml:space="preserve">
     <value>繁體中文</value>
   </data>
+  <data name="Notification_QuestCompletion" xml:space="preserve">
+    <value>任務達成通知</value>
+  </data>
 </root>
