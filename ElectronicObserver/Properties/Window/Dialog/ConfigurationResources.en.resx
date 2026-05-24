@@ -213,6 +213,42 @@ Battle histories are saved in the BattleLog subfolder.</value>
     <value>Show developed items and dropped ships in the log.
 Disable this setting to hide the information.</value>
   </data>
+  <data name="Log_ShowDropSpoiler" xml:space="preserve">
+    <value>Show drop reports</value>
+  </data>
+  <data name="Log_ShowDropSpoilerToolTip" xml:space="preserve">
+    <value>Record dropped ships, items, and equipment in the log.</value>
+  </data>
+  <data name="Log_ShowExpeditionSpoiler" xml:space="preserve">
+    <value>Show expedition rewards</value>
+  </data>
+  <data name="Log_ShowExpeditionSpoilerToolTip" xml:space="preserve">
+    <value>Record resources and items gained from expeditions in the log.</value>
+  </data>
+  <data name="Log_ShowDevelopmentSpoiler" xml:space="preserve">
+    <value>Show development results</value>
+  </data>
+  <data name="Log_ShowDevelopmentSpoilerToolTip" xml:space="preserve">
+    <value>Record developed equipment names and recipes in the log.</value>
+  </data>
+  <data name="Log_ShowEquipmentImprovementSpoiler" xml:space="preserve">
+    <value>Show equipment improvement results</value>
+  </data>
+  <data name="Log_ShowEquipmentImprovementSpoilerToolTip" xml:space="preserve">
+    <value>Record equipment improvement success or failure in the log.</value>
+  </data>
+  <data name="Log_ShowModernizationSpoiler" xml:space="preserve">
+    <value>Show modernization results</value>
+  </data>
+  <data name="Log_ShowModernizationSpoilerToolTip" xml:space="preserve">
+    <value>Record modernization success or failure and stat gains in the log.</value>
+  </data>
+  <data name="Log_ShowConstructionSpoiler" xml:space="preserve">
+    <value>Show constructed ship names</value>
+  </data>
+  <data name="Log_ShowConstructionSpoilerToolTip" xml:space="preserve">
+    <value>Show the actual ship name in construction completion logs.</value>
+  </data>
   <data name="Log_LogLevelToolTip" xml:space="preserve">
     <value>Specify logging level for the program. Smaller number means more verbose logging.
 1: Debug

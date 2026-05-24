@@ -509,7 +509,8 @@ public class BattleManager : APIWrapper
 			int shipID = Result.DroppedShipID;
 			int itemID = Result.DroppedItemID;
 			int eqID = Result.DroppedEquipmentID;
-			bool showLog = Utility.Configuration.Config.Log.ShowSpoiler;
+			bool showLog = Utility.Configuration.Config.Log.ShowSpoiler &&
+				Utility.Configuration.Config.Log.ShowDropSpoiler;
 
 			if (shipID != -1)
 			{

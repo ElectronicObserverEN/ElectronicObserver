@@ -215,6 +215,42 @@
     <value>開発したアイテム名やドロップ艦名などのログを記録するかを指定します。
 先にわかってしまうことが気になる方は無効にしてください。</value>
   </data>
+  <data name="Log_ShowDropSpoiler" xml:space="preserve">
+    <value>ドロップ報告を表示</value>
+  </data>
+  <data name="Log_ShowDropSpoilerToolTip" xml:space="preserve">
+    <value>ドロップした艦娘、アイテム、装備をログに記録するかを指定します。</value>
+  </data>
+  <data name="Log_ShowExpeditionSpoiler" xml:space="preserve">
+    <value>遠征報酬を表示</value>
+  </data>
+  <data name="Log_ShowExpeditionSpoilerToolTip" xml:space="preserve">
+    <value>遠征で獲得した資源やアイテムをログに記録するかを指定します。</value>
+  </data>
+  <data name="Log_ShowDevelopmentSpoiler" xml:space="preserve">
+    <value>開発結果を表示</value>
+  </data>
+  <data name="Log_ShowDevelopmentSpoilerToolTip" xml:space="preserve">
+    <value>開発した装備名と開発レシピをログに記録するかを指定します。</value>
+  </data>
+  <data name="Log_ShowEquipmentImprovementSpoiler" xml:space="preserve">
+    <value>装備改修結果を表示</value>
+  </data>
+  <data name="Log_ShowEquipmentImprovementSpoilerToolTip" xml:space="preserve">
+    <value>装備改修の成功または失敗をログに記録するかを指定します。</value>
+  </data>
+  <data name="Log_ShowModernizationSpoiler" xml:space="preserve">
+    <value>近代化改修結果を表示</value>
+  </data>
+  <data name="Log_ShowModernizationSpoilerToolTip" xml:space="preserve">
+    <value>近代化改修の成功または失敗と上昇値をログに記録するかを指定します。</value>
+  </data>
+  <data name="Log_ShowConstructionSpoiler" xml:space="preserve">
+    <value>建造艦名を表示</value>
+  </data>
+  <data name="Log_ShowConstructionSpoilerToolTip" xml:space="preserve">
+    <value>建造完了ログに実際の艦娘名を表示するかを指定します。</value>
+  </data>
   <data name="Log_LogLevelToolTip" xml:space="preserve">
     <value>小さい値では詳細なログを、大きな値では重要なログのみを表示します。
 1: デバッグレベル

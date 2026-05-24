@@ -62,7 +62,9 @@ public class ArsenalViewModel : AnchorableViewModel
 			ArsenalData arsenal = KCDatabase.Instance.Arsenals[BuildingId];
 			IShipDataMaster ship = KCDatabase.Instance.MasterShips[arsenal.ShipID];
 
-			string name = (Configuration.Config.Log.ShowSpoiler && Configuration.Config.FormArsenal.ShowShipName) switch
+			string name = (Configuration.Config.Log.ShowSpoiler &&
+				Configuration.Config.Log.ShowConstructionSpoiler &&
+				Configuration.Config.FormArsenal.ShowShipName) switch
 			{
 				true => $"{ship.ShipTypeName} {ship.NameWithClass}",
 				_ => GeneralRes.ShipGirl,
