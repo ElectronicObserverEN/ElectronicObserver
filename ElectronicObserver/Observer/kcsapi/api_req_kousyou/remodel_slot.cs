@@ -33,12 +33,14 @@ public class remodel_slot : APIBase
 			{
 				eq.LoadFromResponse(APIName, data.api_after_slot);
 
-				if (Utility.Configuration.Config.Log.ShowSpoiler)
+				if (Utility.Configuration.Config.Log.ShowSpoiler &&
+					Utility.Configuration.Config.Log.ShowEquipmentImprovementSpoiler)
 					Utility.Logger.Add(2, string.Format(LoggerRes.ImprovedEqSuccess, eq.NameWithLevel));
 			}
 
 		}
-		else if (Utility.Configuration.Config.Log.ShowSpoiler)
+		else if (Utility.Configuration.Config.Log.ShowSpoiler &&
+			Utility.Configuration.Config.Log.ShowEquipmentImprovementSpoiler)
 		{
 			Utility.Logger.Add(2, string.Format(LoggerRes.ImprovedFailure, db.Equipments[_equipmentID].NameWithLevel));
 		}

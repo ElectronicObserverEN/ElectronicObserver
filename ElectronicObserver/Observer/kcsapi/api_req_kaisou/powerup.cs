@@ -64,7 +64,8 @@ public class powerup : APIBase
 		if (ship != null)
 		{
 
-			if (Utility.Configuration.Config.Log.ShowSpoiler)
+			if (Utility.Configuration.Config.Log.ShowSpoiler &&
+				Utility.Configuration.Config.Log.ShowModernizationSpoiler)
 			{
 				if ((int)data.api_powerup_flag == 0)
 				{

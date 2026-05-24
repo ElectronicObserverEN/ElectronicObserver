@@ -34,7 +34,8 @@ public class result : APIBase
 
 
 		// 獲得資源表示
-		if (Utility.Configuration.Config.Log.ShowSpoiler)
+		if (Utility.Configuration.Config.Log.ShowSpoiler &&
+			Utility.Configuration.Config.Log.ShowExpeditionSpoiler)
 		{
 
 			var sb = new LinkedList<string>();
