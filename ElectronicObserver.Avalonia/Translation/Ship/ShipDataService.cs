@@ -108,8 +108,8 @@ public sealed class ShipDataService(
 	
 	public string TypeNameShort(ShipTypes shipType) => ConfigurationUi.JapaneseShipType switch
 	{
-		true => ShipTypeShortEnglish(shipType),
-		_ => ShipTypeShort(shipType),
+		true => ShipTypeShort(shipType),
+		_ => ShipTypeShortEnglish(shipType),
 	};
 	
 	/// <summary>
