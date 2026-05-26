@@ -296,8 +296,8 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		// FlowPanelFleet.SuspendLayout();
 		{
 
-			ShipCount.Text = string.Format("{0}/{1}", RealShipCount, db.Admiral.MaxShipCount);
-			if (RealShipCount > db.Admiral.MaxShipCount - 5)
+			ShipCount.Text = string.Format("{0}/{1}", db.Admiral.RealShipCount, db.Admiral.MaxShipCount);
+			if (db.Admiral.RealShipCount > db.Admiral.MaxShipCount - 5)
 			{
 				ShipCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
 				ShipCount.ForeColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG;
@@ -307,10 +307,10 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 				ShipCount.BackColor = System.Drawing.Color.Transparent;
 				ShipCount.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			}
-			ShipCount.Tag = RealShipCount >= db.Admiral.MaxShipCount;
+			ShipCount.Tag = db.Admiral.RealShipCount >= db.Admiral.MaxShipCount;
 
-			EquipmentCount.Text = string.Format("{0}/{1}", RealEquipmentCount, db.Admiral.MaxEquipmentCount);
-			if (RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20)
+			EquipmentCount.Text = string.Format("{0}/{1}", db.Admiral.RealEquipmentCount, db.Admiral.MaxEquipmentCount);
+			if (db.Admiral.RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20)
 			{
 				EquipmentCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
 				EquipmentCount.ForeColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG;
@@ -320,7 +320,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 				EquipmentCount.BackColor = System.Drawing.Color.Transparent;
 				EquipmentCount.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			}
-			EquipmentCount.Tag = RealEquipmentCount >= db.Admiral.MaxEquipmentCount;
+			EquipmentCount.Tag = db.Admiral.RealEquipmentCount >= db.Admiral.MaxEquipmentCount;
 
 		}
 		// FlowPanelFleet.ResumeLayout();
@@ -659,30 +659,4 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 
 		MessageBox.Show(sb.ToString(), FormHeadquarters.ListOfOwnedItems, MessageBoxButton.OK, MessageBoxImage.Information);
 	}
-
-	private int RealShipCount
-	{
-		get
-		{
-			if (KCDatabase.Instance.Battle != null)
-				return KCDatabase.Instance.Ships.Count + KCDatabase.Instance.Battle.DroppedShipCount;
-
-			return KCDatabase.Instance.Ships.Count;
-		}
-	}
-
-	private int RealEquipmentCount
-	{
-		get
-		{
-			int equipmentCount = KCDatabase.Instance.Equipments.Values
-				.Count(e => e.MasterEquipment.UsesSlotSpace());
-
-			if (KCDatabase.Instance.Battle != null)
-				return equipmentCount + KCDatabase.Instance.Battle.DroppedEquipmentCount;
-
-			return equipmentCount;
-		}
-	}
-
 }

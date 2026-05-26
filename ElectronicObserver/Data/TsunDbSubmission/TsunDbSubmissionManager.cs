@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DynaJson;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data.TsunDbSubmission.Battle;
 using ElectronicObserver.Utility;
@@ -47,11 +49,12 @@ public class TsunDbSubmissionManager : ResponseWrapper
 			{
 				case "api_req_sortie/battleresult":
 				case "api_req_combined_battle/battleresult":
-					if (db.Ships.Count < db.Admiral.MaxShipCount && (db.Equipments.Values.Count(e => e.MasterEquipment.UsesSlotSpace()) < db.Admiral.MaxEquipmentCount))
+					if (CanReportDrop(db))
 					{
 						new ShipDrop(data).SendData();
 						new ShipDropLoc(data).SendData();
 					}
+
 					break;
 				case "api_req_map/start":
 				{
@@ -117,5 +120,15 @@ public class TsunDbSubmissionManager : ResponseWrapper
 		{
 			ErrorReporter.SendErrorReport(ex, "TsunDb Submission module");
 		}
+	}
+
+	private static bool CanReportDrop(KCDatabase db)
+	{
+		if (db.Battle.Result.DroppedShipID > 0) return true;
+
+		if (db.Admiral.RealShipCount >= db.Admiral.MaxShipCount) return false;
+		if (db.Admiral.RealEquipmentCount >= db.Admiral.MaxEquipmentCount - 3) return false;
+
+		return true;
 	}
 }
