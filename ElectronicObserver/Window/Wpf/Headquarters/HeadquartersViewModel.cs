@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
-using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;

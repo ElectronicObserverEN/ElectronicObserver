@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using DynaJson;
-using ElectronicObserver.Core.Types;
-using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data.TsunDbSubmission.Battle;
 using ElectronicObserver.Utility;
 

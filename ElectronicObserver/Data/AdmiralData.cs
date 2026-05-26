@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserver.Core;
-using static ElectronicObserver.Data.Constants;
 using ElectronicObserver.Core.Types.Extensions;
+using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data;
 
