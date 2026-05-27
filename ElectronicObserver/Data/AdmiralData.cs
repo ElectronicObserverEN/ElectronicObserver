@@ -171,7 +171,7 @@ public class AdmiralData : APIWrapper
 	{
 		get
 		{
-			int equipmentCount = KCDatabase.Instance.Equipments.Values.Count(e => e.MasterEquipment.UsesSlotSpace());
+			int equipmentCount = KCDatabase.Instance.Equipments.Values.Count(e => e?.MasterEquipment.UsesSlotSpace() is true);
 
 			if (KCDatabase.Instance.Battle != null)
 			{
