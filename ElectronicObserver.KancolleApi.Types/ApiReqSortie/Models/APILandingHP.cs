@@ -2,11 +2,17 @@
 
 public class ApiLandingHp
 {
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_max_hp")]
-	public string ApiMaxHp { get; set; } = "";
+	public object ApiMaxHp { get; set; } = "";
 
+	/// <summary>
+	/// Element type is <see cref="int"/> or <see cref="string"/>.
+	/// </summary>
 	[JsonPropertyName("api_now_hp")]
-	public string ApiNowHp { get; set; } = "";
+	public object ApiNowHp { get; set; } = "";
 
 	/// <summary>
 	/// Element type is <see cref="int"/> or <see cref="string"/>.
