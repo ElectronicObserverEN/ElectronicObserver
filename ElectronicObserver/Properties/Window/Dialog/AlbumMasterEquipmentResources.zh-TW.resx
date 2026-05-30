@@ -148,7 +148,7 @@
     <value>裝備種類</value>
   </data>
   <data name="EquipmentView_Name" xml:space="preserve">
-    <value>裝備名字</value>
+    <value>裝備名稱</value>
   </data>
   <data name="TitleAircraftCost" xml:space="preserve">
     <value>部署消耗</value>
@@ -220,7 +220,7 @@
     <value>排除</value>
   </data>
   <data name="ExpansionSlot" xml:space="preserve">
-    <value>擴展槽</value>
+    <value>增設裝備</value>
   </data>
   <data name="DialogTitleError" xml:space="preserve">
     <value>錯誤</value>
