@@ -47,7 +47,7 @@ public partial class KancolleProgressViewModel : ObservableObject
 	{
 		List<ColorFilter> colorFilters = new()
 		{
-			new(this, Comparator.Equal, 185, Colors.DeepPink, KancolleProgressResources.Max),
+			new(this, Comparator.Equal, 188, Colors.DeepPink, KancolleProgressResources.Max),
 			new(this, Comparator.GreaterOrEqual, 99, Colors.DeepSkyBlue),
 			new(this, Comparator.GreaterOrEqual, 90, Colors.LimeGreen),
 			new(this, Comparator.GreaterOrEqual, 80, Colors.Yellow),
