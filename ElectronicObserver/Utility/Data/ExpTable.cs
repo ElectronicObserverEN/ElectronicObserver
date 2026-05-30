@@ -53,7 +53,7 @@ public static class ExpTable
 	/// <summary>
 	/// 艦娘レベル最大値
 	/// </summary>
-	public static int ShipMaximumLevel => 185;
+	public static int ShipMaximumLevel => 188;
 
 	/// <summary>
 	/// 提督レベル最大値
