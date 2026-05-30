@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using ElectronicObserver.Core.Types;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
@@ -455,6 +456,12 @@ public static class Extensions
 	public static bool IsMapProgressApi(this ApiFile apiFile) => apiFile.Name is
 		"api_req_map/start" or
 		"api_req_map/next";
+
+	// true if the sortie visited a boss battle cell; only inspects map progress files
+	public static bool ReachedBossNode(this IEnumerable<ApiFile> apiFiles) => apiFiles
+		.Where(f => f.IsMapProgressApi())
+		.Select(f => f.GetMapProgressApiData())
+		.Any(data => data?.ApiColorNo is CellType.BossBattle);
 
 	private static Func<ElectronicObserverContext, List<int>, IAsyncEnumerable<SortieRecord>> SortieQuery { get; }
 		= EF.CompileAsyncQuery((ElectronicObserverContext db, List<int> idsToLoad)

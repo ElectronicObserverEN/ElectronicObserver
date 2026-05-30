@@ -168,4 +168,7 @@
   <data name="ShowQuickExport" xml:space="preserve">
     <value>顯示快速匯出</value>
   </data>
+  <data name="BossNodeOnly" xml:space="preserve">
+    <value>抵達Boss</value>
+  </data>
 </root>
