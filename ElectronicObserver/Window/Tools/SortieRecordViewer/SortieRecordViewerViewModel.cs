@@ -81,6 +81,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 	private SortieCostConfigurationViewModel SortieCostConfiguration { get; } = new();
 	[ObservableProperty] private bool _showQuickExport;
+	[ObservableProperty] private bool _bossNodeOnly;
 
 	public bool IsDebug =>
 #if DEBUG
@@ -170,7 +171,17 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			DateTime end = DateTimeEnd.ToUniversalTime();
 
 			List<SortieRecordViewModel> sorties = await Task.Run(async () =>
-				await SortieQuery(Db, world, map, begin, end, ImageLoadService).ToListAsync(ct), ct);
+			{
+				List<SortieRecordViewModel> result =
+					await SortieQuery(Db, world, map, begin, end, ImageLoadService).ToListAsync(ct);
+
+				if (BossNodeOnly)
+				{
+					result = await FilterReachedBoss(result, ct);
+				}
+
+				return result;
+			}, ct);
 
 			Sorties.Clear();
 
@@ -191,6 +202,32 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		{
 			Logger.Add(2, $"Unknown error while loading data: {e.Message}{e.StackTrace}");
 		}
+	}
+
+	private async Task<List<SortieRecordViewModel>> FilterReachedBoss(
+		List<SortieRecordViewModel> sorties, CancellationToken ct)
+	{
+		List<int> ids = sorties.Select(s => s.Model.Id).ToList();
+
+		if (ids.Count is 0) return sorties;
+
+		// only the small map progress files are needed to detect the boss node,
+		// so the full api file set is intentionally not loaded here
+		var mapFiles = await Db.ApiFiles
+			.AsNoTracking()
+			.Where(f => f.SortieRecordId != null && ids.Contains(f.SortieRecordId.Value))
+			.Where(f => f.Name == "api_req_map/start" || f.Name == "api_req_map/next")
+			.ToListAsync(ct);
+
+		HashSet<int> reachedBoss = mapFiles
+			.GroupBy(f => f.SortieRecordId!.Value)
+			.Where(g => g.ReachedBossNode())
+			.Select(g => g.Key)
+			.ToHashSet();
+
+		return sorties
+			.Where(s => reachedBoss.Contains(s.Model.Id))
+			.ToList();
 	}
 
 	[RelayCommand]

@@ -148,4 +148,7 @@
   <data name="ShowQuickExport" xml:space="preserve">
     <value>クイックエクスポートを表示</value>
   </data>
+  <data name="BossNodeOnly" xml:space="preserve">
+    <value>ボス到達</value>
+  </data>
 </root>

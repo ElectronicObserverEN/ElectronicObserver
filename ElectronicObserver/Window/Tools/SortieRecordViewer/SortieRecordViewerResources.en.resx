@@ -168,4 +168,7 @@
   <data name="ShowQuickExport" xml:space="preserve">
     <value>Show quick export</value>
   </data>
+  <data name="BossNodeOnly" xml:space="preserve">
+    <value>Reached boss</value>
+  </data>
 </root>
