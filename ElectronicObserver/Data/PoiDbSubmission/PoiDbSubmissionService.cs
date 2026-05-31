@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbAirDefenseSubmission;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
@@ -293,7 +294,7 @@ public class PoiDbSubmissionService
 
 	private static void LogError(Exception e)
 	{
-		if (e is HttpRequestException { StatusCode: >= System.Net.HttpStatusCode.InternalServerError})
+		if (e is HttpRequestException { StatusCode: >= HttpStatusCode.InternalServerError})
 		{
 			Logger.Add(1, PoiDbSubmissionResources.Error, e);
 		}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using ElectronicObserver.Data.KCReplayDbSubmission.KCReplayDbQuestSubmission;
 using ElectronicObserver.Observer;
@@ -84,7 +85,7 @@ public class KCReplayDbSubmissionService
 
 	private static void LogError(Exception e)
 	{
-		if (e is HttpRequestException { StatusCode: >= System.Net.HttpStatusCode.InternalServerError })
+		if (e is HttpRequestException { StatusCode: >= HttpStatusCode.InternalServerError })
 		{
 			Logger.Add(1, KCReplayDbSubmissionResources.Error, e);
 		}
