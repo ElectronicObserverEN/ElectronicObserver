@@ -41,7 +41,7 @@ public class PoiHttpClient
 		string responseMessage = await response.Content.ReadAsStringAsync();
 		string errorMessage = $"{response.ReasonPhrase} {responseMessage}";
 
-		throw new HttpRequestException(errorMessage);
+		throw new HttpRequestException(errorMessage, null, response.StatusCode);
 	}
 
 	public async Task Quest(PoiDbQuestSubmissionData submission)
