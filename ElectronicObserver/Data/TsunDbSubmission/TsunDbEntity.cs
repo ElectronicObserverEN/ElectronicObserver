@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -48,7 +49,14 @@ public abstract class TsunDbEntity
 
 				if (!result.IsSuccessStatusCode)
 				{
-					throw new Exception("Error " + result.StatusCode + ": " + response);
+					if (result.StatusCode >= HttpStatusCode.InternalServerError)
+					{
+						Logger.Add(1, $"TsunDb Submission module Error {result.StatusCode}: {response}");
+					}
+					else
+					{
+						throw new Exception("Error " + result.StatusCode + ": " + response);
+					}
 				}
 			}
 			catch (Exception ex)
