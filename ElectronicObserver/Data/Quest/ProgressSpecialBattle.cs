@@ -851,11 +851,15 @@ public class ProgressSpecialBattle : ProgressBattle
 				isAccepted = carrier && heavyCruiser && lightCruiser;
 			}
 			break;
-			case 979: // 2604 Bm1
+			// TODO : remove this time limited quest
+			case 953: // 2605 Bw1
 			{
-				if (members.Count >= 3)
+				if (members.Count >= 2)
 				{
-					isAccepted = members.Take(3).All(ship => ship?.MasterShip.ShipType is ShipTypes.Escort);
+					bool firstShipsCondition = members.Take(2).All(ship => ship?.MasterShip.ShipType is ShipTypes.Escort) || members.Take(2).All(ship => ship?.MasterShip.ShipType is ShipTypes.SeaplaneTender);
+					bool destroyerCondition = members.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer) >= 2;
+
+					isAccepted = firstShipsCondition && destroyerCondition;
 				}
 			}
 			break;

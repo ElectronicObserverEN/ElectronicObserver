@@ -862,13 +862,15 @@ public sealed class QuestProgressManager : DataStorage
 						}
 						break;
 
-					case 979:
-						if (q.Code == "2604 Bm1")
+					// TODO : remove this time limited quest
+					case 953:
+						if (q.Code == "2605 Bw1")
 						{
 							Progresses.Add(new ProgressMultiBattle(q, new[] {
-								new ProgressSpecialBattle(q, 2, "S", [ 13 ], true),
-								new ProgressSpecialBattle(q, 2, "S", [ 14 ], true),
-								new ProgressSpecialBattle(q, 2, "x", [ 16 ], true),
+								new ProgressSpecialBattle(q, 1, "A", [ 12 ], true),
+								new ProgressSpecialBattle(q, 1, "A", [ 14 ], true),
+								new ProgressSpecialBattle(q, 1, "A", [ 21 ], true),
+								new ProgressSpecialBattle(q, 1, "A", [ 22 ], true),
 							}));
 						}
 						break;
