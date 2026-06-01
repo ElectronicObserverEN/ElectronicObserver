@@ -232,24 +232,6 @@ public class ProgressSpecialBattle : ProgressBattle
 					memberstype.Any(t => t == ShipTypes.LightCruiser);
 				break;
 
-			// |875|季|精鋭「三一駆」、鉄底海域に突入せよ！|5-4ボスS勝利2|要長波改二/(高波改or沖波改or朝霜改)
-			case 875:
-				isAccepted =
-					members.Any(s => s?.ShipID == 543) &&
-					members.Any(s =>
-					{
-						switch (s?.MasterShip?.NameReading)
-						{
-							case "たかなみ":
-							case "おきなみ":
-							case "あさしも":
-								return s.MasterShip.RemodelTier >= 1;
-							default:
-								return false;
-						}
-					});
-				break;
-
 			// |888|季|新編成「三川艦隊」、鉄底海峡に突入せよ！|5-1・5-3・5-4ボスS勝利各1|要(鳥海or青葉or衣笠or加古or古鷹or天龍or夕張)4
 			case 888:
 				isAccepted =
@@ -920,71 +902,6 @@ public class ProgressSpecialBattle : ProgressBattle
 
 		if (GaugeIndex != -1)
 			sb.AppendFormat(QuestTracking.GaugeIndex, GaugeIndex);
-
-		/*
-		switch (QuestID)
-		{
-			// |249|月|「第五戦隊」出撃せよ！|2-5ボスS勝利1|要「那智」「妙高」「羽黒」
-			case 249:
-				sb.Append("【要「那智」「妙高」「羽黒」】");
-				break;
-
-			// |257|月|「水雷戦隊」南西へ！|1-4ボスS勝利1|要軽巡旗艦、軽巡3隻まで、他駆逐艦　他艦種禁止
-			case 257:
-				sb.Append("【要軽巡旗艦、軽巡3隻まで、他駆逐艦　他艦種禁止】");
-				break;
-
-			// |259|月|「水上打撃部隊」南方へ！|5-1ボスS勝利1|要(大和型or長門型or伊勢型or扶桑型)3/軽巡1　巡戦禁止、戦艦追加禁止
-			case 259:
-				sb.Append("【要(大和型or長門型or伊勢型or扶桑型)3/軽巡1　巡戦禁止、戦艦追加禁止】");
-				break;
-
-			// |264|月|「空母機動部隊」西へ！|4-2ボスS勝利1|要(空母or軽母or装母)2/駆逐2
-			case 264:
-				sb.Append("【要空母系2/駆逐2】");
-				break;
-
-			// |266|月|「水上反撃部隊」突入せよ！|2-5ボスS勝利1|要駆逐旗艦、重巡1軽巡1駆逐4
-			case 266:
-				sb.Append("【要駆逐旗艦、重巡1軽巡1駆逐4】");
-				break;
-
-			// |861|季|強行輸送艦隊、抜錨！|1-6終点到達2|要(航空戦艦or補給艦)2
-			case 861:
-				sb.Append("【要(航空戦艦or補給艦)2】");
-				break;
-
-			// |862|季|前線の航空偵察を実施せよ！|6-3ボスA勝利2|要水母1軽巡2
-			case 862:
-				sb.Append("【要水母1軽巡2】");
-				break;
-
-			// |873|季|北方海域警備を実施せよ！|3-1・3-2・3-3ボスA勝利各1|要軽巡1, 1エリア達成で50%,2エリアで80%
-			case 873:
-				sb.Append("【要軽巡1】");
-				break;
-
-			// |875|季|精鋭「三一駆」、鉄底海域に突入せよ！|5-4ボスS勝利2|要長波改二/(高波改or沖波改or朝霜改)
-			case 875:
-				sb.Append("【要長波改二/(高波改or沖波改or朝霜改)】");
-				break;
-
-			// |888|季|新編成「三川艦隊」、鉄底海峡に突入せよ！|5-1・5-3・5-4ボスS勝利各1|要(鳥海or青葉or衣笠or加古or古鷹or天龍or夕張)4
-			case 888:
-				sb.Append("【要(鳥海or青葉or衣笠or加古or古鷹or天龍or夕張)4】");
-				break;
-
-			// |893|季|泊地周辺海域の安全確保を徹底せよ！|1-5・7-1・7-2(第一＆第二)ボスS勝利各3|3エリア達成時点で80%
-			case 893:
-				sb.Append("【7-2: #1/#2ゲージ両方】");
-				break;
-
-			// |894|季|空母戦力の投入による兵站線戦闘哨戒|1-3・1-4・2-1・2-2・2-3ボスS勝利各1?|要空母系
-			case 894:
-				sb.Append("【要空母系】");
-				break;
-		}
-		*/
 
 		return sb.ToString();
 	}

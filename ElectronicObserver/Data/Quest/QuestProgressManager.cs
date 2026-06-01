@@ -339,9 +339,6 @@ public sealed class QuestProgressManager : DataStorage
 							new ProgressSpecialBattle(q, 1, "A", new[]{ 33 }, true),
 						}));
 						break;
-					case 875:   //|875|季|精鋭「三一駆」、鉄底海域に突入せよ！|5-4ボスS勝利2|要長波改二/(高波改or沖波改or朝霜改)
-						Progresses.Add(new ProgressSpecialBattle(q, 2, "S", new[] { 54 }, true));
-						break;
 					case 888:   //|888|季|新編成「三川艦隊」、鉄底海峡に突入せよ！|5-1・5-3・5-4ボスS勝利各1|要(鳥海or青葉or衣笠or加古or古鷹or天龍or夕張)4
 						Progresses.Add(new ProgressMultiBattle(q, new[]{
 							new ProgressSpecialBattle(q, 1, "S", new[]{ 51 }, true),
