@@ -785,6 +785,7 @@
 				<MenuItem Header="Data Generation" Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}">
 					<MenuItem Command="{Binding GenerateMasterDataCommand}" Header="Generate Master Data" />
 					<MenuItem Command="{Binding GenerateShipIdEnumCommand}" Header="Generate Ship ID Enum" />
+					<MenuItem Command="{Binding GenerateShipClassEnumCommand}" Header="Generate Ship Class Enum" />
 					<MenuItem Command="{Binding GenerateEquipmentIdEnumCommand}" Header="Generate Equipment ID Enum" />
 				</MenuItem>
 			</MenuItem>

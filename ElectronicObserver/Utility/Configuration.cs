@@ -595,6 +595,18 @@ public sealed class Configuration
 			/// </summary>
 			public bool ShowSpoiler { get; set; }
 
+			public bool ShowDropSpoiler { get; set; }
+
+			public bool ShowExpeditionSpoiler { get; set; }
+
+			public bool ShowDevelopmentSpoiler { get; set; }
+
+			public bool ShowEquipmentImprovementSpoiler { get; set; }
+
+			public bool ShowModernizationSpoiler { get; set; }
+
+			public bool ShowConstructionSpoiler { get; set; }
+
 			/// <summary>
 			/// プレイ時間
 			/// </summary>
@@ -623,6 +635,12 @@ public sealed class Configuration
 				SaveErrorReport = true;
 				FileEncodingID = 4;
 				ShowSpoiler = true;
+				ShowDropSpoiler = true;
+				ShowExpeditionSpoiler = true;
+				ShowDevelopmentSpoiler = true;
+				ShowEquipmentImprovementSpoiler = true;
+				ShowModernizationSpoiler = true;
+				ShowConstructionSpoiler = true;
 				PlayTime = 0;
 				PlayTimeIgnoreInterval = 10 * 60;
 				SaveBattleLog = false;
@@ -819,6 +837,11 @@ public sealed class Configuration
 			public bool TopMost { get; set; }
 
 			/// <summary>
+			/// 最小化時の動作
+			/// </summary>
+			public int MinimizeBehavior { get; set; }
+
+			/// <summary>
 			/// レイアウトファイルのパス
 			/// </summary>
 			public string LayoutFilePath { get; set; }
@@ -854,6 +877,7 @@ public sealed class Configuration
 			{
 				ConfirmOnClosing = true;
 				TopMost = false;
+				MinimizeBehavior = 0;
 				LayoutFilePath = @"Settings\WindowLayout.zip";
 				CheckUpdateInformation = true;
 				ShowStatusBar = true;

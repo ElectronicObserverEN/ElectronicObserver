@@ -24,6 +24,7 @@ public class UiBlockerService(DockingManager dockingManager, Configuration.Confi
 	public void ShowBlocker(UiBlockerViewModel uiBlockerViewModel)
 	{
 		if (GetBrowserControl(DockingManager) is not LayoutDocumentControl anchorableControl) return;
+		if (GetBrowserWindow(anchorableControl) is not System.Windows.Window browserWindow) return;
 
 		Point topLeft = anchorableControl.PointToScreen(new Point(0, 0));
 		Size anchorableSize = new(anchorableControl.ActualWidth, anchorableControl.ActualHeight);
@@ -41,11 +42,8 @@ public class UiBlockerService(DockingManager dockingManager, Configuration.Confi
 
 		uiBlockerViewModel.UpdateBrowserData(zoomRate, browserTop, browserLeft);
 
-		if (!Overlays.TryGetValue(uiBlockerViewModel, out UiBlockerOverlayWindow? overlayWindow))
-		{
-			overlayWindow = new(uiBlockerViewModel);
-			Overlays[uiBlockerViewModel] = overlayWindow;
-		}
+		// Recreate the overlay when the browser moves to a different host window.
+		UiBlockerOverlayWindow overlayWindow = GetOrCreateOverlay(uiBlockerViewModel, browserWindow);
 
 		overlayWindow.Show();
 	}
@@ -87,6 +85,46 @@ public class UiBlockerService(DockingManager dockingManager, Configuration.Confi
 			.TryFindParent<LayoutDocumentControl>();
 
 		return anchorableControl;
+	}
+
+	private static System.Windows.Window? GetBrowserWindow(LayoutDocumentControl browserControl)
+		=> System.Windows.Window.GetWindow(browserControl);
+
+	private UiBlockerOverlayWindow GetOrCreateOverlay(UiBlockerViewModel uiBlockerViewModel, System.Windows.Window browserWindow)
+	{
+		if (!Overlays.TryGetValue(uiBlockerViewModel, out UiBlockerOverlayWindow? overlayWindow))
+		{
+			overlayWindow = CreateOverlay(uiBlockerViewModel, browserWindow);
+			Overlays[uiBlockerViewModel] = overlayWindow;
+			return overlayWindow;
+		}
+
+		if (overlayWindow.Owner == browserWindow) return overlayWindow;
+
+		// Keep the overlay owned by the current browser host so it stays out of Alt+Tab.
+		try
+		{
+			overlayWindow.Close();
+		}
+		catch (InvalidOperationException)
+		{
+			// The previous owner may already have closed the old overlay.
+		}
+
+		overlayWindow = CreateOverlay(uiBlockerViewModel, browserWindow);
+		Overlays[uiBlockerViewModel] = overlayWindow;
+
+		return overlayWindow;
+	}
+
+	private static UiBlockerOverlayWindow CreateOverlay(UiBlockerViewModel uiBlockerViewModel, System.Windows.Window browserWindow)
+	{
+		UiBlockerOverlayWindow overlayWindow = new(uiBlockerViewModel)
+		{
+			Owner = browserWindow,
+		};
+
+		return overlayWindow;
 	}
 
 	private double CalculateZoomRate(Size anchorableSize, int toolbarHeight, int toolbarWidth)

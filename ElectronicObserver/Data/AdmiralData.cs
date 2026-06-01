@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserver.Core;
-using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Core.Types.Extensions;
 using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data;
@@ -150,6 +151,34 @@ public class AdmiralData : APIWrapper
 		{
 			if (RawData != null)
 				RawData.api_comment = data["api_cmt"];
+		}
+	}
+
+	public int RealShipCount
+	{
+		get
+		{
+			if (KCDatabase.Instance.Battle != null)
+			{
+				return KCDatabase.Instance.Ships.Count + KCDatabase.Instance.Battle.DroppedShipCount;
+			}
+
+			return KCDatabase.Instance.Ships.Count;
+		}
+	}
+
+	public int RealEquipmentCount
+	{
+		get
+		{
+			int equipmentCount = KCDatabase.Instance.Equipments.Values.Count(e => e?.MasterEquipment.UsesSlotSpace() is true);
+
+			if (KCDatabase.Instance.Battle != null)
+			{
+				return equipmentCount + KCDatabase.Instance.Battle.DroppedEquipmentCount;
+			}
+
+			return equipmentCount;
 		}
 	}
 }

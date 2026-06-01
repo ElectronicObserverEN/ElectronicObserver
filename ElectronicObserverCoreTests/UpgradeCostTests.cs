@@ -1,6 +1,8 @@
 ﻿using System;
+using ElectronicObserver.Avalonia.Translation.EquipmentUpgrade;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
@@ -10,16 +12,16 @@ namespace ElectronicObserverCoreTests;
 
 
 [Collection(DatabaseCollection.Name)]
-public class UpgradeCostTests
+public class UpgradeCostTests(DatabaseFixture db)
 {
-	private DatabaseFixture Db { get; }
+	private DatabaseFixture Db { get; } = db;
 
-	private ElectronicObserver.Data.Translation.EquipmentUpgradeData UpgradeData { get; }
+	private static EquipmentUpgradeDataService UpgradeData { get; }
 
-	public UpgradeCostTests(DatabaseFixture db)
+	static UpgradeCostTests()
 	{
-		Db = db;
-		UpgradeData = new();
+		UpgradeData = new(null!, new SoftwareUpdaterService(), new EoLogger());
+		UpgradeData.Initialize().Wait();
 	}
 
 	[Fact]

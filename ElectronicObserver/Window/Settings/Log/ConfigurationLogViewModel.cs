@@ -22,6 +22,18 @@ public class ConfigurationLogViewModel : ConfigurationViewModelBase
 
 	public bool ShowSpoiler { get; set; }
 
+	public bool ShowDropSpoiler { get; set; }
+
+	public bool ShowExpeditionSpoiler { get; set; }
+
+	public bool ShowDevelopmentSpoiler { get; set; }
+
+	public bool ShowEquipmentImprovementSpoiler { get; set; }
+
+	public bool ShowModernizationSpoiler { get; set; }
+
+	public bool ShowConstructionSpoiler { get; set; }
+
 	public bool SaveBattleLog { get; set; }
 
 	public bool SaveLogImmediately { get; set; }
@@ -50,6 +62,12 @@ public class ConfigurationLogViewModel : ConfigurationViewModelBase
 		SaveLogFlag = config.SaveLogFlag;
 		SaveErrorReport = config.SaveErrorReport;
 		ShowSpoiler = config.ShowSpoiler;
+		ShowDropSpoiler = config.ShowDropSpoiler;
+		ShowExpeditionSpoiler = config.ShowExpeditionSpoiler;
+		ShowDevelopmentSpoiler = config.ShowDevelopmentSpoiler;
+		ShowEquipmentImprovementSpoiler = config.ShowEquipmentImprovementSpoiler;
+		ShowModernizationSpoiler = config.ShowModernizationSpoiler;
+		ShowConstructionSpoiler = config.ShowConstructionSpoiler;
 		SaveBattleLog = config.SaveBattleLog;
 		SaveLogImmediately = config.SaveLogImmediately;
 		SelectedEncoding = Encodings
@@ -64,6 +82,12 @@ public class ConfigurationLogViewModel : ConfigurationViewModelBase
 		Config.SaveErrorReport = SaveErrorReport;
 		Config.FileEncodingID = SelectedEncoding.Value;
 		Config.ShowSpoiler = ShowSpoiler;
+		Config.ShowDropSpoiler = ShowDropSpoiler;
+		Config.ShowExpeditionSpoiler = ShowExpeditionSpoiler;
+		Config.ShowDevelopmentSpoiler = ShowDevelopmentSpoiler;
+		Config.ShowEquipmentImprovementSpoiler = ShowEquipmentImprovementSpoiler;
+		Config.ShowModernizationSpoiler = ShowModernizationSpoiler;
+		Config.ShowConstructionSpoiler = ShowConstructionSpoiler;
 		Config.SaveBattleLog = SaveBattleLog;
 		Config.SaveLogImmediately = SaveLogImmediately;
 	}

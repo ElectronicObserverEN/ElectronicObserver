@@ -43,7 +43,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// Localized name
 	/// </summary>
-	public string NameEN => KCDatabase.Instance.Translation.Ship.Name(RawData.api_name, ShipId);
+	public string NameEN => KCDatabase.Instance.Translation.Ship.Name(RawData.api_name);
 
 	/// <summary>
 	/// 読み

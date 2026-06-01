@@ -261,4 +261,13 @@
   <data name="UpgradeLevel" xml:space="preserve">
     <value>★</value>
   </data>
+  <data name="EquipmentName" xml:space="preserve">
+    <value>試製FaT式樣九五式酸素魚雷改</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>[5inch連裝砲]
+在某國被廣泛使用的驅逐艦主砲的連裝砲版本。
+也曾作為大型艦的防空砲搭載。
+如今則作為深海驅逐艦的主力兵裝廣泛普及。</value>
+  </data>
 </root>

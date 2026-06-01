@@ -23,7 +23,8 @@ public class createitem : APIBase
 
 
 		//logging
-		if (Utility.Configuration.Config.Log.ShowSpoiler)
+		if (Utility.Configuration.Config.Log.ShowSpoiler &&
+			Utility.Configuration.Config.Log.ShowDevelopmentSpoiler)
 		{
 			//Utility.Logger.Add(2, $"開発結果: {string.Join(", ", dev.Results)} ({dev.Fuel}/{dev.Ammo}/{dev.Steel}/{dev.Bauxite} 秘書艦: {db.Fleet[1].MembersInstance[0].NameWithLevel})");
 

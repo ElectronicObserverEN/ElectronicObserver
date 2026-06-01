@@ -336,6 +336,9 @@ Maximum: {2} Steel / {3} Fuel
   <data name="SearchComplete" xml:space="preserve">
     <value>Search complete.</value>
   </data>
+  <data name="SearchCompleteWithRecordAndRowCount" xml:space="preserve">
+    <value>Search complete. {0} records, combined into {1} rows</value>
+  </data>
   <data name="Searching" xml:space="preserve">
     <value>Searching</value>
   </data>

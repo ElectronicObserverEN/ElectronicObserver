@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -215,6 +215,42 @@
     <value>在日誌中顯示已開發的物品和掉落的船隻。
 禁用此設定可隱藏訊息。</value>
   </data>
+  <data name="Log_ShowDropSpoiler" xml:space="preserve">
+    <value>顯示掉落報告</value>
+  </data>
+  <data name="Log_ShowDropSpoilerToolTip" xml:space="preserve">
+    <value>指定是否將掉落艦娘、道具與裝備記錄到日誌。</value>
+  </data>
+  <data name="Log_ShowExpeditionSpoiler" xml:space="preserve">
+    <value>顯示遠征獎勵</value>
+  </data>
+  <data name="Log_ShowExpeditionSpoilerToolTip" xml:space="preserve">
+    <value>指定是否將遠征取得的資源與道具記錄到日誌。</value>
+  </data>
+  <data name="Log_ShowDevelopmentSpoiler" xml:space="preserve">
+    <value>顯示開發結果</value>
+  </data>
+  <data name="Log_ShowDevelopmentSpoilerToolTip" xml:space="preserve">
+    <value>指定是否將開發出的裝備名稱與開發配方記錄到日誌。</value>
+  </data>
+  <data name="Log_ShowEquipmentImprovementSpoiler" xml:space="preserve">
+    <value>顯示裝備改修結果</value>
+  </data>
+  <data name="Log_ShowEquipmentImprovementSpoilerToolTip" xml:space="preserve">
+    <value>指定是否將裝備改修成功或失敗記錄到日誌。</value>
+  </data>
+  <data name="Log_ShowModernizationSpoiler" xml:space="preserve">
+    <value>顯示近代化改修結果</value>
+  </data>
+  <data name="Log_ShowModernizationSpoilerToolTip" xml:space="preserve">
+    <value>指定是否將近代化改修成功或失敗與提升數值記錄到日誌。</value>
+  </data>
+  <data name="Log_ShowConstructionSpoiler" xml:space="preserve">
+    <value>顯示建造艦名</value>
+  </data>
+  <data name="Log_ShowConstructionSpoilerToolTip" xml:space="preserve">
+    <value>指定是否在建造完成日誌中顯示實際艦娘名稱。</value>
+  </data>
   <data name="Log_LogLevelToolTip" xml:space="preserve">
     <value>指定程式的日誌記錄級別。較小的數字意味著更詳細的日誌記錄。
 1：除錯級別
@@ -339,6 +375,15 @@ API列表的格式和使用方法請參見線上幫助。</value>
   </data>
   <data name="Life_ConfirmOnClosing" xml:space="preserve">
     <value>關閉時確認</value>
+  </data>
+  <data name="Life_MinimizeBehavior" xml:space="preserve">
+    <value>最小化行為:</value>
+  </data>
+  <data name="Life_MinimizeBehavior_Taskbar" xml:space="preserve">
+    <value>工作列</value>
+  </data>
+  <data name="Life_MinimizeBehavior_SystemTray" xml:space="preserve">
+    <value>系統匣</value>
   </data>
   <data name="Window" xml:space="preserve">
     <value>分割視窗</value>

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Translation.EquipmentUpgrade;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.Translation;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 
@@ -30,7 +30,7 @@ public class AlbumMasterEquipmentUpgradeViewModel
 
 	private void LoadUpgradeData()
 	{
-		EquipmentUpgradeData upgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
+		EquipmentUpgradeDataService upgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
 		EquipmentUpgradeDataModel? data = upgradeData.UpgradeList.FirstOrDefault(upgrade => upgrade.EquipmentId == Equipment.ID);
 
 		if (data is null) return;

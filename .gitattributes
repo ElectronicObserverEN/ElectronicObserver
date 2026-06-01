@@ -1,7 +1,7 @@
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
-#* text=auto
+* text eol=crlf
 
 ###############################################################################
 # Set default behavior for command prompt diff.
@@ -40,9 +40,10 @@
 #
 # image files are treated as binary by default.
 ###############################################################################
-#*.jpg   binary
-#*.png   binary
-#*.gif   binary
+*.jpg   binary
+*.png   binary
+*.gif   binary
+*.ico   binary
 
 ###############################################################################
 # diff behavior for common document formats
@@ -61,3 +62,5 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+*.zip binary
+*.sqlite binary

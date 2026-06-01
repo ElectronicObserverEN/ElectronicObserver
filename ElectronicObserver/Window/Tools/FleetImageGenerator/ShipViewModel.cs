@@ -56,7 +56,7 @@ public class ShipViewModel : ObservableObject
 		}
 
 		Id = ship.MasterShip.ShipId;
-		Name = Db.Translation.Ship.Name(ship.MasterShip.Name, ship.MasterShip.ShipId);
+		Name = Db.Translation.Ship.Name(ship.MasterShip.Name);
 		Level = ship.Level;
 
 		Hp = ship.HPMax;

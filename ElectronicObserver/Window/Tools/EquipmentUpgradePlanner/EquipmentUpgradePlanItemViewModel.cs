@@ -9,7 +9,6 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
@@ -20,12 +19,13 @@ using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.Avalonia.Translation.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 
 public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IEquipmentPlanItemViewModel
 {
-	public EquipmentUpgradeData EquipmentUpgradeData { get; set; }
+	public EquipmentUpgradeDataService EquipmentUpgradeData { get; set; }
 
 	public int? EquipmentId { get; set; }
 

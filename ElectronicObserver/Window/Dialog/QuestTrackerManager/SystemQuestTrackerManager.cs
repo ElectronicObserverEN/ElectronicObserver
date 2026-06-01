@@ -3,8 +3,8 @@ using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Avalonia.Translation;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using MessagePack;
@@ -75,7 +75,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		LoadProgress();
 	}
 
-	private string CustomTrackerPath => Path.Join(DataAndTranslationManager.DataFolder, "QuestTrackers.json");
+	private string CustomTrackerPath => Path.Join(DataConstants.DataFolder, "QuestTrackers.json");
 	private string ProgressPath => Path.Combine("Record", "SystemQuestProgress.json");
 
 	private void LoadExistingTrackers()

@@ -29,11 +29,56 @@
 				SpinButtonPlacementMode="Inline"
 				Value="{Binding LogLevel}"
 				/>
+		</StackPanel>
+
+		<StackPanel HorizontalAlignment="Left">
 			<CheckBox
+				x:Name="ShowSpoilerCheckBox"
 				Content="{Binding Translation.Log_ShowSpoiler}"
 				IsChecked="{Binding ShowSpoiler}"
 				ToolTip="{Binding Translation.Log_ShowSpoilerToolTip}"
 				/>
+			<Border
+				HorizontalAlignment="Left"
+				Margin="0 4 0 0"
+				Padding="8"
+				BorderBrush="DarkGray"
+				BorderThickness="1"
+				CornerRadius="2"
+				>
+				<StackPanel Margin="16 0 0 0" IsEnabled="{Binding IsChecked, ElementName=ShowSpoilerCheckBox}">
+					<CheckBox
+						Content="{Binding Translation.Log_ShowDropSpoiler}"
+						IsChecked="{Binding ShowDropSpoiler}"
+						ToolTip="{Binding Translation.Log_ShowDropSpoilerToolTip}"
+						/>
+					<CheckBox
+						Content="{Binding Translation.Log_ShowExpeditionSpoiler}"
+						IsChecked="{Binding ShowExpeditionSpoiler}"
+						ToolTip="{Binding Translation.Log_ShowExpeditionSpoilerToolTip}"
+						/>
+					<CheckBox
+						Content="{Binding Translation.Log_ShowDevelopmentSpoiler}"
+						IsChecked="{Binding ShowDevelopmentSpoiler}"
+						ToolTip="{Binding Translation.Log_ShowDevelopmentSpoilerToolTip}"
+						/>
+					<CheckBox
+						Content="{Binding Translation.Log_ShowEquipmentImprovementSpoiler}"
+						IsChecked="{Binding ShowEquipmentImprovementSpoiler}"
+						ToolTip="{Binding Translation.Log_ShowEquipmentImprovementSpoilerToolTip}"
+						/>
+					<CheckBox
+						Content="{Binding Translation.Log_ShowModernizationSpoiler}"
+						IsChecked="{Binding ShowModernizationSpoiler}"
+						ToolTip="{Binding Translation.Log_ShowModernizationSpoilerToolTip}"
+						/>
+					<CheckBox
+						Content="{Binding Translation.Log_ShowConstructionSpoiler}"
+						IsChecked="{Binding ShowConstructionSpoiler}"
+						ToolTip="{Binding Translation.Log_ShowConstructionSpoilerToolTip}"
+						/>
+				</StackPanel>
+			</Border>
 		</StackPanel>
 
 		<CheckBox

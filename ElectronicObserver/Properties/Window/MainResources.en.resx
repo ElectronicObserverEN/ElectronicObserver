@@ -167,6 +167,12 @@ Are you sure?</value>
   <data name="File_Close" xml:space="preserve">
     <value>Close (&amp;X)</value>
   </data>
+  <data name="Tray_Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="Tray_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="File_Record" xml:space="preserve">
     <value>&amp;Record</value>
   </data>

@@ -400,7 +400,7 @@ public partial class FormMainViewModel : ObservableObject
 		Position.Left = window.Left;
 		Position.Height = window.Height;
 		Position.Width = window.Width;
-		Position.WindowState = window.WindowState;
+		Position.WindowState = window.EffectiveWindowStateForPersistence;
 
 		File.WriteAllText(PositionPath, JsonSerializer.Serialize(Position, new JsonSerializerOptions()
 		{
@@ -1575,6 +1575,37 @@ public partial class FormMainViewModel : ObservableObject
 			})
 			.OrderBy(t => t.Id)
 			.Select(t => $"{t.Name} = {t.Id}")
+			.ToList();
+
+		System.Windows.Clipboard.SetText(string.Join(",\n", enumValues));
+	}
+
+	[RelayCommand]
+	private void GenerateShipClassEnum()
+	{
+		static string CleanName(ShipClass shipClass, ShipId shipId)
+		{
+			string className = Constants
+				.GetShipClass(shipClass, shipId)
+				.Replace(" ", "")
+				.Replace("(", "")
+				.Replace(")", "")
+				.Replace("-", "")
+				.Replace(".", "")
+				.Replace("2nd", "Second");
+
+			if (className.EndsWith("Class", StringComparison.Ordinal))
+			{
+				className = className[..^5];
+			}
+
+			return className;
+		}
+
+		List<string> enumValues = KCDatabase.Instance.MasterShips.Values
+			.OrderBy(s => s.ShipClass)
+			.Select(s => $"{CleanName(s.ShipClassTyped, s.ShipId)} = {(int)s.ShipClassTyped}")
+			.Distinct()
 			.ToList();
 
 		System.Windows.Clipboard.SetText(string.Join(",\n", enumValues));
