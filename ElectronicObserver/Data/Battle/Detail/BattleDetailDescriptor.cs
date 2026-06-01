@@ -35,16 +35,30 @@ public static class BattleDetailDescriptor
 			var mapinfo = bm.Compass.MapInfo;
 			if (!mapinfo.IsCleared)
 			{
+				int current = 0;
+				int max = 0;
+
 				if (mapinfo.RequiredDefeatedCount != -1)
 				{
-					sb.AppendFormat(BattleRes.ClearProgress, mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount)
-						.AppendLine();
+					current = mapinfo.GaugeType == 3 ? mapinfo.RequiredDefeatedCount - mapinfo.CurrentDefeatedCount : mapinfo.CurrentDefeatedCount;
+					max = mapinfo.RequiredDefeatedCount;
 				}
 				else if (mapinfo.MapHPMax > 0)
 				{
-					int current = bm.Compass.MapHPCurrent > 0 ? bm.Compass.MapHPCurrent : mapinfo.MapHPCurrent;
-					int max = bm.Compass.MapHPMax > 0 ? bm.Compass.MapHPMax : mapinfo.MapHPMax;
-					sb.AppendFormat("{0}{1}: {2} / {3}", mapinfo.CurrentGaugeIndex > 0 ? "#" + mapinfo.CurrentGaugeIndex + " " : "", mapinfo.GaugeType == 3 ? "TP" : "HP", current, max)
+					current = bm.Compass.MapHPCurrent > 0 ? bm.Compass.MapHPCurrent : mapinfo.MapHPCurrent;
+					max = bm.Compass.MapHPMax > 0 ? bm.Compass.MapHPMax : mapinfo.MapHPMax;
+				}
+
+				if (max > 0)
+				{
+					string progress = mapinfo.GaugeType switch
+					{
+						1 => string.Format(BattleRes.ClearProgress, current, max),
+						3 => $"{current} / {max} TP",
+						_ => $"{current} / {max} HP",
+					};
+
+					sb.AppendFormat("{0}: {1}", mapinfo.CurrentGaugeIndex > 0 ? "#" + mapinfo.CurrentGaugeIndex + " " : "", progress)
 						.AppendLine();
 				}
 			}

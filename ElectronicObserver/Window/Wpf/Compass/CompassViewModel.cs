@@ -154,24 +154,31 @@ public class CompassViewModel : AnchorableViewModel
 				IMapInfoData mapinfo = compass.MapInfo;
 				StringBuilder sb = new();
 
-				if (mapinfo.RequiredDefeatedCount != -1 &&
-					mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
-				{
-					sb.AppendFormat(FormCompass.MapClearCount + "\r\n",
-						mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
-						mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount);
+				int current = 0;
+				int max = 0;
 
+				if (mapinfo.RequiredDefeatedCount != -1)
+				{
+					current = mapinfo.GaugeType == 3 ? mapinfo.RequiredDefeatedCount - mapinfo.CurrentDefeatedCount : mapinfo.CurrentDefeatedCount;
+					max = mapinfo.RequiredDefeatedCount;
 				}
 				else if (mapinfo.MapHPMax > 0)
 				{
-					int current = compass.MapHPCurrent > 0 ? compass.MapHPCurrent : mapinfo.MapHPCurrent;
-					int max = compass.MapHPMax > 0 ? compass.MapHPMax : mapinfo.MapHPMax;
-
-					sb.AppendFormat("{0}{1}: {2} / {3}\r\n",
-						mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
-						mapinfo.GaugeType == 3 ? "TP" : "HP", current, max);
+					current = compass.MapHPCurrent > 0 ? compass.MapHPCurrent : mapinfo.MapHPCurrent;
+					max = compass.MapHPMax > 0 ? compass.MapHPMax : mapinfo.MapHPMax;
 				}
 
+				if (max > 0)
+				{
+					string progress = mapinfo.GaugeType switch
+					{
+						1 => string.Format(FormCompass.MapClearCount + "\r\n", mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "", current, max),
+						3 => $"TP: {current} / {max}",
+						_ => $"HP: {current} / {max}",
+					};
+					
+					sb.AppendFormat("{0}{1}\r\n", mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "", progress);
+				}
 
 				foreach (var pair in KCDatabase.Instance.Battle.SpecialAttackCount)
 				{
