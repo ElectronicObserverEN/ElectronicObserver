@@ -352,8 +352,18 @@ public class InformationViewModel : AnchorableViewModel
 
 			if (map.RequiredDefeatedCount != -1 && map.CurrentDefeatedCount < map.RequiredDefeatedCount)
 			{
-				gaugeType = 1;
-				current = map.CurrentDefeatedCount;
+				gaugeType = map.GaugeType switch
+				{
+					3 => 3, // TP (5-6)
+					_ => 1,
+				};
+
+				current = map.GaugeType switch
+				{
+					3 => map.RequiredDefeatedCount - map.CurrentDefeatedCount, // TP (5-6)
+					_ => map.CurrentDefeatedCount,
+				};
+
 				max = map.RequiredDefeatedCount;
 			}
 			else if (map.MapHPMax > 0)
