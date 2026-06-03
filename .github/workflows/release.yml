@@ -46,15 +46,8 @@ jobs:
             --self-contained $selfContained `
             --output $output
 
-      - name: Create ZIP
-        shell: powershell
-        run: |
-          Compress-Archive `
-            -Path "$env:GITHUB_WORKSPACE\publish\*" `
-            -DestinationPath "$env:GITHUB_WORKSPACE\ElectronicObserver.zip"
-
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ElectronicObserver
-          path: ElectronicObserver.zip
+          path: publish/
