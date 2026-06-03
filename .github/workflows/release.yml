@@ -8,26 +8,50 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
 
-      - name: Restore
-        run: dotnet restore
-
       - name: Publish
+        shell: powershell
         run: |
-          dotnet publish ElectronicObserver.sln `
-            -c Release `
-            -o publish
+          $configuration = "Release"
+          $arch = "x64"
+          $os = "win"
+          $framework = "net10.0-windows10.0.17763.0"
+          $selfContained = "false"
+          $output = "$env:GITHUB_WORKSPACE\publish"
+
+          cd .\Browser\
+          dotnet publish `
+            --configuration $configuration `
+            --arch $arch `
+            --os $os `
+            --framework $framework `
+            --self-contained $selfContained `
+            --output $output
+
+          cd ..
+
+          cd .\ElectronicObserver\
+          dotnet publish `
+            --configuration $configuration `
+            --arch $arch `
+            --os $os `
+            --framework $framework `
+            --self-contained $selfContained `
+            --output $output
 
       - name: Create ZIP
         shell: powershell
         run: |
-          Compress-Archive -Path publish\* -DestinationPath ElectronicObserver.zip
+          Compress-Archive `
+            -Path "$env:GITHUB_WORKSPACE\publish\*" `
+            -DestinationPath "$env:GITHUB_WORKSPACE\ElectronicObserver.zip"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
