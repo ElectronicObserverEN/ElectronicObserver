@@ -275,8 +275,8 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		Culture = culture;
 		CultureInfo c = new(culture);
 
-		Thread.CurrentThread.CurrentCulture = c;
-		Thread.CurrentThread.CurrentUICulture = c;
+		CultureInfo.DefaultThreadCurrentCulture = c;
+		CultureInfo.DefaultThreadCurrentUICulture = c;
 
 		// ホストプロセスに接続
 		Channel grpChannel = new(Host, Port, ChannelCredentials.Insecure);

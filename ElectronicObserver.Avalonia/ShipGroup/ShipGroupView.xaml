@@ -780,7 +780,7 @@
 
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding ., Converter={x:Static shipGroup:Converters.ShipToLockConverter}, Mode=OneWay}"
+					Binding="{Binding LockIcon, Mode=OneWay}"
 					CellStyleClasses="IsLocked"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Locked, ElementName=ShipGroupControl}"
 					SortMemberPath="LockSortValue"

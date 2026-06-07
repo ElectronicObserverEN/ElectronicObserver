@@ -203,8 +203,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
 
-		Thread.CurrentThread.CurrentCulture = cultureInfo;
-		Thread.CurrentThread.CurrentUICulture = cultureInfo;
+		CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+		CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 		Utility.Logger.Instance.LogAdded += data =>
 		{

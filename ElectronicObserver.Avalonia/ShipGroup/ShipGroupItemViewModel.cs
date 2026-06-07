@@ -111,6 +111,13 @@ public class ShipGroupItemViewModel(IShipData ship)
 	public bool IsLocked => Ship.IsLocked;
 	public bool IsLockedByEquipment => Ship.IsLockedByEquipment;
 
+	public string? LockIcon => Ship switch
+	{
+		{ IsLocked: true } => "\u2764\ufe0f",
+		{ IsLockedByEquipment: true } => "\u2b1b",
+		_ => null,
+	};
+	
 	public int LockSortValue => Ship switch
 	{
 		{ IsLocked: true } => 2,

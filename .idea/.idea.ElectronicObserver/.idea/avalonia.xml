@@ -12,6 +12,7 @@
         <entry key="ElectronicObserver.Avalonia/Dialogs/ShipSelector/ShipSelectorView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Dialogs/ShipSelector/ShipSelectorWindow.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Icons.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/ShipGroup/ShipGroupView.xaml" value="ElectronicObserver/ElectronicObserver.csproj" />
       </map>
     </option>
   </component>

@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Utility;
 
@@ -17,8 +16,8 @@ public class TranslationBaseViewModel : ObservableObject
 		{
 			CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
 
-			Thread.CurrentThread.CurrentCulture = cultureInfo;
-			Thread.CurrentThread.CurrentUICulture = cultureInfo;
+			CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+			CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 			Culture = Configuration.Config.UI.Culture;
 		};

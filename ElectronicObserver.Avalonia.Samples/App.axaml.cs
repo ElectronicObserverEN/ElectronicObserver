@@ -1,8 +1,6 @@
 ﻿using System.Globalization;
-using System.Threading;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using HotAvalonia;
 
@@ -13,19 +11,15 @@ public partial class App : Application
 	public override void Initialize()
 	{
 		CultureInfo ci = new("ja-JP");
-		Thread.CurrentThread.CurrentCulture = ci;
-		Thread.CurrentThread.CurrentUICulture = ci;
+		CultureInfo.DefaultThreadCurrentCulture = ci;
+		CultureInfo.DefaultThreadCurrentUICulture = ci;
 
-		this.EnableHotReload();
+		this.UseHotReload();
 		AvaloniaXamlLoader.Load(this);
 	}
 
 	public override void OnFrameworkInitializationCompleted()
 	{
-		// Line below is needed to remove Avalonia data validation.
-		// Without this line you will get duplicate validations from both Avalonia and CT
-		BindingPlugins.DataValidators.RemoveAt(0);
-
 		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
 		{
 			desktop.MainWindow = new MainWindow

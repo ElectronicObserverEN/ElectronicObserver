@@ -57,8 +57,8 @@ public class CsvExportTests
 
 		CultureInfo c = new("ja-JP");
 
-		Thread.CurrentThread.CurrentCulture = c;
-		Thread.CurrentThread.CurrentUICulture = c;
+		CultureInfo.DefaultThreadCurrentCulture = c;
+		CultureInfo.DefaultThreadCurrentUICulture = c;
 	}
 
 	private static async Task<string> GenerateCsv<TMap, TElement>(IEnumerable<TElement> data)
