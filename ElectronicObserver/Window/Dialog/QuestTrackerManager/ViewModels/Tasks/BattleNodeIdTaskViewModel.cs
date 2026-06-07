@@ -45,7 +45,7 @@ public partial class BattleNodeIdTaskViewModel : ObservableObject, IQuestTaskVie
 			_ => Model.Name
 		});
 
-		sb.Append(CultureInfo.CurrentCulture.Name switch
+		sb.Append(CultureInfo.DefaultThreadCurrentCulture?.Name switch
 		{
 			"ja-JP" => "",
 			_ => " "

@@ -17,7 +17,7 @@ public partial class VersionInformationWindow
 		InitializeComponent();
 
 		Translate();
-		string versionText = CultureInfo.CurrentCulture.Name switch
+		string versionText = CultureInfo.DefaultThreadCurrentCulture?.Name switch
 		{
 			"ja-JP" => SoftwareInformation.VersionJapanese,
 			_ => SoftwareInformation.SoftwareNameEnglish

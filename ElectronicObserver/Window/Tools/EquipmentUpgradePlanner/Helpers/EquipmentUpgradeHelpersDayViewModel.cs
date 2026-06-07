@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Services;
@@ -24,11 +23,7 @@ public class EquipmentUpgradeHelpersDayViewModel
 		DayValue = day;
 		IsHelperDay = helperDay;
 
-		DisplayValue = CultureInfo.CurrentCulture.Name switch
-		{
-			"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day)[..1],
-			_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day)[..3]
-		};
+		DisplayValue = DayValue.ToDisplay();
 
 		Update();
 

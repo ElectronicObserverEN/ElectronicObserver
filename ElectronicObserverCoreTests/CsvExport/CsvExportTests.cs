@@ -59,6 +59,8 @@ public class CsvExportTests
 
 		CultureInfo.DefaultThreadCurrentCulture = c;
 		CultureInfo.DefaultThreadCurrentUICulture = c;
+		Thread.CurrentThread.CurrentCulture = c;
+		Thread.CurrentThread.CurrentUICulture = c;
 	}
 
 	private static async Task<string> GenerateCsv<TMap, TElement>(IEnumerable<TElement> data)

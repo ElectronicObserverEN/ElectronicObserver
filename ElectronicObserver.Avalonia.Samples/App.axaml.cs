@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Threading;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -13,6 +14,8 @@ public partial class App : Application
 		CultureInfo ci = new("ja-JP");
 		CultureInfo.DefaultThreadCurrentCulture = ci;
 		CultureInfo.DefaultThreadCurrentUICulture = ci;
+		Thread.CurrentThread.CurrentCulture = ci;
+		Thread.CurrentThread.CurrentUICulture = ci;
 
 		this.UseHotReload();
 		AvaloniaXamlLoader.Load(this);

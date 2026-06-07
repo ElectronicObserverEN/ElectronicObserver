@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -26,11 +25,7 @@ public class EquipmentUpgradeDayViewModel
 		DayValue = day;
 		Helpers = helpers.Select(id => new EquipmentUpgradeHelperViewModel(id)).ToList();
 
-		DisplayValue = CultureInfo.CurrentCulture.Name switch
-		{
-			"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day)[..1],
-			_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(day)[..3]
-		};
+		DisplayValue = DayValue.ToDisplay();
 
 		Update();
 

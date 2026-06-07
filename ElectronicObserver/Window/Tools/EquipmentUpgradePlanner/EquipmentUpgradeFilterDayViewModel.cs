@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using ElectronicObserver.Common;
 using ElectronicObserver.Utility;
 
@@ -12,9 +11,5 @@ public class EquipmentUpgradeFilterDayViewModel : CheckBoxEnumViewModel
 		Configuration.Instance.ConfigurationChanged += () => OnPropertyChanged("");
 	}
 
-	public string DisplayValue => CultureInfo.CurrentCulture.Name switch
-	{
-		"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName((DayOfWeek)Value)[..1],
-		_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName((DayOfWeek)Value)[..3]
-	};
+	public string DisplayValue => ((DayOfWeek)Value).ToDisplay();
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
+﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using Browser.WebView2Browser.AirControlSimulator;
 using Browser.WebView2Browser.CompassPrediction;
-using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 using Jot.Storage;
@@ -59,7 +54,7 @@ public partial class App : Application
 		string culture = e.Args.Length switch
 		{
 			> 2 => e.Args[2],
-			_ => CultureInfo.CurrentCulture.Name switch
+			_ => CultureInfo.DefaultThreadCurrentCulture?.Name switch
 			{
 				"ja-JP" => "ja-JP",
 				_ => "en-US",

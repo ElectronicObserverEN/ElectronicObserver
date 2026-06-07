@@ -151,7 +151,7 @@ public partial class App
 				System.Windows.Window temp = new() { Visibility = Visibility.Hidden };
 				temp.Show();
 
-				string caption = CultureInfo.CurrentCulture.Name switch
+				string caption = CultureInfo.DefaultThreadCurrentCulture?.Name switch
 				{
 					"ja-JP" => SoftwareInformation.SoftwareNameJapanese,
 					_ => SoftwareInformation.SoftwareNameEnglish

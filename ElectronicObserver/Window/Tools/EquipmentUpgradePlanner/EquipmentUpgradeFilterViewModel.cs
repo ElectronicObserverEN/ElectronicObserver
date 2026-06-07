@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -27,11 +26,7 @@ public class EquipmentUpgradeFilterViewModel : ObservableObject
 
 	public EquipmentUpgradePlannerTranslationViewModel Translations { get; set; } = new();
 
-	public string TodayDisplay => string.Format(Translations.Today, CultureInfo.CurrentCulture.Name switch
-	{
-		"ja-JP" => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(TimeService.CurrentDayOfWeekJST)[..1],
-		_ => CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(TimeService.CurrentDayOfWeekJST)[..3],
-	});
+	public string TodayDisplay => string.Format(Translations.Today, TimeService.CurrentDayOfWeekJST.ToDisplay());
 
 
 	public EquipmentUpgradeFilterViewModel()

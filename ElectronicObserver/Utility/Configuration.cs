@@ -17,7 +17,6 @@ using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog.UiBlocker;
@@ -510,12 +509,12 @@ public sealed class Configuration
 				BarColorMorphing = false;
 				IsLayoutFixed = true;
 
-				Culture = CultureInfo.CurrentCulture.Name switch
+				Culture = CultureInfo.DefaultThreadCurrentCulture?.Name switch
 				{
 					"ja-JP" => "ja-JP",
 					_ => "en-US"
 				};
-				bool disableTranslations = CultureInfo.CurrentCulture.Name switch
+				bool disableTranslations = CultureInfo.DefaultThreadCurrentCulture?.Name switch
 				{
 					"ja-JP" => true,
 					_ => false
@@ -2081,13 +2080,13 @@ public sealed class Configuration
 			// hack: set defaults for players that have a configuration before language was added
 			if (temp.UI.Culture == null)
 			{
-				temp.UI.Culture = CultureInfo.CurrentCulture.Name switch
+				temp.UI.Culture = CultureInfo.DefaultThreadCurrentCulture?.Name switch
 				{
 					"ja-JP" => "ja-JP",
 					_ => "en-US"
 				};
 
-				bool disableTranslations = CultureInfo.CurrentCulture.Name switch
+				bool disableTranslations = CultureInfo.DefaultThreadCurrentCulture?.Name switch
 				{
 					"ja-JP" => true,
 					_ => false

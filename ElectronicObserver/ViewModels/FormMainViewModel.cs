@@ -205,6 +205,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 		CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+		Thread.CurrentThread.CurrentCulture = cultureInfo;
+		Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
 		Utility.Logger.Instance.LogAdded += data =>
 		{
@@ -223,7 +225,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-		string softwareName = CultureInfo.CurrentCulture.Name switch
+		string softwareName = CultureInfo.DefaultThreadCurrentCulture?.Name switch
 		{
 			"en-US" => SoftwareInformation.SoftwareNameEnglish,
 			_ => SoftwareInformation.SoftwareNameJapanese
@@ -1961,7 +1963,7 @@ public partial class FormMainViewModel : ObservableObject
 	[RelayCommand]
 	private void Closing(CancelEventArgs e)
 	{
-		string name = CultureInfo.CurrentCulture.Name switch
+		string name = CultureInfo.DefaultThreadCurrentCulture?.Name switch
 		{
 			"en-US" => SoftwareInformation.SoftwareNameEnglish,
 			_ => SoftwareInformation.SoftwareNameJapanese
