@@ -49,7 +49,11 @@ public sealed class QuestDataService(
 	
 	public string Name(int id, string rawData) => TryGetQuest(id)?.Name ?? rawData;
 
-	public string Code(int id) => TryGetQuest(id)?.Code ?? "";
+	public string Code(int id) => QuestList.TryGetValue(id, out QuestRecord? quest) switch
+	{
+		true => quest.Code,
+		_ => string.Empty
+	};
 
 	public string Description(int id, string rawData)
 	{
