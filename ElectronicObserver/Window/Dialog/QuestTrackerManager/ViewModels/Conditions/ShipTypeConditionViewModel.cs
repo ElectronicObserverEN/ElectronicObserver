@@ -104,7 +104,7 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 
 		if (Model.Level > 0)
 		{
-			validShips = ships.Where(s => s.Level >= Model.Level);
+			validShips = validShips.Where(s => s.Level >= Model.Level);
 		}
 
 		bool countCondition = Compare(validShips.Count(), Model.Count, Model.ComparisonType);
