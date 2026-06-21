@@ -166,7 +166,8 @@ public abstract class ProgressData : IIdentifiable
 			608 or // F8
 			612 or // F11
 			810 or // B63
-			886; // B119
+			886 or // B119
+			1167; // Fw5
 
 		Progress = q.Progress switch
 		{
