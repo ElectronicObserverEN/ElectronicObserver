@@ -499,7 +499,7 @@ public class InformationViewModel : AnchorableViewModel
 
 		int fuel_supply = ships.Sum(s => s.SupplyFuel);
 		int ammo = ships.Sum(s => s.SupplyAmmo);
-		int bauxite = ships.Sum(s => s.Aircraft.Zip(s.MasterShip.Aircraft, (current, max) => new { Current = current, Max = max }).Sum(a => (a.Max - a.Current) * 5));
+		int bauxite = ships.Sum(s => s.Aircraft.Zip(s.AircraftMax ?? s.MasterShip.Aircraft, (current, max) => new { Current = current, Max = max }).Sum(a => (a.Max - a.Current) * 5));
 
 		int fuel_repair = ships.Sum(s => s.RepairFuel);
 		int steel = ships.Sum(s => s.RepairSteel);

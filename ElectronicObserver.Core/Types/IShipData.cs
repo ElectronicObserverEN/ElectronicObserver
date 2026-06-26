@@ -130,9 +130,16 @@ public interface IShipData
 	IList<int> Aircraft { get; }
 
 	/// <summary>
+	/// Aircraft capacity if it was increased
+	/// </summary>
+	IList<int>? AircraftMax { get; }
+
+	/// <summary>
 	/// 現在の航空機搭載量
 	/// </summary>
 	int AircraftTotal { get; }
+
+	int AircraftMaxTotal { get; }
 
 	/// <summary>
 	/// 搭載燃料

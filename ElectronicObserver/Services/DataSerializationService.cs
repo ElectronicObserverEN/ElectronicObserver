@@ -188,12 +188,12 @@ public class DataSerializationService
 			IsExpansionSlotAvailable = s.IsExpansionSlotAvailable,
 			Equipment = new()
 			{
-				Equipment1 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(0).FirstOrDefault(), maxAircraftLevel),
-				Equipment2 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(1).FirstOrDefault(), maxAircraftLevel),
-				Equipment3 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(2).FirstOrDefault(), maxAircraftLevel),
-				Equipment4 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(3).FirstOrDefault(), maxAircraftLevel),
-				Equipment5 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(4).FirstOrDefault(), maxAircraftLevel),
-				EquipmentExpansion = MakeDeckBuilderEquipment(s.ExpansionSlotInstance, maxAircraftLevel),
+				Equipment1 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(0).FirstOrDefault(), maxAircraftLevel, s.Aircraft.Skip(0).FirstOrDefault()),
+				Equipment2 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(1).FirstOrDefault(), maxAircraftLevel, s.Aircraft.Skip(1).FirstOrDefault()),
+				Equipment3 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(2).FirstOrDefault(), maxAircraftLevel, s.Aircraft.Skip(2).FirstOrDefault()),
+				Equipment4 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(3).FirstOrDefault(), maxAircraftLevel, s.Aircraft.Skip(3).FirstOrDefault()),
+				Equipment5 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(4).FirstOrDefault(), maxAircraftLevel, s.Aircraft.Skip(4).FirstOrDefault()),
+				EquipmentExpansion = MakeDeckBuilderEquipment(s.ExpansionSlotInstance, maxAircraftLevel, null),
 			},
 			Hp = s.HPMax,
 			Firepower = s.FirepowerTotal,
@@ -223,7 +223,8 @@ public class DataSerializationService
 	private static DeckBuilderEquipment? MakeDeckBuilderEquipment
 	(
 		IEquipmentData? equipment,
-		bool maxAircraftLevel
+		bool maxAircraftLevel,
+		int? aircraftCount
 	) => equipment switch
 	{
 		{ } eq => new()
@@ -231,6 +232,7 @@ public class DataSerializationService
 			Id = eq.MasterEquipment.EquipmentId,
 			Level = eq.Level,
 			AircraftLevel = GetAircraftLevel(eq, maxAircraftLevel),
+			AircraftCount = aircraftCount,
 		},
 
 		_ => null
@@ -256,10 +258,10 @@ public class DataSerializationService
 			Name = airBase.Name,
 			Equipment = new()
 			{
-				Equipment1 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(0).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel),
-				Equipment2 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(1).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel),
-				Equipment3 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(2).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel),
-				Equipment4 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(3).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel),
+				Equipment1 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(0).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel, null),
+				Equipment2 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(1).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel, null),
+				Equipment3 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(2).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel, null),
+				Equipment4 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(3).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel, null),
 			},
 			Mode = airBase.ActionKind,
 			Distance = airBase.Distance,

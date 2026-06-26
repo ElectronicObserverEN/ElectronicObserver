@@ -327,12 +327,12 @@ public class ApiFileService : ObservableObject
 	public static SortieFleetData MakeSortieFleet(IEnumerable<IFleetData?> fleets,
 		IEnumerable<IBaseAirCorpsData> airBases, FleetType combinedFlag, int fleetId, int nodeSupportFleetId,
 		int bossSupportFleetId, int world) => new()
-	{
-		FleetId = fleetId,
-		NodeSupportFleetId = nodeSupportFleetId,
-		BossSupportFleetId = bossSupportFleetId,
-		CombinedFlag = combinedFlag,
-		Fleets = fleets
+		{
+			FleetId = fleetId,
+			NodeSupportFleetId = nodeSupportFleetId,
+			BossSupportFleetId = bossSupportFleetId,
+			CombinedFlag = combinedFlag,
+			Fleets = fleets
 			.Select(f => f switch
 			{
 				null => null,
@@ -342,11 +342,11 @@ public class ApiFileService : ObservableObject
 					_ => null,
 				},
 			}).ToList(),
-		AirBases = airBases
+			AirBases = airBases
 			.Where(a => a.MapAreaID == world)
 			.Select(MakeSortieAirBase)
 			.ToList(),
-	};
+		};
 
 	private static SortieFleet MakeSortieFleet(IFleetData f) => new()
 	{
@@ -381,7 +381,7 @@ public class ApiFileService : ObservableObject
 		Luck = s.LuckTotal,
 		EquipmentSlots = s.SlotInstance
 			.Zip(s.Aircraft, (Equipment, AircraftCurrent) => (Equipment, AircraftCurrent))
-			.Zip(s.MasterShip.Aircraft, (slot, AircraftMax) => new SortieEquipmentSlot
+			.Zip(s.AircraftMax ?? s.MasterShip.Aircraft, (slot, AircraftMax) => new SortieEquipmentSlot
 			{
 				Equipment = slot.Equipment switch
 				{

@@ -212,7 +212,7 @@ public class FleetStateViewModel : ObservableObject
 
 				int fuel = members.Sum(ship => ship.SupplyFuel);
 				int ammo = members.Sum(ship => ship.SupplyAmmo);
-				int aircraft = members.SelectMany(s => s.MasterShip.Aircraft.Zip(s.Aircraft, (max, now) => max - now)).Sum();
+				int aircraft = members.SelectMany(s => s.AircraftMax ?? s.MasterShip.Aircraft.Zip(s.Aircraft, (max, now) => max - now)).Sum();
 				int bauxite = aircraft * 5;
 
 				if (fuel > 0 || ammo > 0 || bauxite > 0)
