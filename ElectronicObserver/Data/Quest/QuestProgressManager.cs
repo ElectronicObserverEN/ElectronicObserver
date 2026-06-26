@@ -859,19 +859,6 @@ public sealed class QuestProgressManager : DataStorage
 						}
 						break;
 
-					// TODO : remove this time limited quest
-					case 953:
-						if (q.Code == "2605 Bw1")
-						{
-							Progresses.Add(new ProgressMultiBattle(q, new[] {
-								new ProgressSpecialBattle(q, 1, "A", [ 12 ], true),
-								new ProgressSpecialBattle(q, 1, "A", [ 14 ], true),
-								new ProgressSpecialBattle(q, 1, "A", [ 21 ], true),
-								new ProgressSpecialBattle(q, 1, "A", [ 22 ], true),
-							}));
-						}
-						break;
-
 					case 303:   //|303|「演習」で練度向上！|演習3
 						Progresses.Add(new ProgressPractice(q, 3, false));
 						break;
