@@ -411,4 +411,7 @@ Monthly: {2:+##;-##;±0}</value>
   <data name="ArsenalResources" xml:space="preserve">
     <value>Arsenal Resources</value>
   </data>
+  <data name="HangarExpansion" xml:space="preserve">
+    <value>Hangar Expansion</value>
+  </data>
 </root>

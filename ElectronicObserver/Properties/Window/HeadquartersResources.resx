@@ -455,4 +455,7 @@
   <data name="ArsenalResources" xml:space="preserve">
     <value>工廠資源</value>
   </data>
+  <data name="HangarExpansion" xml:space="preserve">
+    <value>格納庫増設</value>
+  </data>
 </root>

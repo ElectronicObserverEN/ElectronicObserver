@@ -77,4 +77,6 @@ public enum UseItemId
 	SpecialAviationRation = 102,
 	ArsenalExpansionKey = 103,
 	ArsenalResources = 104,
+	// 格納庫増設
+	HangarExpansion = 105,
 }

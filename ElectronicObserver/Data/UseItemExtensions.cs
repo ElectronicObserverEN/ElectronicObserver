@@ -76,6 +76,7 @@ public static class UseItemExtensions
 	    UseItemId.SpecialAviationRation => HeadquartersResources.SpecialAviationRation,
 	    UseItemId.ArsenalExpansionKey => HeadquartersResources.ArsenalExpansionKey,
 	    UseItemId.ArsenalResources => HeadquartersResources.ArsenalResources,
+	    UseItemId.HangarExpansion => HeadquartersResources.HangarExpansion,
 		_ => ConstantsRes.Unknown,
     };
 
