@@ -640,10 +640,10 @@
     <value>合計</value>
   </data>
   <data name="Air" xml:space="preserve">
-    <value>航空</value>
+    <value>開幕</value>
   </data>
   <data name="Bombing" xml:space="preserve">
-    <value>空襲</value>
+    <value>空母</value>
   </data>
   <data name="Power" xml:space="preserve">
     <value>戰力</value>

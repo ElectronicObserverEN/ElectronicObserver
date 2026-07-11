@@ -182,10 +182,10 @@
 指定檔案位置被忽略。</value>
   </data>
   <data name="DisableOverwritePrompt" xml:space="preserve">
-    <value>總是覆蓋檔案</value>
+    <value>總是覆寫檔案</value>
   </data>
   <data name="DisableOverwritePromptToolTip" xml:space="preserve">
-    <value>禁用檔案覆蓋檢查並始終允許覆蓋。</value>
+    <value>禁用檔案覆寫檢查並始終允許覆寫。</value>
   </data>
   <data name="OpenImageAfterOutput" xml:space="preserve">
     <value>儲存後打開</value>
@@ -303,10 +303,10 @@
   <data name="OverwriteExistingFile" xml:space="preserve">
     <value>{0}
 已經存在。
-您想覆蓋它嗎？</value>
+您想覆寫它嗎？</value>
   </data>
   <data name="OverwriteConfirmation" xml:space="preserve">
-    <value>覆蓋確認</value>
+    <value>覆寫確認</value>
   </data>
   <data name="FleetImageExportedSuccessfully" xml:space="preserve">
     <value>我已經輸出了編成圖片。</value>

@@ -175,11 +175,11 @@
     <value>警告</value>
   </data>
   <data name="TrackerOverwrite" xml:space="preserve">
-    <value>檢測到現有的任務跟踪器。重複的任務跟踪器將覆蓋您當前的任務跟踪器，並且您的該任務跟踪器的進度將遺失。受影響的任務跟踪器是：
+    <value>檢測到現有的任務跟踪器。重複的任務跟踪器將覆寫您當前的任務跟踪器，並且您的該任務跟踪器的進度將遺失。受影響的任務跟踪器是：
 
 {0}
 
-您想覆蓋這些任務追踪器嗎？</value>
+您想覆寫這些任務追踪器嗎？</value>
   </data>
   <data name="UnknownQuest" xml:space="preserve">
     <value>未知任務</value>
@@ -248,7 +248,7 @@
     <value>7-5-3</value>
   </data>
   <data name="QuestTaskType_EquipmentCategoryScrap" xml:space="preserve">
-    <value>裝備類別廢棄</value>
+    <value>裝備廢棄(依類別)</value>
   </data>
   <data name="QuestTaskType_EquipmentCardTypeScrap" xml:space="preserve">
     <value>裝備圖鑑廢棄</value>

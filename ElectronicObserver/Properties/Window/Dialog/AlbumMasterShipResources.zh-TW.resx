@@ -246,7 +246,7 @@
     <value>陸上設施</value>
   </data>
   <data name="ReinforcementSlot" xml:space="preserve">
-    <value>補強增設</value>
+    <value>補強槽位</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>運</value>

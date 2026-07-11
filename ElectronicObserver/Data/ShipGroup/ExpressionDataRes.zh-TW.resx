@@ -202,10 +202,10 @@
     <value>士氣</value>
   </data>
   <data name="AirBattlePower" xml:space="preserve">
-    <value>航空戰力</value>
+    <value>開幕戰力</value>
   </data>
   <data name="AircraftPower" xml:space="preserve">
-    <value>空襲戰力</value>
+    <value>空母戰力</value>
   </data>
   <data name="EquippableCategories" xml:space="preserve">
     <value>可裝備類別</value>
@@ -217,7 +217,7 @@
     <value>總迴避</value>
   </data>
   <data name="ExpansionSlotMaster" xml:space="preserve">
-    <value>補強增設</value>
+    <value>補強裝備</value>
   </data>
   <data name="ExpNext" xml:space="preserve">
     <value>下次升級</value>
@@ -370,7 +370,7 @@
     <value>裝備 #5</value>
   </data>
   <data name="SlotSize" xml:space="preserve">
-    <value>裝備槽</value>
+    <value>裝備</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>速力</value>

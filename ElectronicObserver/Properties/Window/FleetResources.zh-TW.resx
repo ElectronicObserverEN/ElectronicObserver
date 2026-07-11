@@ -210,7 +210,7 @@
     <value>對空噴進彈幕</value>
   </data>
   <data name="AirstrikePower" xml:space="preserve">
-    <value>航空威力</value>
+    <value>開幕戰力</value>
   </data>
   <data name="CopyFleetText" xml:space="preserve">
     <value>{0}    制空戰力{1} / 索敵能力 {2} / 運輸能力 {3}</value>

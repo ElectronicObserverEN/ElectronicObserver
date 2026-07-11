@@ -136,7 +136,7 @@
     <value>顯示全部反潛裝備</value>
   </data>
   <data name="ShowAllASWEquipmentsToolTip" xml:space="preserve">
-    <value>顯示所有聲納/深水炸彈(水聽/暴雷)組合。</value>
+    <value>顯示所有聲納/深水炸彈(水聽/爆雷)組合。</value>
   </data>
   <data name="ShowAllLevel" xml:space="preserve">
     <value>顯示全部Lv</value>
