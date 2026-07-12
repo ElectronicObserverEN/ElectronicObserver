@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -183,5 +183,21 @@ Are you sure you want to continue?</value>
   </data>
   <data name="InvalidModelState" xml:space="preserve">
     <value>Failed to load lock plan.</value>
+  </data>
+  <data name="ShipTooltip" xml:space="preserve">
+    <value>ID {18}
+{0}{1} {2}
+FP: {3}/{4}
+Torp: {5}/{6}
+AA: {7}/{8}
+Armor: {9}/{10}
+ASW: {11}/{12}
+Evasion: {13}/{14}
+LOS: {15}/{16}
+Luck: {17}
+Range: {19} / Speed: {20}</value>
+  </data>
+  <data name="DisplayToolTips" xml:space="preserve">
+    <value>Display tooltips</value>
   </data>
 </root>

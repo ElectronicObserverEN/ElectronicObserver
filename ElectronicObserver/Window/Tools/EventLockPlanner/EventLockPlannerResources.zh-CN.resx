@@ -178,4 +178,17 @@
   <data name="InvalidModelState" xml:space="preserve">
     <value>加载贴条规划失败。</value>
   </data>
+  <data name="ShipTooltip" xml:space="preserve">
+    <value>ID {18}
+{0}{1} {2}
+火力: {3}/{4}
+雷装: {5}/{6}
+对空: {7}/{8}
+装甲: {9}/{10}
+对潜: {11}/{12}
+回避: {13}/{14}
+索敌: {15}/{16}
+运: {17}
+射程: {19} / 速力: {20}</value>
+  </data>
 </root>

@@ -104,7 +104,17 @@
 
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
-								<TextBlock Margin="2 0" Text="{Binding Display}" />
+								<TextBlock Margin="2 0" Text="{Binding Display}" >
+									<TextBlock.Style>
+										<Style TargetType="TextBlock">
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding DataContext.DisplayToolTips, Source={StaticResource Proxy}}" Value="True">
+													<Setter Property="ToolTip" Value="{Binding TooltipDisplay}" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</TextBlock.Style>
+								</TextBlock>
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>
 					</ItemsControl>
@@ -136,6 +146,11 @@
 					Header="{Binding EventLockPlanner.ShowFinishedPhases}"
 					IsCheckable="True"
 					IsChecked="{Binding ShowFinishedPhases}"
+					/>
+				<MenuItem
+					Header="{Binding EventLockPlanner.DisplayToolTips}"
+					IsCheckable="True"
+					IsChecked="{Binding DisplayToolTips}"
 					/>
 			</MenuItem>
 		</Menu>
@@ -285,6 +300,10 @@
 																		<Style.Triggers>
 																			<DataTrigger Binding="{Binding MatchesPhaseLock}" Value="False">
 																				<Setter Property="Foreground" Value="Red" />
+																			</DataTrigger>
+
+																			<DataTrigger Binding="{Binding DataContext.DisplayToolTips, Source={StaticResource Proxy}}" Value="True">
+																				<Setter Property="ToolTip" Value="{Binding TooltipDisplay}" />
 																			</DataTrigger>
 																		</Style.Triggers>
 																	</Style>
