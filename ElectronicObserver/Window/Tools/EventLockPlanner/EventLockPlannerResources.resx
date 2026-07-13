@@ -198,6 +198,6 @@
 射程: {19} / 速力: {20}</value>
   </data>
   <data name="DisplayToolTips" xml:space="preserve">
-    <value>??? (Display tooltips)</value>
+    <value>ツールチップを表示</value>
   </data>
 </root>
