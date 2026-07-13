@@ -409,7 +409,7 @@ public class FleetItemViewModel : ObservableObject
 			IEquipmentData? eq = ship.SlotInstance[i];
 			if (eq is not null)
 			{
-				sb.AppendFormat("[{0}/{1}] {2}\r\n", ship.Aircraft[i], ship.MasterShip.Aircraft[i], eq.NameWithLevel);
+				sb.AppendFormat("[{0}/{1}] {2}\r\n", ship.Aircraft[i], ship.AircraftMax?[i] ?? ship.MasterShip.Aircraft[i], eq.NameWithLevel);
 			}
 		}
 

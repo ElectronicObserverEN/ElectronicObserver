@@ -52,7 +52,16 @@ public static class Extensions
 			return null;
 		}
 
-		ShipDataMock ship = new(Db.MasterShips[(int)deckBuilderShip.Id])
+		List<int> aircraft =
+		[
+			deckBuilderShip.Equipment.Equipment1?.AircraftCount ?? 0,
+			deckBuilderShip.Equipment.Equipment2?.AircraftCount ?? 0,
+			deckBuilderShip.Equipment.Equipment3?.AircraftCount ?? 0,
+			deckBuilderShip.Equipment.Equipment4?.AircraftCount ?? 0,
+			deckBuilderShip.Equipment.Equipment5?.AircraftCount ?? 0,
+		];
+
+		ShipDataMock ship = new(Db.MasterShips[(int)deckBuilderShip.Id], null, aircraft)
 		{
 			Level = deckBuilderShip.Level,
 			IsExpansionSlotAvailable = deckBuilderShip.IsExpansionSlotAvailable,

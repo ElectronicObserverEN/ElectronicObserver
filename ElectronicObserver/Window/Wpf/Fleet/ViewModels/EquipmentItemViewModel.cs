@@ -147,7 +147,7 @@ public class EquipmentItemViewModel : ObservableObject
 	{
 		var slots = ship.AllSlotInstance
 			.Zip(ship.Aircraft, (eq, s) => (Equipment: eq, CurrentAircraft: s))
-			.Zip(ship.MasterShip.Aircraft, (slot, t) => (slot.Equipment, slot.CurrentAircraft, Size: t))
+			.Zip(ship.AircraftMax ?? ship.MasterShip.Aircraft, (slot, t) => (slot.Equipment, slot.CurrentAircraft, Size: t))
 			.ToList();
 
 		for (int i = 0; i < Slots.Count; i++)

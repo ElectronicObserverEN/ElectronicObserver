@@ -156,11 +156,14 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// </summary>
 	public IList<int> Aircraft => Array.AsReadOnly(_aircraft);
 
+	public List<int>? AircraftMax { get; private set; }
 
 	/// <summary>
 	/// 現在の航空機搭載量
 	/// </summary>
 	public int AircraftTotal => _aircraft.Sum(a => Math.Max(a, 0));
+
+	public int AircraftMaxTotal => AircraftMax?.Sum(a => Math.Max(a, 0)) ?? MasterShip.AircraftTotal;
 
 
 	/// <summary>
@@ -600,7 +603,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 		get
 		{
 			double[] airs = new double[_aircraft.Length];
-			var airmax = MasterShip.Aircraft;
+			var airmax = AircraftMax ?? MasterShip.Aircraft;
 
 			for (int i = 0; i < airs.Length; i++)
 			{
@@ -614,7 +617,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// 搭載機残量割合
 	/// </summary>
-	public double AircraftTotalRate => (double)AircraftTotal / Math.Max(MasterShip.AircraftTotal, 1);
+	public double AircraftTotalRate => (double)AircraftTotal / Math.Max(AircraftMaxTotal, 1);
 
 
 
@@ -1520,6 +1523,12 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 							Evasion = i.ApiKaih,
 						}).ToList() ?? new();
 				}
+
+				if (data.api_onslot_max())
+				{
+					AircraftMax = (List<int>)RawData.api_onslot_max;
+				}
+
 				break;
 
 			case "api_req_hokyu/charge":

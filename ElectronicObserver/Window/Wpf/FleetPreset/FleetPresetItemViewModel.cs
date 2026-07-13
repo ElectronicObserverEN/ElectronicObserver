@@ -103,7 +103,7 @@ public class FleetPresetItemViewModel : ObservableObject
 
 					if (e < ship.MasterShip.Aircraft.Count)
 					{
-						sb.AppendLine($"[{ship.Aircraft[e]}/{ship.MasterShip.Aircraft[e]}] {slot[e].NameWithLevel}");
+						sb.AppendLine($"[{ship.Aircraft[e]}/{ship.AircraftMax?[e] ?? ship.MasterShip.Aircraft[e]}] {slot[e].NameWithLevel}");
 					}
 					else
 					{

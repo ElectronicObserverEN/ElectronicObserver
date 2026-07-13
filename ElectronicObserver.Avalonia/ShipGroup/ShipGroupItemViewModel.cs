@@ -40,27 +40,27 @@ public class ShipGroupItemViewModel(IShipData ship)
 	}
 
 	private int AircraftCurrent1 => Ship.Aircraft[0];
-	private int AircraftMax1 => Ship.MasterShip.Aircraft[0];
+	private int AircraftMax1 => Ship.AircraftMax?[0] ?? Ship.MasterShip.Aircraft[0];
 	public Fraction? Aircraft1 => GetAircraftFraction(0, AircraftCurrent1, AircraftMax1);
 
 	private int AircraftCurrent2 => Ship.Aircraft[1];
-	private int AircraftMax2 => Ship.MasterShip.Aircraft[1];
+	private int AircraftMax2 => Ship.AircraftMax?[1] ?? Ship.MasterShip.Aircraft[1];
 	public Fraction? Aircraft2 => GetAircraftFraction(0, AircraftCurrent2, AircraftMax2);
 
 	private int AircraftCurrent3 => Ship.Aircraft[2];
-	private int AircraftMax3 => Ship.MasterShip.Aircraft[2];
+	private int AircraftMax3 => Ship.AircraftMax?[2] ?? Ship.MasterShip.Aircraft[2];
 	public Fraction? Aircraft3 => GetAircraftFraction(0, AircraftCurrent3, AircraftMax3);
 
 	private int AircraftCurrent4 => Ship.Aircraft[3];
-	private int AircraftMax4 => Ship.MasterShip.Aircraft[3];
+	private int AircraftMax4 => Ship.AircraftMax?[3] ?? Ship.MasterShip.Aircraft[3];
 	public Fraction? Aircraft4 => GetAircraftFraction(0, AircraftCurrent4, AircraftMax4);
 
 	private int AircraftCurrent5 => Ship.Aircraft[4];
-	private int AircraftMax5 => Ship.MasterShip.Aircraft[4];
+	private int AircraftMax5 => Ship.AircraftMax?[4] ?? Ship.MasterShip.Aircraft[4];
 	public Fraction? Aircraft5 => GetAircraftFraction(0, AircraftCurrent5, AircraftMax5);
 
 	private int AircraftCurrentTotal => Ship.AircraftTotal;
-	private int AircraftMaxTotal => Ship.MasterShip.AircraftTotal;
+	private int AircraftMaxTotal => Ship.AircraftMaxTotal;
 	public Fraction? AircraftTotal => GetAircraftFraction(0, AircraftCurrentTotal, AircraftMaxTotal);
 
 	public string Fleet => Ship.FleetWithIndex;

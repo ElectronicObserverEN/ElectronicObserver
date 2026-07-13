@@ -75,7 +75,7 @@ public class ShipViewModel : ObservableObject
 
 		Slots = ship.SlotInstance
 			.Take(ship.MasterShip.SlotSize)
-			.Zip(ship.MasterShip.Aircraft, (eq, slot) => new EquipmentSlotViewModel(eq, slot))
+			.Zip(ship.Aircraft, (eq, slot) => new EquipmentSlotViewModel(eq, slot))
 			.ToObservableCollection();
 
 		ExpansionSlot = ship.IsExpansionSlotAvailable switch

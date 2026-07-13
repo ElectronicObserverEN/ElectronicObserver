@@ -66,7 +66,9 @@ public class ShipDataMock : IShipData
 	public IList<int> AllSlotMasterReplay { get; } = [];
 	public IList<IEquipmentDataMaster?> AllSlotInstanceMaster => AllSlotInstance.Select(e => e?.MasterEquipment).ToList();
 	public IList<int> Aircraft { get; set; }
+	public List<int>? AircraftMax { get; set; }
 	public int AircraftTotal { get; }
+	public int AircraftMaxTotal { get; }
 	public int Fuel { get; set; }
 	public int Ammo { get; set; }
 	public int SlotSize { get; }
@@ -184,14 +186,14 @@ public class ShipDataMock : IShipData
 	public bool IsLockedByEquipment { get; }
 	public bool CanBeTargeted { get; set; } = true;
 
-	public ShipDataMock(IShipDataMaster ship, List<int>? kyouka = null)
+	public ShipDataMock(IShipDataMaster ship, List<int>? kyouka = null, List<int>? aircraft = null)
 	{
 		MasterShip = ship;
 
 		HPCurrent = MasterShip.HPMin;
 
 		SlotSize = MasterShip.SlotSize;
-		Aircraft = MasterShip.Aircraft;
+		Aircraft = aircraft ?? MasterShip.Aircraft;
 		SlotInstance = [.. Enumerable.Range(0, SlotSize).Select(i => null as IEquipmentData)];
 
 		Fuel = ship.Fuel;
