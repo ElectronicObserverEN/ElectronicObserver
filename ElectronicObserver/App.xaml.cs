@@ -381,7 +381,8 @@ public partial class App
 		// EventLockPlannerWindow extends System.Windows.Window so the config above applies to it
 		tracker
 			.Configure<EventLockPlannerWindow>()
-			.Property(w => w.ViewModel.ShowFinishedPhases);
+			.Property(w => w.ViewModel.ShowFinishedPhases)
+			.Property(w => w.ViewModel.DisplayToolTips);
 
 		tracker
 			.Configure<DialogAlbumMasterShipWpf>()

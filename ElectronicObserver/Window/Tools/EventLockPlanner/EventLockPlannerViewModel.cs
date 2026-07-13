@@ -34,6 +34,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 	public ObservableCollection<EventPhaseViewModel> EventPhases { get; } = new();
 
 	public bool ShowFinishedPhases { get; set; } = true;
+	public bool DisplayToolTips { get; set; } = false;
 
 	public delegate void TagChangedEventHandler();
 	public static event TagChangedEventHandler TagChanged = delegate { };

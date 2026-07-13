@@ -13,6 +13,7 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 
 	public string View => EventLockPlannerResources.View;
 	public string ShowFinishedPhases => EventLockPlannerResources.ShowFinishedPhases;
+	public string DisplayToolTips => EventLockPlannerResources.DisplayToolTips;
 
 	public string LockLoadWarningText => EventLockPlannerResources.LockLoadWarningText;
 	public string Warning => EventLockPlannerResources.Warning;
