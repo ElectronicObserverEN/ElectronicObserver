@@ -132,7 +132,7 @@ public interface IShipData
 	/// <summary>
 	/// Aircraft capacity if it was increased
 	/// </summary>
-	IList<int>? AircraftMax { get; }
+	List<int>? AircraftMax { get; }
 
 	/// <summary>
 	/// 現在の航空機搭載量

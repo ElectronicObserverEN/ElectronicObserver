@@ -66,7 +66,7 @@ public class ShipDataMock : IShipData
 	public IList<int> AllSlotMasterReplay { get; } = [];
 	public IList<IEquipmentDataMaster?> AllSlotInstanceMaster => AllSlotInstance.Select(e => e?.MasterEquipment).ToList();
 	public IList<int> Aircraft { get; set; }
-	public IList<int>? AircraftMax { get; set; }
+	public List<int>? AircraftMax { get; set; }
 	public int AircraftTotal { get; }
 	public int AircraftMaxTotal { get; }
 	public int Fuel { get; set; }

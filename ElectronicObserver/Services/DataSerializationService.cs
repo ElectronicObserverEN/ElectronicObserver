@@ -377,6 +377,7 @@ public class DataSerializationService
 				Armor = i.Armor,
 				Evasion = i.Evasion,
 			}).ToList(),
+		AircraftMax = ship.AircraftMax,
 	};
 
 	private static IEnumerable<FleetAnalysisEquipment> MakeFleetAnalysisEquipment(IEnumerable<IEquipmentData> equipment)

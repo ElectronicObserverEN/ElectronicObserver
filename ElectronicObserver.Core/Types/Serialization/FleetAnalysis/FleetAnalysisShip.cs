@@ -13,4 +13,5 @@ public class FleetAnalysisShip
 	[JsonPropertyName("api_slot_ex")] public required int ExpansionSlot { get; set; }
 	[JsonPropertyName("api_sally_area")] public required int SallyArea { get; set; }
 	[JsonPropertyName("api_sp_effect_items")] public required List<FleetAnalysisSpecialEffectItem> SpecialEffectItems { get; set; }
+	[JsonPropertyName("api_onslot_max")] public required List<int>? AircraftMax { get; set; }
 }

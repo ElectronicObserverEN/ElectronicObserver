@@ -156,7 +156,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// </summary>
 	public IList<int> Aircraft => Array.AsReadOnly(_aircraft);
 
-	public IList<int>? AircraftMax { get; private set; }
+	public List<int>? AircraftMax { get; private set; }
 
 	/// <summary>
 	/// 現在の航空機搭載量
@@ -1526,7 +1526,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 				if (data.api_onslot_max())
 				{
-					AircraftMax = Array.AsReadOnly((int[])RawData.api_onslot_max);
+					AircraftMax = (List<int>)RawData.api_onslot_max;
 				}
 
 				break;
