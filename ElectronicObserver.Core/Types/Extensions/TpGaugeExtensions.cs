@@ -11,6 +11,7 @@ public static class TpGaugeExtensions
 	{
 		TpGauge.Spring25E2P1 or TpGauge.Spring25E5P1 => 60,
 		TpGauge.Fall25E2P2 => 61,
+		TpGauge.Summer26E5P2 => 62,
 		_ => 0,
 	};
 
@@ -18,6 +19,7 @@ public static class TpGaugeExtensions
 	{
 		TpGauge.Spring25E2P1 or TpGauge.Fall25E2P2 => 2,
 		TpGauge.Spring25E5P1 => 5,
+		TpGauge.Summer26E5P2 => 5,
 		_ => 0,
 	};
 
@@ -25,6 +27,7 @@ public static class TpGaugeExtensions
 	{
 		TpGauge.Spring25E2P1 or TpGauge.Spring25E5P1 => 1,
 		TpGauge.Fall25E2P2 => 2,
+		TpGauge.Summer26E5P2 => 2,
 		_ => 0,
 	};
 
@@ -40,6 +43,7 @@ public static class TpGaugeExtensions
 	{
 		60 => Properties.EventConstants.Spring2025,
 		61 => Properties.EventConstants.Fall2025,
+		62 => Properties.EventConstants.Summer2026,
 		_ => "",
 	};
 
@@ -53,6 +57,7 @@ public static class TpGaugeExtensions
 		TpGauge.Spring25E2P1 => GetSpring25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets),
 		TpGauge.Spring25E5P1 => GetSpring25E5TankGaugeDamage(fleets) + GetKinuBonus(fleets),
 		TpGauge.Fall25E2P2 => GetFall25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets), 
+		TpGauge.Summer26E5P2 => GetSummer26E5TankGaugeDamage(fleets) + GetKinuBonus(fleets),
 		_ => 0,
 	};
 
@@ -229,38 +234,40 @@ public static class TpGaugeExtensions
 	private static double GetFall25E2LandingEquipmentTpDamage(IShipData ship)
 		=> ship.AllSlotInstanceMaster
 			.OfType<IEquipmentDataMaster>()
-			.Sum(eq => eq.EquipmentId switch
-			{
-				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_Type1GunTank => 21,
-				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIIITypeJ => 23,
-				EquipmentId.LandingCraft_M4A1DD => 20,
+			.Sum(GetFall25E2LandingEquipmentTpDamage);
 
-				EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank => 12.5,
-				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTankKai => 13.5,
+	private static double GetFall25E2LandingEquipmentTpDamage(IEquipmentDataMaster eq) => eq.EquipmentId switch
+	{
+		EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_Type1GunTank => 21,
+		EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIIITypeJ => 23,
+		EquipmentId.LandingCraft_M4A1DD => 20,
 
-				EquipmentId.LandingCraft_TokuDaihatsu_ChiHaKai => 19,
-				EquipmentId.LandingCraft_TokuDaihatsuLC_11thTankRegiment => 19,
-				EquipmentId.LandingCraft_TokuDaihatsu_ChiHa => 17,
+		EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank => 12.5,
+		EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTankKai => 13.5,
 
-				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTank => 11.5,
+		EquipmentId.LandingCraft_TokuDaihatsu_ChiHaKai => 19,
+		EquipmentId.LandingCraft_TokuDaihatsuLC_11thTankRegiment => 19,
+		EquipmentId.LandingCraft_TokuDaihatsu_ChiHa => 17,
 
-				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIII_NorthAfricanCorps => 19,
-				EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification => 16,
+		EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTank => 11.5,
 
-				EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce => 14,
+		EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIII_NorthAfricanCorps => 19,
+		EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification => 16,
 
-				EquipmentId.ArmyInfantry_ArmyInfantryCorps_ChiHaKai => 14,
+		EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce => 14,
 
-				EquipmentId.ArmyInfantry_Type97MediumTankNewTurret_ChiHaKai => 9,
-				EquipmentId.ArmyInfantry_Type97MediumTank_ChiHa => 7,
+		EquipmentId.ArmyInfantry_ArmyInfantryCorps_ChiHaKai => 14,
 
-				EquipmentId.ArmyInfantry_ArmyInfantryUnit => 5,
+		EquipmentId.ArmyInfantry_Type97MediumTankNewTurret_ChiHaKai => 9,
+		EquipmentId.ArmyInfantry_Type97MediumTank_ChiHa => 7,
 
-				_ when eq.CategoryType is EquipmentTypes.LandingCraft => 6,
-				_ when eq.CategoryType is EquipmentTypes.Ration => 0.75,
-				_ when eq.CategoryType is EquipmentTypes.TransportContainer => 3.75,
-				_ => 0,
-			});
+		EquipmentId.ArmyInfantry_ArmyInfantryUnit => 5,
+
+		_ when eq.CategoryType is EquipmentTypes.LandingCraft => 6,
+		_ when eq.CategoryType is EquipmentTypes.Ration => 0.75,
+		_ when eq.CategoryType is EquipmentTypes.TransportContainer => 3.75,
+		_ => 0,
+	};
 
 	private static int GetFall25E2TankGaugeDamage(List<IFleetData> fleets)
 		=> fleets.Sum(GetFall25E2TankGaugeDamage);
@@ -274,6 +281,34 @@ public static class TpGaugeExtensions
 			.Where(s => s.HPRate > 0.25)
 			.Sum(ship => GetFall25E2LandingEquipmentTpDamage(ship) + GetShipTpDamage(ship) * 0.75);
 	}
+
+	/// <summary>
+	/// Summer 2026 E5 reuses values from last event E2
+	/// </summary>
+	/// <param name="ship"></param>
+	/// <returns></returns>
+	private static double GetSummer26E5LandingEquipmentTpDamage(IShipData ship)
+		=> ship.AllSlotInstanceMaster
+			.OfType<IEquipmentDataMaster>()
+			.Sum(eq => eq.EquipmentId switch
+			{
+				EquipmentId.LandingCraft_DaihatsuLandingCraft_R35_FrenchTroops => 24,
+				_ => GetFall25E2LandingEquipmentTpDamage(eq),
+			});
+
+	private static int GetSummer26E5TankGaugeDamage(List<IFleetData> fleets)
+		=> fleets.Sum(GetSummer26E5TankGaugeDamage);
+
+	private static int GetSummer26E5TankGaugeDamage(IFleetData fleet)
+	{
+		if (fleet.MembersWithoutEscaped is null) return 0;
+
+		return (int)fleet.MembersWithoutEscaped
+			.OfType<IShipData>()
+			.Where(s => s.HPRate > 0.25)
+			.Sum(ship => GetSummer26E5LandingEquipmentTpDamage(ship) + GetShipTpDamage(ship) * 0.75);
+	}
+
 	private static string GetMapName(IKCDatabase db, int areaId, int mapId)
 	{
 		if (db.MapInfo[areaId * 10 + mapId] is not { } mapData) return $"{areaId}-{mapId}";

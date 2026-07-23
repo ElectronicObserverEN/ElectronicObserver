@@ -126,4 +126,7 @@
   <data name="Spring2025" xml:space="preserve">
     <value>25春</value>
   </data>
+  <data name="Summer2026" xml:space="preserve">
+    <value>26夏</value>
+  </data>
 </root>

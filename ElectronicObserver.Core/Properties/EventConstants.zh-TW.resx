@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -125,5 +125,8 @@
   </data>
   <data name="Spring2025" xml:space="preserve">
     <value>25春</value>
+  </data>
+  <data name="Summer2026" xml:space="preserve">
+    <value>26夏</value>
   </data>
 </root>
