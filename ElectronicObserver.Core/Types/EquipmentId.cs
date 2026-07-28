@@ -575,4 +575,18 @@ public enum EquipmentId
 	MainGunSmall_12_7cmTwinHighangleGunMountKaiSan = 572,
 	RadarSmall_PrototypeType23RadarKaiSan = 573,
 	RadarSmall_SCRadarKai_CalibratedLateModel = 574,
+	AAGun_25mmTwinAutocannon_SkilledGunnerSquad = 575,
+	LandingCraft_DaihatsuLandingCraft_R35_FrenchTroops = 576,
+	Torpedo_61cmQuadruple_OxygenTorpedoMountModel5KaiSan = 577,
+	CarrierBasedBomber_SB2U2 = 578,
+	MainGunSmall_13_8cmSingleGunMountModèle1927 = 579,
+	Torpedo_55cmTripleTorpedoMountModèle1924 = 580,
+	Torpedo_55cmFivetubesCompositeArrangementTorpedoMountsModèle1932 = 581,
+	MainGunMedium_20_3cm50TwinGunMountModèle1931 = 582,
+	MainGunMedium_20_3cm50TwinGunMountKai_SHSImprovedShells = 583,
+	MainGunSmall_Bofors12cmSinglebarrelDualpurposeGun = 584,
+	CarrierBasedRecon_PL101_Reconnaissance = 585,
+	CarrierBasedBomber_PL101_Bomber = 586,
+	CarrierBasedBomber_V156F_SB2UExportModel = 587,
+	CarrierBasedFighter_G36A_F4FExportModel = 588
 }

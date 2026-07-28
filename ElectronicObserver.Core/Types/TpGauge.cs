@@ -7,4 +7,5 @@ public enum TpGauge
 	Spring25E2P1 = 2,
 	Spring25E5P1 = 3,
 	Fall25E2P2 = 4,
+	Summer26E5P2 = 5,
 }
