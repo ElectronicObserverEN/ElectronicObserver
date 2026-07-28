@@ -86,6 +86,7 @@
 				<markup:Case Label="{x:Static resource:IconContent.FormExpChecker}" Value="{StaticResource Form.ExpChecker}" />
 				<markup:Case Label="{x:Static resource:IconContent.FormExpeditionCheck}" Value="{StaticResource Form.ExpeditionCheck}" />
 				<markup:Case Label="{x:Static resource:IconContent.FormFleetPreset}" Value="{StaticResource Form.FleetPreset}" />
+
 				<markup:Case Label="{x:Static resource:IconContent.FormEventLockPlanner}" Value="{StaticResource Form.EventLockPlanner}" />
 				<markup:Case Label="{x:Static resource:IconContent.FormExpeditionRecord}" Value="{StaticResource Form.ExpeditionRecord}" />
 

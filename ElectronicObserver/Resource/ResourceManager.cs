@@ -791,7 +791,6 @@ public enum IconContent
 	ShipStateExpedition,
 	ShipStateRepair,
 	ShipStateSunk,
-
 	FormEventLockPlanner,
 	FormExpeditionRecord,
 }
