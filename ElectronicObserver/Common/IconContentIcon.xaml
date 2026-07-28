@@ -86,9 +86,11 @@
 				<markup:Case Label="{x:Static resource:IconContent.FormExpChecker}" Value="{StaticResource Form.ExpChecker}" />
 				<markup:Case Label="{x:Static resource:IconContent.FormExpeditionCheck}" Value="{StaticResource Form.ExpeditionCheck}" />
 				<markup:Case Label="{x:Static resource:IconContent.FormFleetPreset}" Value="{StaticResource Form.FleetPreset}" />
+
 				<markup:Case Label="{x:Static resource:IconContent.FormEventLockPlanner}" Value="{StaticResource Form.EventLockPlanner}" />
 				<markup:Case Label="{x:Static resource:IconContent.FormExpeditionRecord}" Value="{StaticResource Form.ExpeditionRecord}" />
-
+				<markup:Case Label="{x:Static resource:IconContent.FormSortieRecord}" Value="{StaticResource Form.SortieRecord}" />
+				
 				<markup:Case Label="{x:Static resource:IconContent.FleetNoShip}" Value="{StaticResource Fleet.NoShip}" />
 				<markup:Case Label="{x:Static resource:IconContent.FleetDocking}" Value="{StaticResource Fleet.Docking}" />
 				<markup:Case Label="{x:Static resource:IconContent.FleetSortieDamaged}" Value="{StaticResource Fleet.SortieDamaged}" />

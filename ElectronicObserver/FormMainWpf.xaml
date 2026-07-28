@@ -557,7 +557,7 @@
 					Header="{Binding FormMain.SortieRecordViewer}"
 					>
 					<MenuItem.Icon>
-						<common:IconContentIcon Type="FormEquipmentList" />
+						<common:IconContentIcon Type="FormSortieRecord"/>
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
