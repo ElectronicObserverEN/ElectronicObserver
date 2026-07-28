@@ -566,7 +566,7 @@
 					Header="{Binding FormMain.ExpeditionRecordViewer}"
 					>
 					<MenuItem.Icon>
-						<common:IconContentIcon Type="FormEquipmentList" />
+						<common:IconContentIcon Type="FormExpeditionRecord" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -713,7 +713,7 @@
 				</MenuItem>
 				<MenuItem Command="{Binding OpenEventLockPlannerCommand}" Header="{Binding FormMain.EventLockPlannerTitle}">
 					<MenuItem.Icon>
-						<common:IconContentIcon Type="FormQuest" />
+						<common:IconContentIcon Type="FormEventLockPlanner" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenEquipmentUpgradePlannerCommand}" Header="{Binding FormMain.EquipmentUpgradePlannerTitle}">
