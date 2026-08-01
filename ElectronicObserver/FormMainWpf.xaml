@@ -694,7 +694,7 @@
 					Header="{Binding FormMain.StripMenu_Tool_KancolleProgress}"
 					>
 					<MenuItem.Icon>
-						<common:IconContentIcon Type="FormEquipmentList" />
+						<common:IconContentIcon Type="FormKanColleProgress" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -708,7 +708,7 @@
 				</MenuItem>
 				<MenuItem Command="{Binding OpenQuestTrackerManagerCommand}" Header="{Binding FormMain.StripMenu_Tool_QuestTrackerManager}">
 					<MenuItem.Icon>
-						<common:IconContentIcon Type="FormQuest" />
+						<common:IconContentIcon Type="FormQuestTrackerManager" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenEventLockPlannerCommand}" Header="{Binding FormMain.EventLockPlannerTitle}">
@@ -718,7 +718,7 @@
 				</MenuItem>
 				<MenuItem Command="{Binding OpenEquipmentUpgradePlannerCommand}" Header="{Binding FormMain.EquipmentUpgradePlannerTitle}">
 					<MenuItem.Icon>
-						<common:IconContentIcon Type="FormQuest" />
+						<common:IconContentIcon Type="FormEquipmentUpgradePlanner" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Command="{Binding OpenAutoRefreshCommand}" Header="{Binding FormMain.AutoRefreshTitle}">

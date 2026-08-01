@@ -130,11 +130,14 @@
 	<BitmapImage x:Key="Form.ResourceChart" UriSource="pack://siteoforigin:,,,/Assets/Form/ResourceChart.png" />
 	<BitmapImage x:Key="Form.ShipGroup" UriSource="pack://siteoforigin:,,,/Assets/Form/ShipGroup.png" />
 	<BitmapImage x:Key="Form.WindowCapture" UriSource="pack://siteoforigin:,,,/Assets/Form/WindowCapture.png" />
+
 	<BitmapImage x:Key="Form.EventLockPlanner" UriSource="pack://siteoforigin:,,,/Assets/Form/EventLockPlanner.png" />
-	
 	<BitmapImage x:Key="Form.ExpeditionRecord" UriSource="pack://siteoforigin:,,,/Assets/Form/ExpeditionRecord.png" />
 	<BitmapImage x:Key="Form.SortieRecord" UriSource="pack://siteoforigin:,,,/Assets/Form/SortieRecord.png" />
-	
+	<BitmapImage x:Key="Form.EquipmentUpgradePlanner" UriSource="pack://siteoforigin:,,,/Assets/Form/EquipmentUpgradePlanner.png" />
+	<BitmapImage x:Key="Form.KanColleProgress" UriSource="pack://siteoforigin:,,,/Assets/Form/KanColleProgress.png" />
+	<BitmapImage x:Key="Form.QuestTrackerManager" UriSource="pack://siteoforigin:,,,/Assets/Form/QuestTrackerM.png" />
+
 	<BitmapImage x:Key="Fleet.AnchorageRepairing" UriSource="pack://siteoforigin:,,,/Assets/Fleet/AnchorageRepairing.png" />
 	<BitmapImage x:Key="Fleet.Combined" UriSource="pack://siteoforigin:,,,/Assets/Fleet/Combined.png" />
 	<BitmapImage x:Key="Fleet.Damaged" UriSource="pack://siteoforigin:,,,/Assets/Fleet/Damaged.png" />

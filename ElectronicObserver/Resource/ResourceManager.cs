@@ -794,4 +794,7 @@ public enum IconContent
 	FormEventLockPlanner,
 	FormExpeditionRecord,
 	FormSortieRecord,
+	FormEquipmentUpgradePlanner,
+	FormKanColleProgress,
+	FormQuestTrackerManager,
 }
