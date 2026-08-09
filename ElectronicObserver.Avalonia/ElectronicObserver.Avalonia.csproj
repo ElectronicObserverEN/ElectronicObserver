@@ -29,14 +29,14 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Avalonia" Version="12.0.4" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="12.0.0" />
-		<PackageReference Include="Avalonia.Desktop" Version="12.0.4" />
-		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.17" />
-		<PackageReference Include="Avalonia.Themes.Fluent" Version="12.0.4" />
+		<PackageReference Include="Avalonia" Version="12.1.1" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="12.1.2" />
+		<PackageReference Include="Avalonia.Desktop" Version="12.1.1" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.19" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 		<PackageReference Include="HanumanInstitute.MvvmDialogs.Avalonia" Version="2.3.0" />
-		<PackageReference Include="Xaml.Behaviors.Avalonia" Version="12.0.0.1" />
+		<PackageReference Include="Xaml.Behaviors.Avalonia" Version="12.0.5" />
 	</ItemGroup>
 
 	<ItemGroup>
