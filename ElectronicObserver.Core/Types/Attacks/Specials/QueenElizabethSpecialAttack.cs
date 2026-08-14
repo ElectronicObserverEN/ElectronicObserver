@@ -49,7 +49,7 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
-		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + 1.2 * (Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.Level));
+		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + 1.2 * (Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal));
 
 		return (rate + 30) / 100;
 	}

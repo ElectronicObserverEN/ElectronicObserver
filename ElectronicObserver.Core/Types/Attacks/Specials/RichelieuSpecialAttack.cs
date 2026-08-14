@@ -49,21 +49,9 @@ public record RichelieuSpecialAttack : SpecialAttack
 		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
-		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + 1.2 * (Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.Level));
+		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + 1.2 * (Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal));
 
-		int deuxGunBonus = 0;
-
-		if (flagship.HasDeuxGun())
-		{
-			deuxGunBonus += 5;
-		}
-
-		if (helper.HasDeuxGun())
-		{
-			deuxGunBonus += 5;
-		}
-
-		return (rate + 30 + deuxGunBonus) / 100;
+		return (rate + 30) / 100;
 	}
 
 	public override List<SpecialAttackHit> GetAttacks()

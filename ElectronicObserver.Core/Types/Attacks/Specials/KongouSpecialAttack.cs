@@ -22,11 +22,11 @@ public record KongouSpecialAttack : SpecialAttack
 		if (flagship is null) return false;
 
 		if (!IsKongouClassThirdRemodel(flagship.MasterShip.ShipId)) return false;
-		if (flagship.HPRate <= 0.5) return false;
+		if (flagship.HPRate <= 0.25) return false;
 
 		IShipData? helper = ships[1];
 		if (helper is null) return false;
-		if (helper.HPRate <= 0.5) return false;
+		if (helper.HPRate <= 0.25) return false;
 
 		return IsValidPair(flagship.MasterShip.ShipId, helper.MasterShip.ShipId);
 	}
