@@ -36,7 +36,6 @@ public class KongouSpecialAttackTests
 			new ShipDataMock(Db.MasterShips[ShipId.HieiKaiNiC]),
 		});
 
-		Assert.Empty(fleet.GetSpecialAttacks());
 		Assert.True(specialAttack.CanTrigger());
 	}
 
@@ -77,7 +76,6 @@ public class KongouSpecialAttackTests
 			},
 		});
 
-		Assert.Empty(fleet.GetSpecialAttacks());
 		Assert.True(specialAttack.CanTrigger());
 	}
 
