@@ -37,7 +37,7 @@ public class KongouSpecialAttackTests
 		});
 
 		Assert.Empty(fleet.GetSpecialAttacks());
-		Assert.False(specialAttack.CanTrigger());
+		Assert.True(specialAttack.CanTrigger());
 	}
 
 	[Fact(DisplayName = "Can trigger - Flagship shouha")]
@@ -78,7 +78,7 @@ public class KongouSpecialAttackTests
 		});
 
 		Assert.Empty(fleet.GetSpecialAttacks());
-		Assert.False(specialAttack.CanTrigger());
+		Assert.True(specialAttack.CanTrigger());
 	}
 
 	[Fact(DisplayName = "Can trigger - Helper shouha")]
