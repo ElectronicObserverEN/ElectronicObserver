@@ -9,7 +9,7 @@ public static class FleetSpecialAttacks
 {
 	public static List<SpecialAttack> GetSpecialAttacks(this IFleetData fleet)
 	{
-		List<SpecialAttack> attacks = [];
+		List<SpecialAttack> attacks;
 
 		if (fleet.FleetType is FleetType.Single || fleet.FleetID == 1)
 		{
