@@ -19,20 +19,27 @@ public static class FleetSpecialAttacks
 				new ColoradoSpecialAttack(fleet),
 				new Yamato123SpecialAttack(fleet),
 				new Yamato12SpecialAttack(fleet),
-				new KongouSpecialAttack(fleet),
-				new SubmarineSpecialAttack(fleet),
 				new RichelieuSpecialAttack(fleet),
 				new QueenElizabethSpecialAttack(fleet),
 			];
+
+			if (fleet.FleetType is FleetType.Single)
+			{
+				attacks.Add(new KongouSpecialAttack(fleet));
+			}
 		}
 		else
 		{
 			attacks = [
 				new KongouSpecialAttack(fleet),
-				new SubmarineSpecialAttack(fleet),
 			];
 		}
-		
+
+		if (fleet.FleetType is FleetType.Single)
+		{
+			attacks.Add(new SubmarineSpecialAttack(fleet));
+		}
+
 		return attacks
 			.Where(attack => attack.CanTrigger())
 			.ToList();
