@@ -122,6 +122,13 @@ public class FleetOverviewViewModel : AnchorableViewModel
 			IEnumerable<int> landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
 			IEnumerable<int> radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
 
+			string tankTpToolTip = GetTankTpTooltip(fleet1, fleet2);
+
+			if (tankTpToolTip.Length > 0)
+			{
+				tankTpToolTip = $"\r\n{tankTpToolTip}";
+			}
+
 			CombinedTag.ToolTip = string.Format(FormFleetOverview.CombinedFleetToolTip,
 				transport.Sum(),
 				landing.Sum(),
@@ -137,7 +144,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				radar.Count(i => i > 0),
 				transport.Count(i => i > 0),
 				landing.Count(i => i > 0),
-				GetTankTpTooltip(fleet1, fleet2)
+				tankTpToolTip
 			);
 
 			CombinedTag.SmokeGeneratorRates = new List<IFleetData> { fleet1, fleet2 }.GetSmokeTriggerRates().TotalRate();
