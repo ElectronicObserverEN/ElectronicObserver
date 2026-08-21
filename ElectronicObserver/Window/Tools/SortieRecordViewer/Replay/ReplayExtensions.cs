@@ -37,7 +37,7 @@ public static class ReplayExtensions
 		Fleet3 = sortie.FleetData.Fleets.Skip(2).FirstOrDefault().ToReplayFleet(),
 		Fleet4 = sortie.FleetData.Fleets.Skip(3).FirstOrDefault().ToReplayFleet(),
 		AirBases = sortie.FleetData.AirBases
-			.Where(b => b.MapAreaId == sortie.Map)
+			.Where(b => b.MapAreaId == sortie.World)
 			.Select(b => new ReplayAirBase
 			{
 				Rid = b.AirCorpsId,

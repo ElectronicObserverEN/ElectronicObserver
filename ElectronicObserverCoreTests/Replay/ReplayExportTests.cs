@@ -73,4 +73,19 @@ public class ReplayExportTests
 			Assert.Equal(slots.Select(s => s?.Equipment?.AircraftLevel ?? 0), exported.Ace);
 		}
 	}
+
+	[Fact]
+	public async Task AirBasesAreExportedWhenWorldDiffersFromMap()
+	{
+		// world 58, map 4 - the filter used to compare MapAreaId against the map number
+		SortieRecord sortie = (await GetSortieRecords("SortieDetailTest1.json")).First();
+
+		Assert.NotEqual(sortie.World, sortie.Map);
+		Assert.NotEmpty(sortie.FleetData.AirBases);
+
+		ReplayData replay = sortie.ToReplayData();
+
+		Assert.NotNull(replay.AirBases);
+		Assert.Equal(sortie.FleetData.AirBases.Count, replay.AirBases!.Count);
+	}
 }
