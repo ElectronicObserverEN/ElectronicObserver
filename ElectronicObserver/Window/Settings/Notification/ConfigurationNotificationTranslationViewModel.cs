@@ -17,6 +17,7 @@ public class ConfigurationNotificationTranslationViewModel : TranslationBaseView
 	public string Notification_Expedition => ConfigRes.ExpedReturn + ConfigRes.NotificationSetting;
 	public string Notification_RemodelLevel => ConfigurationResources.Notification_RemodelLevel;
 	public string Notification_Training => ConfigurationResources.Notification_Training;
+	public string Notification_QuestCompletion => ConfigurationResources.Notification_QuestCompletion;
 	public string Notification_BaseAirCorps => ConfigurationResources.Notification_BaseAirCorps;
 	public string Notification_BattleEnd => ConfigurationResources.Notification_BattleEnd;
 	public string Notification_HomePortSupply => NotifierRes.HomePortSupply + ConfigRes.NotificationSetting;

@@ -29,6 +29,7 @@ namespace ElectronicObserver.Window.Settings.Notification
 		public ConfigurationNotificationBattleEndViewModel BattleEnd { get; }
 		public ConfigurationNotificationBaseViewModel RemodelLevel { get; }
 		public ConfigurationNotificationBaseViewModel Training { get; }
+		public ConfigurationNotificationBaseViewModel QuestCompletion { get; }
 
 		public ConfigurationNotificationViewModel(Configuration.ConfigurationData config)
 		{
@@ -47,6 +48,7 @@ namespace ElectronicObserver.Window.Settings.Notification
 			BattleEnd = new(Config.NotifierBattleEnd, NotifierManager.Instance.BattleEnd);
 			RemodelLevel = new(Config.NotifierRemodelLevel, NotifierManager.Instance.RemodelLevel);
 			Training = new(Config.NotifierTrainingPlan, NotifierManager.Instance.TrainingPlan);
+			QuestCompletion = new(Config.NotifierQuestCompletion, NotifierManager.Instance.QuestCompletion);
 		}
 
 		public override void Save()
