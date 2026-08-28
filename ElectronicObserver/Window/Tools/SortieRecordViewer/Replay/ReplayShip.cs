@@ -20,4 +20,16 @@ public class ReplayShip
 
 	[JsonPropertyName("equip")]
 	public List<int> Equip { get; set; }
+
+	/// <summary>
+	/// Equipment improvement levels, same order as <see cref="Equip"/>.
+	/// </summary>
+	[JsonPropertyName("stars")]
+	public List<int> Stars { get; set; } = new();
+
+	/// <summary>
+	/// Equipment proficiency levels, same order as <see cref="Equip"/>.
+	/// </summary>
+	[JsonPropertyName("ace")]
+	public List<int> Ace { get; set; } = new();
 }

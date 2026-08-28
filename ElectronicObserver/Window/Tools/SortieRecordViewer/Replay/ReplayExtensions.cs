@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Database.Sortie;
@@ -31,44 +32,12 @@ public static class ReplayExtensions
 		Fleetnum = sortie.FleetData.FleetId,
 		World = sortie.World,
 		Mapnum = sortie.Map,
-		Fleet1 = sortie.FleetData.Fleets.Skip(0).FirstOrDefault()?.Ships
-			.Select(s => new ReplayShip
-			{
-				ShipId = s.Id,
-				Level = s.Level,
-				Morale = s.Condition,
-				Kyouka = s.Kyouka,
-				Equip = s.EquipmentSlots.Append(s.ExpansionSlot).Select(e => ((int?)e?.Equipment?.Id) ?? 0).ToList(),
-			}).ToList() ?? new(),
-		Fleet2 = sortie.FleetData.Fleets.Skip(1).FirstOrDefault()?.Ships
-			.Select(s => new ReplayShip
-			{
-				ShipId = s.Id,
-				Level = s.Level,
-				Morale = s.Condition,
-				Kyouka = s.Kyouka,
-				Equip = s.EquipmentSlots.Append(s.ExpansionSlot).Select(e => ((int?)e?.Equipment?.Id) ?? 0).ToList(),
-			}).ToList() ?? new(),
-		Fleet3 = sortie.FleetData.Fleets.Skip(2).FirstOrDefault()?.Ships
-			.Select(s => new ReplayShip
-			{
-				ShipId = s.Id,
-				Level = s.Level,
-				Morale = s.Condition,
-				Kyouka = s.Kyouka,
-				Equip = s.EquipmentSlots.Append(s.ExpansionSlot).Select(e => ((int?)e?.Equipment?.Id) ?? 0).ToList(),
-			}).ToList() ?? new(),
-		Fleet4 = sortie.FleetData.Fleets.Skip(3).FirstOrDefault()?.Ships
-			.Select(s => new ReplayShip
-			{
-				ShipId = s.Id,
-				Level = s.Level,
-				Morale = s.Condition,
-				Kyouka = s.Kyouka,
-				Equip = s.EquipmentSlots.Append(s.ExpansionSlot).Select(e => ((int?)e?.Equipment?.Id) ?? 0).ToList(),
-			}).ToList() ?? new(),
+		Fleet1 = sortie.FleetData.Fleets.Skip(0).FirstOrDefault().ToReplayFleet(),
+		Fleet2 = sortie.FleetData.Fleets.Skip(1).FirstOrDefault().ToReplayFleet(),
+		Fleet3 = sortie.FleetData.Fleets.Skip(2).FirstOrDefault().ToReplayFleet(),
+		Fleet4 = sortie.FleetData.Fleets.Skip(3).FirstOrDefault().ToReplayFleet(),
 		AirBases = sortie.FleetData.AirBases
-			.Where(b => b.MapAreaId == sortie.Map)
+			.Where(b => b.MapAreaId == sortie.World)
 			.Select(b => new ReplayAirBase
 			{
 				Rid = b.AirCorpsId,
@@ -95,4 +64,24 @@ public static class ReplayExtensions
 			}).ToList(),
 		Battles = new(),
 	};
+
+	private static List<ReplayShip> ToReplayFleet(this SortieFleet? fleet)
+		=> fleet?.Ships.Select(ToReplayShip).ToList() ?? new();
+
+	private static ReplayShip ToReplayShip(SortieShip ship)
+	{
+		List<SortieEquipmentSlot?> slots = [.. ship.EquipmentSlots, ship.ExpansionSlot];
+
+		return new()
+		{
+			ShipId = ship.Id,
+			Level = ship.Level,
+			Morale = ship.Condition,
+			Kyouka = ship.Kyouka,
+			// equip, stars and ace have to stay index aligned
+			Equip = slots.Select(s => (int)(s?.Equipment?.Id ?? EquipmentId.Unknown)).ToList(),
+			Stars = slots.Select(s => s?.Equipment?.Level ?? 0).ToList(),
+			Ace = slots.Select(s => s?.Equipment?.AircraftLevel ?? 0).ToList(),
+		};
+	}
 }
