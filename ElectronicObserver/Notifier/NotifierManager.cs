@@ -30,6 +30,7 @@ public sealed class NotifierManager
 	public NotifierBattleEnd BattleEnd { get; private set; }
 	public NotifierRemodelLevel RemodelLevel { get; private set; }
 	public NotifierBase TrainingPlan { get; private set; }
+	public NotifierQuestCompletion QuestCompletion { get; private set; }
 
 	private NotifierManager()
 	{
@@ -54,6 +55,7 @@ public sealed class NotifierManager
 		BattleEnd = new NotifierBattleEnd(c.NotifierBattleEnd);
 		RemodelLevel = new NotifierRemodelLevel(c.NotifierRemodelLevel);
 		TrainingPlan = new NotifierTrainingPlan(c.NotifierTrainingPlan);
+		QuestCompletion = new NotifierQuestCompletion(c.NotifierQuestCompletion);
 	}
 
 	public void ApplyToConfiguration()
@@ -72,6 +74,7 @@ public sealed class NotifierManager
 		BattleEnd.ApplyToConfiguration(c.NotifierBattleEnd);
 		RemodelLevel.ApplyToConfiguration(c.NotifierRemodelLevel);
 		TrainingPlan.ApplyToConfiguration(c.NotifierTrainingPlan);
+		QuestCompletion.ApplyToConfiguration(c.NotifierQuestCompletion);
 	}
 
 	public void ShowNotifier(ElectronicObserver.Window.Dialog.DialogNotifier form)
@@ -110,6 +113,7 @@ public sealed class NotifierManager
 		yield return BattleEnd;
 		yield return RemodelLevel;
 		yield return TrainingPlan;
+		yield return QuestCompletion;
 	}
 
 }

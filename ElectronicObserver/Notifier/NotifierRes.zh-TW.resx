@@ -231,4 +231,10 @@
   <data name="HomePortSupplyExpeditionFinished" xml:space="preserve">
     <value>母港給糧艦隊「{0}」已經從遠征 {1} 返回。</value>
   </data>
+  <data name="QuestCompletionTitle" xml:space="preserve">
+    <value>任務達成通知</value>
+  </data>
+  <data name="QuestCompletionText" xml:space="preserve">
+    <value>任務「{0}」已達成完成條件。</value>
+  </data>
 </root>
