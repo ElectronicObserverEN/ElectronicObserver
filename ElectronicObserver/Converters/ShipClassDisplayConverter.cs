@@ -12,7 +12,7 @@ public class ShipClassDisplayConverter : IValueConverter
 		=> value switch
 		{
 			ShipClass.Unknown => "*",
-			ShipClass id => Constants.GetShipClass(id),
+			ShipClass id => KCDatabase.Instance.Translation.Ship.GetShipClass(id),
 			_ => throw new ArgumentOutOfRangeException()
 		};
 

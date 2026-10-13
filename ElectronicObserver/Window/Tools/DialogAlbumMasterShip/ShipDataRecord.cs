@@ -88,7 +88,7 @@ public partial class ShipDataRecord : ObservableObject
 	};
 
 	private bool IsShipClassKnown => ShipClassName != "不明";
-	private string ShipClassName => Constants.GetShipClass(Ship.ShipClass, Ship.ShipId);
+	private string ShipClassName => KCDatabase.Instance.Translation.Ship.GetShipClass(Ship.ShipClass, Ship.ShipId);
 	#endregion
 
 	#region Stats

@@ -69,7 +69,7 @@ public static class Extensions
 		{
 			foreach (ShipClass shipClass in shipClasses)
 			{
-				sb.AppendLine(Constants.GetShipClass(shipClass));
+				sb.AppendLine(KCDatabase.Instance.Translation.Ship.GetShipClass(shipClass));
 			}
 
 			sb.AppendLine();

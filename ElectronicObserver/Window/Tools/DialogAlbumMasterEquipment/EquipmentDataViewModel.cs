@@ -140,7 +140,7 @@ public class EquipmentDataViewModel : ObservableObject
 		string? shipsClasses = eq.EquippableShipClassesAtExpansion.Any() switch
 		{
 			true => string.Join(", ", eq.EquippableShipClassesAtExpansion
-				.Select(c => Constants.GetShipClass(c))),
+				.Select(c => KCDatabase.Instance.Translation.Ship.GetShipClass(c))),
 			_ => null,
 		};
 

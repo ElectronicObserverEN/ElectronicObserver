@@ -277,7 +277,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 				sw.WriteLine(string.Join(",",
 					ship.ShipID,
 					ship.AlbumNo,
-					ship.IsAbyssalShip ? "深海棲艦" : Constants.GetShipClass(ship.ShipClass, ship.ShipId),
+					ship.IsAbyssalShip ? "深海棲艦" : KCDatabase.Instance.Translation.Ship.GetShipClass(ship.ShipClass, ship.ShipId),
 					Utility.Storage.CsvHelper.EscapeCsvCell(ship.ShipTypeName),
 					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameEN),
 					Utility.Storage.CsvHelper.EscapeCsvCell(ship.NameReading),

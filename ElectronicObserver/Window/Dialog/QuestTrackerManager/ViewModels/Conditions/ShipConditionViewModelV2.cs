@@ -65,7 +65,7 @@ public partial class ShipConditionViewModelV2 : ObservableObject, IConditionView
 	private string ShipClassConditionDisplay => ShipClass switch
 	{
 		ShipClass.Unknown => "",
-		ShipClass id => Constants.GetShipClass(id),
+		ShipClass id => KCDatabase.Instance.Translation.Ship.GetShipClass(id),
 	};
 
 	private string ShipConditionDisplay => Ship switch
