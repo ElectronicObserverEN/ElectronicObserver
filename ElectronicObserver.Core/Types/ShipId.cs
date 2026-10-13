@@ -867,5 +867,5 @@ public enum ShipId
 	VisbyKai = 1067,
 	HieMaruKai = 1070,
 	KitakamiKaiSan = 1071,
-	ColoradoKai = 1496
+	ColoradoKai = 1496,
 }
