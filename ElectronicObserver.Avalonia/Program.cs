@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using Avalonia.Win32;
 
 namespace ElectronicObserver.Avalonia;
 
