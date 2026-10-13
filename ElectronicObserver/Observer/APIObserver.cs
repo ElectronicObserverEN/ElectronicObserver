@@ -13,7 +13,6 @@ using ElectronicObserver.Core;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services.ApiFileService;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Models;
