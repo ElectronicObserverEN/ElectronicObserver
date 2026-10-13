@@ -5,7 +5,6 @@ using System.Text.Json;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
-using Newtonsoft.Json.Linq;
 
 namespace ElectronicObserver.Data.KanlogSubmission;
 
