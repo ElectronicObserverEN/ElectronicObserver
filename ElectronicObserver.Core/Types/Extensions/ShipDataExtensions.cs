@@ -349,6 +349,9 @@ public static class ShipDataExtensions
 	public static bool HasSonar(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsSonar() is true) >= count;
 
+	public static bool HasAnyDepthCharge(this IShipData ship, int count = 1) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IconTypeTyped is EquipmentIconType.DepthCharge) >= count;
+
 	public static bool HasAntiSubmarineAircraft(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Zip(ship.Aircraft, (e, s) => (Equipment: e, Size: s))
 		.Count(t => t.Equipment?.MasterEquipment.IsAntiSubmarineAircraft is true && t.Size > 0) >= count;
@@ -524,23 +527,47 @@ public static class ShipDataExtensions
 		ShipTypes.Destroyer or
 		ShipTypes.LightCruiser or
 		ShipTypes.TorpedoCruiser or
+		ShipTypes.Battlecruiser or
 		ShipTypes.TrainingCruiser or
 		ShipTypes.FleetOiler
 			=> ship.ASWBase > 0,
 
+		ShipTypes.RepairShip or
+		ShipTypes.SubmarineTender
+			=> ship.HasAnyDepthCharge(),
+
+		ShipTypes.AmphibiousAssaultShip =>
+			ship.MasterShip.ShipId switch
+			{
+				ShipId.No101LandingShipKai or ShipId.No101LandingShip => ship.HasAnyDepthCharge(),
+				_ => ship.CanAviationShipAttackSubs(),
+			},
+
+		ShipTypes.AviationBattleship =>
+			ship.MasterShip.ShipId switch
+			{
+				ShipId.FusouKaiNi or ShipId.FusouKaiNiHo or ShipId.YamashiroKaiNi or ShipId.YamashiroKaiNiHo => ship.HasAnyDepthCharge() || ship.CanAviationShipAttackSubs(),
+				_ => ship.CanAviationShipAttackSubs(),
+			},
+
 		ShipTypes.AviationCruiser or
 		ShipTypes.LightAircraftCarrier or
-		ShipTypes.AviationBattleship or
-		ShipTypes.SeaplaneTender or
-		ShipTypes.AmphibiousAssaultShip
-			=> ship.AllSlotInstance.Zip(ship.Aircraft, (Equipment, Size) => (Equipment, Size)).Any(s => s.Equipment is { MasterEquipment.IsAntiSubmarineAircraft: true } && s.Size > 0),
+		ShipTypes.SeaplaneTender
+			=> ship.CanAviationShipAttackSubs(),
 
 		ShipTypes.AircraftCarrier =>
-			ship.MasterShip.ShipId is ShipId.KagaKaiNiGo &&
-			ship.AllSlotInstance.Zip(ship.Aircraft, (Equipment, Size) => (Equipment, Size)).Any(s => s.Equipment is { MasterEquipment.IsAntiSubmarineAircraft: true } && s.Size > 0),
+			ship.MasterShip.ShipId switch
+			{
+				ShipId.KagaKaiNiGo => ship.CanAviationShipAttackSubs(),
+				ShipId.HiryuuKaiSan => ship.HasAswPatrolAircraft() && (ship.HasBomber() || ship.HasAttacker() || ship.HasJetBomber()),
+				_ => false
+			},
 
 		_ => false
 	};
+
+	private static bool CanAviationShipAttackSubs(this IShipData ship) =>
+		ship.AllSlotInstance.Zip(ship.Aircraft, (Equipment, Size) => (Equipment, Size)).Any(s => s.Equipment is { MasterEquipment.IsAntiSubmarineAircraft: true } && s.Size > 0);
 
 	public static bool CanNoSonarOpeningAsw(this IShipData ship) => ship.MasterShip is
 	{ ShipId: ShipId.JervisKai } or
