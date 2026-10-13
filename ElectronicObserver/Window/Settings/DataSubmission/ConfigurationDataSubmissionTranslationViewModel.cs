@@ -16,4 +16,6 @@ public class ConfigurationDataSubmissionTranslationViewModel : TranslationBaseVi
 	public string PrivacyPolicy => ConfigurationResources.DataSubmission_PrivacyPolicy;
 
 	public string Details => PoiDbSubmissionResources.Details;
+
+	public string Kanlog => KanlogSubmissionResources.Kanlog;
 }

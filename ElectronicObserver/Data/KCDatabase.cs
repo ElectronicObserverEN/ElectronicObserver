@@ -4,6 +4,7 @@ using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Data.Battle;
+using ElectronicObserver.Data.KanlogSubmission;
 using ElectronicObserver.Data.KCReplayDbSubmission;
 using ElectronicObserver.Data.PoiDbSubmission;
 using ElectronicObserver.Data.Quest;
@@ -164,6 +165,7 @@ public sealed class KCDatabase : IKCDatabase
 	public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
 	public DataService Translation { get; private set; }
 	public PoiDbSubmissionService PoiDbSubmission { get; private set; }
+	public KanlogSubmissionService KanlogSubmissionService { get; private set; }
 	public KCReplayDbSubmissionService KCReplayDbSubmission { get; private set; }
 
 	public ServerManager ServerManager { get; } = new();
@@ -215,6 +217,7 @@ public sealed class KCDatabase : IKCDatabase
 		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
 		PoiDbSubmission = new(this);
+		KanlogSubmissionService = new(this);
 		KCReplayDbSubmission = new();
 		
 		Translation = new DataService(Configuration.Config.UI, SoftwareUpdaterService, EoLogger);
