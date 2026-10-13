@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using ElectronicObserver.Core.Types.Data;
+﻿using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Core.Types;
 
-public interface IMapInfoData : IIdentifiable
+public interface IMapInfoData : IIdentifiable, IApiWrapper
 {
 	/// <summary>
 	/// 海域ID
@@ -83,8 +82,4 @@ public interface IMapInfoData : IIdentifiable
 	/// 現在のゲージ本数　未指定なら 0
 	/// </summary>
 	public int CurrentGaugeIndex { get; }
-
-	public void LoadFromResponse(string apiname, dynamic data);
-
-	public void LoadFromRequest(string apiname, Dictionary<string, string> data);
 }

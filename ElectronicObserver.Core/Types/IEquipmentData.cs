@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.Core.Types;
 
-public interface IEquipmentData
+public interface IEquipmentData : IResponseWrapper
 {
 	/// <summary>
 	/// 装備を一意に識別するID
@@ -69,6 +69,5 @@ public interface IEquipmentData
 	/// </summary>
 	bool IsAvailable { get; }
 
-	void LoadFromResponse(string apiname, dynamic data);
 	string ToString();
 }

@@ -4,10 +4,11 @@ namespace ElectronicObserver.Core.Types.Mocks;
 
 public class KCDatabaseMock : IKCDatabase
 {
-	public IDDictionary<IShipDataMaster> MasterShips { get; } = new();
-	public IDDictionary<IEquipmentDataMaster> MasterEquipments { get; set; } = new();
-	public IDDictionary<IUseItemMaster> MasterUseItems { get; set; } = new();
-	public IDDictionary<IUseItem> UseItems { get; set; } = new();
-	public IDDictionary<IMapInfoData> MapInfo { get; set; } = new();
-	public IDDictionary<IMapAreaData> MapArea{ get; set; } = new();
+	public IDDictionary<IShipDataMaster> MasterShips { get; init; } = [];
+	public IDDictionary<IEquipmentDataMaster> MasterEquipments { get; init; } = [];
+	public IDDictionary<IUseItemMaster> MasterUseItems { get; init; } = [];
+	public IDDictionary<IUseItem> UseItems { get; init; } = [];
+	public IDDictionary<IMapInfoData> MapInfo { get; init; } = [];
+	public IDDictionary<IMapAreaData> MapArea{ get; init; } = [];
+	public IDDictionary<IMissionData> Mission { get; init; } = [];
 }

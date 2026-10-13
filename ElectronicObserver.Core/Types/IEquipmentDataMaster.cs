@@ -3,7 +3,7 @@ using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Core.Types;
 
-public interface IEquipmentDataMaster : IIdentifiable
+public interface IEquipmentDataMaster : IIdentifiable, IResponseWrapper
 {
 	/// <summary>
 	/// 装備ID
@@ -243,11 +243,4 @@ public interface IEquipmentDataMaster : IIdentifiable
 	bool IsAvailable { get; }
 
 	string ToString();
-
-	/// <summary>
-	/// Responseを読み込みます。
-	/// </summary>
-	/// <param name="apiname">読み込むAPIの名前。</param>
-	/// <param name="data">受信したデータ。</param>
-	void LoadFromResponse(string apiname, dynamic data);
 }

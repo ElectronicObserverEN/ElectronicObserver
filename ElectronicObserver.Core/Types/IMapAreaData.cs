@@ -3,7 +3,7 @@ using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Core.Types;
 
-public interface IMapAreaData : IIdentifiable
+public interface IMapAreaData : IIdentifiable, IApiWrapper
 {
 	/// <summary>
 	/// 海域カテゴリID
@@ -23,8 +23,4 @@ public interface IMapAreaData : IIdentifiable
 	public int MapType { get; }
 
 	public bool IsEventArea { get; }
-
-	public void LoadFromResponse(string apiname, dynamic data);
-
-	public void LoadFromRequest(string apiname, Dictionary<string, string> data);
 }

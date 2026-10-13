@@ -2,7 +2,7 @@
 
 namespace ElectronicObserver.Core.Types;
 
-public interface IBaseAirCorpsSquadron
+public interface IBaseAirCorpsSquadron : IApiWrapper
 {
 	/// <summary>
 	/// 中隊ID
@@ -62,6 +62,4 @@ public interface IBaseAirCorpsSquadron
 	/// 現在のデータが有効かを取得します。
 	/// </summary>
 	bool IsAvailable { get; }
-
-	void LoadFromResponse(string apiname, object elem);
 }

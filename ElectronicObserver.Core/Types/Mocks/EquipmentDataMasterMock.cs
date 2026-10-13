@@ -25,6 +25,11 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 		throw new NotImplementedException();
 	}
 
+	public void LoadFromRequest(string apiname, Dictionary<string, string> data)
+	{
+		throw new NotImplementedException();
+	}
+
 	public int EquipmentID { get; set; }
 	public int AlbumNo { get; set; }
 	public string Name { get; set; }

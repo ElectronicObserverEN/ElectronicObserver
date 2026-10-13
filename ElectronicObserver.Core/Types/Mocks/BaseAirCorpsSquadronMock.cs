@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Core.Types.Mocks;
@@ -49,6 +50,11 @@ public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 	}
 
 	public void LoadFromResponse(string apiname, object elem)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void LoadFromRequest(string apiname, Dictionary<string, string> data)
 	{
 		throw new NotImplementedException();
 	}

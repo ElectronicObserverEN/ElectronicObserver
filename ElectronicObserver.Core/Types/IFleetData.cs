@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace ElectronicObserver.Core.Types;
 
-public interface IFleetData
+public interface IFleetData : IApiWrapper
 {
 	/// <summary>
 	/// 艦隊ID
@@ -96,8 +96,6 @@ public interface IFleetData
 	bool IsAvailable { get; }
 
 	int this[int i] { get; }
-	void LoadFromResponse(string apiname, dynamic data);
-	void LoadFromRequest(string apiname, Dictionary<string, string> data);
 
 	/// <summary>
 	/// 護衛退避を実行します。

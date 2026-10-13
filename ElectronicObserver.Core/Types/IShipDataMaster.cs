@@ -4,7 +4,7 @@ using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Core.Types;
 
-public interface IShipDataMaster : IIdentifiable
+public interface IShipDataMaster : IIdentifiable, IResponseWrapper
 {
 	/// <summary>
 	/// 艦船ID
@@ -422,11 +422,4 @@ public interface IShipDataMaster : IIdentifiable
 	Color GetShipNameColor();
 	IShipDataMaster BaseShip();
 	string ToString();
-
-	/// <summary>
-	/// Responseを読み込みます。
-	/// </summary>
-	/// <param name="apiname">読み込むAPIの名前。</param>
-	/// <param name="data">受信したデータ。</param>
-	void LoadFromResponse(string apiname, dynamic data);
 }

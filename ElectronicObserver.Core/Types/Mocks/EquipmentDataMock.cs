@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 
 namespace ElectronicObserver.Core.Types.Mocks;
 
@@ -53,6 +54,11 @@ public class EquipmentDataMock : IEquipmentData
 	}
 
 	public void LoadFromResponse(string apiname, dynamic data)
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public void LoadFromRequest(string apiname, Dictionary<string, string> data)
 	{
 		throw new System.NotImplementedException();
 	}

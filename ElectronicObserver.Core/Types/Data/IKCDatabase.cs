@@ -103,12 +103,12 @@ public interface IKCDatabase
 	/// </summary>
 	IDDictionary<IMapInfoData> MapInfo { get; }
 
-	/*
 	/// <summary>
 	/// 遠征データ
 	/// </summary>
-	IDDictionary<MissionData> Mission { get; }
+	IDDictionary<IMissionData> Mission { get; }
 
+	/*
 	/// <summary>
 	/// 艦船グループデータ
 	/// </summary>

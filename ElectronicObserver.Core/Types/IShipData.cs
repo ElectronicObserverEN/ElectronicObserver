@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ElectronicObserver.Core.Types;
 
-public interface IShipData
+public interface IShipData : IApiWrapper
 {
 	/// <summary>
 	/// 艦娘を一意に識別するID
@@ -581,6 +581,4 @@ public interface IShipData
 	bool IsAvailable { get; }
 
 	string ToString();
-	void LoadFromResponse(string apiname, dynamic data);
-	void LoadFromRequest(string apiname, Dictionary<string, string> data);
 }

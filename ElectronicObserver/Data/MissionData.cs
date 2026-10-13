@@ -4,16 +4,10 @@ using ElectronicObserver.Core.Types.Extensions;
 
 namespace ElectronicObserver.Data;
 
-public enum ResetType
-{
-	Normal,
-	Monthly
-}
-
 /// <summary>
 /// 遠征データを保持します。
 /// </summary>
-public class MissionData : APIWrapper, IIdentifiable
+public class MissionData : APIWrapper, IIdentifiable, IMissionData
 {
 
 	/// <summary>
@@ -52,6 +46,7 @@ public class MissionData : APIWrapper, IIdentifiable
 	/// 進捗リセットタイミング
 	/// </summary>
 	public ResetType ResetType => (ResetType)RawData.api_reset_type;
+
 	/// <summary>
 	/// Expedition Damage Type: 0="Normal" 1="Type 1" 2="Type 2"
 	/// </summary>

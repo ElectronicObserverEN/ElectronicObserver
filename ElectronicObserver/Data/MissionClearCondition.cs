@@ -557,7 +557,7 @@ public static class MissionClearCondition
 	private static MissionClearConditionResult DefaultCase(MissionClearConditionResult result, int missionId)
 	{
 		// イベント海域での支援遠征への対応
-		MissionData mission = KCDatabase.Instance.Mission[missionId];
+		IMissionData mission = KCDatabase.Instance.Mission[missionId];
 
 		if (mission is { Name: "前衛支援任務" or "艦隊決戦支援任務" })
 		{

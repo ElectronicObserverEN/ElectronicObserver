@@ -142,7 +142,7 @@ public sealed class KCDatabase : IKCDatabase
 	/// <summary>
 	/// 遠征データ
 	/// </summary>
-	public IDDictionary<MissionData> Mission { get; private set; }
+	public IDDictionary<IMissionData> Mission { get; private set; }
 
 
 	/// <summary>
@@ -208,7 +208,7 @@ public sealed class KCDatabase : IKCDatabase
 		Battle = new BattleManager();
 		MapArea = new IDDictionary<IMapAreaData>();
 		MapInfo = new IDDictionary<IMapInfoData>();
-		Mission = new IDDictionary<MissionData>();
+		Mission = new IDDictionary<IMissionData>();
 		ShipGroup = new ShipGroupManager();
 		BaseAirCorps = new IDDictionary<BaseAirCorpsData>();
 		RelocatedEquipments = new IDDictionary<RelocationData>();

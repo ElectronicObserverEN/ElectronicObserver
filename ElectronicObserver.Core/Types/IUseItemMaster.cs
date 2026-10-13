@@ -2,7 +2,7 @@
 
 namespace ElectronicObserver.Core.Types;
 
-public interface IUseItemMaster : IIdentifiable
+public interface IUseItemMaster : IIdentifiable, IResponseWrapper
 {
 	/// <summary>
 	/// アイテムID
@@ -39,11 +39,4 @@ public interface IUseItemMaster : IIdentifiable
 	/// 現在のデータが有効かを取得します。
 	/// </summary>
 	bool IsAvailable { get; }
-
-	/// <summary>
-	/// Responseを読み込みます。
-	/// </summary>
-	/// <param name="apiname">読み込むAPIの名前。</param>
-	/// <param name="data">受信したデータ。</param>
-	void LoadFromResponse(string apiname, dynamic data);
 }
