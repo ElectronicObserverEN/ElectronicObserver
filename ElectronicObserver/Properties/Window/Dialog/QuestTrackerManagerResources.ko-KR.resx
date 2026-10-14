@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -258,5 +258,14 @@
   </data>
   <data name="QuestTaskType_7_5_3" xml:space="preserve">
     <value>7-5-3</value>
+  </data>
+  <data name="QuestTaskType_5_6_1" xml:space="preserve">
+    <value>5-6-1</value>
+  </data>
+  <data name="QuestTaskType_5_6_2" xml:space="preserve">
+    <value>5-6-2</value>
+  </data>
+  <data name="QuestTaskType_5_6_3" xml:space="preserve">
+    <value>5-6-3</value>
   </data>
 </root>

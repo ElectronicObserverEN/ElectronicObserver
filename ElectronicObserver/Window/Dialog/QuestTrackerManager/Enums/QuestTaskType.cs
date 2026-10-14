@@ -40,4 +40,10 @@ public enum QuestTaskType
 	Exercise,
 	[Display(ResourceType = typeof(QuestTrackerManagerResources), Name = "QuestTaskType_World1Map6ResourceNode")]
 	World1Map6ResourceNode,
+	[Display(ResourceType = typeof(QuestTrackerManagerResources), Name = "QuestTaskType_5_6_1")]
+	World5Map6Boss1,
+	[Display(ResourceType = typeof(QuestTrackerManagerResources), Name = "QuestTaskType_5_6_2")]
+	World5Map6Boss2,
+	[Display(ResourceType = typeof(QuestTrackerManagerResources), Name = "QuestTaskType_5_6_3")]
+	World5Map6Boss3,
 }
