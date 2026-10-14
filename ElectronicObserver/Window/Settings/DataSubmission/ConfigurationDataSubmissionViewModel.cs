@@ -20,7 +20,10 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 
 	[ObservableProperty]
 	public partial bool SendDataToPoi { get; set; }
-	
+
+	[ObservableProperty]
+	public partial bool SendDataToKanlog { get; set; }
+
 	[ObservableProperty]
 	public partial string BonodereUsername { get; set; } = "";
 
@@ -52,6 +55,7 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 	private void Load()
 	{
 		SendDataToPoi = Config.SendDataToPoi;
+		SendDataToKanlog = Config.SendDataToKanlog;
 
 		BonodereUserId = Config.BonodereUserId;
 		BonodereToken = Config.BonodereToken;
@@ -66,10 +70,13 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 	public override void Save()
 	{
 		Config.SendDataToPoi = SendDataToPoi;
+		Config.SendDataToKanlog = SendDataToKanlog;
+
 		Config.BonodereUserId = BonodereUserId;
 		Config.BonodereToken = BonodereToken;
-		Config.SubmitDataToTsunDb = SubmitDataToTsunDb;
 		Config.BonodereIntegrationEnabled = BonodereIntegrationEnabled;
+
+		Config.SubmitDataToTsunDb = SubmitDataToTsunDb;
 
 		Config.SendDataToKancolleReplayDb = SendDataToKancolleReplayDb;
 	}
