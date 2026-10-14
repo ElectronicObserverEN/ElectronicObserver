@@ -66,7 +66,9 @@ public class KanlogDropSubmissionService(
 				Sid = shipId,
 				Ocnt = shipId switch
 				{
-					> 0 => KcDatabase.Ships.Values.Count(ship => ship.ShipID == shipId),
+					> 0 => KcDatabase.Ships.Values
+						.Select(s => s.MasterShip.BaseShip().ShipID)
+						.Count(id => id == shipId),
 					_ => 0,
 				},
 				Rank = MapRank(battle.Result.Rank),
