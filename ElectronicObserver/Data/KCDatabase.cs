@@ -214,11 +214,12 @@ public sealed class KCDatabase : IKCDatabase
 		ShipGroup = new ShipGroupManager();
 		BaseAirCorps = new IDDictionary<BaseAirCorpsData>();
 		RelocatedEquipments = new IDDictionary<RelocationData>();
-		TsunDbSubmission = new TsunDbSubmissionManager();
 		FleetPreset = new FleetPresetManager();
-		PoiDbSubmission = new(this);
-		KanlogSubmissionService = new(this);
-		KCReplayDbSubmission = new();
+
+		TsunDbSubmission = new(ServerManager);
+		PoiDbSubmission = new(this, ServerManager);
+		KanlogSubmissionService = new(this, ServerManager);
+		KCReplayDbSubmission = new(ServerManager);
 		
 		Translation = new DataService(Configuration.Config.UI, SoftwareUpdaterService, EoLogger);
 		_ = Translation.Initialize();

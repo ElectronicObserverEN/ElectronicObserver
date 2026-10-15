@@ -3,6 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi;
 
@@ -18,14 +19,15 @@ public class ElectronicObserverApiService(ElectronicObserverApiTranslationViewMo
 
 	private string Url => Configuration.Config.Debug.ElectronicObserverApiUrl switch
 	{
-		{ Length: >0 } => Configuration.Config.Debug.ElectronicObserverApiUrl,
+		{ Length: > 0 } => Configuration.Config.Debug.ElectronicObserverApiUrl,
 		_ => SoftwareUpdater.CurrentDataVersion.AppApiServerUrl,
 	};
 
 	private ElectronicObserverApiTranslationViewModel Translations { get; } = translations;
 
-	public bool IsServerAvailable => !string.IsNullOrEmpty(Url);
-	
+	public bool IsServerAvailable => !string.IsNullOrEmpty(Url)
+		&& KCDatabase.Instance.ServerManager.CurrentServer is not null;
+
 	public async Task PostJson<T>(string route, T data)
 	{
 		if (!IsServerAvailable) return;

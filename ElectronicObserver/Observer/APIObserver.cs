@@ -860,18 +860,6 @@ public sealed class APIObserver
 			await ApiProcessingChannel.Writer.WriteAsync(() => LoadRequest(url, body));
 		}
 
-		if (KCDatabase.Instance.ServerManager.CurrentServer is null && baseurl.Contains("/gadget_html5/js/kcs_const.js"))
-		{
-			string body = await e.GetResponseBodyAsString();
-
-			_ = Task.Run(() =>
-			{
-				KCDatabase.Instance.ServerManager.LoadServerList(body);
-			});
-
-			return;
-		}
-
 		//response
 		//保存
 		if (c.SaveReceivedData)

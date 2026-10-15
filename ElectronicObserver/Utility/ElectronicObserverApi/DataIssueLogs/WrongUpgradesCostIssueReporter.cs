@@ -10,7 +10,6 @@ using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlistDetail;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.ElectronicObserverApi.Models.UpgradeCosts;
-using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;

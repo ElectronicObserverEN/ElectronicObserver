@@ -7,6 +7,7 @@ using ElectronicObserver.Data.PoiDbSubmission.PoiDbFriendFleetSubmission;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbQuestSubmission;
 using ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.PoiDbSubmission;
@@ -21,6 +22,7 @@ public class PoiDbSubmissionService
 #endif
 
 	private KCDatabase KcDatabase { get; }
+	private ServerManager ServerManager { get; }
 	private PoiHttpClient PoiHttpClient { get; } = new();
 	private PoiDbQuestSubmissionService? QuestSubmissionService { get; set; }
 	private PoiDbBattleSubmissionService? BattleSubmissionService { get; set; }
@@ -28,18 +30,20 @@ public class PoiDbSubmissionService
 	private PoiDbAirDefenseSubmissionService? AirDefenseSubmissionService { get; set; }
 	private PoiDbRouteSubmissionService? RouteSubmissionService { get; set; }
 
-	public PoiDbSubmissionService(KCDatabase kcDatabase)
+	public PoiDbSubmissionService(KCDatabase kcDatabase, ServerManager serverManager)
 	{
 		KcDatabase = kcDatabase;
+		ServerManager = serverManager;
 
 		Configuration.Instance.ConfigurationChanged += OnConfigurationChanged;
+		ServerManager.CurrentServerChanged += (_, _) => OnConfigurationChanged();
 
 		OnConfigurationChanged();
 	}
 
 	private void OnConfigurationChanged()
 	{
-		if (Configuration.Config.DataSubmission.SendDataToPoi)
+		if (Configuration.Config.DataSubmission.SendDataToPoi && ServerManager.CurrentServer is not null)
 		{
 			SubscribeToApis();
 		}
