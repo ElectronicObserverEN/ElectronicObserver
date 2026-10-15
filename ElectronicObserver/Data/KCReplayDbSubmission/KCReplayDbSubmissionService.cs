@@ -3,26 +3,31 @@ using System.Net;
 using System.Net.Http;
 using ElectronicObserver.Data.KCReplayDbSubmission.KCReplayDbQuestSubmission;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.KCReplayDbSubmission;
 
 public class KCReplayDbSubmissionService
 {
+	private ServerManager ServerManager { get; }
 	private KCReplayDbHttpClient KcReplayDbHttpClient { get; } = new();
 	private KCReplayDbQuestSubmissionService? QuestSubmissionService { get; set; }
 	private KCReplayDbQuestItemsSubmissionService? QuestItemsSubmissionService { get; set; }
 
-	public KCReplayDbSubmissionService()
+	public KCReplayDbSubmissionService(ServerManager serverManager)
 	{
+		ServerManager = serverManager;
+
 		Configuration.Instance.ConfigurationChanged += OnConfigurationChanged;
+		ServerManager.CurrentServerChanged += (_, _) => OnConfigurationChanged();
 
 		OnConfigurationChanged();
 	}
 
 	private void OnConfigurationChanged()
 	{
-		if (Configuration.Config.DataSubmission.SendDataToKancolleReplayDb)
+		if (Configuration.Config.DataSubmission.SendDataToKancolleReplayDb && ServerManager.CurrentServer is not null)
 		{
 			SubscribeToApis();
 		}

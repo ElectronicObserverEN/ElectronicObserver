@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.KanlogSubmission;
@@ -17,23 +18,26 @@ public class KanlogSubmissionService
 #endif
 
 	private KCDatabase KcDatabase { get; }
+	private ServerManager ServerManager { get; }
 	private KanlogHttpClient KanlogClient { get; }
 
 	private KanlogDropSubmissionService? DropSubmissionService { get; set; }
 
-	public KanlogSubmissionService(KCDatabase kcDatabase)
+	public KanlogSubmissionService(KCDatabase kcDatabase, ServerManager serverManager)
 	{
 		KcDatabase = kcDatabase;
+		ServerManager = serverManager;
 		KanlogClient = new KanlogHttpClient(BaseUrl, new());
 
 		Configuration.Instance.ConfigurationChanged += OnConfigurationChanged;
+		ServerManager.CurrentServerChanged += (_, _) => OnConfigurationChanged();
 
 		OnConfigurationChanged();
 	}
 
 	private void OnConfigurationChanged()
 	{
-		if (Configuration.Config.DataSubmission.SendDataToKanlog)
+		if (Configuration.Config.DataSubmission.SendDataToKanlog && ServerManager.CurrentServer is not null)
 		{
 			SubscribeToApis();
 		}

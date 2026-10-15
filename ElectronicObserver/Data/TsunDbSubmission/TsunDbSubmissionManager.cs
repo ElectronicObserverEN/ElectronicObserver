@@ -1,12 +1,14 @@
 ﻿using System;
 using DynaJson;
 using ElectronicObserver.Data.TsunDbSubmission.Battle;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.TsunDbSubmission;
 
 public class TsunDbSubmissionManager : ResponseWrapper
 {
+	private ServerManager ServerManager { get; }
 	private TsunDbRouting RoutingSubmission { get; set; } = new();
 
 	/// <summary>
@@ -14,8 +16,10 @@ public class TsunDbSubmissionManager : ResponseWrapper
 	/// </summary>
 	public static int CurrentMapAmountOfNodes { get; private set; }
 
-	public TsunDbSubmissionManager()
+	public TsunDbSubmissionManager(ServerManager serverManager)
 	{
+		ServerManager = serverManager;
+
 		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}
 
@@ -34,6 +38,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 	public override void LoadFromResponse(string apiname, dynamic data)
 	{
 		if (!Configuration.Config.DataSubmission.SubmitDataToTsunDb) return;
+		if (ServerManager.CurrentServer is null) return;
 
 		KCDatabase db = KCDatabase.Instance;
 
