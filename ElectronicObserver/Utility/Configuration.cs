@@ -1874,6 +1874,9 @@ public sealed class Configuration
 		[DataMember]
 		public ConfigNotifierBase NotifierTrainingPlan { get; private set; }
 
+		[DataMember]
+		public ConfigNotifierBase NotifierQuestCompletion { get; private set; }
+
 		/// <summary>
 		/// SyncBGMPlayer の設定を扱います。
 		/// </summary>
@@ -2033,6 +2036,7 @@ public sealed class Configuration
 			NotifierBattleEnd = new ConfigNotifierBattleEnd();
 			NotifierRemodelLevel = new ConfigNotifierBase();
 			NotifierTrainingPlan = new ConfigNotifierBase();
+			NotifierQuestCompletion = new ConfigNotifierBase();
 
 			BGMPlayer = new ConfigBGMPlayer();
 			FleetImageGenerator = new ConfigFleetImageGenerator();

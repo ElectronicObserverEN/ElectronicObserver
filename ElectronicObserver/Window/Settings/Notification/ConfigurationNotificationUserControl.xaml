@@ -94,5 +94,12 @@
 			CommandParameter="{Binding Training}"
 			Content="{Binding Translation.Notification_Training}"
 			/>
+
+		<Button
+			Margin="2"
+			Command="{Binding OpenNotificationConfigDialogCommand}"
+			CommandParameter="{Binding QuestCompletion}"
+			Content="{Binding Translation.Notification_QuestCompletion}"
+			/>
 	</WrapPanel>
 </UserControl>

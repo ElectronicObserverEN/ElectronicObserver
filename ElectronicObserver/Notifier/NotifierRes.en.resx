@@ -228,4 +228,10 @@
   <data name="HomePortSupplyExpeditionFinished" xml:space="preserve">
     <value>Home port supply fleet {0} will return from expedition in {1}.</value>
   </data>
+  <data name="QuestCompletionTitle" xml:space="preserve">
+    <value>Quest completion</value>
+  </data>
+  <data name="QuestCompletionText" xml:space="preserve">
+    <value>Quest "{0}" is ready to complete.</value>
+  </data>
 </root>
