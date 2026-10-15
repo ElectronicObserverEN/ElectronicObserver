@@ -9,7 +9,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqKousyou.RemodelSlotlist;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.ElectronicObserverApi.Models;
-using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 
