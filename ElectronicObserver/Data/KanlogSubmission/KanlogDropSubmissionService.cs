@@ -72,8 +72,12 @@ public class KanlogDropSubmissionService(
 					_ => 0,
 				},
 				Rank = MapRank(battle.Result.Rank),
-				Es1 = battle.FirstBattle.Initial.EnemyMembers,
-				Es2 = battle.FirstBattle.Initial.EnemyMembersEscort,
+				Es1 = [.. battle.FirstBattle.Initial.EnemyMembers.Where(i => i > 0)],
+				Es2 = battle.FirstBattle.Initial.EnemyMembersEscort switch
+				{
+					null => null,
+					_ => [.. battle.FirstBattle.Initial.EnemyMembersEscort.Where(i => i > 0)]
+				},
 				Dt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"),
 				Srv = KCDatabase.Instance.ServerManager.CurrentServer?.Num.ToString() ?? "0",
 				Its = ExtractItems(battle)
