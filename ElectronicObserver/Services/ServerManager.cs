@@ -31,7 +31,13 @@ public class ServerManager
 		new() { Num = 20, Host = "w20h.kancolle-server.com", Jp = "柱島泊地", Name = "Hashirajima Anchorage" },
 	];
 
-	public KCServer? CurrentServer { get; private set; }
+	public KCServer? CurrentServer { get; private set; } =
+#if DEBUG
+		// need this to test data submission in debug mode
+		new() { Num = 0, Host = "", Jp = "DEBUG", Name = "DEBUG" };
+#else
+		null;
+#endif
 
 	public event EventHandler? CurrentServerChanged;
 
