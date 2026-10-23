@@ -582,7 +582,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	// todo: rename to SaveColumnVisibility
 	private void MenuMain_ColumnFilter_Click()
 	{
-		Configuration.Config.FormQuest.ColumnFilter.List = Columns.Select(c => c.Visible).ToList();
+		Configuration.Config.FormQuest.ColumnFilter = Columns.Select(c => c.Visible).ToList();
 	}
 
 	private void QuestView_ColumnWidthChanged()
