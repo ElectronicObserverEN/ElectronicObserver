@@ -11,7 +11,7 @@ public sealed partial class ShipTypeConditionViewModel : ConditionViewModel
 	public List<ShipTypes> ShipTypes { get; } =
 		[.. Enum.GetValues<ShipTypes>().Where(t => t is not (Core.Types.ShipTypes.Unknown or Core.Types.ShipTypes.All))];
 
-	[ObservableProperty] public partial ShipTypes ShipType { get; set; } = Core.Types.ShipTypes.Destroyer;
+	[ObservableProperty] public partial ShipTypes ShipType { get; set; }
 
 	public override string Display => ConditionDisplayerService.ToDisplay(this);
 
