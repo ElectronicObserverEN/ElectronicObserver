@@ -54,7 +54,7 @@ public static class TrackerViewModelExtensions
 		_ => string.Join("\n", tracker.TaskProgressDisplays()) switch
 		{
 			null or "" => "100%",
-			string s => s,
+			{ } s => s,
 		},
 	};
 }
