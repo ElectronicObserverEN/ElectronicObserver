@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.Core.Types;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+﻿using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
+using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Data.Battle;
 

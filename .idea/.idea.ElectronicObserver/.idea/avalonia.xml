@@ -3,6 +3,9 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="ElectronicObserver.Avalonia.Samples/App.axaml" value="ElectronicObserver.Avalonia.Samples/ElectronicObserver.Avalonia.Samples.csproj" />
+        <entry key="ElectronicObserver.Avalonia.Samples/MainView.axaml" value="ElectronicObserver.Avalonia.Samples/ElectronicObserver.Avalonia.Samples.csproj" />
+        <entry key="ElectronicObserver.Avalonia.Samples/MainWindow.axaml" value="ElectronicObserver.Avalonia.Samples/ElectronicObserver.Avalonia.Samples.csproj" />
         <entry key="ElectronicObserver.Avalonia/App.xaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Controls/EquipmentFilter/EquipmentFilterView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Controls/EquipmentIcon.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
@@ -12,6 +15,31 @@
         <entry key="ElectronicObserver.Avalonia/Dialogs/ShipSelector/ShipSelectorView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Dialogs/ShipSelector/ShipSelectorWindow.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/Icons.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/Count/CountConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/FleetConditionSetView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/Group/GroupConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/Level/LevelConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/Nationality/ShipNationalityConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/Not/NotConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/Position/PositionConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/Reference/ReferenceDefinitionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/ShipClass/ShipClassConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/ShipCount/ShipCountConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/ShipId/ShipIdConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/ShipLevel/LevelConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/ShipPosition/ShipPositionConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Conditions/ShipType/ShipTypeConditionView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/QuestTrackerManager2View.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/BattleNodeId/BattleNodeIdTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/BossKill/BossKillTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/EquipmentCardTypeScrap/EquipmentCardTypeScrapTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/EquipmentCategoryScrap/EquipmentCategoryScrapTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/EquipmentIconTypeScrap/EquipmentIconTypeScrapTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/EquipmentScrap/EquipmentScrapTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/Exercise/ExerciseTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/Expedition/ExpeditionTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/MapFirstClear/MapFirstClearTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
+        <entry key="ElectronicObserver.Avalonia/QuestTrackerManager2/Tasks/NodeReach/NodeReachTaskView.axaml" value="ElectronicObserver/ElectronicObserver.csproj" />
         <entry key="ElectronicObserver.Avalonia/ShipGroup/ShipGroupView.xaml" value="ElectronicObserver/ElectronicObserver.csproj" />
       </map>
     </option>

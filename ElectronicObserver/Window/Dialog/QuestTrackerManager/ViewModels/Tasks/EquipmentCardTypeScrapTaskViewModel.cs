@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
@@ -23,7 +24,7 @@ public class EquipmentCardTypeScrapTaskViewModel : ObservableObject, IQuestTaskV
 	};
 	public string ClearCondition => GetClearCondition();
 
-	private string GetClearCondition() => $"{QuestTracking.Illust}[{Model.CardType.TranslatedName()}]"
+	private string GetClearCondition() => $"{QuestTracking.Illust}[{Avalonia.QuestTrackerManager2.Converters.ToDisplay(Model.CardType)}]"
 		+ QuestTracking.Discard + Model.Count + QuestTracking.NumberOfPieces;
 
 	public EquipmentCardTypeScrapTaskViewModel(EquipmentCardTypeScrapTaskModel model)

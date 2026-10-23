@@ -20,6 +20,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
+using ElectronicObserver.Avalonia.QuestTrackerManager2;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Notifier;
@@ -184,6 +185,13 @@ public partial class FormMainViewModel : ObservableObject
 #endif
 
 	public bool DatabaseBrowserVisible =>
+#if DEBUG
+		true;
+#else
+		false;
+#endif
+
+	public bool OldQuestTrackerManagerVisible =>
 #if DEBUG
 		true;
 #else
@@ -841,7 +849,20 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new QuestTrackerManagerWindow().Show(Window);
+		new QuestTrackerManagerWindow(KCDatabase.Instance.QuestTrackerManager).Show(Window);
+	}
+
+	[RelayCommand]
+	private void OpenQuestTrackerManager2()
+	{
+		if (!KCDatabase.Instance.Quest.IsLoaded)
+		{
+			MessageBox.Show(MainResources.QuestDataNotLoaded, MainResources.ErrorCaption,
+				MessageBoxButton.OK, MessageBoxImage.Error);
+			return;
+		}
+
+		new QuestTrackerManager2Window(KCDatabase.Instance.QuestTrackerManager2).Show(Window);
 	}
 
 	[RelayCommand]

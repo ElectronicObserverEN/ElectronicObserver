@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Quests;
 using ElectronicObserver.Core.Types.Serialization.Quests;
@@ -9,7 +10,7 @@ namespace ElectronicObserver.Data;
 /// <summary>
 /// 任務のデータを保持します。
 /// </summary>
-public class QuestData : ResponseWrapper, IIdentifiable
+public class QuestData : ResponseWrapper, IIdentifiable, IQuestData
 {
 
 	/// <summary>

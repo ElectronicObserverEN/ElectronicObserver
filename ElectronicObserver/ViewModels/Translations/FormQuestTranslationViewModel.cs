@@ -8,6 +8,7 @@ public class FormQuestTranslationViewModel : TranslationBaseViewModel
 	public string QuestView_Category => GeneralRes.Category.Replace("_", "__").Replace("&", "_");
 	public string QuestView_Name => GeneralRes.QuestName.Replace("_", "__").Replace("&", "_");
 	public string QuestView_Progress => GeneralRes.Progress.Replace("_", "__").Replace("&", "_");
+	public string QuestView_FleetCheck => GeneralRes.FleetCheck;
 	public string QuestView_ProgressResetsDaily => GeneralRes.ProgressResetsDaily;
 	public string QuestView_EndsOn => GeneralRes.QuestEndsOn;
 
@@ -25,6 +26,7 @@ public class FormQuestTranslationViewModel : TranslationBaseViewModel
 	public string MenuMain_ColumnFilter_Category => GeneralRes.CategoryFilter.Replace("_", "__").Replace("&", "_");
 	public string MenuMain_ColumnFilter_Name => GeneralRes.NameFilter.Replace("_", "__").Replace("&", "_");
 	public string MenuMain_ColumnFilter_Progress => GeneralRes.ProgressFilter.Replace("_", "__").Replace("&", "_");
+	public string MenuMain_ColumnFilter_FleetCheck => GeneralRes.FleetCheckFilter;
 
 	public string LookUpQuestOnDuckDuckGo => QuestResources.LookUpQuestOnDuckDuckGo.Replace("_", "__").Replace("&", "_");
 	public string LookUpQuestOnStartpage => QuestResources.LookUpQuestOnStartpage;

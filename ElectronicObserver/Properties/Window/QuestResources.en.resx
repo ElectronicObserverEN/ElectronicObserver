@@ -190,6 +190,15 @@ Are you sure?</value>
   <data name="ModifyProgress" xml:space="preserve">
     <value>_Modify progress</value>
   </data>
+  <data name="FleetConditionNotConfigured" xml:space="preserve">
+    <value>No fleet condition is configured</value>
+  </data>
+  <data name="FleetMatchesCondition" xml:space="preserve">
+    <value>{0}: Matches the condition</value>
+  </data>
+  <data name="FleetDoesNotMatchCondition" xml:space="preserve">
+    <value>{0}: Does not match the condition</value>
+  </data>
   <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
     <value>Search _Startpage for "{0}"</value>
   </data>

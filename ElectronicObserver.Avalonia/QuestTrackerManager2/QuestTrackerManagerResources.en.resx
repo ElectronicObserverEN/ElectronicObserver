@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConditionType_Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="ConditionType_Ship" xml:space="preserve">
+    <value>Ship</value>
+  </data>
+  <data name="ConditionType_ShipType" xml:space="preserve">
+    <value>Ship type</value>
+  </data>
+  <data name="Operator_And" xml:space="preserve">
+    <value>And</value>
+  </data>
+  <data name="Operator_Or" xml:space="preserve">
+    <value>Or</value>
+  </data>
+  <data name="BattleRank_Any" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="RemodelComparisonType_Any" xml:space="preserve">
+    <value>Any remodel</value>
+  </data>
+  <data name="RemodelComparisonType_AtLeast" xml:space="preserve">
+    <value>Minimum remodel</value>
+  </data>
+  <data name="RemodelComparisonType_Exact" xml:space="preserve">
+    <value>Exact remodel</value>
+  </data>
+  <data name="QuestTaskType_BossKill" xml:space="preserve">
+    <value>Boss kill</value>
+  </data>
+  <data name="QuestTaskType_Expedition" xml:space="preserve">
+    <value>Expedition</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>Flagship</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Show details</value>
+  </data>
+  <data name="MustBeFlagship" xml:space="preserve">
+    <value>Must be flagship</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Load from clipboard</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Quest tracker manager</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="TrackerOverwrite" xml:space="preserve">
+    <value>Existing quest tracker detected. The duplicated quest tracker will overwrite your current one and your progress for this quest tracker will be lost. The affected quest trackers are: 
+
+{0}
+
+Do you want to overwrite these quest trackers?</value>
+  </data>
+  <data name="UnknownQuest" xml:space="preserve">
+    <value>Unknown quest</value>
+  </data>
+  <data name="CopyTrackersToClipboard" xml:space="preserve">
+    <value>Copy trackers to clipboard</value>
+  </data>
+  <data name="QuestTaskType_BattleNodeId" xml:space="preserve">
+    <value>Battle node ID</value>
+  </data>
+  <data name="QuestTaskType_7_2_1" xml:space="preserve">
+    <value>7-2-1</value>
+  </data>
+  <data name="QuestTaskType_7_2_2" xml:space="preserve">
+    <value>7-2-2</value>
+  </data>
+  <data name="QuestTaskType_7_3_1" xml:space="preserve">
+    <value>7-3-1</value>
+  </data>
+  <data name="QuestTaskType_7_3_2" xml:space="preserve">
+    <value>7-3-2</value>
+  </data>
+  <data name="QuestTaskType_EquipmentScrap" xml:space="preserve">
+    <value>Equipment scrap</value>
+  </data>
+  <data name="QuestTaskType_EquipmentCategoryScrap" xml:space="preserve">
+    <value>Equipment category scrap</value>
+  </data>
+  <data name="QuestTaskType_EquipmentCardTypeScrap" xml:space="preserve">
+    <value>Equipment card type scrap</value>
+  </data>
+  <data name="QuestTaskType_EquipmentIconTypeScrap" xml:space="preserve">
+    <value>Equipment icon type scrap</value>
+  </data>
+  <data name="ConditionType_PartialShip" xml:space="preserve">
+    <value>Ship (partial)</value>
+  </data>
+  <data name="QuestTaskType_NodeReach" xml:space="preserve">
+    <value>Node reach</value>
+  </data>
+  <data name="ConditionType_AllowedShipTypes" xml:space="preserve">
+    <value>Allowed ship types</value>
+  </data>
+  <data name="ConditionType_ShipPosition" xml:space="preserve">
+    <value>Ship position</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="QuestTaskType_MapFirstClear" xml:space="preserve">
+    <value>Map first clear</value>
+  </data>
+  <data name="QuestTaskType_Exercise" xml:space="preserve">
+    <value>PvP</value>
+  </data>
+  <data name="QuestTaskType_World1Map6ResourceNode" xml:space="preserve">
+    <value>1-6N</value>
+  </data>
+  <data name="ConditionType_ShipNationality" xml:space="preserve">
+    <value>Ship nationality</value>
+  </data>
+  <data name="Kanmusu" xml:space="preserve">
+    <value> ship</value>
+  </data>
+  <data name="UnknownTask" xml:space="preserve">
+    <value>Unknown task, make sure you have the latest version of Electronic Observer.</value>
+  </data>
+  <data name="UnknownCondition" xml:space="preserve">
+    <value>Unknown condition, make sure you have the latest version of Electronic Observer.</value>
+  </data>
+  <data name="ConditionType_Not" xml:space="preserve">
+    <value>Not</value>
+  </data>
+  <data name="ConditionType_Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="ConditionType_ShipClass" xml:space="preserve">
+    <value>Ship class</value>
+  </data>
+  <data name="ConditionType_ShipCount" xml:space="preserve">
+    <value>Ship count</value>
+  </data>
+  <data name="ConditionType_ShipLevel" xml:space="preserve">
+    <value>Ship level</value>
+  </data>
+  <data name="AddCondition" xml:space="preserve">
+    <value>Add condition</value>
+  </data>
+  <data name="RemoveCondition" xml:space="preserve">
+    <value>Remove condition</value>
+  </data>
+  <data name="AddReference" xml:space="preserve">
+    <value>Add reference</value>
+  </data>
+  <data name="RemoveReference" xml:space="preserve">
+    <value>Remove reference</value>
+  </data>
+  <data name="AddTask" xml:space="preserve">
+    <value>Add task</value>
+  </data>
+  <data name="RemoveTask" xml:space="preserve">
+    <value>Remove task</value>
+  </data>
+</root>

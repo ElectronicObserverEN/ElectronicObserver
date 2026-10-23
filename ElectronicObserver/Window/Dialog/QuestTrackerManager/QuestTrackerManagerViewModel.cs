@@ -31,8 +31,6 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 
 		Quests = KCDatabase.Instance.Quest.Quests.Values
 			.Select(q => new QuestModel(q.ID));
-
-		SubscribeToApis();
 	}
 
 	private static List<TrackerModel> DeserializeTrackers(string json)
@@ -192,7 +190,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		SaveProgress();
 	}
 
-	public void Load()
+	public override void Load()
 	{
 		LoadExistingTrackers();
 		LoadProgress();

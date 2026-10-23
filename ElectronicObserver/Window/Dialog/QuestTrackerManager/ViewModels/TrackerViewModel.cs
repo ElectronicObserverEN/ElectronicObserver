@@ -5,10 +5,12 @@ using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Avalonia.QuestTrackerManager2;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Core.Types;
+using ElectronicObserver.Core.Types.Quests;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
@@ -16,7 +18,7 @@ using MessagePack;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 
-public partial class TrackerViewModel : ObservableObject
+public partial class TrackerViewModel : ObservableObject, ITrackerViewModel
 {
 	public List<QuestTaskType> TaskTypes { get; }
 	public QuestTaskType TaskTypeType { get; set; } = QuestTaskType.BossKill;
@@ -28,45 +30,23 @@ public partial class TrackerViewModel : ObservableObject
 
 	public bool ShowDetails { get; set; }
 
-	public TrackerModel Model { get; }
+	public Models.TrackerModel Model { get; }
 
-	public double Progress => Model.Tasks.Count(t => t is not null) switch
-	{
-		> 0 => Model.Tasks
-			.OfType<IQuestTask>()
-			.Average(t => (double)t.Progress / t.Count),
-		_ => 0,
-	};
+	public int TaskCount => Tasks.Count;
+
 	public string Display => string.Join(" \n", Tasks.Select(t => t?.Display));
 
-	public string ProgressDisplay => Tasks.Count switch
-	{
-		0 => "-",
-		_ => string.Join(" \n", TaskProgressDisplays) switch
-		{
-			null or "" => "100%",
-			string s => s,
-		},
-	};
-
-	private List<string?> TaskProgressDisplays => Tasks
-		.Select(t => t switch
-		{
-			null => QuestTrackerManagerResources.UnknownTask,
-			_ => t.Progress,
-		})
-		.Where(p => !string.IsNullOrEmpty(p))
-		.ToList();
-
 	public string ClearCondition => string.Join(" \n", Tasks.Select(t => t?.ClearCondition));
+	public string ConditionDisplay => GroupConditions.Display;
 
 	public int QuestId => Model.Quest.Id;
 	public string Title => Model.Quest.Name;
 	public string? Description => Model.Quest.Description;
 	public QuestCategory QuestCategory => Model.Quest.Category;
 	public int State => Model.Quest.State;
+	public QuestResetType QuestResetType => Model.Quest.ResetType;
 
-	public TrackerViewModel(TrackerModel model, ShipSelectorFactory shipSelectorFactory)
+	public TrackerViewModel(Models.TrackerModel model, ShipSelectorFactory shipSelectorFactory)
 	{
 		Model = model;
 		Tasks = MakeTasks();
@@ -207,7 +187,7 @@ public partial class TrackerViewModel : ObservableObject
 
 	public string SerializeTracker()
 	{
-		List<TrackerModel> trackers = [Model];
+		List<Models.TrackerModel> trackers = [Model];
 		byte[] data = MessagePackSerializer.Serialize(trackers.SortTrackers());
 		return MessagePackSerializer.ConvertToJson(data);
 	}
@@ -223,6 +203,8 @@ public partial class TrackerViewModel : ObservableObject
 		"SS" => BattleRank.SS,
 		_ => BattleRank.Any,
 	};
+
+	public bool ConditionMet(IFleetData fleet) => GroupConditions.ConditionMet(fleet);
 
 	public void Increment(IFleetData fleet, string resultRank, int compassMapAreaId, int compassMapInfoId, int nodeId)
 	{
@@ -313,6 +295,16 @@ public partial class TrackerViewModel : ObservableObject
 		foreach (ExerciseTaskViewModel task in Tasks.OfType<ExerciseTaskViewModel>())
 		{
 			task.Increment(FromString(winRank));
+		}
+	}
+
+	public void ResetTaskProgress()
+	{
+		foreach (IQuestTask? task in Model.Tasks)
+		{
+			if (task is null) continue;
+
+			task.Progress = 0;
 		}
 	}
 
