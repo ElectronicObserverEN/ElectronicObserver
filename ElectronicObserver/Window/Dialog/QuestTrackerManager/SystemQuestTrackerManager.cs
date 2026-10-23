@@ -11,7 +11,7 @@ using MessagePack;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
-public class SystemQuestTrackerManager : QuestTrackerManagerBase
+public sealed class SystemQuestTrackerManager : QuestTrackerManagerBase
 {
 	private bool IsInitialized { get; }
 
@@ -92,7 +92,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		}
 		catch
 		{
-
+			// safe to ignore?
 		}
 	}
 
@@ -107,6 +107,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		}
 		catch
 		{
+			// safe to ignore?
 		}
 	}
 
@@ -128,7 +129,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		}
 		catch
 		{
-
+			// safe to ignore?
 		}
 	}
 }
