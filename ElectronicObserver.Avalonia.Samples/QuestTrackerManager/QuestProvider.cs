@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ElectronicObserver.Avalonia.QuestTrackerManager2;
 using ElectronicObserver.Core;
 
@@ -8,7 +7,7 @@ namespace ElectronicObserver.Avalonia.Samples.QuestTrackerManager;
 public sealed class QuestProvider : IQuestProvider
 {
 	/// <inheritdoc />
-	public IQuestData? TryGetQuest(int questId)
+	public IQuestData TryGetQuest(int questId)
 	{
 		return new QuestDataMock { QuestID = questId };
 	}
@@ -24,7 +23,4 @@ public sealed class QuestProvider : IQuestProvider
 	public void NotifyQuestUpdated()
 	{
 	}
-
-	/// <inheritdoc />
-	public event Action? QuestUpdated;
 }
