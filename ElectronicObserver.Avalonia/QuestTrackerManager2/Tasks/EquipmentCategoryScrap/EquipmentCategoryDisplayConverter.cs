@@ -12,7 +12,7 @@ public class EquipmentCategoryDisplayConverter : IValueConverter
 	public string Convert(EquipmentTypes category) => KcDatabase switch
 	{
 		{ } kcDatabase => Converters.ToDisplay(category, kcDatabase),
-		null => "???",
+		_ => "???",
 	};
 
 	/// <inheritdoc />
