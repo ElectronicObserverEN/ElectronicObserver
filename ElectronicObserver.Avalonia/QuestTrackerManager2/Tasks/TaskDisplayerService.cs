@@ -103,7 +103,7 @@ public sealed class TaskDisplayerService(IKCDatabase kcDatabase)
 		BattleRank.B => "",
 		BattleRank.A or BattleRank.S or BattleRank.SS => $"{rank}{QuestTracking.ClearConditionRankVictories}",
 
-		_ or BattleRank.E => QuestTracking.ClearConditionBattle,
+		_ => QuestTracking.ClearConditionBattle,
 	};
 
 	private static string NodesDisplay(string? name, IEnumerable<NodeIdViewModel> nodeIds)
