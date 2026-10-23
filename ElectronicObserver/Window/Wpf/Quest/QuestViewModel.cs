@@ -231,14 +231,14 @@ public partial class QuestViewModel : AnchorableViewModel
 
 		ShowQuestCode = c.FormQuest.ShowQuestCode;
 
-		List<bool> columnFilters = (List<bool>)c.FormQuest.ColumnFilter;
+		List<bool> columnFilters = (List<bool>?)c.FormQuest.ColumnFilter ?? [];
 
 		if (c.FormQuest.ColumnFilter == null || columnFilters.Count < Columns.Count)
 		{
 			c.FormQuest.ColumnFilter = columnFilters.Concat(Enumerable.Repeat(true, Columns.Count - columnFilters.Count)).ToList();
 		}
 
-		List<int> columnWidths = (List<int>)c.FormQuest.ColumnWidth;
+		List<int> columnWidths = (List<int>?)c.FormQuest.ColumnWidth ?? [];
 
 		if (c.FormQuest.ColumnWidth == null || columnWidths.Count < Columns.Count)
 		{
@@ -254,7 +254,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 		List<bool> list = c.FormQuest.ColumnFilter;
 		List<int> widths = c.FormQuest.ColumnWidth;
-		List<ListSortDirection?> sorts = [.. c.FormQuest.ColumnSort.List.Select(s => s.ToSortDirection())];
+		List<ListSortDirection?> sorts = [.. c.FormQuest.ColumnSort.List!.Select(s => s.ToSortDirection())];
 
 		foreach ((ColumnViewModel column, int i) in Columns.Select((column, i) => (column, i)))
 		{
@@ -816,7 +816,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 		KCDatabase.Instance.QuestTrackerManager.ManageTracker(SelectedQuest.QuestId);
 
-		new QuestTrackerManagerWindow(KCDatabase.Instance.QuestTrackerManager).Show(App.Current.MainWindow);
+		new QuestTrackerManagerWindow(KCDatabase.Instance.QuestTrackerManager).Show(App.Current!.MainWindow!);
 	}
 
 	[RelayCommand]
@@ -830,6 +830,6 @@ public partial class QuestViewModel : AnchorableViewModel
 
 		viewModel.ManageTracker(SelectedQuest.QuestId, bundledTracker?.Model, bundledTracker?.Progress);
 
-		new QuestTrackerManager2Window(viewModel).Show(App.Current.MainWindow);
+		new QuestTrackerManager2Window(viewModel).Show(App.Current!.MainWindow!);
 	}
 }

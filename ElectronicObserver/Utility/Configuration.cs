@@ -1191,12 +1191,12 @@ public sealed class Configuration
 			/// <summary>
 			/// 列の可視性
 			/// </summary>
-			public SerializableList<bool> ColumnFilter { get; set; }
+			public SerializableList<bool>? ColumnFilter { get; set; }
 
 			/// <summary>
 			/// 列の幅
 			/// </summary>
-			public SerializableList<int> ColumnWidth { get; set; }
+			public SerializableList<int>? ColumnWidth { get; set; }
 
 			public SerializableList<int>? ColumnSort { get; set; }
 
