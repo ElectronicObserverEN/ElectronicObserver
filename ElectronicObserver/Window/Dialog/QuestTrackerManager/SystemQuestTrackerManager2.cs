@@ -109,6 +109,7 @@ public sealed class SystemQuestTrackerManager2 : IQuestTrackerManager
 		}
 		catch
 		{
+			// safe to ignore?
 		}
 	}
 
@@ -125,6 +126,7 @@ public sealed class SystemQuestTrackerManager2 : IQuestTrackerManager
 		}
 		catch
 		{
+			// safe to ignore?
 		}
 	}
 
