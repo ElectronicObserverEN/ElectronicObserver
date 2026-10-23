@@ -141,6 +141,7 @@ public sealed partial class QuestTrackerManager2ViewModel : ObservableObject, IQ
 		}
 		catch
 		{
+			// safe to ignore?
 		}
 	}
 
@@ -161,6 +162,7 @@ public sealed partial class QuestTrackerManager2ViewModel : ObservableObject, IQ
 		}
 		catch
 		{
+			// safe to ignore?
 		}
 	}
 
@@ -179,6 +181,7 @@ public sealed partial class QuestTrackerManager2ViewModel : ObservableObject, IQ
 		}
 		catch
 		{
+			// safe to ignore?
 		}
 	}
 
