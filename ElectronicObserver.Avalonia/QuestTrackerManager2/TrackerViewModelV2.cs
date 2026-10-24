@@ -13,6 +13,7 @@ using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.Exercise;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.Expedition;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.MapFirstClear;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.NodeReach;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Quests;
 
@@ -23,6 +24,7 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 	private IQuestProvider QuestProvider { get; }
 	private TaskFactory TaskFactory { get; }
 	private FleetEvaluationService FleetEvaluationService { get; }
+	private IClipboardService ClipboardService { get; }
 	public TrackerModelV2 Model { get; }
 
 	public ObservableCollection<TaskViewModel?> Tasks { get; }
@@ -56,11 +58,13 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 		ConditionDisplayerService conditionDisplayerService,
 		TaskFactory taskViewModelFactory,
 		FleetEvaluationService fleetEvaluationService,
+		IClipboardService clipboardService,
 		TrackerModelV2 model)
 	{
 		QuestProvider = questProvider;
 		TaskFactory = taskViewModelFactory;
 		FleetEvaluationService = fleetEvaluationService;
+		ClipboardService = clipboardService;
 		Model = model;
 		Tasks = [];
 		Condition = new(conditionFactory, conditionDisplayerService, model.Conditions);
@@ -111,6 +115,13 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 		Tasks.Remove(task);
 		Model.Tasks.Remove(task.Model);
 		QuestProvider.NotifyQuestUpdated();
+	}
+
+	[RelayCommand]
+	private void CopyTracker()
+	{
+		string json = TrackerSerializer.SerializeTrackers([Model]);
+		ClipboardService.SetTextAndLogErrors(json);
 	}
 
 	/// <inheritdoc />

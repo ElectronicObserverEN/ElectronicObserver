@@ -88,7 +88,14 @@
 
 	<UserControl.DataTemplates>
 		<DataTemplate DataType="questTrackerManager2:TrackerViewModelV2">
-			<Expander Header="{Binding QuestDisplay}" IsExpanded="{Binding IsExpanded}">
+			<Expander Margin="0 2" IsExpanded="{Binding IsExpanded}">
+				<Expander.Header>
+					<StackPanel Orientation="Horizontal">
+						<Button Command="{Binding CopyTrackerCommand}" Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.Copy}" />
+						<TextBlock Text="{Binding QuestDisplay}" />
+					</StackPanel>
+				</Expander.Header>
+
 				<StackPanel>
 					<TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
 					<TextBlock Text="{Binding ClearCondition}" TextWrapping="Wrap" />
@@ -254,8 +261,15 @@
 	</UserControl.DataTemplates>
 
 	<Border Margin="4">
-		<Grid RowDefinitions="Auto,*">
-			<StackPanel Grid.Row="0">
+		<Grid RowDefinitions="Auto,Auto,*">
+			<Menu Grid.Row="0">
+				<MenuItem Header="{x:Static questTrackerManager2:QuestTrackerManagerResources.File}">
+					<MenuItem Command="{Binding CopyTrackersToClipboardCommand}" Header="{x:Static questTrackerManager2:QuestTrackerManagerResources.CopyTrackersToClipboard}" />
+					<MenuItem Command="{Binding LoadTrackerFromClipboardCommand}" Header="{x:Static questTrackerManager2:QuestTrackerManagerResources.Load}" />
+				</MenuItem>
+			</Menu>
+
+			<StackPanel Grid.Row="1">
 				<StackPanel Orientation="Horizontal">
 					<ComboBox ItemsSource="{Binding Quests}" SelectedItem="{Binding SelectedQuest}">
 						<ComboBox.ItemTemplate>
@@ -277,7 +291,7 @@
 				<TextBlock Text="{Binding SelectedQuest.Description}" TextWrapping="Wrap" />
 			</StackPanel>
 
-			<ScrollViewer Grid.Row="1">
+			<ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto">
 				<ItemsControl ItemsSource="{Binding Trackers}">
 					<ItemsControl.ItemTemplate>
 						<DataTemplate>

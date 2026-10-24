@@ -39,6 +39,7 @@ namespace ElectronicObserver.Avalonia.Samples;
 [Singleton<FleetEvaluationService>]
 [Singleton<TaskFactory>]
 [Singleton<IQuestProvider, QuestProvider>]
+[Singleton(typeof(IClipboardService), Instance = nameof(ClipboardService))]
 [Singleton<QuestTrackerManager2ViewModel>]
 [Singleton<ISoftwareUpdaterService, SoftwareUpdaterService>]
 [Singleton<IEoLogger, EoLogger>]
@@ -47,6 +48,8 @@ namespace ElectronicObserver.Avalonia.Samples;
 [Singleton<IKCDatabase>(Factory = nameof(KcDatabaseFactory))]
 public sealed partial class ServiceProvider
 {
+	public IClipboardService ClipboardService { get; set; } = null!;
+
 	public IKCDatabase KcDatabaseFactory()
 	{
 		using TestDataContext testDb = new();

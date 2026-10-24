@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions;
 using ElectronicObserver.Core;
+using ElectronicObserver.Core.Services;
 
 namespace ElectronicObserver.Avalonia.QuestTrackerManager2;
 
@@ -14,6 +14,7 @@ public sealed partial class QuestTrackerManager2ViewModel : ObservableObject, IQ
 	private ConditionDisplayerService ConditionDisplayerService { get; }
 	private TaskFactory TaskViewModelFactory { get; }
 	private FleetEvaluationService FleetEvaluationService { get; }
+	private IClipboardService ClipboardService { get; }
 
 	public ObservableCollection<TrackerViewModelV2> Trackers { get; } = [];
 
@@ -36,19 +37,21 @@ public sealed partial class QuestTrackerManager2ViewModel : ObservableObject, IQ
 		ConditionFactory conditionFactory,
 		ConditionDisplayerService conditionDisplayerService,
 		TaskFactory taskViewModelFactory,
-		FleetEvaluationService fleetEvaluationService)
+		FleetEvaluationService fleetEvaluationService,
+		IClipboardService clipboardService)
 	{
 		QuestProvider = questProvider;
 		ConditionFactory = conditionFactory;
 		ConditionDisplayerService = conditionDisplayerService;
 		TaskViewModelFactory = taskViewModelFactory;
 		FleetEvaluationService = fleetEvaluationService;
+		ClipboardService = clipboardService;
 
 		Load();
 	}
 
 	private TrackerViewModelV2 ToViewModel(TrackerModelV2 model)
-		=> new(QuestProvider, ConditionFactory, ConditionDisplayerService, TaskViewModelFactory, FleetEvaluationService, model);
+		=> new(QuestProvider, ConditionFactory, ConditionDisplayerService, TaskViewModelFactory, FleetEvaluationService, ClipboardService, model);
 
 	[RelayCommand]
 	private void AddTracker()
@@ -58,6 +61,61 @@ public sealed partial class QuestTrackerManager2ViewModel : ObservableObject, IQ
 
 		Trackers.Add(ToViewModel(new TrackerModelV2(quest.QuestID)));
 		QuestProvider.NotifyQuestUpdated();
+	}
+
+	[RelayCommand]
+	private void CopyTrackersToClipboard()
+	{
+		string json = TrackerSerializer.SerializeTrackers(Trackers.Select(t => t.Model));
+		ClipboardService.SetTextAndLogErrors(json);
+	}
+
+	[RelayCommand]
+	private void LoadTrackerFromClipboard()
+	{
+		try
+		{
+			string? json = ClipboardService.GetTextAndLogErrors();
+
+			if (json is null) return;
+
+			List<TrackerModelV2> trackers = TrackerSerializer.DeserializeTrackers(json);
+			MergeTrackers(trackers);
+		}
+		catch
+		{
+			// ignored
+		}
+	}
+
+	private void MergeTrackers(List<TrackerModelV2> trackers)
+	{
+		IEnumerable<int> existingQuestIds = Trackers.Select(t => t.QuestId);
+		List<TrackerModelV2> clashingTrackers = trackers.Where(t => existingQuestIds.Contains(t.QuestId)).ToList();
+
+		foreach (TrackerModelV2 tracker in trackers.Where(t => !existingQuestIds.Contains(t.QuestId)))
+		{
+			Trackers.Add(ToViewModel(tracker));
+		}
+
+		if (clashingTrackers.Any())
+		{
+			string warning = string.Format(QuestTrackerManagerResources.TrackerOverwrite, string.Join("\n", Trackers
+				.Where(t => clashingTrackers.Select(x => x.QuestId).Contains(t.QuestId))
+				.Select(t => t.Model.QuestId)));
+
+			// todo: implement a proper dialog service for this
+			// if (MessageBox.Show(warning, QuestTrackerManagerResources.Warning, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+			{
+				foreach (TrackerModelV2 tracker in clashingTrackers)
+				{
+					Trackers.Remove(Trackers.First(t => t.QuestId == tracker.QuestId));
+					Trackers.Add(ToViewModel(tracker));
+				}
+			}
+		}
+
+		global::Avalonia.Application.Current?.Dispatcher?.Invoke(QuestProvider.NotifyQuestUpdated);
 	}
 
 	public void ManageTracker(int questId, TrackerModelV2? template = null, IEnumerable<int>? templateProgress = null)
@@ -98,91 +156,21 @@ public sealed partial class QuestTrackerManager2ViewModel : ObservableObject, IQ
 	{
 		Trackers.Clear();
 
-		foreach (TrackerModelV2 model in LoadTrackerModels())
+		foreach (TrackerModelV2 model in TrackerSerializer.LoadTrackerModels(TrackerPath))
 		{
 			Trackers.Add(ToViewModel(model));
 		}
 
-		LoadProgress();
-	}
-
-	private static List<TrackerModelV2> LoadTrackerModels()
-	{
-		if (!File.Exists(TrackerPath)) return [];
-
-		try
+		if (TrackerSerializer.LoadProgress(Trackers, ProgressPath) is DateTime lastUpdate)
 		{
-			string json = File.ReadAllText(TrackerPath);
-			return JsonSerializer.Deserialize<List<TrackerModelV2>>(json) ?? [];
-		}
-		catch
-		{
-			return [];
-		}
-	}
-
-	private void LoadProgress()
-	{
-		if (!File.Exists(ProgressPath)) return;
-
-		try
-		{
-			string json = File.ReadAllText(ProgressPath);
-			QuestProgressRecordV2? progress = JsonSerializer.Deserialize<QuestProgressRecordV2>(json);
-
-			if (progress is null) return;
-
-			foreach (QuestTrackerProgressRecordV2 trackerProgress in progress.TrackerProgresses)
-			{
-				Trackers.FirstOrDefault(t => t.QuestId == trackerProgress.QuestId)?.SetProgress(trackerProgress.Progresses);
-			}
-
-			LastQuestListUpdate = progress.LastQuestListUpdate;
-		}
-		catch
-		{
-			// safe to ignore?
+			LastQuestListUpdate = lastUpdate;
 		}
 	}
 
 	public void Save()
 	{
-		SaveTrackers();
-		SaveProgress();
-	}
-
-	private void SaveTrackers()
-	{
-		try
-		{
-			Directory.CreateDirectory("Record");
-
-			string json = JsonSerializer.Serialize(Trackers.Select(t => t.Model));
-			File.WriteAllText(TrackerPath, json);
-		}
-		catch
-		{
-			// safe to ignore?
-		}
-	}
-
-	private void SaveProgress()
-	{
-		try
-		{
-			Directory.CreateDirectory("Record");
-
-			QuestProgressRecordV2 progress = new(
-				LastQuestListUpdate,
-				Trackers.Select(t => new QuestTrackerProgressRecordV2(t.QuestId, t.GetProgress())));
-
-			string json = JsonSerializer.Serialize(progress);
-			File.WriteAllText(ProgressPath, json);
-		}
-		catch
-		{
-			// safe to ignore?
-		}
+		TrackerSerializer.SaveTrackers(Trackers, TrackerPath);
+		TrackerSerializer.SaveProgress(Trackers, ProgressPath, LastQuestListUpdate);
 	}
 
 	public ITrackerViewModel? GetTrackerById(int id) => Trackers.FirstOrDefault(t => t.QuestId == id);
