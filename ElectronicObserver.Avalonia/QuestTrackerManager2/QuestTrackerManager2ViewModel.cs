@@ -98,7 +98,7 @@ public sealed partial class QuestTrackerManager2ViewModel : ObservableObject, IQ
 			Trackers.Add(ToViewModel(tracker));
 		}
 
-		if (clashingTrackers.Any())
+		if (clashingTrackers.Count > 0)
 		{
 			string warning = string.Format(QuestTrackerManagerResources.TrackerOverwrite, string.Join("\n", Trackers
 				.Where(t => clashingTrackers.Select(x => x.QuestId).Contains(t.QuestId))
