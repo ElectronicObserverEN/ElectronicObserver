@@ -12,18 +12,17 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
+using ElectronicObserver.Avalonia.QuestTrackerManager2;
 using ElectronicObserver.Core.Services;
-using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Quests;
-using ElectronicObserver.Core.Types.Serialization.Quests;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Quest;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 
 namespace ElectronicObserver.Window.Wpf.Quest;
 
@@ -89,6 +88,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	public ColumnViewModel CategoryColumn { get; } = new();
 	public ColumnViewModel NameColumn { get; } = new();
 	public ColumnViewModel ProgressColumn { get; } = new();
+	public ColumnViewModel FleetCheckColumn { get; } = new();
 
 	private List<ColumnViewModel> Columns { get; }
 
@@ -102,37 +102,21 @@ public partial class QuestViewModel : AnchorableViewModel
 		Title = FormQuest.Title;
 		FormQuest.PropertyChanged += (_, _) => Title = FormQuest.Title;
 		KCDatabase.Instance.Quest.QuestUpdated += Updated;
+		SubscribeToApis();
 
-		Columns = new()
-		{
+		Columns =
+		[
 			StateColumn,
 			TypeColumn,
 			CategoryColumn,
 			NameColumn,
 			ProgressColumn,
-		};
+			FleetCheckColumn,
+		];
 
 		ConfigurationChanged();
 
 		SystemEvents.SystemShuttingDown += SystemEvents_SystemShuttingDown;
-
-		/*
-		ClearQuestView();
-
-		try
-		{
-			int sort = Utility.Configuration.Config.FormQuest.SortParameter;
-
-			QuestView.Sort(QuestView.Columns[sort >> 1], (sort & 1) == 0 ? ListSortDirection.Ascending : ListSortDirection.Descending);
-
-		}
-		catch (Exception)
-		{
-
-			QuestView.Sort(QuestView_Name, ListSortDirection.Ascending);
-		}
-
-		*/
 
 		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		IsLoaded = true;
@@ -168,6 +152,26 @@ public partial class QuestViewModel : AnchorableViewModel
 			Configuration.Config.FormQuest.RowMinSize = RowMinSize;
 		};
 	}
+
+	private void SubscribeToApis()
+	{
+		APIObserver o = APIObserver.Instance;
+
+		o.ApiReqHensei_Change.RequestReceived += FleetChanged;
+		o.ApiReqKousyou_DestroyShip.RequestReceived += FleetChanged;
+		o.ApiReqKaisou_Remodeling.RequestReceived += FleetChanged;
+
+		o.ApiPort_Port.ResponseReceived += FleetChanged;
+		o.ApiGetMember_Ship2.ResponseReceived += FleetChanged;
+		o.ApiGetMember_Ship3.ResponseReceived += FleetChanged;
+		o.ApiReqKousyou_DestroyShip.ResponseReceived += FleetChanged;
+		o.ApiReqHensei_PresetSelect.ResponseReceived += FleetChanged;
+		o.ApiReqKaisou_SlotExchangeIndex.ResponseReceived += FleetChanged;
+		o.ApiReqKaisou_SlotDeprive.ResponseReceived += FleetChanged;
+		o.ApiReqKaisou_Marriage.ResponseReceived += FleetChanged;
+	}
+
+	private void FleetChanged(string apiname, dynamic data) => Updated();
 
 	private void ColumnWidthChanged(object? sender, PropertyChangedEventArgs e)
 	{
@@ -227,57 +231,37 @@ public partial class QuestViewModel : AnchorableViewModel
 
 		ShowQuestCode = c.FormQuest.ShowQuestCode;
 
-		int columnCount = 5;
+		List<bool> columnFilters = (List<bool>?)c.FormQuest.ColumnFilter ?? [];
 
-		if (c.FormQuest.ColumnFilter == null || ((List<bool>)c.FormQuest.ColumnFilter).Count != columnCount)
+		if (c.FormQuest.ColumnFilter == null || columnFilters.Count < Columns.Count)
 		{
-			c.FormQuest.ColumnFilter = Enumerable.Repeat(true, columnCount).ToList();
-		}
-
-		if (c.FormQuest.ColumnWidth == null || ((List<int>)c.FormQuest.ColumnWidth).Count != columnCount)
-		{
-			c.FormQuest.ColumnWidth = Columns.Select(column => (int)column.Width.DisplayValue).ToList();
+			c.FormQuest.ColumnFilter = columnFilters.Concat(Enumerable.Repeat(true, Columns.Count - columnFilters.Count)).ToList();
 		}
 
-		if (c.FormQuest.ColumnSort == null || ((List<int>)c.FormQuest.ColumnSort).Count != columnCount)
+		List<int> columnWidths = (List<int>?)c.FormQuest.ColumnWidth ?? [];
+
+		if (c.FormQuest.ColumnWidth == null || columnWidths.Count < Columns.Count)
 		{
-			c.FormQuest.ColumnSort = Columns.Select(column => column.SortDirection.ToSerializableValue()).ToList();
+			c.FormQuest.ColumnWidth = columnWidths.Concat(Columns.Skip(Columns.Count - columnWidths.Count).Select(column => (int)column.Width.DisplayValue)).ToList();
 		}
 
-		{
-			List<bool> list = c.FormQuest.ColumnFilter;
-			List<int> widths = c.FormQuest.ColumnWidth;
-			List<ListSortDirection?> sorts = c.FormQuest.ColumnSort.List.Select(s => s.ToSortDirection()).ToList();
+		List<int> columnSorts = (List<int>?)c.FormQuest.ColumnSort ?? [];
 
-			foreach ((ColumnViewModel column, int i) in Columns.Select((column, i) => (column, i)))
-			{
-				column.Visible = list[i];
-				column.Width = new DataGridLength(widths[i]);
-				column.SortDirection = sorts[i];
-			}
-		}
-		/*
-		foreach (DataGridViewColumn column in QuestView.Columns)
+		if (c.FormQuest.ColumnSort == null || columnSorts.Count < Columns.Count)
 		{
-			column.SortMode = c.FormQuest.AllowUserToSortRows ? DataGridViewColumnSortMode.Automatic : DataGridViewColumnSortMode.NotSortable;
+			c.FormQuest.ColumnSort = columnSorts.Concat(Columns.Skip(Columns.Count - columnSorts.Count).Select(column => column.SortDirection.ToSerializableValue())).ToList();
 		}
 
-		if (c.UI.IsLayoutFixed)
-		{
-			QuestView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-			QuestView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-		}
-		else
-		{
-			QuestView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-			QuestView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-		}
+		List<bool> list = c.FormQuest.ColumnFilter;
+		List<int> widths = c.FormQuest.ColumnWidth;
+		List<ListSortDirection?> sorts = [.. c.FormQuest.ColumnSort.List!.Select(s => s.ToSortDirection())];
 
-		foreach (DataGridViewRow row in QuestView.Rows)
+		foreach ((ColumnViewModel column, int i) in Columns.Select((column, i) => (column, i)))
 		{
-			row.Height = 21;
+			column.Visible = list[i];
+			column.Width = new DataGridLength(widths[i]);
+			column.SortDirection = sorts[i];
 		}
-		*/
 
 		SortDescriptions = c.FormQuest.SortDescriptions;
 
@@ -355,58 +339,47 @@ public partial class QuestViewModel : AnchorableViewModel
 			}
 
 
-			QuestItemViewModel row = new(q, questIndex);
-			// row.Height = 21;
-			// Add support for tooltip-based page numbering
-			row.Background = (MenuMain_ShowRunningOnly, questIndex / 5 % 2) switch
+			QuestItemViewModel row = new(q, questIndex)
 			{
-				(false, 1) => Configuration.Config.UI.SubBackColor.ToBrush(),
-				_ => Configuration.Config.UI.BackColor.ToBrush(),
+				// Add support for tooltip-based page numbering
+				Background = (MenuMain_ShowRunningOnly, questIndex / 5 % 2) switch
+				{
+					(false, 1) => Configuration.Config.UI.SubBackColor.ToBrush(),
+					_ => Configuration.Config.UI.BackColor.ToBrush(),
+				},
+
+				QuestView_State = q.State switch
+				{
+					3 => null,
+					_ => q.State == 2,
+				},
+				QuestView_StateToolTip = $"{QuestResources.Page} #{questIndex / 5 + 1}",
+
+				QuestView_Type = q.LabelType switch
+				{
+					>= 100 => q.LabelType,
+					_ => q.Type
+				},
+				QuestView_TypeToolTip = Constants.GetQuestCategory(q.Category),
+
+				QuestView_Category = q.Category,
+				QuestView_CategoryToolTip = Constants.GetQuestCategory(q.Category),
+
+				QuestView_Name = ShowQuestCode switch
+				{
+					true => q.NameWithCode,
+					_ => q.Name
+				}
 			};
 
-			// row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);
-			// row.Cells[QuestView_State.Index].ToolTipText = $"{Translation.Page} #{questIndex / 5 + 1}";
-			// row.Cells[QuestView_State.Index].Style.BackColor = color;
-			// row.Cells[QuestView_State.Index].Style.SelectionBackColor = color;
-
-			row.QuestView_State = (q.State == 3) ? null : (q.State == 2);
-			row.QuestView_StateToolTip = $"{QuestResources.Page} #{questIndex / 5 + 1}";
-
-			// row.Cells[QuestView_Type.Index].Value = q.LabelType >= 100 ? q.LabelType : q.Type;
-			// row.Cells[QuestView_Type.Index].ToolTipText = Constants.GetQuestLabelType(q.LabelType);
-			// row.Cells[QuestView_Type.Index].Style.BackColor = color;
-			// row.Cells[QuestView_Type.Index].Style.SelectionBackColor = color;
-
-			row.QuestView_Type = q.LabelType >= 100 ? q.LabelType : q.Type;
-			row.QuestView_TypeToolTip = Constants.GetQuestCategory(q.Category);
-
-			// row.Cells[QuestView_Category.Index].Value = q.Category;
-			// row.Cells[QuestView_Category.Index].ToolTipText = Constants.GetQuestCategory(q.Category);
-			// row.Cells[QuestView_Category.Index].Style = CSCategories[Math.Min(q.Category - 1, CSCategories.Length - 1)];
-
-			row.QuestView_Category = q.Category;
-			row.QuestView_CategoryToolTip = Constants.GetQuestCategory(q.Category);
-
-			// row.Cells[QuestView_Name.Index].Value = q.QuestID;
-			// row.Cells[QuestView_Name.Index].Style.BackColor = color;
-			// row.Cells[QuestView_Name.Index].Style.SelectionBackColor = color;
-
-			row.QuestView_Name = ShowQuestCode switch
-			{
-				true => q.NameWithCode,
-				_ => q.Name
-			};
-
-			/*
-			row.Cells[QuestView_Progress.Index].Style.BackColor = color;
-			row.Cells[QuestView_Progress.Index].Style.SelectionBackColor = color;
-			*/
+			ProgressData? progress = KCDatabase.Instance.QuestProgress[q.QuestID];
+			ITrackerViewModel? tracker =
+				KCDatabase.Instance.QuestTrackerManager2.GetTrackerById(q.QuestID)
+				?? KCDatabase.Instance.SystemQuestTrackerManagerV2.GetTrackerById(q.QuestID)
+				?? KCDatabase.Instance.QuestTrackerManager.GetTrackerById(q.QuestID)
+				?? KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
 
 			{
-				var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
-				var tracker = KCDatabase.Instance.QuestTrackerManagers.GetTrackerById(q.QuestID) ??
-							  KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
-
 				row.QuestView_NameToolTip = $"{row.QuestView_Name} (ID: {q.QuestID})\r\n{q.Description}";
 
 				string? clearCondition = tracker?.ClearCondition ?? progress?.GetClearCondition();
@@ -416,12 +389,12 @@ public partial class QuestViewModel : AnchorableViewModel
 					row.QuestView_NameToolTip += $"\r\n{clearCondition}";
 				}
 
-				if (!string.IsNullOrEmpty(tracker?.GroupConditions.Display))
+				if (!string.IsNullOrEmpty(tracker?.ConditionDisplay))
 				{
-					row.QuestView_NameToolTip += $"\r\n{tracker?.GroupConditions.Display}";
+					row.QuestView_NameToolTip += $"\r\n\r\n{tracker?.ConditionDisplay}";
 				}
 
-				StringBuilder toolTipExtra = new(); 
+				StringBuilder toolTipExtra = new();
 
 				if (q.Type != 1 && q.GetProgressResetType() is QuestResetType.Daily)
 				{
@@ -454,30 +427,18 @@ public partial class QuestViewModel : AnchorableViewModel
 				}
 				else
 				{
-					TrackerViewModel? tracker = KCDatabase.Instance.QuestTrackerManagers.GetTrackerById(q.QuestID);
-					TrackerViewModel? systemTracker = KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
-
-					if (tracker is { Tasks.Count: > 0 })
+					if (tracker is { TaskCount: > 0 })
 					{
-						value = tracker.ProgressDisplay;
-						tag = tracker.Progress;
+						value = tracker.ProgressDisplay();
+						tag = tracker.Progress();
 					}
-					else if (systemTracker is { Tasks.Count: > 0 })
+					else if (progress is not null)
 					{
-						value = systemTracker.ProgressDisplay;
-						tag = systemTracker.Progress;
-					}
-					else if (KCDatabase.Instance.QuestProgress.Progresses.ContainsKey(q.QuestID))
-					{
-						var p = KCDatabase.Instance.QuestProgress[q.QuestID];
-
-						value = p.ToString();
-						tag = p.ProgressPercentage;
-
+						value = progress.ToString();
+						tag = progress.ProgressPercentage;
 					}
 					else
 					{
-
 						switch (q.Progress)
 						{
 							case 0:
@@ -500,9 +461,6 @@ public partial class QuestViewModel : AnchorableViewModel
 					}
 				}
 
-				// row.Cells[QuestView_Progress.Index].Value = value;
-				// row.Cells[QuestView_Progress.Index].Tag = tag;
-
 				row.QuestView_Progress = tag;
 				row.QuestView_ProgressToolTip = value;
 				row.QuestView_ProgressText = value
@@ -512,7 +470,35 @@ public partial class QuestViewModel : AnchorableViewModel
 					.Replace("\r", " ");
 			}
 
-			// QuestView.Rows.Add(row);
+			if (tracker is not null)
+			{
+				List<(FleetData Fleet, bool Matches)> fleetResults = KCDatabase.Instance.Fleet.Fleets.Values
+					.OrderBy(f => f.FleetID)
+					.Select(f => (Fleet: f, Matches: tracker.ConditionMet(f)))
+					.ToList();
+
+				row.MatchesCondition = fleetResults switch
+				{
+					[] => null,
+					[{ Matches: true }, ..] => true,
+					_ when fleetResults.All(r => !r.Matches) => false,
+					_ => null,
+				};
+
+				row.MatchesConditionToolTip = string.Join("\r\n", fleetResults.Select(r => string.Format(
+					r.Matches switch
+					{
+						true => QuestResources.FleetMatchesCondition,
+						_ => QuestResources.FleetDoesNotMatchCondition
+					},
+					$"#{r.Fleet.FleetID} {r.Fleet.Name}")));
+			}
+			else
+			{
+				row.MatchesCondition = null;
+				row.MatchesConditionToolTip = QuestResources.FleetConditionNotConfigured;
+			}
+
 			Quests.Add(row);
 		}
 
@@ -596,7 +582,9 @@ public partial class QuestViewModel : AnchorableViewModel
 	// todo: rename to SaveColumnVisibility
 	private void MenuMain_ColumnFilter_Click()
 	{
-		Configuration.Config.FormQuest.ColumnFilter.List = Columns.Select(c => c.Visible).ToList();
+		Configuration.Config.FormQuest.ColumnFilter ??= new();
+		
+		Configuration.Config.FormQuest.ColumnFilter.List = [.. Columns.Select(c => c.Visible)];
 	}
 
 	private void QuestView_ColumnWidthChanged()
@@ -816,12 +804,34 @@ public partial class QuestViewModel : AnchorableViewModel
 		Updated();
 	}
 
+	public bool ModifyOldVisible =>
+#if DEBUG
+		true;
+#else
+		false;
+#endif
+
+	[RelayCommand]
+	private void ManageTrackerOld()
+	{
+		if (SelectedQuest is null) return;
+
+		KCDatabase.Instance.QuestTrackerManager.ManageTracker(SelectedQuest.QuestId);
+
+		new QuestTrackerManagerWindow(KCDatabase.Instance.QuestTrackerManager).Show(App.Current!.MainWindow!);
+	}
+
 	[RelayCommand]
 	private void ManageTracker()
 	{
 		if (SelectedQuest is null) return;
 
-		KCDatabase.Instance.QuestTrackerManagers.ManageTracker(SelectedQuest.QuestId);
-		new QuestTrackerManagerWindow().Show(App.Current.MainWindow);
+		QuestTrackerManager2ViewModel viewModel = Ioc.Default.GetRequiredService<QuestTrackerManager2ViewModel>();
+		(TrackerModelV2 Model, IEnumerable<int> Progress)? bundledTracker =
+			KCDatabase.Instance.SystemQuestTrackerManagerV2.TryCopyTracker(SelectedQuest.QuestId);
+
+		viewModel.ManageTracker(SelectedQuest.QuestId, bundledTracker?.Model, bundledTracker?.Progress);
+
+		new QuestTrackerManager2Window(viewModel).Show(App.Current!.MainWindow!);
 	}
 }

@@ -172,6 +172,15 @@
   <data name="ModifyProgress" xml:space="preserve">
     <value>進捗状況の修正(_M)</value>
   </data>
+  <data name="FleetConditionNotConfigured" xml:space="preserve">
+    <value>フリート条件は設定されていません</value>
+  </data>
+  <data name="FleetMatchesCondition" xml:space="preserve">
+    <value>{0}: 条件を満たしています</value>
+  </data>
+  <data name="FleetDoesNotMatchCondition" xml:space="preserve">
+    <value>{0}: 条件を満たしていません</value>
+  </data>
   <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
     <value>『{0}』で_Startpage検索</value>
   </data>

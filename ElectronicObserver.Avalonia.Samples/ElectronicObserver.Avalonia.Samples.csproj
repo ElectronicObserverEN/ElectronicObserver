@@ -27,9 +27,11 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 		<PackageReference Condition="$(DefineConstants.Contains(ENABLE_XAML_HOT_RELOAD))" Include="HotAvalonia" Version="3.1.4" />
 		<PackageReference Include="HotAvalonia.Extensions" Version="3.1.4" PrivateAssets="All" />
+		<PackageReference Include="Jab" Version="0.10.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\ElectronicObserver.Avalonia\ElectronicObserver.Avalonia.csproj" />
+		<ProjectReference Include="..\ElectronicObserver.TestData\ElectronicObserver.TestData.csproj" />
 	</ItemGroup>
 </Project>

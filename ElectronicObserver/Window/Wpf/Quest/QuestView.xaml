@@ -79,6 +79,11 @@
 					IsCheckable="True"
 					IsChecked="{Binding DataContext.ProgressColumn.Visible}"
 					/>
+				<MenuItem
+					Header="{Binding DataContext.FormQuest.MenuMain_ColumnFilter_FleetCheck}"
+					IsCheckable="True"
+					IsChecked="{Binding DataContext.FleetCheckColumn.Visible}"
+					/>
 			</MenuItem>
 			<Separator />
 			<MenuItem
@@ -149,6 +154,11 @@
 			<MenuItem Command="{Binding DataContext.MenuProgress_Reset_ClickCommand}" Header="{Binding DataContext.FormQuest.MenuProgress_Reset}" />
 			<Separator />
 			<MenuItem Command="{Binding DataContext.ManageTrackerCommand}" Header="{Binding DataContext.FormQuest.ModifyProgress}" />
+			<MenuItem
+				Command="{Binding DataContext.ManageTrackerOldCommand}"
+				Header="Modify (old)"
+				Visibility="{Binding DataContext.ModifyOldVisible, Converter={BoolToVisibilityConverter}}"
+				/>
 		</ContextMenu>
 	</UserControl.Resources>
 
@@ -290,7 +300,7 @@
 					>
 					<DataGridTextColumn.CellStyle>
 						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
-							<Setter Property="ToolTip" >
+							<Setter Property="ToolTip">
 								<Setter.Value>
 									<TextBlock>
 										<Run Text="{Binding QuestView_NameToolTip}" /><Run FontStyle="Italic" Text="{Binding QuestView_NameToolTipExtra}" />
@@ -342,6 +352,22 @@
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>
+
+				<DataGridCheckBoxColumn
+					Width="{Binding DataContext.FleetCheckColumn.Width, Mode=TwoWay, Source={StaticResource Proxy}}"
+					Binding="{Binding MatchesCondition}"
+					Header="{Binding DataContext.FormQuest.QuestView_FleetCheck, Source={StaticResource Proxy}}"
+					SortDirection="{Binding DataContext.FleetCheckColumn.SortDirection, Mode=TwoWay, Source={StaticResource Proxy}}"
+					SortMemberPath="MatchesConditionSort"
+					Visibility="{Binding DataContext.FleetCheckColumn.Visible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					>
+					<DataGridCheckBoxColumn.CellStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+							<Setter Property="ToolTip" Value="{Binding MatchesConditionToolTip}" />
+							<Setter Property="ContextMenu" Value="{StaticResource MainContextMenu}" />
+						</Style>
+					</DataGridCheckBoxColumn.CellStyle>
+				</DataGridCheckBoxColumn>
 			</DataGrid.Columns>
 		</DataGrid>
 	</Grid>

@@ -557,7 +557,7 @@
 					Header="{Binding FormMain.SortieRecordViewer}"
 					>
 					<MenuItem.Icon>
-						<common:IconContentIcon Type="FormSortieRecord"/>
+						<common:IconContentIcon Type="FormSortieRecord" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
@@ -706,7 +706,16 @@
 						<common:IconContentIcon Type="FormBrowser" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Command="{Binding OpenQuestTrackerManagerCommand}" Header="{Binding FormMain.StripMenu_Tool_QuestTrackerManager}">
+				<MenuItem Command="{Binding OpenQuestTrackerManager2Command}" Header="{Binding FormMain.StripMenu_Tool_QuestTrackerManager}">
+					<MenuItem.Icon>
+						<common:IconContentIcon Type="FormQuestTrackerManager" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
+					Command="{Binding OpenQuestTrackerManagerCommand}"
+					Header="Quest Tracker Manager (old)"
+					Visibility="{Binding OldQuestTrackerManagerVisible, Converter={BoolToVisibilityConverter}}"
+					>
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FormQuestTrackerManager" />
 					</MenuItem.Icon>

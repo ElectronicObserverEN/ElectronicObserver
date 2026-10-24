@@ -15,8 +15,8 @@ public class EnumDisplayConverter : IValueConverter
 		{
 			EquipmentTypes e => KCDatabase.Instance.EquipmentTypes[(int)e].NameEN,
 			FormationType f => Constants.GetFormation(f),
-			EquipmentIconType eqIcon => eqIcon.TranslatedName(),
-			EquipmentCardType eqCard => eqCard.TranslatedName(),
+			EquipmentIconType eqIcon => Avalonia.QuestTrackerManager2.Converters.ToDisplay(eqIcon),
+			EquipmentCardType eqCard => Avalonia.QuestTrackerManager2.Converters.ToDisplay(eqCard),
 
 			TpGauge.None => BattleResources.None,
 			TpGauge tankGauge => tankGauge.GetGaugeName(KCDatabase.Instance),

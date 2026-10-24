@@ -6,6 +6,20 @@ namespace ElectronicObserver.Utility;
 
 public class ClipboardService : IClipboardService
 {
+	public string? GetTextAndLogErrors()
+	{
+		try
+		{
+			return Clipboard.GetText();
+		}
+		catch (Exception ex)
+		{
+			ErrorReporter.SendErrorReport(ex, LoggerRes.FailedToCopyToClipboard);
+		}
+
+		return null;
+	}
+
 	public void SetTextAndLogErrors(string text)
 	{
 		try

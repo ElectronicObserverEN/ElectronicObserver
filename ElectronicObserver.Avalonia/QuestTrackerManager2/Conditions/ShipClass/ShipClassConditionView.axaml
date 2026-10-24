@@ -1,0 +1,28 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipClass.ShipClassConditionView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:shipClass="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipClass"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="shipClass:ShipClassConditionViewModel"
+	mc:Ignorable="d"
+	>
+	<Border Classes="ConditionBorder">
+		<StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<ComboBox ItemsSource="{Binding ShipClasses}" SelectedItem="{Binding ShipClass}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding ., Converter={StaticResource ShipClassDisplayConverter}}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</UserControl>

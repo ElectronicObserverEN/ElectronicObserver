@@ -1,0 +1,19 @@
+<common:WindowBase
+	x:Class="ElectronicObserver.Window.Dialog.QuestTrackerManager.QuestTrackerManager2Window"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:questTrackerManager2="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2;assembly=ElectronicObserver.Avalonia"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	x:Name="QuestTrackerManager2"
+	Title="{x:Static questTrackerManager2:QuestTrackerManagerResources.Title}"
+	Width="1000"
+	Height="700"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="questTrackerManager2:QuestTrackerManager2ViewModel"
+	mc:Ignorable="d"
+	>
+	<ContentControl Content="{Binding WpfAvaloniaHost, ElementName=QuestTrackerManager2}" />
+</common:WindowBase>

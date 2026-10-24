@@ -300,6 +300,12 @@
   <data name="Fleet" xml:space="preserve">
     <value>艦隊</value>
   </data>
+  <data name="FleetCheck" xml:space="preserve">
+    <value>艦隊</value>
+  </data>
+  <data name="FleetCheckFilter" xml:space="preserve">
+    <value>艦隊チェック(&amp;F)</value>
+  </data>
   <data name="FriendlyFleet" xml:space="preserve">
     <value>自軍艦隊</value>
   </data>

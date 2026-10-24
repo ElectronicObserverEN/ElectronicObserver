@@ -2,5 +2,6 @@
 
 public interface IClipboardService
 {
+	string? GetTextAndLogErrors();
 	void SetTextAndLogErrors(string text);
 }

@@ -1,0 +1,49 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipPosition.ShipPositionConditionView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:questTrackerManager2="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2"
+	xmlns:shipPosition="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipPosition"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="shipPosition:PositionConditionViewModel"
+	mc:Ignorable="d"
+	>
+	<Border Classes="ConditionBorder">
+		<StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<ItemsControl ItemsSource="{Binding Positions}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<CheckBox Content="{Binding Position}" IsChecked="{Binding IsChecked}" />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
+				<TextBlock Text="{Binding Display}" />
+			</StackPanel>
+
+			<StackPanel IsVisible="{Binding Condition, Converter={x:Static ObjectConverters.IsNull}}" Orientation="Horizontal">
+				<ComboBox ItemsSource="{Binding ConditionTypes}" SelectedItem="{Binding ConditionType}" />
+				<Button Command="{Binding CreateConditionCommand}" Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.AddCondition}" />
+			</StackPanel>
+
+			<StackPanel IsVisible="{Binding Condition, Converter={x:Static ObjectConverters.IsNotNull}}" Orientation="Horizontal">
+				<ContentControl Content="{Binding Condition}" />
+				<Button
+					Command="{Binding RemoveConditionCommand}"
+					Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.RemoveCondition}"
+					Theme="{StaticResource RemoveButton}"
+					/>
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</UserControl>

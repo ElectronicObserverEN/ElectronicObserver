@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using ElectronicObserver.Avalonia.QuestTrackerManager2;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 

@@ -11,18 +11,17 @@ using MessagePack;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
-public class SystemQuestTrackerManager : QuestTrackerManagerBase
+public sealed class SystemQuestTrackerManager : QuestTrackerManagerBase
 {
 	private bool IsInitialized { get; }
-	
+
 	private ShipSelectorFactory ShipSelectorFactory { get; }
 
 	public SystemQuestTrackerManager()
 	{
 		ShipSelectorFactory = Ioc.Default.GetRequiredService<ShipSelectorFactory>();
-		
+
 		Load();
-		SubscribeToApis();
 
 		IsInitialized = true;
 	}
@@ -55,7 +54,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 
 		if (IsInitialized)
 		{
-				KCDatabase.Instance.Quest.OnQuestUpdated();
+			KCDatabase.Instance.Quest.OnQuestUpdated();
 		}
 	}
 
@@ -64,7 +63,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		SaveProgress();
 	}
 
-	public void Load()
+	public override void Load()
 	{
 		if (Trackers.Any())
 		{
@@ -93,7 +92,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		}
 		catch
 		{
-
+			// safe to ignore?
 		}
 	}
 
@@ -108,6 +107,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		}
 		catch
 		{
+			// safe to ignore?
 		}
 	}
 
@@ -129,7 +129,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		}
 		catch
 		{
-
+			// safe to ignore?
 		}
 	}
 }

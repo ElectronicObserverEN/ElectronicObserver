@@ -1,4 +1,4 @@
-﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+﻿using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 
 namespace ElectronicObserver.Data.Battle;
 

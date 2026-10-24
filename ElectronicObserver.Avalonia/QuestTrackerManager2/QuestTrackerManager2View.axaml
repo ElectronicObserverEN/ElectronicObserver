@@ -1,0 +1,313 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.QuestTrackerManager2.QuestTrackerManager2View"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:battleNodeId="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.BattleNodeId"
+	xmlns:bossKill="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.BossKill"
+	xmlns:conditions="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions"
+	xmlns:core="clr-namespace:ElectronicObserver.Core;assembly=ElectronicObserver.Core"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:equipmentCardTypeScrap="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.EquipmentCardTypeScrap"
+	xmlns:equipmentCategoryScrap="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.EquipmentCategoryScrap"
+	xmlns:equipmentIconTypeScrap="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.EquipmentIconTypeScrap"
+	xmlns:equipmentScrap="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.EquipmentScrap"
+	xmlns:exercise="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.Exercise"
+	xmlns:expedition="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.Expedition"
+	xmlns:group="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.Group"
+	xmlns:mapFirstClear="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.MapFirstClear"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:nodeReach="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.NodeReach"
+	xmlns:not="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.Not"
+	xmlns:questTrackerManager2="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2"
+	xmlns:reference="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.Reference"
+	xmlns:shipClass="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipClass"
+	xmlns:shipCount="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipCount"
+	xmlns:shipId="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipId"
+	xmlns:shipLevel="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipLevel"
+	xmlns:shipNationality="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipNationality"
+	xmlns:shipPosition="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipPosition"
+	xmlns:shipType="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipType"
+	xmlns:tasks="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks"
+	xmlns:types="clr-namespace:ElectronicObserver.Core.Types;assembly=ElectronicObserver.Core"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="questTrackerManager2:QuestTrackerManager2ViewModel"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<ControlTheme
+			x:Key="RemoveButton"
+			BasedOn="{StaticResource {x:Type Button}}"
+			TargetType="Button"
+			>
+			<Setter Property="Background" Value="#DC2626" />
+
+			<Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+				<Setter Property="Background" Value="#EF4444" />
+			</Style>
+
+			<Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+				<Setter Property="Background" Value="#B91C1C" />
+			</Style>
+		</ControlTheme>
+	</UserControl.Resources>
+
+	<UserControl.Styles>
+		<Style Selector="Border.ConditionBorder">
+			<Setter Property="Margin" Value="2" />
+			<Setter Property="Padding" Value="2" />
+			<Setter Property="BorderBrush" Value="Gray" />
+			<Setter Property="BorderThickness" Value="1" />
+		</Style>
+
+		<Style Selector="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="Padding" Value="2" />
+		</Style>
+
+		<Style Selector="Button">
+			<Setter Property="Margin" Value="2" />
+		</Style>
+
+		<Style Selector="ComboBox">
+			<Setter Property="Margin" Value="2" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<Style Selector="TextBlock">
+			<Setter Property="Margin" Value="2" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<Style Selector="NumericUpDown">
+			<Setter Property="Margin" Value="2" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="FormatString" Value="0" />
+		</Style>
+	</UserControl.Styles>
+
+	<UserControl.DataTemplates>
+		<DataTemplate DataType="questTrackerManager2:TrackerViewModelV2">
+			<Expander Margin="0 2" IsExpanded="{Binding IsExpanded}">
+				<Expander.Header>
+					<StackPanel Orientation="Horizontal">
+						<Button Command="{Binding CopyTrackerCommand}" Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.Copy}" />
+						<TextBlock Text="{Binding QuestDisplay}" />
+					</StackPanel>
+				</Expander.Header>
+
+				<StackPanel>
+					<TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+					<TextBlock Text="{Binding ClearCondition}" TextWrapping="Wrap" />
+					<TextBlock Text="{Binding ConditionDisplay}" TextWrapping="Wrap" />
+
+					<StackPanel Orientation="Horizontal">
+						<ComboBox ItemsSource="{Binding TaskTypes}" SelectedItem="{Binding SelectedTaskType}" />
+						<Button Command="{Binding AddTaskCommand}" Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.AddTask}" />
+					</StackPanel>
+
+					<ItemsControl ItemsSource="{Binding Tasks}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<ContentControl Content="{Binding}" />
+									<Button
+										Command="{Binding $parent[ItemsControl].((questTrackerManager2:TrackerViewModelV2)DataContext).RemoveTaskCommand}"
+										CommandParameter="{Binding}"
+										Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.RemoveTask}"
+										Theme="{StaticResource RemoveButton}"
+										/>
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+
+					<ContentControl Content="{Binding Condition}" />
+				</StackPanel>
+			</Expander>
+		</DataTemplate>
+
+		<DataTemplate DataType="types:EquipmentCardType">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.EquipmentCardTypeDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="types:EquipmentIconType">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.EquipmentIconTypeDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="conditions:ConditionType">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.ConditionTypeDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipCount:ComparisonOperator">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.ComparisonOperatorDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="types:ShipTypes">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.ShipTypeDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="group:LogicalOperator">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.LogicalOperatorDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipId:RemodelComparison">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.RemodelComparisonDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipPosition:PositionViewModel">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.PositionDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="types:ShipNationality">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.ShipNationalityDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="tasks:TaskType">
+			<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.TaskTypeDisplayConverter}}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="tasks:MapInfoModel">
+			<TextBlock Text="{Binding Display}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="bossKill:BossKillTaskViewModel">
+			<bossKill:BossKillTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="expedition:ExpeditionTaskViewModel">
+			<expedition:ExpeditionTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="battleNodeId:BattleNodeIdTaskViewModel">
+			<battleNodeId:BattleNodeIdTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="nodeReach:NodeReachTaskViewModel">
+			<nodeReach:NodeReachTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="mapFirstClear:MapFirstClearTaskViewModel">
+			<mapFirstClear:MapFirstClearTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="exercise:ExerciseTaskViewModel">
+			<exercise:ExerciseTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="equipmentScrap:EquipmentScrapTaskViewModel">
+			<equipmentScrap:EquipmentScrapTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="equipmentCategoryScrap:EquipmentCategoryScrapTaskViewModel">
+			<equipmentCategoryScrap:EquipmentCategoryScrapTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="equipmentCardTypeScrap:EquipmentCardTypeScrapTaskViewModel">
+			<equipmentCardTypeScrap:EquipmentCardTypeScrapTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="equipmentIconTypeScrap:EquipmentIconTypeScrapTaskViewModel">
+			<equipmentIconTypeScrap:EquipmentIconTypeScrapTaskView />
+		</DataTemplate>
+
+		<DataTemplate DataType="conditions:FleetConditionSetViewModel">
+			<conditions:FleetConditionSetView />
+		</DataTemplate>
+
+		<DataTemplate DataType="reference:ReferenceDefinitionViewModel">
+			<reference:ReferenceDefinitionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="reference:ReferenceConditionViewModel">
+			<reference:ReferenceConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="group:GroupConditionViewModel">
+			<group:GroupConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="not:NotConditionViewModel">
+			<not:NotConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipId:ShipIdConditionViewModel">
+			<shipId:ShipIdConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipClass:ShipClassConditionViewModel">
+			<shipClass:ShipClassConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipType:ShipTypeConditionViewModel">
+			<shipType:ShipTypeConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipPosition:PositionConditionViewModel">
+			<shipPosition:ShipPositionConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipCount:CountConditionViewModel">
+			<shipCount:ShipCountConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipLevel:ShipLevelConditionViewModel">
+			<shipLevel:ShipLevelConditionView />
+		</DataTemplate>
+
+		<DataTemplate DataType="shipNationality:ShipNationalityConditionViewModel">
+			<shipNationality:ShipNationalityConditionView />
+		</DataTemplate>
+	</UserControl.DataTemplates>
+
+	<Border Margin="4">
+		<Grid RowDefinitions="Auto,Auto,*">
+			<Menu Grid.Row="0">
+				<MenuItem Header="{x:Static questTrackerManager2:QuestTrackerManagerResources.File}">
+					<MenuItem Command="{Binding CopyTrackersToClipboardCommand}" Header="{x:Static questTrackerManager2:QuestTrackerManagerResources.CopyTrackersToClipboard}" />
+					<MenuItem Command="{Binding LoadTrackerFromClipboardCommand}" Header="{x:Static questTrackerManager2:QuestTrackerManagerResources.Load}" />
+				</MenuItem>
+			</Menu>
+
+			<StackPanel Grid.Row="1">
+				<StackPanel Orientation="Horizontal">
+					<ComboBox ItemsSource="{Binding Quests}" SelectedItem="{Binding SelectedQuest}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate DataType="core:IQuestData">
+								<TextBlock>
+									<Run Text="{Binding Code}" />
+									<Run Text=": " />
+									<Run Text="{Binding Name}" />
+									<Run Text=" (ID: " />
+									<Run Text="{Binding QuestID}" />
+									<Run Text=")" />
+								</TextBlock>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<Button Command="{Binding AddTrackerCommand}" Content="＋" />
+				</StackPanel>
+
+				<TextBlock Text="{Binding SelectedQuest.Description}" TextWrapping="Wrap" />
+			</StackPanel>
+
+			<ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto">
+				<ItemsControl ItemsSource="{Binding Trackers}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<ContentControl Content="{Binding}" />
+								<Button
+									Command="{Binding $parent[ItemsControl].((questTrackerManager2:QuestTrackerManager2ViewModel)DataContext).RemoveTrackerCommand}"
+									CommandParameter="{Binding}"
+									Content="ｘ"
+									Theme="{StaticResource RemoveButton}"
+									/>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
+		</Grid>
+	</Border>
+</UserControl>

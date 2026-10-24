@@ -300,6 +300,12 @@ This action cannot be undone.</value>
   <data name="Fleet" xml:space="preserve">
     <value>Fleet</value>
   </data>
+  <data name="FleetCheck" xml:space="preserve">
+    <value>Fleet</value>
+  </data>
+  <data name="FleetCheckFilter" xml:space="preserve">
+    <value>Fleet Check (&amp;F)</value>
+  </data>
   <data name="FriendlyFleet" xml:space="preserve">
     <value>Friendly</value>
   </data>
