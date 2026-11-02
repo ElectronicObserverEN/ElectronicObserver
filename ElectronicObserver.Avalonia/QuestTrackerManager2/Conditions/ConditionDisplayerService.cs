@@ -39,6 +39,7 @@ public sealed class ConditionDisplayerService(DataService dataService)
 		ReferenceConditionViewModel r => r.Reference?.Name ?? string.Empty,
 		ShipLevelConditionViewModel l => $"lv. >= {l.Level}",
 		ShipNationalityConditionViewModel l => Converters.ToDisplay(l.Nationality),
+		UnknownConditionViewModel u => u.Display,
 
 		_ => string.Empty,
 	};

@@ -58,6 +58,7 @@ public sealed class ConditionFactory(
 			ShipCountCondition c => new CountConditionViewModel(this, ConditionDisplayerService, c, references),
 			ShipLevelCondition l => new ShipLevelConditionViewModel(ConditionDisplayerService, l),
 			ShipNationalityCondition n => new ShipNationalityConditionViewModel(ConditionDisplayerService, n),
+			UnknownFleetCondition u => new UnknownConditionViewModel(u),
 
 			_ => null,
 		};

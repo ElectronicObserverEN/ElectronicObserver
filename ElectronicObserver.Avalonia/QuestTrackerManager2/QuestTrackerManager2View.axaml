@@ -211,8 +211,16 @@
 			<equipmentIconTypeScrap:EquipmentIconTypeScrapTaskView />
 		</DataTemplate>
 
+		<DataTemplate DataType="tasks:UnknownTaskViewModel">
+			<TextBlock Text="{Binding Display}" />
+		</DataTemplate>
+
 		<DataTemplate DataType="conditions:FleetConditionSetViewModel">
 			<conditions:FleetConditionSetView />
+		</DataTemplate>
+
+		<DataTemplate DataType="conditions:UnknownConditionViewModel">
+			<TextBlock Text="{Binding Display}" />
 		</DataTemplate>
 
 		<DataTemplate DataType="reference:ReferenceDefinitionViewModel">

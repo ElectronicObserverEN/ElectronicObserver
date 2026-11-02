@@ -49,6 +49,7 @@ public sealed class TaskFactory(
 		EquipmentCategoryScrapTaskModel e => new EquipmentCategoryScrapTaskViewModel(taskDisplayerService, e),
 		EquipmentCardTypeScrapTaskModel e => new EquipmentCardTypeScrapTaskViewModel(taskDisplayerService, e),
 		EquipmentIconTypeScrapTaskModel e => new EquipmentIconTypeScrapTaskViewModel(taskDisplayerService, e),
+		UnknownTaskModel u => new UnknownTaskViewModel(u),
 
 		_ => null,
 	};

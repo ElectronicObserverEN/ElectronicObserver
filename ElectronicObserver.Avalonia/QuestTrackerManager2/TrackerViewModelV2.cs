@@ -2,6 +2,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.Group;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.Not;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.Reference;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipCount;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipPosition;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.BattleNodeId;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.BossKill;
@@ -47,6 +52,8 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 
 	public string ClearCondition => string.Join("\n", Tasks.Select(t => t?.Display));
 	public string ConditionDisplay => Condition.Display;
+	public bool HasUnknownTask => Model.Tasks.Any(task => task is UnknownTaskModel);
+	public bool HasUnknownCondition => ContainsUnknownCondition(Condition.Model);
 
 	public int TaskCount => Tasks.Count;
 
@@ -81,6 +88,53 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 		};
 	}
 
+	private static bool ContainsUnknownCondition(FleetConditionSet conditionSet)
+	{
+		Stack<FleetCondition> pending = [];
+		HashSet<FleetCondition> visited = [with(ReferenceEqualityComparer.Instance)];
+
+		if (conditionSet.Condition is { } condition)
+		{
+			pending.Push(condition);
+		}
+
+		foreach (ReferenceDefinition definition in conditionSet.Definitions)
+		{
+			if (definition.Condition is { } definitionCondition)
+			{
+				pending.Push(definitionCondition);
+			}
+		}
+
+		while (pending.TryPop(out FleetCondition? current))
+		{
+			if (!visited.Add(current)) continue;
+			if (current is UnknownFleetCondition) return true;
+
+			switch (current)
+			{
+				case GroupCondition group:
+					foreach (FleetCondition child in group.Conditions)
+					{
+						pending.Push(child);
+					}
+
+					break;
+				case NotCondition { Condition: { } child }:
+					pending.Push(child);
+					break;
+				case ShipCountCondition { Condition: { } child }:
+					pending.Push(child);
+					break;
+				case PositionCondition { Condition: { } child }:
+					pending.Push(child);
+					break;
+			}
+		}
+
+		return false;
+	}
+
 	private void AddTaskViewModel(ITaskModel? taskModel)
 	{
 		TaskViewModel? task = TaskFactory.CreateViewModel(taskModel);
@@ -104,6 +158,7 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 
 		Model.Tasks.Add(taskModel);
 		AddTaskViewModel(taskModel);
+		OnPropertyChanged(nameof(HasUnknownTask));
 		QuestProvider.NotifyQuestUpdated();
 	}
 
@@ -114,6 +169,7 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 
 		Tasks.Remove(task);
 		Model.Tasks.Remove(task.Model);
+		OnPropertyChanged(nameof(HasUnknownTask));
 		QuestProvider.NotifyQuestUpdated();
 	}
 

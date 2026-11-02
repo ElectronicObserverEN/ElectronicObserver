@@ -38,6 +38,8 @@ public partial class TrackerViewModel : ObservableObject, ITrackerViewModel
 
 	public string ClearCondition => string.Join(" \n", Tasks.Select(t => t?.ClearCondition));
 	public string ConditionDisplay => GroupConditions.Display;
+	public bool HasUnknownCondition => false;
+	public bool HasUnknownTask => false;
 
 	public int QuestId => Model.Quest.Id;
 	public string Title => Model.Quest.Name;

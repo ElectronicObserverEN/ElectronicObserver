@@ -10,6 +10,8 @@ public interface ITrackerViewModel
 	QuestResetType QuestResetType { get; }
 	string ClearCondition { get; }
 	string ConditionDisplay { get; }
+	bool HasUnknownTask { get; }
+	bool HasUnknownCondition { get; }
 	int TaskCount { get; }
 
 	bool ConditionMet(IFleetData fleet);

@@ -472,26 +472,31 @@ public partial class QuestViewModel : AnchorableViewModel
 
 			if (tracker is not null)
 			{
-				List<(FleetData Fleet, bool Matches)> fleetResults = KCDatabase.Instance.Fleet.Fleets.Values
+				List<(FleetData Fleet, bool Matches, bool HasUnknownCondition)> fleetResults = KCDatabase.Instance.Fleet.Fleets.Values
 					.OrderBy(f => f.FleetID)
-					.Select(f => (Fleet: f, Matches: tracker.ConditionMet(f)))
+					.Select(f => (Fleet: f, Matches: tracker.ConditionMet(f), tracker.HasUnknownCondition))
 					.ToList();
 
 				row.MatchesCondition = fleetResults switch
 				{
 					[] => null,
-					[{ Matches: true }, ..] => true,
+					[{ Matches: true, HasUnknownCondition: false }, ..] => true,
+					_ when fleetResults.Any(r => r.HasUnknownCondition) => null,
 					_ when fleetResults.All(r => !r.Matches) => false,
 					_ => null,
 				};
 
-				row.MatchesConditionToolTip = string.Join("\r\n", fleetResults.Select(r => string.Format(
-					r.Matches switch
-					{
-						true => QuestResources.FleetMatchesCondition,
-						_ => QuestResources.FleetDoesNotMatchCondition
-					},
-					$"#{r.Fleet.FleetID} {r.Fleet.Name}")));
+				row.MatchesConditionToolTip = fleetResults.Any(r => r.HasUnknownCondition) switch
+				{
+					true => QuestTrackerManagerResources.UnknownCondition,
+					_ => string.Join("\r\n", fleetResults.Select(r => string.Format(
+						r.Matches switch
+						{
+							true => QuestResources.FleetMatchesCondition,
+							_ => QuestResources.FleetDoesNotMatchCondition
+						},
+						$"#{r.Fleet.FleetID} {r.Fleet.Name}"))),
+				};
 			}
 			else
 			{
@@ -583,7 +588,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	private void MenuMain_ColumnFilter_Click()
 	{
 		Configuration.Config.FormQuest.ColumnFilter ??= new();
-		
+
 		Configuration.Config.FormQuest.ColumnFilter.List = [.. Columns.Select(c => c.Visible)];
 	}
 
