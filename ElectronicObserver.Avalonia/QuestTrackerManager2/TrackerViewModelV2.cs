@@ -81,6 +81,12 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 			AddTaskViewModel(taskModel);
 		}
 
+		Tasks.CollectionChanged += (_, _) =>
+		{
+			OnPropertyChanged(string.Empty);
+			QuestProvider.NotifyQuestUpdated();
+		};
+
 		Condition.ConditionChanged += () =>
 		{
 			OnPropertyChanged(string.Empty);
@@ -143,6 +149,7 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 		{
 			if (e.PropertyName is not nameof(TaskViewModel.Display)) return;
 
+			OnPropertyChanged(string.Empty);
 			QuestProvider.NotifyQuestUpdated();
 		};
 
@@ -158,8 +165,6 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 
 		Model.Tasks.Add(taskModel);
 		AddTaskViewModel(taskModel);
-		OnPropertyChanged(nameof(HasUnknownTask));
-		QuestProvider.NotifyQuestUpdated();
 	}
 
 	[RelayCommand]
@@ -167,10 +172,8 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 	{
 		if (task is null) return;
 
-		Tasks.Remove(task);
 		Model.Tasks.Remove(task.Model);
-		OnPropertyChanged(nameof(HasUnknownTask));
-		QuestProvider.NotifyQuestUpdated();
+		Tasks.Remove(task);
 	}
 
 	[RelayCommand]
