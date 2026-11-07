@@ -144,18 +144,6 @@
   <data name="QuestTaskType_World1Map6ResourceNode" xml:space="preserve">
     <value>1-6N</value>
   </data>
-  <data name="QuestTaskType_7_2_1" xml:space="preserve">
-    <value>7-2-1</value>
-  </data>
-  <data name="QuestTaskType_7_2_2" xml:space="preserve">
-    <value>7-2-2</value>
-  </data>
-  <data name="QuestTaskType_7_3_1" xml:space="preserve">
-    <value>7-3-1</value>
-  </data>
-  <data name="QuestTaskType_7_3_2" xml:space="preserve">
-    <value>7-3-2</value>
-  </data>
   <data name="ConditionType_Group" xml:space="preserve">
     <value>Grupo</value>
   </data>

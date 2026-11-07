@@ -8,7 +8,7 @@ public sealed partial class ShipNationalityConditionViewModel : ConditionViewMod
 	public override ShipNationalityCondition Model { get; }
 
 	public List<Core.Types.ShipNationality> ShipNationalities { get; } =
-		[..Enum.GetValues<Core.Types.ShipNationality>().Where(n => n is not Core.Types.ShipNationality.Unknown)];
+		[.. Enum.GetValues<Core.Types.ShipNationality>().Where(n => n is not Core.Types.ShipNationality.Unknown)];
 
 	[ObservableProperty] public partial Core.Types.ShipNationality Nationality { get; set; }
 

@@ -190,18 +190,6 @@
   <data name="QuestTaskType_BattleNodeId" xml:space="preserve">
     <value>戰鬥節點ID</value>
   </data>
-  <data name="QuestTaskType_7_2_1" xml:space="preserve">
-    <value>7-2-1</value>
-  </data>
-  <data name="QuestTaskType_7_2_2" xml:space="preserve">
-    <value>7-2-2</value>
-  </data>
-  <data name="QuestTaskType_7_3_1" xml:space="preserve">
-    <value>7-3-1</value>
-  </data>
-  <data name="QuestTaskType_7_3_2" xml:space="preserve">
-    <value>7-3-2</value>
-  </data>
   <data name="QuestTaskType_EquipmentScrap" xml:space="preserve">
     <value>裝備廢棄</value>
   </data>
@@ -237,15 +225,6 @@
   </data>
   <data name="UnknownCondition" xml:space="preserve">
     <value>未知要求，請確保你使用的是最新的七四式電子觀測儀。</value>
-  </data>
-  <data name="QuestTaskType_7_5_1" xml:space="preserve">
-    <value>7-5-1</value>
-  </data>
-  <data name="QuestTaskType_7_5_2" xml:space="preserve">
-    <value>7-5-2</value>
-  </data>
-  <data name="QuestTaskType_7_5_3" xml:space="preserve">
-    <value>7-5-3</value>
   </data>
   <data name="QuestTaskType_EquipmentCategoryScrap" xml:space="preserve">
     <value>裝備類別廢棄</value>

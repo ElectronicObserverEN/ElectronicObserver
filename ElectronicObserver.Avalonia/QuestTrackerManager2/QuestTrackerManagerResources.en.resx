@@ -190,18 +190,6 @@ Do you want to overwrite these quest trackers?</value>
   <data name="QuestTaskType_BattleNodeId" xml:space="preserve">
     <value>Battle node ID</value>
   </data>
-  <data name="QuestTaskType_7_2_1" xml:space="preserve">
-    <value>7-2-1</value>
-  </data>
-  <data name="QuestTaskType_7_2_2" xml:space="preserve">
-    <value>7-2-2</value>
-  </data>
-  <data name="QuestTaskType_7_3_1" xml:space="preserve">
-    <value>7-3-1</value>
-  </data>
-  <data name="QuestTaskType_7_3_2" xml:space="preserve">
-    <value>7-3-2</value>
-  </data>
   <data name="QuestTaskType_EquipmentScrap" xml:space="preserve">
     <value>Equipment scrap</value>
   </data>

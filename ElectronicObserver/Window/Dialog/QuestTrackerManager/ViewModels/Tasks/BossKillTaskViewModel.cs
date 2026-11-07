@@ -27,7 +27,7 @@ public class BossKillTaskViewModel : ObservableObject, IQuestTaskViewModel
 	private string GetClearCondition()
 	{
 		StringBuilder sb = new();
-	
+
 		sb.Append($"{Model.Map.AreaId}-{Model.Map.InfoId}");
 		sb.Append(QuestTracking.ClearConditionBoss);
 

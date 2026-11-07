@@ -12,7 +12,7 @@ public sealed partial class ShipCountConditionViewModel : ConditionViewModel
 	public override ShipCountCondition Model { get; }
 	private ObservableCollection<ReferenceDefinitionViewModel> References { get; }
 
-	public List<ComparisonOperator> ComparisonOperators { get; } = [..Enum.GetValues<ComparisonOperator>()];
+	public List<ComparisonOperator> ComparisonOperators { get; } = [.. Enum.GetValues<ComparisonOperator>()];
 	public List<ConditionType> ConditionTypes { get; } = [.. Enum.GetValues<ConditionType>()];
 
 	[ObservableProperty] public partial int Count { get; set; }
@@ -21,7 +21,7 @@ public sealed partial class ShipCountConditionViewModel : ConditionViewModel
 	[ObservableProperty] public partial ConditionType ConditionType { get; set; }
 
 	public override string Display => ConditionDisplayerService.ToDisplay(this);
-	
+
 	public ShipCountConditionViewModel(
 		ConditionFactory conditionFactory,
 		ConditionDisplayerService conditionDisplayerService,
@@ -43,21 +43,21 @@ public sealed partial class ShipCountConditionViewModel : ConditionViewModel
 	partial void OnCountChanged(int value)
 	{
 		Model.Count = value;
-		
+
 		RaiseConditionChanged();
 	}
 
 	partial void OnComparisonOperatorChanged(ComparisonOperator value)
 	{
 		Model.Operator = value;
-		
+
 		RaiseConditionChanged();
 	}
 
 	partial void OnConditionChanged(ConditionViewModel? value)
 	{
 		Model.Condition = value?.Model;
-		
+
 		RaiseConditionChanged();
 	}
 
@@ -67,7 +67,7 @@ public sealed partial class ShipCountConditionViewModel : ConditionViewModel
 		FleetCondition? model = ConditionFactory.CreateModel(ConditionType);
 
 		if (model is null) return;
-		
+
 		ConditionViewModel vm = ConditionFactory.CreateViewModel(model, References);
 		vm.ConditionChanged += RaiseConditionChanged;
 		Condition = vm;
