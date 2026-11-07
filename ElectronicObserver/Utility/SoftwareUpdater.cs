@@ -172,6 +172,7 @@ public class SoftwareUpdater
 		if (CurrentDataVersion.QuestTrackers < LatestDataVersion.QuestTrackers)
 		{
 			downloadList.Add(("QuestTrackers.json", DataType.Data));
+			downloadList.Add(("QuestTrackersV2.json", DataType.Data));
 		}
 
 		if (CurrentDataVersion.QuestsMetadata < LatestDataVersion.QuestsMetadata)
