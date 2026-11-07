@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 
 namespace ElectronicObserver.Data.Quest;
 

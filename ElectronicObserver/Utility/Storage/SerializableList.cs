@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Serialization;
 
@@ -15,7 +16,7 @@ public class SerializableList<T> where T : IConvertible
 {
 
 	[IgnoreDataMember]
-	public List<T> List { get; set; }
+	public List<T>? List { get; set; }
 
 	public SerializableList()
 	{
@@ -40,11 +41,10 @@ public class SerializableList<T> where T : IConvertible
 		set { List = StringToList(value); }
 	}
 
-
-	public static implicit operator List<T>(SerializableList<T> value)
+	[return:NotNullIfNotNull(nameof(value))]
+	public static implicit operator List<T>?(SerializableList<T>? value)
 	{
-		if (value == null) return null;
-		return value.List;
+		return value?.List;
 	}
 
 	public static implicit operator SerializableList<T>(List<T> value)
@@ -53,7 +53,7 @@ public class SerializableList<T> where T : IConvertible
 	}
 
 
-	public static List<T> StringToList(string serial, bool suppressError = false)
+	public static List<T>? StringToList(string? serial, bool suppressError = false)
 	{
 		if (serial == null)
 			return null;
@@ -76,7 +76,7 @@ public class SerializableList<T> where T : IConvertible
 		return null;
 	}
 
-	public static string ListToString(List<T> value, bool suppressError = false)
+	public static string ListToString(List<T>? value, bool suppressError = false)
 	{
 		if (value == null) return "";
 

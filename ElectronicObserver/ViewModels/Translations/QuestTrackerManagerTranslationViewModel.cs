@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.ViewModels.Translations;
+﻿using ElectronicObserver.Avalonia.QuestTrackerManager2;
+
+namespace ElectronicObserver.ViewModels.Translations;
 
 public class QuestTrackerManagerTranslationViewModel : TranslationBaseViewModel
 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
@@ -23,7 +24,7 @@ public class EquipmentIconTypeScrapTaskViewModel : ObservableObject, IQuestTaskV
 	};
 	public string ClearCondition => GetClearCondition();
 
-	private string GetClearCondition() => $"{QuestTracking.Icon}[{Model.IconType.TranslatedName()}]"
+	private string GetClearCondition() => $"{QuestTracking.Icon}[{Avalonia.QuestTrackerManager2.Converters.ToDisplay(Model.IconType)}]"
 		+ QuestTracking.Discard + Model.Count + QuestTracking.NumberOfPieces;
 
 	public EquipmentIconTypeScrapTaskViewModel(EquipmentIconTypeScrapTaskModel model)

@@ -1,4 +1,5 @@
 ﻿using DynaJson;
+using ElectronicObserver.Avalonia.QuestTrackerManager2;
 using ElectronicObserver.Avalonia.Translation;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
@@ -175,12 +176,11 @@ public sealed class KCDatabase : IKCDatabase
 	/// </summary>
 	public FleetPresetManager FleetPreset { get; private set; }
 
-
-	private QuestTrackerManagerViewModel? _questRequirements;
-	public QuestTrackerManagerViewModel QuestTrackerManagers => _questRequirements ??= new();
-
-	private SystemQuestTrackerManager? _systemQuestTrackerManager;
-	public SystemQuestTrackerManager SystemQuestTrackerManager => _systemQuestTrackerManager ??= new();
+	public QuestTrackerManagerService QuestTrackerManagerService => field ??= new();
+	public QuestTrackerManagerViewModel QuestTrackerManager => QuestTrackerManagerService.User;
+	public SystemQuestTrackerManager SystemQuestTrackerManager => QuestTrackerManagerService.System;
+	public QuestTrackerManager2ViewModel QuestTrackerManager2 => QuestTrackerManagerService.User2;
+	public SystemQuestTrackerManager2 SystemQuestTrackerManagerV2 => QuestTrackerManagerService.System2;
 
 	public HomePortSupplyService HomePortSupplyService { get; } = new();
 
@@ -276,16 +276,13 @@ public sealed class KCDatabase : IKCDatabase
 			}
 		}
 
-		QuestTrackerManagers.Load();
-		SystemQuestTrackerManager.Load();
+		QuestTrackerManagerService.Load();
 	}
 
 	public void Save()
 	{
 		ShipGroup.Save();
 		QuestProgress.Save();
-		QuestTrackerManagers.Save();
-		SystemQuestTrackerManager.Save();
+		QuestTrackerManagerService.Save();
 	}
-
 }

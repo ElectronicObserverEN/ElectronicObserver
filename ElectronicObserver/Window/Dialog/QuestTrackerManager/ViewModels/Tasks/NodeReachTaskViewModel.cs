@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Data;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 
 public partial class NodeReachTaskViewModel : ObservableObject, IQuestTaskViewModel
 {
-	public IEnumerable<MapInfoModel> AllMaps { get; }
+	public IEnumerable<Models.MapInfoModel> AllMaps { get; }
 
 	public NodeReachTaskModel Model { get; set; }
 	public ObservableCollection<NodeIdViewModel> NodeIds { get; } = new();
@@ -51,7 +51,7 @@ public partial class NodeReachTaskViewModel : ObservableObject, IQuestTaskViewMo
 		}
 
 		AllMaps = KCDatabase.Instance.MapInfo.Values
-			.Select(m => new MapInfoModel(m.MapAreaID, m.MapInfoID));
+			.Select(m => new Models.MapInfoModel(m.MapAreaID, m.MapInfoID));
 
 		Model.PropertyChanged += UpdateDisplay;
 

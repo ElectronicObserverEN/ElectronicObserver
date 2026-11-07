@@ -1,0 +1,19 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.EquipmentScrap.EquipmentScrapTaskView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:equipmentScrap="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.EquipmentScrap"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="equipmentScrap:EquipmentScrapTaskViewModel"
+	mc:Ignorable="d"
+	>
+	<StackPanel Orientation="Horizontal">
+		<Button Command="{Binding AddEquipmentCommand}" Content="{Binding SelectedEquipment.NameEN}" />
+		<NumericUpDown Value="{Binding Progress}" />
+		<NumericUpDown Value="{Binding Count}" />
+		<TextBlock Text="{Binding Display}" />
+	</StackPanel>
+</UserControl>

@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Data;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 
@@ -20,7 +20,7 @@ public class NodeIdViewModel : ObservableObject
 
 public partial class BattleNodeIdTaskViewModel : ObservableObject, IQuestTaskViewModel
 {
-	public IEnumerable<MapInfoModel> AllMaps { get; }
+	public IEnumerable<Models.MapInfoModel> AllMaps { get; }
 	public IEnumerable<BattleRank> Ranks { get; }
 
 	public BattleNodeIdTaskModel Model { get; set; }
@@ -69,10 +69,10 @@ public partial class BattleNodeIdTaskViewModel : ObservableObject, IQuestTaskVie
 	public BattleNodeIdTaskViewModel(BattleNodeIdTaskModel model)
 	{
 		Model = model;
-		NodeIds = new(Model.NodeIds.Select(i => new NodeIdViewModel { Id = i }));
+		NodeIds = [with(Model.NodeIds.Select(i => new NodeIdViewModel { Id = i }))];
 
 		AllMaps = KCDatabase.Instance.MapInfo.Values
-			.Select(m => new MapInfoModel(m.MapAreaID, m.MapInfoID));
+			.Select(m => new Models.MapInfoModel(m.MapAreaID, m.MapInfoID));
 		Ranks = Enum.GetValues<BattleRank>();
 
 		Model.PropertyChanged += (sender, args) =>

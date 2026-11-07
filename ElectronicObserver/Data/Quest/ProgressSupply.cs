@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 
 namespace ElectronicObserver.Data.Quest;
 
