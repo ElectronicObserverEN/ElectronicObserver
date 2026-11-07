@@ -251,11 +251,11 @@
 			<shipType:ShipTypeConditionView />
 		</DataTemplate>
 
-		<DataTemplate DataType="shipPosition:PositionConditionViewModel">
+		<DataTemplate DataType="shipPosition:ShipPositionConditionViewModel">
 			<shipPosition:ShipPositionConditionView />
 		</DataTemplate>
 
-		<DataTemplate DataType="shipCount:CountConditionViewModel">
+		<DataTemplate DataType="shipCount:ShipCountConditionViewModel">
 			<shipCount:ShipCountConditionView />
 		</DataTemplate>
 

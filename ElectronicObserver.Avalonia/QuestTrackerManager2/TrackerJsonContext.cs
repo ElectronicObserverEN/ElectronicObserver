@@ -33,7 +33,7 @@ namespace ElectronicObserver.Avalonia.QuestTrackerManager2;
 [JsonSerializable(typeof(ShipIdCondition))]
 [JsonSerializable(typeof(ShipTypeCondition))]
 [JsonSerializable(typeof(ShipClassCondition))]
-[JsonSerializable(typeof(PositionCondition))]
+[JsonSerializable(typeof(ShipPositionCondition))]
 [JsonSerializable(typeof(ShipCountCondition))]
 [JsonSerializable(typeof(ShipLevelCondition))]
 [JsonSerializable(typeof(ShipNationalityCondition))]

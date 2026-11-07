@@ -35,7 +35,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [0, 1, 2], Condition = new ShipTypeCondition { ShipType = ShipTypes.Escort },
 					},
@@ -72,7 +72,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 	{
 		FleetConditionSet set = new()
 		{
-			Condition = new PositionCondition
+			Condition = new ShipPositionCondition
 			{
 				Positions = [1, 2],
 				Condition = new GroupCondition
@@ -128,7 +128,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.Or,
 				Conditions =
 				[
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [1, 2],
 						Condition = new GroupCondition
@@ -141,7 +141,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 							],
 						},
 					},
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [1, 2],
 						Condition = new GroupCondition
@@ -200,7 +200,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [1],
 						Condition = new ShipIdCondition
@@ -208,7 +208,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 							Id = ShipId.FubukiKaiSan, Remodel = RemodelComparison.AtLeast
 						},
 					},
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [2], Condition = new ShipClassCondition { ShipClass = ShipClass.Fubuki },
 					},
@@ -257,7 +257,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [1],
 						Condition = new GroupCondition
@@ -338,12 +338,12 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [1],
 						Condition = new ShipIdCondition { Id = ShipId.Yamato, Remodel = RemodelComparison.Any },
 					},
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [2],
 						Condition = new ShipIdCondition { Id = ShipId.Yahagi, Remodel = RemodelComparison.Any },
@@ -411,7 +411,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [1],
 						Condition = new GroupCondition
@@ -476,7 +476,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [1],
 						Condition = new ShipIdCondition
@@ -556,7 +556,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition { Positions = [1], Condition = new ReferenceCondition { Reference = "A*" }, },
+					new ShipPositionCondition { Positions = [1], Condition = new ReferenceCondition { Reference = "A*" }, },
 					new ShipCountCondition
 					{
 						Condition = new ReferenceCondition { Reference = "A*" },
@@ -609,7 +609,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition
+					new ShipPositionCondition
 					{
 						Positions = [1],
 						Condition = new ShipIdCondition
@@ -854,7 +854,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition { Positions = [1], Condition = new ReferenceCondition { Reference = "A*" }, },
+					new ShipPositionCondition { Positions = [1], Condition = new ReferenceCondition { Reference = "A*" }, },
 					new ShipCountCondition
 					{
 						Condition = new ReferenceCondition { Reference = "A*" },
@@ -923,7 +923,7 @@ public class QuestTrackerManager2Tests(DatabaseFixture db)
 				Operator = LogicalOperator.And,
 				Conditions =
 				[
-					new PositionCondition { Positions = [1], Condition = new ReferenceCondition { Reference = "A*" }, },
+					new ShipPositionCondition { Positions = [1], Condition = new ReferenceCondition { Reference = "A*" }, },
 					new ShipCountCondition
 					{
 						Condition = new ReferenceCondition { Reference = "A*" },

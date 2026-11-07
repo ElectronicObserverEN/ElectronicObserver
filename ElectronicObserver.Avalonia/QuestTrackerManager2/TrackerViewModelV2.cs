@@ -126,7 +126,7 @@ public partial class TrackerViewModelV2 : ObservableObject, ITrackerViewModel
 				case ShipCountCondition { Condition: { } child }:
 					pending.Push(child);
 					break;
-				case PositionCondition { Condition: { } child }:
+				case ShipPositionCondition { Condition: { } child }:
 					pending.Push(child);
 					break;
 			}

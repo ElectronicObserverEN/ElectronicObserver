@@ -5,7 +5,7 @@ using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.Reference;
 
 namespace ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipCount;
 
-public sealed partial class CountConditionViewModel : ConditionViewModel
+public sealed partial class ShipCountConditionViewModel : ConditionViewModel
 {
 	private ConditionFactory ConditionFactory { get; }
 	private ConditionDisplayerService ConditionDisplayerService { get; }
@@ -22,7 +22,7 @@ public sealed partial class CountConditionViewModel : ConditionViewModel
 
 	public override string Display => ConditionDisplayerService.ToDisplay(this);
 	
-	public CountConditionViewModel(
+	public ShipCountConditionViewModel(
 		ConditionFactory conditionFactory,
 		ConditionDisplayerService conditionDisplayerService,
 		ShipCountCondition model,

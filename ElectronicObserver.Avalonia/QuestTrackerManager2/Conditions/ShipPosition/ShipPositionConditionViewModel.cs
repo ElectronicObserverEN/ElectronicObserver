@@ -5,11 +5,11 @@ using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.Reference;
 
 namespace ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipPosition;
 
-public sealed partial class PositionConditionViewModel : ConditionViewModel
+public sealed partial class ShipPositionConditionViewModel : ConditionViewModel
 {
 	private ConditionFactory ConditionFactory { get; }
 	private ConditionDisplayerService ConditionDisplayerService { get; }
-	public override PositionCondition Model { get; }
+	public override ShipPositionCondition Model { get; }
 	private ObservableCollection<ReferenceDefinitionViewModel> References { get; }
 
 	public List<ConditionType> ConditionTypes { get; } = [.. Enum.GetValues<ConditionType>()];
@@ -21,10 +21,10 @@ public sealed partial class PositionConditionViewModel : ConditionViewModel
 
 	public override string Display => ConditionDisplayerService.ToDisplay(this);
 
-	public PositionConditionViewModel(
+	public ShipPositionConditionViewModel(
 		ConditionFactory conditionFactory,
 		ConditionDisplayerService conditionDisplayerService,
-		PositionCondition model,
+		ShipPositionCondition model,
 		ObservableCollection<ReferenceDefinitionViewModel> references)
 	{
 		ConditionFactory = conditionFactory;
