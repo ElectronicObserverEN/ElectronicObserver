@@ -42,8 +42,8 @@ public class FleetEvaluationService(IKCDatabase kcDatabase)
 			ShipTypeCondition shipType => ships.Any(s => shipType.ShipType == s.MasterShip.ShipType),
 			ShipClassCondition shipClass => ships.Any(s => shipClass.ShipClass == s.MasterShip.ShipClassTyped),
 
-			PositionCondition { Positions.Count: 0 } => true,
-			PositionCondition pos => ships
+			ShipPositionCondition { Positions.Count: 0 } => true,
+			ShipPositionCondition pos => ships
 				.Where((_, i) => pos.Positions.Contains(i + 1))
 				.All(s => Evaluate(pos.Condition, [s], definitions)),
 

@@ -8,7 +8,7 @@
 	xmlns:shipPosition="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.ShipPosition"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
-	x:DataType="shipPosition:PositionConditionViewModel"
+	x:DataType="shipPosition:ShipPositionConditionViewModel"
 	mc:Ignorable="d"
 	>
 	<Border Classes="ConditionBorder">

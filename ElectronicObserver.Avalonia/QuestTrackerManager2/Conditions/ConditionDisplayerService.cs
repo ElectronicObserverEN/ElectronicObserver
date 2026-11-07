@@ -28,12 +28,12 @@ public sealed class ConditionDisplayerService(DataService dataService)
 		
 		ShipClassConditionViewModel c => ShipClassDisplayConverter.Convert(c.ShipClass),
 
-		PositionConditionViewModel p =>
+		ShipPositionConditionViewModel p =>
 			$"{ToSubConditionDisplay(p.Condition)} ({string.Join(
 				$" {Converters.ToDisplay(LogicalOperator.And)} ",
 				p.Positions.Where(pos => pos.IsChecked).Select(Converters.ToDisplay))})",
 
-		CountConditionViewModel c =>
+		ShipCountConditionViewModel c =>
 			$"{ToSubConditionDisplay(c.Condition)} {Converters.ToDisplay(c.ComparisonOperator)} {c.Count}",
 
 		ReferenceConditionViewModel r => r.Reference?.Name ?? string.Empty,
