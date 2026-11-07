@@ -265,6 +265,18 @@ public static class Converters
 		TaskType.EquipmentCardTypeScrap => QuestTrackerManagerResources.QuestTaskType_EquipmentCardTypeScrap,
 		TaskType.EquipmentIconTypeScrap => QuestTrackerManagerResources.QuestTaskType_EquipmentIconTypeScrap,
 
+		TaskType.World1Map6ResourceNode => QuestTrackerManagerResources.QuestTaskType_World1Map6ResourceNode,
+		TaskType.World5Map6Boss1 => QuestTrackerManagerResources.QuestTaskType_5_6_1,
+		TaskType.World5Map6Boss2 => QuestTrackerManagerResources.QuestTaskType_5_6_2,
+		TaskType.World5Map6Boss3 => QuestTrackerManagerResources.QuestTaskType_5_6_3,
+		TaskType.World7Map2Boss1 => QuestTrackerManagerResources.QuestTaskType_7_2_1,
+		TaskType.World7Map2Boss2 => QuestTrackerManagerResources.QuestTaskType_7_2_2,
+		TaskType.World7Map3Boss1 => QuestTrackerManagerResources.QuestTaskType_7_3_1,
+		TaskType.World7Map3Boss2 => QuestTrackerManagerResources.QuestTaskType_7_3_2,
+		TaskType.World7Map5Boss1 => QuestTrackerManagerResources.QuestTaskType_7_5_1,
+		TaskType.World7Map5Boss2 => QuestTrackerManagerResources.QuestTaskType_7_5_2,
+		TaskType.World7Map5Boss3 => QuestTrackerManagerResources.QuestTaskType_7_5_3,
+
 		_ => "???",
 	};
 

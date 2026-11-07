@@ -34,6 +34,73 @@ public sealed class TaskFactory(
 		TaskType.EquipmentCardTypeScrap => new EquipmentCardTypeScrapTaskModel(),
 		TaskType.EquipmentIconTypeScrap => new EquipmentIconTypeScrapTaskModel(),
 
+		TaskType.World1Map6ResourceNode => new NodeReachTaskModel
+		{
+			Map = new() { AreaId = 1, InfoId = 6 },
+			Name = "N",
+			NodeIds = [14, 17],
+		},
+		TaskType.World5Map6Boss1 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 5, InfoId = 6 },
+			Name = "-1",
+			NodeIds = [11],
+		},
+		TaskType.World5Map6Boss2 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 5, InfoId = 6 },
+			Name = "-2",
+			NodeIds = [27],
+		},
+		TaskType.World5Map6Boss3 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 5, InfoId = 6 },
+			Name = "-3",
+			NodeIds = [43],
+		},
+		TaskType.World7Map2Boss1 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 7, InfoId = 2 },
+			Name = "-1",
+			NodeIds = [7],
+		},
+		TaskType.World7Map2Boss2 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 7, InfoId = 2 },
+			Name = "-2",
+			NodeIds = [15],
+		},
+		TaskType.World7Map3Boss1 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 7, InfoId = 3 },
+			Name = "-1",
+			NodeIds = [5, 8],
+		},
+		TaskType.World7Map3Boss2 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 7, InfoId = 3 },
+			Name = "-2",
+			NodeIds = [18, 23, 24, 25],
+		},
+		TaskType.World7Map5Boss1 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 7, InfoId = 5 },
+			Name = "-1",
+			NodeIds = [11],
+		},
+		TaskType.World7Map5Boss2 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 7, InfoId = 5 },
+			Name = "-2",
+			NodeIds = [19],
+		},
+		TaskType.World7Map5Boss3 => new BattleNodeIdTaskModel
+		{
+			Map = new() { AreaId = 7, InfoId = 5 },
+			Name = "-3",
+			NodeIds = [24, 25],
+		},
+
 		_ => null,
 	};
 
