@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 
 namespace ElectronicObserver.Data.Battle;
 

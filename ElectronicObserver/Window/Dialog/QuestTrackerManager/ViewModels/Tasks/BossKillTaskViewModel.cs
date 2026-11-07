@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Data;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 
 public class BossKillTaskViewModel : ObservableObject, IQuestTaskViewModel
 {
-	public IEnumerable<MapInfoModel> AllMaps { get; }
+	public IEnumerable<Models.MapInfoModel> AllMaps { get; }
 	public IEnumerable<BattleRank> Ranks { get; }
 
 	public BossKillTaskModel Model { get; set; }
@@ -28,7 +27,7 @@ public class BossKillTaskViewModel : ObservableObject, IQuestTaskViewModel
 	private string GetClearCondition()
 	{
 		StringBuilder sb = new();
-
+	
 		sb.Append($"{Model.Map.AreaId}-{Model.Map.InfoId}");
 		sb.Append(QuestTracking.ClearConditionBoss);
 
@@ -52,7 +51,7 @@ public class BossKillTaskViewModel : ObservableObject, IQuestTaskViewModel
 		Model = model;
 
 		AllMaps = KCDatabase.Instance.MapInfo.Values
-			.Select(m => new MapInfoModel(m.MapAreaID, m.MapInfoID));
+			.Select(m => new Models.MapInfoModel(m.MapAreaID, m.MapInfoID));
 		Ranks = Enum.GetValues<BattleRank>();
 
 		Model.PropertyChanged += (sender, args) =>

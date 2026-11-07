@@ -1,0 +1,51 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.BattleNodeId.BattleNodeIdTaskView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:battleNodeId="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.BattleNodeId"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="battleNodeId:BattleNodeIdTaskViewModel"
+	mc:Ignorable="d"
+	>
+	<StackPanel Orientation="Horizontal">
+		<ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding Map}" />
+		<ComboBox ItemsSource="{Binding Ranks}" SelectedItem="{Binding Rank}" />
+
+		<Border Classes="ConditionBorder">
+			<StackPanel Orientation="Horizontal">
+				<Button Command="{Binding AddNodeIdCommand}" Content="+" />
+
+				<ItemsControl ItemsSource="{Binding NodeIds}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<NumericUpDown Value="{Binding Id}" />
+								<Button
+									Command="{Binding $parent[ItemsControl].((battleNodeId:BattleNodeIdTaskViewModel)DataContext).RemoveNodeIdCommand}"
+									CommandParameter="{Binding}"
+									Content="ｘ"
+									Theme="{StaticResource RemoveButton}"
+									/>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
+				<TextBox Text="{Binding Name}" />
+			</StackPanel>
+		</Border>
+
+		<NumericUpDown Value="{Binding Progress}" />
+		<NumericUpDown Value="{Binding Count}" />
+		<TextBlock Text="{Binding Display}" />
+	</StackPanel>
+</UserControl>

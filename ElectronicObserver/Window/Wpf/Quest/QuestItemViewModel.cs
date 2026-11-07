@@ -77,6 +77,15 @@ public class QuestItemViewModel
 		_ => Configuration.Config.UI.Quest_ColorProcessDefault.ToBrush()
 	};
 
+	public bool? MatchesCondition { get; set; }
+	public int MatchesConditionSort => MatchesCondition switch
+	{
+		null => 3,
+		true => 2,
+		false => 1,
+	};
+	public string? MatchesConditionToolTip { get; set; }
+
 	public SolidColorBrush Background { get; set; }
 
 	public QuestItemViewModel()

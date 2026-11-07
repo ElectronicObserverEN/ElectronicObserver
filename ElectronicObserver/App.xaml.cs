@@ -10,8 +10,10 @@ using System.Windows.Media;
 using Avalonia;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Avalonia.Services;
+using ElectronicObserver.Avalonia.Translation;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Services.Data;
@@ -28,6 +30,7 @@ using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
@@ -188,6 +191,7 @@ public partial class App
 			Configuration.Instance.Load();
 
 			ConfigureServices();
+			ConfigureAvaloniaResourceConverters();
 
 			ToolTipService.ShowDurationProperty.OverrideMetadata(
 				typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
@@ -345,7 +349,9 @@ public partial class App
 			.AddSingleton<BonodereSubmissionService>()
 			.AddSingleton<IClipboardService, ClipboardService>()
 			.AddSingleton<ShipSelectorFactory>()
+			.AddSingleton<EquipmentSelectorFactory>()
 			.AddSingleton<ITransportGaugeService, TransportGaugeService>()
+			.AddQuestTrackerManager2()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()
@@ -361,6 +367,21 @@ public partial class App
 
 		Ioc.Default.GetRequiredService<DataAndTranslationIssueReporter>();
 		Ioc.Default.GetRequiredService<ITransportGaugeService>();
+	}
+
+	private static void ConfigureAvaloniaResourceConverters()
+	{
+		if (global::Avalonia.Application.Current?.Resources["ShipClassDisplayConverter"] is
+			Avalonia.QuestTrackerManager2.Conditions.ShipClass.ShipClassDisplayConverter shipClassConverter)
+		{
+			shipClassConverter.DataService = Ioc.Default.GetRequiredService<DataService>();
+		}
+
+		if (global::Avalonia.Application.Current?.Resources["EquipmentCategoryDisplayConverter"] is
+			Avalonia.QuestTrackerManager2.Tasks.EquipmentCategoryScrap.EquipmentCategoryDisplayConverter equipmentCategoryConverter)
+		{
+			equipmentCategoryConverter.KcDatabase = Ioc.Default.GetRequiredService<IKCDatabase>();
+		}
 	}
 
 	private static Tracker JotTracker()

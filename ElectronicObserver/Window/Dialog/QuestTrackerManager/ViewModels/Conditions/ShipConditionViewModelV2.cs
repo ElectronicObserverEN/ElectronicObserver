@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
+using ElectronicObserver.Avalonia.QuestTrackerManager2;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
 using ElectronicObserver.Core.Types.Extensions;

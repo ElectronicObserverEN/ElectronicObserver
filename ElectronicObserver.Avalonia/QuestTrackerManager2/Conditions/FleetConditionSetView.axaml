@@ -1,0 +1,51 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions.FleetConditionSetView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:conditions="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:questTrackerManager2="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="conditions:FleetConditionSetViewModel"
+	mc:Ignorable="d"
+	>
+	<Border Classes="ConditionBorder">
+		<StackPanel>
+			<TextBlock IsVisible="{Binding Display, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" Text="{Binding Display}" />
+
+			<Button Command="{Binding AddReferenceCommand}" Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.AddReference}" />
+
+			<ItemsControl ItemsSource="{Binding References}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<ContentControl Content="{Binding}" />
+							<Button
+								Command="{Binding $parent[ItemsControl].((conditions:FleetConditionSetViewModel)DataContext).RemoveReferenceCommand}"
+								CommandParameter="{Binding}"
+								Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.RemoveReference}"
+								Theme="{StaticResource RemoveButton}"
+								/>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+
+			<StackPanel IsVisible="{Binding Condition, Converter={x:Static ObjectConverters.IsNull}}" Orientation="Horizontal">
+				<ComboBox ItemsSource="{Binding ConditionTypes}" SelectedItem="{Binding ConditionType}" />
+				<Button Command="{Binding CreateConditionCommand}" Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.AddCondition}" />
+			</StackPanel>
+
+			<StackPanel IsVisible="{Binding Condition, Converter={x:Static ObjectConverters.IsNotNull}}" Orientation="Horizontal">
+				<ContentControl Content="{Binding Condition}" />
+				<Button
+					Command="{Binding RemoveConditionCommand}"
+					Content="{x:Static questTrackerManager2:QuestTrackerManagerResources.RemoveCondition}"
+					Theme="{StaticResource RemoveButton}"
+					/>
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</UserControl>

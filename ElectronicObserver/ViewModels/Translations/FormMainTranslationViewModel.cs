@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Avalonia.ExpeditionCalculator;
+using ElectronicObserver.Avalonia.QuestTrackerManager2;
 using KancolleProgress.Translations;
 
 namespace ElectronicObserver.ViewModels.Translations;

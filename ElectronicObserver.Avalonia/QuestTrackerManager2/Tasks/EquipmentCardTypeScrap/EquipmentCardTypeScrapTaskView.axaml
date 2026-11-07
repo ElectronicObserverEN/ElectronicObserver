@@ -1,0 +1,19 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.EquipmentCardTypeScrap.EquipmentCardTypeScrapTaskView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:equipmentCardTypeScrap="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.EquipmentCardTypeScrap"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	x:DataType="equipmentCardTypeScrap:EquipmentCardTypeScrapTaskViewModel"
+	mc:Ignorable="d"
+	>
+	<StackPanel Orientation="Horizontal">
+		<ComboBox ItemsSource="{Binding CardTypes}" SelectedItem="{Binding CardType}" />
+		<NumericUpDown Value="{Binding Progress}" />
+		<NumericUpDown Value="{Binding Count}" />
+		<TextBlock Text="{Binding Display}" />
+	</StackPanel>
+</UserControl>

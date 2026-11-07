@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Core;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 
 namespace ElectronicObserver.Data.Battle;
 

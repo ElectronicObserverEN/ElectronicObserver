@@ -15,8 +15,7 @@ public class destroyitem2 : APIBase
 
 		// 削除処理が終わってからだと装備データが取れないため
 		db.QuestProgress.EquipmentDiscarded(APIName, data);
-		db.QuestTrackerManagers.EquipmentDiscarded(APIName, data);
-		db.SystemQuestTrackerManager.EquipmentDiscarded(APIName, data);
+		db.QuestTrackerManagerService.EquipmentDiscarded(APIName, data);
 
 		Dictionary<string, int> itemsDestroyed = new Dictionary<string, int>();
 

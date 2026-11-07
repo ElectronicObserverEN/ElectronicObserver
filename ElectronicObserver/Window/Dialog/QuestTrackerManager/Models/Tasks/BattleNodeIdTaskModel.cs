@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using MessagePack;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
