@@ -173,7 +173,7 @@
     <value>進捗状況の修正(_M)</value>
   </data>
   <data name="FleetConditionNotConfigured" xml:space="preserve">
-    <value>フリート条件は設定されていません</value>
+    <value>艦隊条件は設定されていません</value>
   </data>
   <data name="FleetMatchesCondition" xml:space="preserve">
     <value>{0}: 条件を満たしています</value>
