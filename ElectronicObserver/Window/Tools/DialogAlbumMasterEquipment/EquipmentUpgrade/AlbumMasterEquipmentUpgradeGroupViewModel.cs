@@ -26,11 +26,14 @@ public class AlbumMasterEquipmentUpgradeGroupViewModel
 
 	public List<EquipmentUpgradeImprovementModel> Models { get; }
 
-	public AlbumMasterEquipmentUpgradeGroupViewModel(List<EquipmentUpgradeImprovementModel> improvements, AlbumMasterEquipmentUpgradeTranslationViewModel translations, IEquipmentDataMaster equipment)
+	private EquipmentUpgradeDataModel UpgradeData { get; }
+
+	public AlbumMasterEquipmentUpgradeGroupViewModel(List<EquipmentUpgradeImprovementModel> improvements, AlbumMasterEquipmentUpgradeTranslationViewModel translations, IEquipmentDataMaster equipment, EquipmentUpgradeDataModel data)
 	{
 		Models = improvements;
 		EquipmentUpgradeTranslation = translations;
 		Equipment = equipment;
+		UpgradeData = data;
 
 		LoadUpgradeData();
 	}
@@ -60,7 +63,7 @@ public class AlbumMasterEquipmentUpgradeGroupViewModel
 	private void InitializeCostPerLevel()
 	{
 		RequiredItemsPerLevel = EquipmentUpgradeCost
-			.GetCostPerLevelRange()
+			.GetCostPerLevelRange(UpgradeData)
 			.Where(range => range.StartLevel != UpgradeLevel.Conversion)
 			.Select(range => new AlbumMasterEquipmentUpgradeLevelViewModel(range))
 			.ToList();

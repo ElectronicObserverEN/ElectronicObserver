@@ -50,14 +50,14 @@ public class AlbumMasterEquipmentUpgradeViewModel
 		{
 			// Special case : 12.7cm連装砲A型 conversion cost is different depending on ship
 			UpgradeViewModels = data.Improvement
-				.Select(improvement => new AlbumMasterEquipmentUpgradeGroupViewModel([improvement], EquipmentUpgradeTranslation, Equipment))
+				.Select(improvement => new AlbumMasterEquipmentUpgradeGroupViewModel([improvement], EquipmentUpgradeTranslation, Equipment, data))
 				.ToList();
 		}
 		else
 		{
 			UpgradeViewModels = data.Improvement
 				.GroupBy(improvement => improvement, new UpgradeCostDataEqualityComparer())
-				.Select(group => new AlbumMasterEquipmentUpgradeGroupViewModel(group.ToList(), EquipmentUpgradeTranslation, Equipment))
+				.Select(group => new AlbumMasterEquipmentUpgradeGroupViewModel(group.ToList(), EquipmentUpgradeTranslation, Equipment, data))
 				.ToList();
 		}
 	}
