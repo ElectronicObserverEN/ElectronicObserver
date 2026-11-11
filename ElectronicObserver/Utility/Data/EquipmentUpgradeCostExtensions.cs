@@ -209,24 +209,14 @@ public static class EquipmentUpgradeCostExtensions
 
 		if (costs.ExtraCost is null)
 		{
-			result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.One, costs.Cost0To5))
-			{
-				EndLevel = maxLevel <= UpgradeLevel.Six ? maxLevel : UpgradeLevel.Six,
-			});
-
-			result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.Seven, costs.Cost6To9))
-			{
-				EndLevel = maxLevel <= UpgradeLevel.Max ? maxLevel : UpgradeLevel.Max,
-			});
-
-			if (costs.CostMax is { })
-			{
-				result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.Conversion, costs.CostMax)));
-			}
-
-			return result.Where(cost => cost.StartLevel < maxLevel).ToList();
+			return GetCostPerLevelWithoutExtraCosts(costs, result, maxLevel);
 		}
 
+		return GetCostPerLevelRangeWithExtraCosts(costs, result, maxLevel);
+	}
+
+	private static List<EquipmentUpgradeCostRange> GetCostPerLevelRangeWithExtraCosts(EquipmentUpgradeImprovementCost costs, List<EquipmentUpgradeCostRange> result, UpgradeLevel maxLevel)
+	{
 		EquipmentUpgradeCostPerLevel? previousCost = null;
 
 		foreach (EquipmentUpgradeCostPerLevel cost in costs.GetCostPerLevel())
@@ -273,4 +263,23 @@ public static class EquipmentUpgradeCostExtensions
 		return result.Where(cost => cost.StartLevel < maxLevel).ToList();
 	}
 
+	private static List<EquipmentUpgradeCostRange> GetCostPerLevelWithoutExtraCosts(EquipmentUpgradeImprovementCost costs, List<EquipmentUpgradeCostRange> result, UpgradeLevel maxLevel)
+	{
+		result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.One, costs.Cost0To5))
+		{
+			EndLevel = maxLevel <= UpgradeLevel.Six ? maxLevel : UpgradeLevel.Six,
+		});
+
+		result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.Seven, costs.Cost6To9))
+		{
+			EndLevel = maxLevel <= UpgradeLevel.Max ? maxLevel : UpgradeLevel.Max,
+		});
+
+		if (costs.CostMax is { })
+		{
+			result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.Conversion, costs.CostMax)));
+		}
+
+		return result.Where(cost => cost.StartLevel < maxLevel).ToList();
+	}
 }
