@@ -135,6 +135,7 @@ public class SoftwareUpdater
 			{
 				await KCDatabase.Instance.Translation.Initialize();
 				KCDatabase.Instance.SystemQuestTrackerManager.Load();
+				KCDatabase.Instance.SystemQuestTrackerManagerV2.Load();
 				Logger.Add(2, SoftwareInformationResources.TranslationFilesUpdated);
 			}
 

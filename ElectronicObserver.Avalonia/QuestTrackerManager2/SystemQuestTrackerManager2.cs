@@ -46,6 +46,11 @@ public sealed class SystemQuestTrackerManager2 : IQuestTrackerManager
 
 	public void Load()
 	{
+		if (Trackers.Count > 0)
+		{
+			Save();
+		}
+
 		List<TrackerModelV2> trackerModels = TrackerSerializer.LoadTrackerModels(TrackerPath);
 		Trackers = [.. trackerModels.Select(ToViewModel)];
 
