@@ -8,6 +8,9 @@ public class EquipmentUpgradeDataModel
 	[JsonPropertyName("eq_id")]
 	public int EquipmentId { get; set; }
 
+	[JsonPropertyName("max_upg_lvl")]
+	public UpgradeLevel? MaxUpgradeLevel { get; set; }
+
 	/// <summary>
 	/// Improvements possibles for this equipment
 	/// </summary>

@@ -194,37 +194,43 @@ public static class EquipmentUpgradeCostExtensions
 		}
 	}
 
-	public static List<EquipmentUpgradeCostRange> GetCostPerLevelRange(this EquipmentUpgradeImprovementCost costs)
+	public static List<EquipmentUpgradeCostRange> GetCostPerLevelRange(this EquipmentUpgradeImprovementCost costs, EquipmentUpgradeDataModel upgradeData)
 	{
 		List<EquipmentUpgradeCostRange> result = [];
 
+		UpgradeLevel maxLevel = upgradeData.MaxUpgradeLevel ?? UpgradeLevel.Conversion;
+
+		maxLevel = maxLevel switch
+		{
+			UpgradeLevel.Conversion => UpgradeLevel.Conversion,
+			UpgradeLevel.Max => UpgradeLevel.Conversion,
+			_ => maxLevel + 1,
+		};
+
 		if (costs.ExtraCost is null)
 		{
-			result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.One, costs.Cost0To5))
-			{
-				EndLevel = UpgradeLevel.Six,
-			});
-
-			result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.Seven, costs.Cost6To9))
-			{
-				EndLevel = UpgradeLevel.Max,
-			});
-
-			if (costs.CostMax is { })
-			{
-				result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.Conversion, costs.CostMax)));
-			}
-
-			return result;
+			return GetCostPerLevelWithoutExtraCosts(costs, result, maxLevel);
 		}
 
+		return GetCostPerLevelRangeWithExtraCosts(costs, result, maxLevel);
+	}
+
+	private static List<EquipmentUpgradeCostRange> GetCostPerLevelRangeWithExtraCosts(EquipmentUpgradeImprovementCost costs, List<EquipmentUpgradeCostRange> result, UpgradeLevel maxLevel)
+	{
 		EquipmentUpgradeCostPerLevel? previousCost = null;
 
 		foreach (EquipmentUpgradeCostPerLevel cost in costs.GetCostPerLevel())
 		{
 			if (!cost.Equals(previousCost) || cost.UpgradeLevel is UpgradeLevel.Conversion)
 			{
-				result.Add(new(cost));
+				EquipmentUpgradeCostRange range = new(cost);
+
+				if (range.EndLevel > maxLevel)
+				{
+					range.EndLevel = maxLevel;
+				}
+
+				result.Add(range);
 			}
 
 			previousCost = cost;
@@ -254,7 +260,26 @@ public static class EquipmentUpgradeCostExtensions
 			}
 		}
 
-		return result;
+		return result.Where(cost => cost.StartLevel < maxLevel).ToList();
 	}
 
+	private static List<EquipmentUpgradeCostRange> GetCostPerLevelWithoutExtraCosts(EquipmentUpgradeImprovementCost costs, List<EquipmentUpgradeCostRange> result, UpgradeLevel maxLevel)
+	{
+		result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.One, costs.Cost0To5))
+		{
+			EndLevel = maxLevel <= UpgradeLevel.Six ? maxLevel : UpgradeLevel.Six,
+		});
+
+		result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.Seven, costs.Cost6To9))
+		{
+			EndLevel = maxLevel <= UpgradeLevel.Max ? maxLevel : UpgradeLevel.Max,
+		});
+
+		if (costs.CostMax is { })
+		{
+			result.Add(new(new EquipmentUpgradeCostPerLevel(UpgradeLevel.Conversion, costs.CostMax)));
+		}
+
+		return result.Where(cost => cost.StartLevel < maxLevel).ToList();
+	}
 }

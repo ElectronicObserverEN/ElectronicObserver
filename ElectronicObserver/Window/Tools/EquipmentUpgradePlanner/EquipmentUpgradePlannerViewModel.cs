@@ -5,10 +5,12 @@ using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
+using ElectronicObserver.Avalonia.Translation.EquipmentUpgrade;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Mocks;
+using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control.Paging;
@@ -69,7 +71,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 
 		// Use a setting to set default level ?
-		newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
+		newPlan.DesiredUpgradeLevel = GetDefaultLevelForUpgradePlan(equipmentSelector.SelectedEquipment);
 		newPlan.EquipmentId = equipmentSelector.SelectedEquipment.MasterID;
 
 		if (newPlan.OpenPlanDialog())
@@ -97,7 +99,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
 
 		// Use a setting to set default level ?
-		newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
+		newPlan.DesiredUpgradeLevel = GetDefaultLevelForUpgradePlan(equipmentSelector.SelectedEquipment);
 		newPlan.EquipmentMasterDataId = equipmentSelector.SelectedEquipment.EquipmentId;
 
 		if (newPlan.OpenPlanDialog())
@@ -105,6 +107,15 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			EquipmentUpgradePlanManager.AddPlan(newPlan);
 			EquipmentUpgradePlanManager.Save();
 		}
+	}
+
+	// Returns max by default, unless there's a level limit on that equipment
+	public UpgradeLevel GetDefaultLevelForUpgradePlan(IEquipmentData equipment)
+	{
+		EquipmentUpgradeDataService upgradeData = KCDatabase.Instance.Translation.EquipmentUpgrade;
+		EquipmentUpgradeDataModel? data = upgradeData.UpgradeList.FirstOrDefault(upgrade => upgrade.EquipmentId == equipment.EquipmentID);
+
+		return data?.MaxUpgradeLevel ?? UpgradeLevel.Max;
 	}
 
 	[RelayCommand]
