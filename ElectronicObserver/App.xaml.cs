@@ -249,8 +249,10 @@ public partial class App
 
 	private void ConfigureServices()
 	{
+		KCDatabase db = KCDatabase.Instance;
+
 		ServiceProvider services = new ServiceCollection()
-			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
+			.AddSingleton<IKCDatabase>(db)
 			.AddSingleton<IConfigurationConnection>(Configuration.Config.Connection)
 			.AddSingleton<IConfigurationUi>(Configuration.Config.UI)
 			.AddDialogServices()
@@ -351,7 +353,7 @@ public partial class App
 			.AddSingleton<ShipSelectorFactory>()
 			.AddSingleton<EquipmentSelectorFactory>()
 			.AddSingleton<ITransportGaugeService, TransportGaugeService>()
-			.AddQuestTrackerManager2()
+			.AddQuestTrackerManager2(db.Translation)
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()

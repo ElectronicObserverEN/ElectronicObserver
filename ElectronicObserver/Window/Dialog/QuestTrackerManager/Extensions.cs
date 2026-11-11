@@ -10,17 +10,18 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
 public static class Extensions
 {
-	public static IServiceCollection AddQuestTrackerManager2(this IServiceCollection services) => services
-		.AddSingleton<ISoftwareUpdaterService, SoftwareUpdaterService>()
-		.AddSingleton<IEoLogger, EoLogger>()
-		.AddSingleton<DataService>()
-		.AddSingleton<ConditionDisplayerService>()
-		.AddSingleton<TaskDisplayerService>()
-		.AddSingleton<FleetEvaluationService>()
-		.AddSingleton<IQuestProvider, QuestProviderAdapter>()
-		.AddSingleton<DialogServiceBase, WpfDialogService>()
-		.AddSingleton<TaskFactory>()
-		.AddSingleton<ConditionFactory>()
-		.AddSingleton<QuestTrackerManager2ViewModel>()
-		.AddSingleton<SystemQuestTrackerManager2>();
+	public static IServiceCollection AddQuestTrackerManager2(this IServiceCollection services, DataService dataService)
+		=> services
+			.AddSingleton<ISoftwareUpdaterService, SoftwareUpdaterService>()
+			.AddSingleton<IEoLogger, EoLogger>()
+			.AddSingleton<DataService>(dataService)
+			.AddSingleton<ConditionDisplayerService>()
+			.AddSingleton<TaskDisplayerService>()
+			.AddSingleton<FleetEvaluationService>()
+			.AddSingleton<IQuestProvider, QuestProviderAdapter>()
+			.AddSingleton<DialogServiceBase, WpfDialogService>()
+			.AddSingleton<TaskFactory>()
+			.AddSingleton<ConditionFactory>()
+			.AddSingleton<QuestTrackerManager2ViewModel>()
+			.AddSingleton<SystemQuestTrackerManager2>();
 }
