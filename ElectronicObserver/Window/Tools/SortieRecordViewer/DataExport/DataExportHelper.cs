@@ -921,7 +921,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 				World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
 				Square = SquareString(sortieDetail, node),
 				ActualRank = node.RealWinRank ?? "???",
-				ExpectedRank = Constants.GetWinRank((int)prediction.PredictRank()),
+				ExpectedRank = Constants.GetWinRank(prediction.PredictRank()),
 			});
 		}
 

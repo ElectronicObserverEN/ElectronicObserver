@@ -50,7 +50,7 @@ public class AdmiralData : APIWrapper
 	/// <summary>
 	/// 階級
 	/// </summary>
-	public string RankString => getRank(Rank);
+	public string RankString => GetRank(Rank);
 
 	/// <summary>
 	/// 提督経験値

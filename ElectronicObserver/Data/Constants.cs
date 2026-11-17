@@ -5,7 +5,6 @@ namespace ElectronicObserver.Data;
 
 public static class Constants
 {
-
 	#region 艦船・装備
 
 	/// <summary>
@@ -156,164 +155,90 @@ public static class Constants
 	/// <summary>
 	/// マップ上のセルでのイベントを表す文字列を取得します。
 	/// </summary>
-	public static string GetMapEventID(int value)
+	public static string GetMapEventID(int value) => value switch
 	{
-
-		switch (value)
-		{
-
-			case 0:
-				return ConstantsRes.StartNode;
-			case 1:
-				return ConstantsRes.NoEvent;
-			case 2:
-				return ConstantsRes.Resources;
-			case 3:
-				return ConstantsRes.Maelstrom;
-			case 4:
-				return ConstantsRes.Battle;
-			case 5:
-				return ConstantsRes.Boss;
-			case 6:
-				return ConstantsRes.Imagination;
-			case 7:
-				return ConstantsRes.AirBattle;
-			case 8:
-				return ConstantsRes.LargeResourceNode;
-			case 9:
-				return ConstantsRes.LandNode;
-			case 10:
-				return ConstantsRes.Anchorage; // todo add to res
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.StartNode,
+		1 => ConstantsRes.NoEvent,
+		2 => ConstantsRes.Resources,
+		3 => ConstantsRes.Maelstrom,
+		4 => ConstantsRes.Battle,
+		5 => ConstantsRes.Boss,
+		6 => ConstantsRes.Imagination,
+		7 => ConstantsRes.AirBattle,
+		8 => ConstantsRes.LargeResourceNode,
+		9 => ConstantsRes.LandNode,
+		10 => ConstantsRes.Anchorage,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// マップ上のセルでのイベント種別を表す文字列を取得します。
 	/// </summary>
-	public static string GetMapEventKind(int value)
+	public static string GetMapEventKind(int value) => value switch
 	{
-
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.NoBattle;
-			case 1:
-				return ConstantsRes.DayBattle;
-			case 2:
-				return ConstantsRes.NightBattle;
-			case 3:
-				return ConstantsRes.NightDayBattle;       // 対通常?
-			case 4:
-				return ConstantsRes.AirBattle;
-			case 5:
-				return ConstantsRes.EnemyCombinedFleet;
-			case 6:
-				return ConstantsRes.AirRaid;
-			case 7:
-				return ConstantsRes.NightDayBattle;       // 対連合
-			case 8:
-				return ConstantsRes.RadarAmbush;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.NoBattle,
+		1 => ConstantsRes.DayBattle,
+		2 => ConstantsRes.NightBattle,
+		3 => ConstantsRes.NightDayBattle, // 対通常?
+		4 => ConstantsRes.AirBattle,
+		5 => ConstantsRes.EnemyCombinedFleet,
+		6 => ConstantsRes.AirRaid,
+		7 => ConstantsRes.NightDayBattle, // 対連合
+		8 => ConstantsRes.RadarAmbush,
+		_ => ConstantsRes.Unknown,
+	};
 
 
 	/// <summary>
 	/// 海域難易度を表す文字列を取得します。
 	/// </summary>
-	public static string GetDifficulty(int value)
+	public static string GetDifficulty(int value) => value switch
 	{
-
-		switch (value)
-		{
-			case -1:
-				return ConstantsRes.NoNode;
-			case 0:
-				return ConstantsRes.Unselected;
-			case 1:
-				return ConstantsRes.CasualDifficulty;
-			case 2:
-				return ConstantsRes.EasyDifficulty;
-			case 3:
-				return ConstantsRes.MediumDifficulty;
-			case 4:
-				return ConstantsRes.HardDifficulty;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		-1 => ConstantsRes.NoNode,
+		0 => ConstantsRes.Unselected,
+		1 => ConstantsRes.CasualDifficulty,
+		2 => ConstantsRes.EasyDifficulty,
+		3 => ConstantsRes.MediumDifficulty,
+		4 => ConstantsRes.HardDifficulty,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 海域難易度を表す数値を取得します。
 	/// </summary>
-	public static int GetDifficulty(string value)
+	public static int GetDifficulty(string value) => value switch
 	{
-
-		switch (value)
-		{
-			case "未選択":
-			case "Unselected":
-				return 0;
-			case "丁":
-			case "Casual":
-				return 1;
-			case "丙":
-			case "Easy":
-				return 2;
-			case "乙":
-			case "Medium":
-				return 3;
-			case "甲":
-			case "Hard":
-				return 4;
-			default:
-				return -1;
-		}
-	}
+		"未選択" or "Unselected" => 0,
+		"丁" or "Casual" => 1,
+		"丙" or "Easy" => 2,
+		"乙" or "Medium" => 3,
+		"甲" or "Hard" => 4,
+		_ => -1,
+	};
 
 	/// <summary>
 	/// 空襲被害の状態を表す文字列を取得します。
 	/// </summary>
-	public static string GetAirRaidDamage(int value)
+	public static string GetAirRaidDamage(int value) => value switch
 	{
-		switch (value)
-		{
-			case 1:
-				return ConstantsRes.ABResourcesDamaged;
-			case 2:
-				return ConstantsRes.ABResources_AndPlanesDamaged;
-			case 3:
-				return ConstantsRes.ABPlanesDamaged;
-			case 4:
-				return ConstantsRes.ABNoDamage;
-			default:
-				return ConstantsRes.ABNoAirRaid;
-		}
-	}
+		1 => ConstantsRes.ABResourcesDamaged,
+		2 => ConstantsRes.ABResources_AndPlanesDamaged,
+		3 => ConstantsRes.ABPlanesDamaged,
+		4 => ConstantsRes.ABNoDamage,
+		_ => ConstantsRes.ABNoAirRaid,
+	};
 
 	/// <summary>
 	/// 空襲被害の状態を表す文字列を取得します。(短縮版)
 	/// </summary>
-	public static string GetAirRaidDamageShort(int value)
+	public static string GetAirRaidDamageShort(int value) => value switch
 	{
-		switch (value)
-		{
-			case 1:
-				return ConstantsRes.ABShortResources;
-			case 2:
-				return ConstantsRes.ABShortResourcesPlanes;
-			case 3:
-				return ConstantsRes.ABShortPlanes;
-			case 4:
-				return ConstantsRes.ABShortNoDamage;
-			default:
-				return "-";
-		}
-	}
-
+		1 => ConstantsRes.ABShortResources,
+		2 => ConstantsRes.ABShortResourcesPlanes,
+		3 => ConstantsRes.ABShortPlanes,
+		4 => ConstantsRes.ABShortNoDamage,
+		_ => "-",
+	};
 
 	#endregion
 
@@ -325,108 +250,56 @@ public static class Constants
 	/// <summary>
 	/// 陣形を表す文字列を取得します。
 	/// </summary>
-	public static string GetFormation(int id)
+	public static string GetFormation(int id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.LineAhead;
-			case 2:
-				return ConstantsRes.DoubleLine;
-			case 3:
-				return ConstantsRes.Diamond;
-			case 4:
-				return ConstantsRes.Echelon;
-			case 5:
-				return ConstantsRes.LineAbreast;
-			case 6:
-				return ConstantsRes.Vanguard;
-			case 11:
-				return ConstantsRes.FirstPatrolFormation;
-			case 12:
-				return ConstantsRes.SecondPatrolFormation;
-			case 13:
-				return ConstantsRes.ThirdPatrolFormation;
-			case 14:
-				return ConstantsRes.FourthPatrolFormation;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		1 => ConstantsRes.LineAhead,
+		2 => ConstantsRes.DoubleLine,
+		3 => ConstantsRes.Diamond,
+		4 => ConstantsRes.Echelon,
+		5 => ConstantsRes.LineAbreast,
+		6 => ConstantsRes.Vanguard,
+		11 => ConstantsRes.FirstPatrolFormation,
+		12 => ConstantsRes.SecondPatrolFormation,
+		13 => ConstantsRes.ThirdPatrolFormation,
+		14 => ConstantsRes.FourthPatrolFormation,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 陣形を表す数値を取得します。
 	/// </summary>
-	public static int GetFormation(string value)
+	public static int GetFormation(string value) => value switch
 	{
-		switch (value)
-		{
-			case "単縦陣":
-			case "Line Ahead":
-				return 1;
-			case "複縦陣":
-			case "Double Line":
-				return 2;
-			case "輪形陣":
-			case "Diamond":
-				return 3;
-			case "梯形陣":
-			case "Echelon":
-				return 4;
-			case "単横陣":
-			case "Line Abreast":
-				return 5;
-			case "警戒陣":
-			case "Vanguard":
-				return 6;
-			case "第一警戒航行序列":
-			case "First Cruising Formation":
-				return 11;
-			case "第二警戒航行序列":
-			case "Second Cruising Formation":
-				return 12;
-			case "第三警戒航行序列":
-			case "Third Cruising Formation":
-				return 13;
-			case "第四警戒航行序列":
-			case "Fourth Cruising Formation":
-				return 14;
-			default:
-				return -1;
-		}
-	}
+		"単縦陣" or "Line Ahead" => 1,
+		"複縦陣" or "Double Line" => 2,
+		"輪形陣" or "Diamond" => 3,
+		"梯形陣" or "Echelon" => 4,
+		"単横陣" or "Line Abreast" => 5,
+		"警戒陣" or "Vanguard" => 6,
+		"第一警戒航行序列" or "First Cruising Formation" => 11,
+		"第二警戒航行序列" or "Second Cruising Formation" => 12,
+		"第三警戒航行序列" or "Third Cruising Formation" => 13,
+		"第四警戒航行序列" or "Fourth Cruising Formation" => 14,
+		_ => -1,
+	};
 
 	/// <summary>
 	/// 陣形を表す文字列(短縮版)を取得します。
 	/// </summary>
-	public static string GetFormationShort(int id)
+	public static string GetFormationShort(int id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.LineAheadShort;
-			case 2:
-				return ConstantsRes.DoubleLineShort;
-			case 3:
-				return ConstantsRes.DiamondShort;
-			case 4:
-				return ConstantsRes.EchelonShort;
-			case 5:
-				return ConstantsRes.LineAbreastShort;
-			case 6:
-				return ConstantsRes.VanguardShort;
-			case 11:
-				return ConstantsRes.FirstPatrolFormationShort;
-			case 12:
-				return ConstantsRes.SecondPatrolFormationShort;
-			case 13:
-				return ConstantsRes.ThirdPatrolFormationShort;
-			case 14:
-				return ConstantsRes.FourthPatrolFormationShort;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		1 => ConstantsRes.LineAheadShort,
+		2 => ConstantsRes.DoubleLineShort,
+		3 => ConstantsRes.DiamondShort,
+		4 => ConstantsRes.EchelonShort,
+		5 => ConstantsRes.LineAbreastShort,
+		6 => ConstantsRes.VanguardShort,
+		11 => ConstantsRes.FirstPatrolFormationShort,
+		12 => ConstantsRes.SecondPatrolFormationShort,
+		13 => ConstantsRes.ThirdPatrolFormationShort,
+		14 => ConstantsRes.FourthPatrolFormationShort,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 交戦形態を表す文字列を取得します。
@@ -448,22 +321,14 @@ public static class Constants
 	/// <summary>
 	/// 交戦形態を表す文字列を取得します。
 	/// </summary>
-	public static string GetEngagementFormShort(int id)
+	public static string GetEngagementFormShort(int id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Parallel;
-			case 2:
-				return ConstantsRes.HeadOn;
-			case 3:
-				return ConstantsRes.TAdvantage;
-			case 4:
-				return ConstantsRes.TDisadvantage;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		1 => ConstantsRes.Parallel,
+		2 => ConstantsRes.HeadOn,
+		3 => ConstantsRes.TAdvantage,
+		4 => ConstantsRes.TDisadvantage,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 索敵結果を表す文字列を取得します。
@@ -487,26 +352,16 @@ public static class Constants
 	/// <summary>
 	/// 索敵結果を表す文字列(短縮版)を取得します。
 	/// </summary>
-	public static string GetSearchingResultShort(int id)
+	public static string GetSearchingResultShort(int id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Success;
-			case 2:
-				return ConstantsRes.Success + "△";
-			case 3:
-				return ConstantsRes.NoReturn;
-			case 4:
-				return ConstantsRes.Failure;
-			case 5:
-				return ConstantsRes.Success;
-			case 6:
-				return ConstantsRes.Failure;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		1 => ConstantsRes.Success,
+		2 => ConstantsRes.Success + "△",
+		3 => ConstantsRes.NoReturn,
+		4 => ConstantsRes.Failure,
+		5 => ConstantsRes.Success,
+		6 => ConstantsRes.Failure,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 制空戦の結果を表す文字列を取得します。
@@ -544,28 +399,17 @@ public static class Constants
 	/// <summary>
 	/// 勝利ランクを表す文字列を取得します。
 	/// </summary>
-	public static string GetWinRank(int rank)
+	public static string GetWinRank(BattleRank rank) => rank switch
 	{
-		switch (rank)
-		{
-			case 1:
-				return "E";
-			case 2:
-				return "D";
-			case 3:
-				return "C";
-			case 4:
-				return "B";
-			case 5:
-				return "A";
-			case 6:
-				return "S";
-			case 7:
-				return "SS";
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		BattleRank.E => "E",
+		BattleRank.D => "D",
+		BattleRank.C => "C",
+		BattleRank.B => "B",
+		BattleRank.A => "A",
+		BattleRank.S => "S",
+		BattleRank.SS => "SS",
+		_ => ConstantsRes.Unknown,
+	};
 
 	#endregion
 
@@ -577,64 +421,37 @@ public static class Constants
 	/// </summary>
 	/// <param name="materialID">資源のID。</param>
 	/// <returns>資源の名前。</returns>
-	public static string GetMaterialName(int materialID)
+	public static string GetMaterialName(int materialID) => materialID switch
 	{
-
-		switch (materialID)
-		{
-			case 1:
-				return ConstantsRes.Fuel;
-			case 2:
-				return ConstantsRes.Ammo;
-			case 3:
-				return ConstantsRes.Steel;
-			case 4:
-				return ConstantsRes.Baux;
-			case 5:
-				return ConstantsRes.Flamethrower;
-			case 6:
-				return ConstantsRes.Bucket;
-			case 7:
-				return ConstantsRes.DevMat;
-			case 8:
-				return ConstantsRes.ImpMat;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		1 => ConstantsRes.Fuel,
+		2 => ConstantsRes.Ammo,
+		3 => ConstantsRes.Steel,
+		4 => ConstantsRes.Baux,
+		5 => ConstantsRes.Flamethrower,
+		6 => ConstantsRes.Bucket,
+		7 => ConstantsRes.DevMat,
+		8 => ConstantsRes.ImpMat,
+		_ => ConstantsRes.Unknown,
+	};
 
 
 	/// <summary>
 	/// 階級を表す文字列を取得します。
 	/// </summary>
-	public static string GetAdmiralRank(int id)
+	public static string GetAdmiralRank(int id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.FleetAdmiral;
-			case 2:
-				return ConstantsRes.FourStarAdmiral;
-			case 3:
-				return ConstantsRes.ViceAdmiral;
-			case 4:
-				return ConstantsRes.RearAdmiral;
-			case 5:
-				return ConstantsRes.Captain;
-			case 6:
-				return ConstantsRes.Commander;
-			case 7:
-				return ConstantsRes.NoviceCommander;
-			case 8:
-				return ConstantsRes.LtCmdr;
-			case 9:
-				return ConstantsRes.ViceLtCmdr;
-			case 10:
-				return ConstantsRes.NoviceLtCmdr;
-			default:
-				return ConstantsRes.Admiral;
-		}
-	}
+		1 => ConstantsRes.FleetAdmiral,
+		2 => ConstantsRes.FourStarAdmiral,
+		3 => ConstantsRes.ViceAdmiral,
+		4 => ConstantsRes.RearAdmiral,
+		5 => ConstantsRes.Captain,
+		6 => ConstantsRes.Commander,
+		7 => ConstantsRes.NoviceCommander,
+		8 => ConstantsRes.LtCmdr,
+		9 => ConstantsRes.ViceLtCmdr,
+		10 => ConstantsRes.NoviceLtCmdr,
+		_ => ConstantsRes.Admiral,
+	};
 
 	/// <summary>
 	/// 任務の発生タイプを表す文字列を取得します。
@@ -664,50 +481,27 @@ public static class Constants
 		_ => ConstantsRes.Question
 	};
 
-	public static string GetQuestLabelType(int id)
+	public static string GetQuestLabelType(int id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.QuestOneTime;
-			case 2:
-				return ConstantsRes.Daily;
-			case 3:
-				return ConstantsRes.Weekly;
-			case 6:
-				return ConstantsRes.Monthly;
-			case 7:
-				return ConstantsRes.QuestOther;
-			case 101:
-				return ConstantsRes.QuestYearly + ConstantsRes.January + ConstantsRes.Reset;
-			case 102:
-				return ConstantsRes.QuestYearly + ConstantsRes.February + ConstantsRes.Reset;
-			case 103:
-				return ConstantsRes.QuestYearly + ConstantsRes.March + ConstantsRes.Reset;
-			case 104:
-				return ConstantsRes.QuestYearly + ConstantsRes.April + ConstantsRes.Reset;
-			case 105:
-				return ConstantsRes.QuestYearly + ConstantsRes.May + ConstantsRes.Reset;
-			case 106:
-				return ConstantsRes.QuestYearly + ConstantsRes.June + ConstantsRes.Reset;
-			case 107:
-				return ConstantsRes.QuestYearly + ConstantsRes.July + ConstantsRes.Reset;
-			case 108:
-				return ConstantsRes.QuestYearly + ConstantsRes.August + ConstantsRes.Reset;
-			case 109:
-				return ConstantsRes.QuestYearly + ConstantsRes.September + ConstantsRes.Reset;
-			case 110:
-				return ConstantsRes.QuestYearly + ConstantsRes.October + ConstantsRes.Reset;
-			case 111:
-				return ConstantsRes.QuestYearly + ConstantsRes.November + ConstantsRes.Reset;
-			case 112:
-				return ConstantsRes.QuestYearly + ConstantsRes.December + ConstantsRes.Reset;
-
-			default:
-				return id.ToString();
-		}
-
-	}
+		1 => ConstantsRes.QuestOneTime,
+		2 => ConstantsRes.Daily,
+		3 => ConstantsRes.Weekly,
+		6 => ConstantsRes.Monthly,
+		7 => ConstantsRes.QuestOther,
+		101 => ConstantsRes.QuestYearly + ConstantsRes.January + ConstantsRes.Reset,
+		102 => ConstantsRes.QuestYearly + ConstantsRes.February + ConstantsRes.Reset,
+		103 => ConstantsRes.QuestYearly + ConstantsRes.March + ConstantsRes.Reset,
+		104 => ConstantsRes.QuestYearly + ConstantsRes.April + ConstantsRes.Reset,
+		105 => ConstantsRes.QuestYearly + ConstantsRes.May + ConstantsRes.Reset,
+		106 => ConstantsRes.QuestYearly + ConstantsRes.June + ConstantsRes.Reset,
+		107 => ConstantsRes.QuestYearly + ConstantsRes.July + ConstantsRes.Reset,
+		108 => ConstantsRes.QuestYearly + ConstantsRes.August + ConstantsRes.Reset,
+		109 => ConstantsRes.QuestYearly + ConstantsRes.September + ConstantsRes.Reset,
+		110 => ConstantsRes.QuestYearly + ConstantsRes.October + ConstantsRes.Reset,
+		111 => ConstantsRes.QuestYearly + ConstantsRes.November + ConstantsRes.Reset,
+		112 => ConstantsRes.QuestYearly + ConstantsRes.December + ConstantsRes.Reset,
+		_ => id.ToString(),
+	};
 
 
 	/// <summary>
@@ -728,20 +522,13 @@ public static class Constants
 	/// <summary>
 	/// 遠征の結果を表す文字列を取得します。
 	/// </summary>
-	public static string GetExpeditionResult(int value)
+	public static string GetExpeditionResult(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.Failure;
-			case 1:
-				return ConstantsRes.Success;
-			case 2:
-				return ConstantsRes.GreatSuccess;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.Failure,
+		1 => ConstantsRes.Success,
+		2 => ConstantsRes.GreatSuccess,
+		_ => ConstantsRes.Unknown,
+	};
 
 	public static string GetCombinedFleet(int value) => GetCombinedFleet((FleetType)value);
 
@@ -761,34 +548,20 @@ public static class Constants
 
 	#region Servers
 
-	public static string getRank(int num)
+	public static string GetRank(int num) => num switch
 	{
-		switch (num)
-		{
-			case 1:
-				return "Marshal Admiral";
-			case 2:
-				return "Admiral";
-			case 3:
-				return "Vice-Admiral";
-			case 4:
-				return "Rear-Admiral";
-			case 5:
-				return "Captain";
-			case 6:
-				return "Commander";
-			case 7:
-				return "Commander (Novice)";
-			case 8:
-				return "Lieutenant-Commander";
-			case 9:
-				return "Vice Lieutenant-Commander";
-			case 10:
-				return "Lieutenant-Commander (Novice)";
-			default:
-				return "";
-		}
-	}
+		1 => "Marshal Admiral",
+		2 => "Admiral",
+		3 => "Vice-Admiral",
+		4 => "Rear-Admiral",
+		5 => "Captain",
+		6 => "Commander",
+		7 => "Commander (Novice)",
+		8 => "Lieutenant-Commander",
+		9 => "Vice Lieutenant-Commander",
+		10 => "Lieutenant-Commander (Novice)",
+		_ => "",
+	};
 
 	#endregion
 }

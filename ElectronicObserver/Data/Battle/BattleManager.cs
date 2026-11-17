@@ -32,7 +32,7 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 羅針盤データ
 	/// </summary>
-	public CompassData Compass { get; private set; }
+	public CompassData? Compass { get; private set; }
 
 	/// <summary>
 	/// 昼戦データ
@@ -609,7 +609,7 @@ public class BattleManager : APIWrapper
 	/// </summary>
 	/// <param name="friendrate">味方の損害率を出力します。</param>
 	/// <param name="enemyrate">敵の損害率を出力します。</param>
-	public int PredictWinRank(out double friendrate, out double enemyrate)
+	public BattleRank PredictWinRank(out double friendrate, out double enemyrate)
 	{
 		BattleData activeBattle = SecondBattle ?? FirstBattle;
 		PhaseInitial firstInitial = FirstBattle.Initial;
@@ -663,7 +663,7 @@ public class BattleManager : APIWrapper
 		friendrate = prediction.FriendHpRate;
 		enemyrate = prediction.EnemyHpRate;
 
-		return (int)rank;
+		return rank;
 	}
 
 	/// <summary>

@@ -44,7 +44,7 @@ public class CompassData : ResponseWrapper
 	/// <summary>
 	/// 次のセルのグラフィック
 	/// </summary>
-	public int ColorID => (int)RawData.api_color_no;
+	public CellType ColorID => (CellType)RawData.api_color_no;
 
 	/// <summary>
 	/// イベントID

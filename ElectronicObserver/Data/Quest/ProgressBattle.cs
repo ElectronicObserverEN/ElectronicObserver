@@ -78,7 +78,7 @@ public class ProgressBattle(QuestData quest, int maxCount, string lowestRank, in
 				break;
 			case 2:
 			case 3:
-				sb.Append(Constants.GetWinRank(LowestRank) + QuestTracking.ClearConditionOrHigher);
+				sb.Append(Constants.GetWinRank((BattleRank)LowestRank) + QuestTracking.ClearConditionOrHigher);
 				break;
 			case 4:
 				sb.Append(QuestTracking.ClearConditionVictories);
@@ -86,7 +86,7 @@ public class ProgressBattle(QuestData quest, int maxCount, string lowestRank, in
 			case 5:
 			case 6:
 			case 7:
-				sb.Append(Constants.GetWinRank(LowestRank) + QuestTracking.ClearConditionRankVictories);
+				sb.Append(Constants.GetWinRank((BattleRank)LowestRank) + QuestTracking.ClearConditionRankVictories);
 				break;
 		}
 		sb.Append(ProgressMax);

@@ -54,10 +54,10 @@ public partial class BattleNodeIdTaskViewModel : ObservableObject, IQuestTaskVie
 		sb.Append(Model.Rank switch
 		{
 			BattleRank.Any => QuestTracking.ClearConditionClear,
-			BattleRank.D or BattleRank.C => Constants.GetWinRank((int)Model.Rank) + QuestTracking.ClearConditionOrHigher,
+			BattleRank.D or BattleRank.C => Constants.GetWinRank(Model.Rank) + QuestTracking.ClearConditionOrHigher,
 			BattleRank.B => "",
 			BattleRank.A or BattleRank.S or BattleRank.SS =>
-				Constants.GetWinRank((int)Model.Rank) + QuestTracking.ClearConditionRankVictories,
+				Constants.GetWinRank(Model.Rank) + QuestTracking.ClearConditionRankVictories,
 
 			_ or BattleRank.E => QuestTracking.ClearConditionBattle,
 		});

@@ -30,8 +30,8 @@ public class ExerciseTaskViewModel : ObservableObject, IQuestTaskViewModel
 
 		sb.Append(Model.Rank switch
 		{
-			BattleRank.D or BattleRank.C => Constants.GetWinRank((int)Model.Rank) + QuestTracking.ClearConditionOrHigher,
-			>= BattleRank.B => Constants.GetWinRank((int)Model.Rank) + QuestTracking.ClearConditionRankVictories,
+			BattleRank.D or BattleRank.C => Constants.GetWinRank(Model.Rank) + QuestTracking.ClearConditionOrHigher,
+			>= BattleRank.B => Constants.GetWinRank(Model.Rank) + QuestTracking.ClearConditionRankVictories,
 			_ => "×"
 		});
 		sb.Append(Model.Count);

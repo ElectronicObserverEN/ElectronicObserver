@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.AntiAir;
 using ElectronicObserver.Data;
@@ -1308,7 +1309,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void SetDamageRate(BattleManager bm)
 	{
-		int rank = bm.PredictWinRank(out double friendrate, out double enemyrate);
+		BattleRank rank = bm.PredictWinRank(out double friendrate, out double enemyrate);
 		bm.PredictedBattleRank = Constants.GetWinRank(rank);
 		DamageFriendText = HpRateDisplay(friendrate);
 		DamageEnemyText = HpRateDisplay(enemyrate);
@@ -1322,7 +1323,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		else
 		{
 			WinRankText = Constants.GetWinRank(rank);
-			WinRankForeColor = rank >= 4 ? WinRankColor_Win : WinRankColor_Lose;
+			WinRankForeColor = rank >= BattleRank.B ? WinRankColor_Win : WinRankColor_Lose;
 		}
 
 		// avoid 99.99% to get rounded to 100.0%
