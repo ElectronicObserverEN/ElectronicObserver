@@ -40,7 +40,8 @@ public record AntiAirCutIn
 		19,
 		21,
 		29,
-		16,
+		53, 
+        16, 
 		14,
 		3,
 		5,
@@ -109,8 +110,12 @@ public record AntiAirCutIn
 					[
 						ShipClass.Akizuki,
 					],
-					HighAngle = 1,
-					Radar = 1,
+					Ships =
+					[
+						ShipId.FubukiKaiSanGoType6,
+					],
+					HighAngleDirector = 1,
+					AntiAirRadar = 1,
 				},
 			],
 		},
@@ -239,6 +244,8 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.MayaKaiNi,
+						ShipId.HiryuuKaiSan,
+						ShipId.KitakamiKaiSan,
 					],
 					HighAngle = 1,
 					AaGunConcentrated = 1,
@@ -259,6 +266,7 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.MayaKaiNi,
+						ShipId.HiryuuKaiSan,
 					],
 					HighAngle = 1,
 					AaGunConcentrated = 1,
@@ -311,6 +319,7 @@ public record AntiAirCutIn
 				{
 					Ships =
 					[
+						ShipId.KitakamiKaiSan,
 						ShipId.IsuzuKaiNi,
 					],
 					HighAngle = 1,
@@ -331,6 +340,8 @@ public record AntiAirCutIn
 				{
 					Ships =
 					[
+						ShipId.ShigureKaiSan,
+						ShipId.FubukiKaiSan,
 						ShipId.IsuzuKaiNi,
 					],
 					HighAngle = 1,
@@ -350,7 +361,9 @@ public record AntiAirCutIn
 				{
 					Ships =
 					[
+						ShipId.ShigureKaiSan,
 						ShipId.KasumiKaiNiB,
+						ShipId.FubukiKaiSan,
 						ShipId.YuubariKaiNi,
 					],
 					HighAngle = 1,
@@ -447,7 +460,10 @@ public record AntiAirCutIn
 				{
 					Ships =
 					[
+						ShipId.KitakamiKaiSan,
 						ShipId.YuraKaiNi,
+						ShipId.FubukiKaiSan,
+						ShipId.FubukiKaiSanGoType6,
 					],
 					HighAngle = 1,
 					AntiAirRadar = 1,
@@ -505,6 +521,8 @@ public record AntiAirCutIn
 					[
 						ShipId.TenryuuKaiNi,
 						ShipId.TatsutaKaiNi,
+						ShipId.FubukiKaiSan,
+						ShipId.ShigureKaiSan,
 					],
 					HighAngle = 1,
 					AaGun3To8Aa = 1,
@@ -557,7 +575,7 @@ public record AntiAirCutIn
 		new()
 		{
 			Id = 27,
-			FixedBonus = 5,
+			FixedBonus = 6,
 			VariableBonus = 1.55,
 			Rate = 0.519,
 			Conditions =
@@ -567,6 +585,7 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.OoyodoKai,
+						ShipId.HiryuuKaiSan,
 					],
 					HighAngleMusashi = 1,
 					AaRocketMod = 1,
@@ -790,6 +809,10 @@ public record AntiAirCutIn
 					[
 						ShipClass.Fletcher,
 					],
+					Ships =
+					[
+						ShipId.FubukiKaiSanGoType6,
+					],
 					HighAngleAmericanGfcs = 2,
 				},
 			],
@@ -808,6 +831,10 @@ public record AntiAirCutIn
 					[
 						ShipClass.Fletcher,
 					],
+					Ships =
+					[
+						ShipId.FubukiKaiSanGoType6,
+					],
 					HighAngleAmerican = 1,
 					HighAngleAmericanGfcs = 1,
 				},
@@ -816,6 +843,10 @@ public record AntiAirCutIn
 					ShipClasses =
 					[
 						ShipClass.Fletcher,
+					],
+					Ships =
+					[
+						ShipId.FubukiKaiSanGoType6,
 					],
 					HighAngleAmericanKai = 1,
 					HighAngleAmericanGfcs = 1,
@@ -832,6 +863,10 @@ public record AntiAirCutIn
 			[
 				new()
 				{
+					Ships =
+					[
+						ShipId.FubukiKaiSanGoType6,
+					],
 					ShipClasses =
 					[
 						ShipClass.Fletcher,
@@ -841,6 +876,10 @@ public record AntiAirCutIn
 				},
 				new()
 				{
+					Ships =
+					[
+						ShipId.FubukiKaiSanGoType6,
+					],
 					ShipClasses =
 					[
 						ShipClass.Fletcher,
@@ -851,6 +890,10 @@ public record AntiAirCutIn
 				},
 				new()
 				{
+					Ships =
+					[
+						ShipId.FubukiKaiSanGoType6,
+					],
 					ShipClasses =
 					[
 						ShipClass.Fletcher,
@@ -888,9 +931,10 @@ public record AntiAirCutIn
 			[
 				new()
 				{
-					ShipClasses =
+					Ships =
 					[
-						ShipClass.Atlanta,
+						ShipId.Atlanta,
+						ShipId.AtlantaKai,
 					],
 					HighAngleAtlantaGfcs = 2,
 				},
@@ -906,9 +950,10 @@ public record AntiAirCutIn
 			[
 				new()
 				{
-					ShipClasses =
+					Ships =
 					[
-						ShipClass.Atlanta,
+						ShipId.Atlanta,
+						ShipId.AtlantaKai,
 					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
@@ -925,18 +970,20 @@ public record AntiAirCutIn
 			[
 				new()
 				{
-					ShipClasses =
+					Ships =
 					[
-						ShipClass.Atlanta,
+						ShipId.Atlanta,
+						ShipId.AtlantaKai,
 					],
 					HighAngleAtlanta = 2,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					ShipClasses =
+					Ships =
 					[
-						ShipClass.Atlanta,
+						ShipId.Atlanta,
+						ShipId.AtlantaKai,
 					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
@@ -944,9 +991,10 @@ public record AntiAirCutIn
 				},
 				new()
 				{
-					ShipClasses =
+					Ships =
 					[
-						ShipClass.Atlanta,
+						ShipId.Atlanta,
+						ShipId.AtlantaKai,
 					],
 					HighAngleAtlantaGfcs = 2,
 					RadarGfcs = 1,
@@ -963,27 +1011,30 @@ public record AntiAirCutIn
 			[
 				new()
 				{
-					ShipClasses =
+					Ships =
 					[
-						ShipClass.Atlanta,
+						ShipId.Atlanta,
+						ShipId.AtlantaKai,
 					],
 					HighAngleAtlanta = 2,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					ShipClasses =
+					Ships =
 					[
-						ShipClass.Atlanta,
+						ShipId.Atlanta,
+						ShipId.AtlantaKai,
 					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
 				},
 				new()
 				{
-					ShipClasses =
+					Ships =
 					[
-						ShipClass.Atlanta,
+						ShipId.Atlanta,
+						ShipId.AtlantaKai,
 					],
 					HighAngleAtlantaGfcs = 2,
 				},
@@ -993,7 +1044,7 @@ public record AntiAirCutIn
 		{
 			Id = 42,
 			FixedBonus = 10,
-			VariableBonus = 1.65,
+			VariableBonus = 1.7,
 			Rate = 0.643,
 			Conditions =
 			[
@@ -1015,7 +1066,7 @@ public record AntiAirCutIn
 		{
 			Id = 43,
 			FixedBonus = 8,
-			VariableBonus = 1.6,
+			VariableBonus = 1.65,
 			Rate = 0.594,
 			Conditions =
 			[
@@ -1036,7 +1087,7 @@ public record AntiAirCutIn
 		{
 			Id = 44,
 			FixedBonus = 6,
-			VariableBonus = 1.6,
+			VariableBonus = 1.65,
 			Rate = 0.544,
 			Conditions =
 			[
@@ -1057,8 +1108,8 @@ public record AntiAirCutIn
 		new()
 		{
 			Id = 45,
-			FixedBonus = 5,
-			VariableBonus = 1.55,
+			FixedBonus = 6,
+			VariableBonus = 1.6,
 			Rate = 0.495,
 			Conditions =
 			[
@@ -1162,6 +1213,7 @@ public record AntiAirCutIn
 						ShipId.HatsuzukiKai,
 						ShipId.HatsuzukiKaiNi,
 						ShipId.FuyutsukiKai,
+						ShipId.FubukiKaiSanGoType6,
 					],
 					HatsuzukiGun = 2,
 					Radar4AaOrMore = 1,
@@ -1171,7 +1223,7 @@ public record AntiAirCutIn
 		new()
 		{
 			Id = 49,
-			FixedBonus = 5,
+			FixedBonus = 6,
 			VariableBonus = 1.5,
 			Rate = null,
 			Conditions =
@@ -1181,8 +1233,13 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.FubukiKaiNi,
+						ShipId.FubukiKaiSan,
+						ShipId.FubukiKaiSanGoType6,
 						ShipId.ShirayukiKaiNi,
 						ShipId.FujinamiKaiNi,
+						ShipId.HatsuyukiKaiNi,
+						ShipId.HayanamiKaiNi,
+						ShipId.KitakamiKaiSan,
 					],
 					HighAngleDirector = 2,
 					Radar4AaOrMore = 1,
@@ -1202,8 +1259,12 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.FubukiKaiNi,
+						ShipId.FubukiKaiSan,
+						ShipId.FubukiKaiSanGoType6,
 						ShipId.ShirayukiKaiNi,
 						ShipId.FujinamiKaiNi,
+						ShipId.HatsuyukiKaiNi,
+						ShipId.HayanamiKaiNi,
 					],
 					ShipClasses =
 					[
@@ -1219,7 +1280,7 @@ public record AntiAirCutIn
 		{
 			Id = 51,
 			FixedBonus = 5,
-			VariableBonus = 1.35,
+			VariableBonus = 1.4,
 			Rate = null,
 			Conditions =
 			[
@@ -1228,8 +1289,12 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.FubukiKaiNi,
+						ShipId.FubukiKaiSan,
+						ShipId.FubukiKaiSanGoType6,
 						ShipId.ShirayukiKaiNi,
 						ShipId.FujinamiKaiNi,
+						ShipId.HatsuyukiKaiNi,
+						ShipId.HayanamiKaiNi,
 					],
 					AkizukiGunKai = 1,
 					Radar4AaOrMore = 1,
@@ -1240,7 +1305,7 @@ public record AntiAirCutIn
 		new()
 		{
 			Id = 52,
-			FixedBonus = 4,
+			FixedBonus = 5,
 			VariableBonus = 1.4,
 			Rate = null,
 			Conditions =
@@ -1250,11 +1315,35 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.FubukiKaiNi,
+						ShipId.FubukiKaiSan,
+						ShipId.FubukiKaiSanGoType6,
 						ShipId.ShirayukiKaiNi,
 						ShipId.FujinamiKaiNi,
+						ShipId.HatsuyukiKaiNi,
+						ShipId.HayanamiKaiNi,
 					],
 					AkizukiPotatoGun = 2,
 					Aafd94 = 1,
+				},
+			],
+		},
+		new()
+		{
+			Id = 53,
+			FixedBonus = 4,
+			VariableBonus = 1.6,
+			Rate = 0.6,
+			Conditions =
+			[
+				new()
+				{
+					Ships =
+					[
+						ShipId.KitakamiKaiSan,
+						ShipId.HiryuuKaiSan,
+					],
+					HighAngleDirector9AA = 1,
+					AntiAirRadar = 1,
 				},
 			],
 		},

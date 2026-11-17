@@ -223,11 +223,11 @@ public static class ShipDataExtensions
 	public static bool HasHighAngleGun(this IShipData ship, int count = 1) =>
 		ship.HighAngleGunCount() >= count;
 
-	public static int HighAngleDirectorGunCount(this IShipData ship) => ship.AllSlotInstance
-		.Count(e => e?.MasterEquipment.IsHighAngleGunWithAADirector is true);
+	public static int HighAngleDirectorGunCountWithAA(this IShipData ship, int aa) => ship.AllSlotInstance
+		.Count(e => e?.MasterEquipment.IsHighAngleGunWithAA(aa) is true);
 
-	public static bool HasHighAngleDirectorGun(this IShipData ship, int count = 1) =>
-		ship.HighAngleDirectorGunCount() >= count;
+	public static bool HasHighAngleDirectorGunWithAA(this IShipData ship, int aa, int count = 1) =>
+		ship.HighAngleDirectorGunCountWithAA(aa) >= count;
 
 	public static int HighAngleDirectorWithoutGunCount(this IShipData ship) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsHighAngleGun is true &&
