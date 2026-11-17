@@ -931,10 +931,9 @@ public record AntiAirCutIn
 			[
 				new()
 				{
-					Ships =
+					ShipClasses =
 					[
-						ShipId.Atlanta,
-						ShipId.AtlantaKai,
+						ShipClass.Atlanta,
 					],
 					HighAngleAtlantaGfcs = 2,
 				},
@@ -950,10 +949,9 @@ public record AntiAirCutIn
 			[
 				new()
 				{
-					Ships =
+					ShipClasses =
 					[
-						ShipId.Atlanta,
-						ShipId.AtlantaKai,
+						ShipClass.Atlanta,
 					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
@@ -970,20 +968,18 @@ public record AntiAirCutIn
 			[
 				new()
 				{
-					Ships =
+					ShipClasses =
 					[
-						ShipId.Atlanta,
-						ShipId.AtlantaKai,
+						ShipClass.Atlanta,
 					],
 					HighAngleAtlanta = 2,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					Ships =
+					ShipClasses =
 					[
-						ShipId.Atlanta,
-						ShipId.AtlantaKai,
+						ShipClass.Atlanta,
 					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
@@ -991,10 +987,9 @@ public record AntiAirCutIn
 				},
 				new()
 				{
-					Ships =
+					ShipClasses =
 					[
-						ShipId.Atlanta,
-						ShipId.AtlantaKai,
+						ShipClass.Atlanta,
 					],
 					HighAngleAtlantaGfcs = 2,
 					RadarGfcs = 1,
@@ -1011,30 +1006,27 @@ public record AntiAirCutIn
 			[
 				new()
 				{
-					Ships =
+					ShipClasses =
 					[
-						ShipId.Atlanta,
-						ShipId.AtlantaKai,
+						ShipClass.Atlanta,
 					],
 					HighAngleAtlanta = 2,
 					RadarGfcs = 1,
 				},
 				new()
 				{
-					Ships =
+					ShipClasses =
 					[
-						ShipId.Atlanta,
-						ShipId.AtlantaKai,
+						ShipClass.Atlanta,
 					],
 					HighAngleAtlanta = 1,
 					HighAngleAtlantaGfcs = 1,
 				},
 				new()
 				{
-					Ships =
+					ShipClasses =
 					[
-						ShipId.Atlanta,
-						ShipId.AtlantaKai,
+						ShipClass.Atlanta,
 					],
 					HighAngleAtlantaGfcs = 2,
 				},
