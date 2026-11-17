@@ -94,8 +94,8 @@ public class AntiAirCutInCondition
 		if (!ShipCondition(ship, antiAirCutIn)) return false;
 
 		if (!ship.HasHighAngleGun(HighAngle)) return false;
-		if (!ship.HasHighAngleDirectorGunWithAA(HighAngleDirector, 8)) return false;
-		if (!ship.HasHighAngleDirectorGunWithAA(HighAngleDirector9AA, 9)) return false;
+		if (!ship.HasHighAngleDirectorGunWithAA(8, HighAngleDirector)) return false;
+		if (!ship.HasHighAngleDirectorGunWithAA(9, HighAngleDirector9AA)) return false;
 		if (!ship.HasHighAngleWithoutDirectorGun(HighAngleWithoutDirector)) return false;
 		if (!ship.HasDirector(AaDirector)) return false;
 		if (!ship.HasRadar(Radar)) return false;
