@@ -72,7 +72,7 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public bool IsTorpedo => this.IsTorpedo();
 	public bool IsLateModelTorpedo => this.IsLateModelTorpedo();
 	public bool IsHighAngleGun => this.IsHighAngleGun();
-	public bool IsHighAngleGunWithAADirector => this.IsHighAngleGunWithAADirector();
+	public bool IsHighAngleGunWithAADirector => this.IsHighAngleGunWithAA(8);
 	public bool IsConcentratedAAGun => this.IsConcentratedAAGun();
 	public bool IsAircraft => this.IsAircraft();
 	public bool IsCombatAircraft => this.IsCombatAircraft();

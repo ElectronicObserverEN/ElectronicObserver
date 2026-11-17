@@ -47,10 +47,9 @@ public static class EquipmentDataExtensions
 	public static bool IsHighAngleGun(this IEquipmentDataMaster equip) => equip.IconTypeTyped is
 		EquipmentIconType.HighAngleGun;
 
-	/// <summary> 高角砲+高射装置かどうか </summary>
-	public static bool IsHighAngleGunWithAADirector(this IEquipmentDataMaster equip) =>
+	public static bool IsHighAngleGunWithAA(this IEquipmentDataMaster equip, int aa) =>
 		equip.IsHighAngleGun() &&
-		equip.AA >= 8;
+		equip.AA >= aa;
 
 	/// <summary> 集中配備機銃かどうか </summary>
 	public static bool IsConcentratedAAGun(this IEquipmentDataMaster equip) =>

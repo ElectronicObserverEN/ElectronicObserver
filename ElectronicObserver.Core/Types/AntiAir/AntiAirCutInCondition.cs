@@ -11,6 +11,7 @@ public class AntiAirCutInCondition
 	public int HighAngle { get; init; }
 	public int HighAngleDirector { get; init; }
 	public int HighAngleWithoutDirector { get; init; }
+	public int HighAngleDirector9AA { get; init; }
 	public int AaDirector { get; init; }
 	public int Radar { get; init; }
 	public int AntiAirRadar { get; init; }
@@ -93,7 +94,8 @@ public class AntiAirCutInCondition
 		if (!ShipCondition(ship, antiAirCutIn)) return false;
 
 		if (!ship.HasHighAngleGun(HighAngle)) return false;
-		if (!ship.HasHighAngleDirectorGun(HighAngleDirector)) return false;
+		if (!ship.HasHighAngleDirectorGunWithAA(8, HighAngleDirector)) return false;
+		if (!ship.HasHighAngleDirectorGunWithAA(9, HighAngleDirector9AA)) return false;
 		if (!ship.HasHighAngleWithoutDirectorGun(HighAngleWithoutDirector)) return false;
 		if (!ship.HasDirector(AaDirector)) return false;
 		if (!ship.HasRadar(Radar)) return false;
