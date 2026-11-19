@@ -1205,6 +1205,7 @@ public record AntiAirCutIn
 						ShipId.HatsuzukiKai,
 						ShipId.HatsuzukiKaiNi,
 						ShipId.FuyutsukiKai,
+						ShipId.HanazukiKai,
 						ShipId.FubukiKaiSanGoType6,
 					],
 					HatsuzukiGun = 2,
