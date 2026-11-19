@@ -281,4 +281,21 @@ public static class Converters
 	};
 
 	public static FuncValueConverter<TaskType, string> TaskTypeDisplayConverter { get; } = new(ToDisplay);
+
+	public static string ToDisplay(this BattleRank battleRank) => battleRank switch
+	{
+		BattleRank.Any => "*",
+
+		BattleRank.E or
+		BattleRank.D or
+		BattleRank.C or
+		BattleRank.B or
+		BattleRank.A or
+		BattleRank.S or
+		BattleRank.SS => battleRank.ToString(),
+
+		_ => "???",
+	};
+
+	public static FuncValueConverter<BattleRank, string> BattleRankDisplayConverter { get; } = new(ToDisplay);
 }

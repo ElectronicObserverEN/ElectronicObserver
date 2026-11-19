@@ -5,6 +5,7 @@
 	xmlns:bossKill="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks.BossKill"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:questTrackerManager2="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	x:DataType="bossKill:BossKillTaskViewModel"
@@ -12,7 +13,13 @@
 	>
 	<StackPanel Orientation="Horizontal">
 		<ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding Map}" />
-		<ComboBox ItemsSource="{Binding Ranks}" SelectedItem="{Binding Rank}" />
+		<ComboBox ItemsSource="{Binding Ranks}" SelectedItem="{Binding Rank}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Converter={x:Static questTrackerManager2:Converters.BattleRankDisplayConverter}}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
 		<NumericUpDown Value="{Binding Progress}" />
 		<NumericUpDown Value="{Binding Count}" />
 		<TextBlock Text="{Binding Display}" />
