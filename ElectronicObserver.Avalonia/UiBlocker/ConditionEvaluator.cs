@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserver.Avalonia.UiBlocker;
 
-public sealed class ConditionEvaluator
+public static class ConditionEvaluator
 {
 	public static bool Evaluate(ConditionModel model, IGameStateProvider stateProvider)
 	{

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ElectronicObserver.Avalonia.UiBlocker;
@@ -13,7 +14,7 @@ public class UiBlockerAdapter
 	private IGameStateProvider GameStateProvider { get; }
 	private IClipboardService ClipboardService { get; }
 
-	private Avalonia.UiBlocker.UiBlockerConfiguration UiBlockerConfiguration { get; set; } = new();
+	private Avalonia.UiBlocker.UiBlockerConfiguration UiBlockerConfiguration { get; set; }
 	public UiBlockerManagerViewModel UiBlockerManagerViewModel { get; private set; }
 
 	private static string UiBlockersPath => Path.Combine("Settings", "UiBlockers.json");
@@ -57,20 +58,20 @@ public class UiBlockerAdapter
 
 	public async Task Save()
 	{
-		foreach (UiBlockerModel uiBlockerModel in SystemUiBlockers.All)
+		foreach (Guid id in SystemUiBlockers.Ids)
 		{
 			UiBlockerViewModel? blockerViewModel = UiBlockerManagerViewModel.Blockers
-				.FirstOrDefault(b => b.Model.Id == uiBlockerModel.Id);
+				.FirstOrDefault(b => b.Model.Id == id);
 
 			SystemUiBlockerConfiguration? systemBlockerData = UiBlockerConfiguration.SystemBlockers
-				.FirstOrDefault(b => b.Id == uiBlockerModel.Id);
+				.FirstOrDefault(b => b.Id == id);
 
 			if (systemBlockerData is null)
 			{
 				systemBlockerData = new()
 				{
-					Id = uiBlockerModel.Id,
-					IsEnabled = uiBlockerModel.Id == SystemUiBlockers.TaihaBlocker.Id,
+					Id = id,
+					IsEnabled = id == SystemUiBlockers.TaihaBlocker.Id,
 				};
 				UiBlockerConfiguration.SystemBlockers.Add(systemBlockerData);
 			}

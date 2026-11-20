@@ -21,12 +21,9 @@ public sealed class NodeOptionViewModel(string letter, List<int> ids, ConditionM
 
 			if (value)
 			{
-				foreach (int id in Ids)
+				foreach (int id in Ids.Where(id => !Model.CellIds.Contains(id)))
 				{
-					if (!Model.CellIds.Contains(id))
-					{
-						Model.CellIds.Add(id);
-					}
+					Model.CellIds.Add(id);
 				}
 			}
 			else

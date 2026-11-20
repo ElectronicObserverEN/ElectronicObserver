@@ -25,7 +25,7 @@ public partial class UiElementView : UserControl
 			FileTypeFilter = [FilePickerFileTypes.ImageAll],
 		});
 
-		string? path = files.FirstOrDefault()?.TryGetLocalPath();
+		string? path = files[0]?.TryGetLocalPath();
 		if (path is not null)
 		{
 			vm.ImagePath = path;

@@ -70,17 +70,17 @@ public static class UiBlockerSerializer
 			UiBlockerConfiguration configuration = JsonSerializer.Deserialize<UiBlockerConfiguration>(json, Options) ?? UiBlockerConfiguration.Default;
 
 			// add missing system blockers if we add new ones in future releases
-			foreach (UiBlockerModel uiBlockerModel in SystemUiBlockers.All)
+			foreach (Guid id in SystemUiBlockers.Ids)
 			{
 				SystemUiBlockerConfiguration? systemBlockerData = configuration.SystemBlockers
-					.FirstOrDefault(b => b.Id == uiBlockerModel.Id);
+					.FirstOrDefault(b => b.Id == id);
 
 				if (systemBlockerData is not null) continue;
 				
 				systemBlockerData = new()
 				{
-					Id = uiBlockerModel.Id,
-					IsEnabled = uiBlockerModel.Id == SystemUiBlockers.TaihaBlocker.Id,
+					Id = id,
+					IsEnabled = id == SystemUiBlockers.TaihaBlocker.Id,
 				};
 				configuration.SystemBlockers.Add(systemBlockerData);
 			}
