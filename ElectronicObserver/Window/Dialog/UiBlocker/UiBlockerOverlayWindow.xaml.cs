@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
+using ElectronicObserver.Avalonia.UiBlocker;
 
 namespace ElectronicObserver.Window.Dialog.UiBlocker;
 
@@ -9,9 +10,12 @@ public partial class UiBlockerOverlayWindow
 {
 	private MouseHook? MouseHook { get; set; }
 
-	public UiBlockerOverlayWindow(UiBlockerViewModel viewModel)
+	public UiBlockerOverlayViewModel ViewModel { get; }
+
+	public UiBlockerOverlayWindow(UiBlockerOverlayViewModel viewModel)
 	{
 		DataContext = viewModel;
+		ViewModel = viewModel;
 
 		Top = viewModel.Top;
 		Left = viewModel.Left;
@@ -40,23 +44,25 @@ public partial class UiBlockerOverlayWindow
 	/// </summary>
 	private void UpdatePosition(object? sender, PropertyChangedEventArgs args)
 	{
-		if (sender is not UiBlockerViewModel viewModel) return;
+		if (sender is not UiBlockerOverlayViewModel viewModel) return;
 
-		if (args.PropertyName is nameof(viewModel.Top))
+		switch (args.PropertyName)
 		{
-			Top = viewModel.Top;
-		}
-		else if (args.PropertyName is nameof(viewModel.Left))
-		{
-			Left = viewModel.Left;
-		}
-		else if (args.PropertyName is nameof(viewModel.Height))
-		{
-			Height = viewModel.Height;
-		}
-		else if (args.PropertyName is nameof(viewModel.Width))
-		{
-			Width = viewModel.Width;
+			case nameof(viewModel.Top):
+				Top = viewModel.Top;
+				break;
+
+			case nameof(viewModel.Left):
+				Left = viewModel.Left;
+				break;
+
+			case nameof(viewModel.Height):
+				Height = viewModel.Height;
+				break;
+
+			case nameof(viewModel.Width):
+				Width = viewModel.Width;
+				break;
 		}
 	}
 

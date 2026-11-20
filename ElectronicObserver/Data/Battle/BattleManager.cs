@@ -54,6 +54,8 @@ public class BattleManager : APIWrapper
 	/// </summary>
 	public string PredictedBattleRank { get; set; }
 
+	public BattleRank PredictedBattleResultRank => PredictWinRank(out _, out _);
+
 	// In the api, heavy base air raid is implemented as 3 different air raid battles
 	// If we decide to collapse it down into 1 battle, this should be deleted
 	// and heavy base air raid moved to BattleDay like regular BattleBaseAirRaid

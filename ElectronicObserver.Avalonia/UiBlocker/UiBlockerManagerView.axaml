@@ -1,0 +1,57 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.UiBlocker.UiBlockerManagerView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:resources="clr-namespace:ElectronicObserver.Avalonia.UiBlocker.Resources"
+	xmlns:vm="clr-namespace:ElectronicObserver.Avalonia.UiBlocker"
+	x:DataType="vm:UiBlockerManagerViewModel"
+	>
+	<UserControl.Styles>
+		<Style Selector="Button">
+			<Setter Property="Margin" Value="4 0" />
+		</Style>
+	</UserControl.Styles>
+
+	<Grid Margin="4" RowDefinitions="Auto * Auto">
+		<WrapPanel Grid.Row="0" Margin="4">
+			<Button Command="{Binding NewBlockerCommand}" Content="{x:Static resources:UiBlockerResources.New}" />
+			<Button Command="{Binding DuplicateCommand}" Content="{x:Static resources:UiBlockerResources.Duplicate}" />
+			<Button Command="{Binding DeleteCommand}" Content="{x:Static resources:UiBlockerResources.Delete}" />
+			<Button Command="{Binding CopySelectedCommand}" Content="{x:Static resources:UiBlockerResources.Copy}" />
+			<Button Command="{Binding CopyAllCommand}" Content="{x:Static resources:UiBlockerResources.CopyAll}" />
+			<Button Command="{Binding PasteFromClipboardCommand}" Content="{x:Static resources:UiBlockerResources.Paste}" />
+			<Button Command="{Binding HideAllCommand}" Content="{x:Static resources:UiBlockerResources.HideAll}" />
+		</WrapPanel>
+
+		<TabControl
+			Grid.Row="1"
+			ItemsSource="{Binding Blockers}"
+			SelectedItem="{Binding SelectedBlocker}"
+			>
+			<TabControl.ItemTemplate>
+				<DataTemplate x:DataType="vm:UiBlockerViewModel">
+					<StackPanel Orientation="Horizontal" Spacing="6">
+						<TextBlock
+							MaxWidth="200"
+							Text="{Binding Header}"
+							TextTrimming="CharacterEllipsis"
+							ToolTip.Tip="{Binding Header}"
+							/>
+					</StackPanel>
+				</DataTemplate>
+			</TabControl.ItemTemplate>
+
+			<TabControl.ContentTemplate>
+				<DataTemplate x:DataType="vm:UiBlockerViewModel">
+					<vm:UiBlockerView />
+				</DataTemplate>
+			</TabControl.ContentTemplate>
+		</TabControl>
+
+		<Button
+			Grid.Row="2"
+			Command="{Binding ShowBlockersCommand}"
+			Content="{x:Static resources:UiBlockerResources.Show}"
+			/>
+	</Grid>
+</UserControl>

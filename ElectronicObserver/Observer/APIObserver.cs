@@ -32,7 +32,6 @@ public sealed class APIObserver
 	#endregion
 
 
-
 	public APIDictionary APIList { get; private set; }
 
 	#region API members
@@ -604,12 +603,36 @@ public sealed class APIObserver
 	/// </summary>
 	public kcsapi.api_req_hensei.preset_delete ApiReqHensei_PresetDelete { get; } = new();
 
+	public IEnumerable<APIBase> BattleApis()
+	{
+		yield return ApiReqSortie_Battle;
+		yield return ApiReqBattleMidnight_Battle;
+		yield return ApiReqBattleMidnight_SpMidnight;
+		yield return ApiReqSortie_AirBattle;
+		yield return ApiReqSortie_LdAirBattle;
+		yield return ApiReqSortie_NightToDay;
+		yield return ApiReqSortie_LdShooting;
+		yield return ApiReqCombinedBattle_Battle;
+		yield return ApiReqCombinedBattle_BattleWater;
+		yield return ApiReqCombinedBattle_AirBattle;
+		yield return ApiReqCombinedBattle_MidnightBattle;
+		yield return ApiReqCombinedBattle_SpMidnight;
+		yield return ApiReqCombinedBattle_LdAirBattle;
+		yield return ApiReqCombinedBattle_EcBattle;
+		yield return ApiReqCombinedBattle_EcMidnightBattle;
+		yield return ApiReqCombinedBattle_EcNightToDay;
+		yield return ApiReqCombinedBattle_EachBattle;
+		yield return ApiReqCombinedBattle_EachBattleWater;
+		yield return ApiReqCombinedBattle_LdShooting;
+	}
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
 	public int ProxyPort { get; private set; }
 
 	public delegate void ProxyStartedEventHandler();
+
 	public event ProxyStartedEventHandler ProxyStarted = delegate { };
 
 	private Control UIControl { get; set; }
@@ -711,7 +734,6 @@ public sealed class APIObserver
 			ApiReqMap_AnchorageRepair,
 			ApiReqMap_StartAirBase,
 			ApiGetMember_PresetDeck,
-
 			ApiReqQuest_ClearItemGet,
 			ApiReqNyukyo_Start,
 			ApiReqNyukyo_SpeedChange,
@@ -796,7 +818,6 @@ public sealed class APIObserver
 			ProxyStarted();
 
 			Logger.Add(1, string.Format(LoggerRes.APIObserverStarted, portID));
-
 		}
 		catch (Exception ex)
 		{
@@ -847,7 +868,6 @@ public sealed class APIObserver
 		// request
 		if (baseurl.Contains("/kcsapi/"))
 		{
-
 			string url = baseurl;
 			string body = await e.GetRequestBodyAsString();
 
@@ -864,17 +884,14 @@ public sealed class APIObserver
 		//保存
 		if (c.SaveReceivedData)
 		{
-
 			try
 			{
-
 				if (!Directory.Exists(c.SaveDataPath))
 					Directory.CreateDirectory(c.SaveDataPath);
 
 
 				if (c.SaveResponse && baseurl.Contains("/kcsapi/"))
 				{
-
 					// 非同期で書き出し処理するので取っておく
 					// stringはイミュータブルなのでOK
 					string url = baseurl;
@@ -884,11 +901,9 @@ public sealed class APIObserver
 					{
 						SaveResponse(url, body);
 					}));
-
 				}
 				else if (baseurl.Contains("/kcs") && c.SaveOtherFile)
 				{
-
 					string saveDataPath = c.SaveDataPath; // スレッド間の競合を避けるため取っておく
 
 					string tpath = string.Format("{0}\\{1}", saveDataPath, baseurl.Substring(baseurl.IndexOf("/kcs") + 1).Replace("/", "\\"));
@@ -907,13 +922,11 @@ public sealed class APIObserver
 									tpath = tpath.Insert(tpath.LastIndexOf('.', index), "_v" + version);
 									index += version.Length + 2;
 								}
-
 							}
 
 							tpath = tpath.Remove(index);
 						}
 					}
-
 
 
 					// 非同期で書き出し処理するので取っておく
@@ -935,24 +948,19 @@ public sealed class APIObserver
 							}
 
 							Logger.Add(1, string.Format(LoggerRes.SavedAPI, tpath.Remove(0, saveDataPath.Length + 1)));
-
 						}
 						catch (IOException ex)
-						{   //ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
-
+						{
+							//ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
 							Logger.Add(3, LoggerRes.FailedSaveAPI + ex.Message);
 						}
 					}));
-
 				}
-
 			}
 			catch (Exception ex)
 			{
-
 				ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
 			}
-
 		}
 
 		if (baseurl.Contains("/kcsapi/") && e.HttpClient.Response.ContentType == "text/plain")
@@ -979,12 +987,10 @@ public sealed class APIObserver
 
 	public void LoadRequest(string path, string data)
 	{
-
 		string shortpath = path.Substring(path.LastIndexOf("/kcsapi/") + 8);
 
 		try
 		{
-
 			Logger.Add(1, LoggerRes.RecievedRequest + shortpath);
 
 			SystemEvents.UpdateTimerEnabled = false;
@@ -1001,38 +1007,30 @@ public sealed class APIObserver
 
 			RequestReceived(shortpath, parsedData);
 			APIList.OnRequestReceived(shortpath, parsedData);
-
 		}
 		catch (Exception ex)
 		{
-
 			ErrorReporter.SendErrorReport(ex, LoggerRes.RequestError, shortpath, data);
-
 		}
 		finally
 		{
-
 			SystemEvents.UpdateTimerEnabled = true;
-
 		}
-
 	}
 
 
 	public void LoadResponse(string path, string data)
 	{
-
 		string shortpath = path.Substring(path.LastIndexOf("/kcsapi/") + 8);
 
 		try
 		{
-
 			Logger.Add(1, ObserverRes.ResponseRecieved + shortpath);
 
 			SystemEvents.UpdateTimerEnabled = false;
 
 
-			var json = JsonObject.Parse(data.Substring(7));        //remove "svdata="
+			var json = JsonObject.Parse(data.Substring(7)); //remove "svdata="
 
 			int result = (int)json.api_result;
 			if (result != 1)
@@ -1069,69 +1067,49 @@ public sealed class APIObserver
 		}
 		catch (Exception ex)
 		{
-
 			ErrorReporter.SendErrorReport(ex,
 				ObserverRes.ErrorResponse,
 				shortpath, data);
-
 		}
 		finally
 		{
-
 			SystemEvents.UpdateTimerEnabled = true;
-
 		}
-
 	}
 
 
 	private void SaveRequest(string url, string body)
 	{
-
 		try
 		{
-
 			string tpath = string.Format("{0}\\{1}Q@{2}.json", Configuration.Config.Connection.SaveDataPath, DateTimeHelper.GetTimeStamp(), url.Substring(url.LastIndexOf("/kcsapi/") + 8).Replace("/", "@"));
 
 			using (var sw = new StreamWriter(tpath, false, Encoding.UTF8))
 			{
 				sw.Write(body);
 			}
-
-
 		}
 		catch (Exception ex)
 		{
-
 			ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
-
 		}
 	}
 
 
 	private void SaveResponse(string url, string body)
 	{
-
 		try
 		{
-
 			string tpath = string.Format("{0}\\{1}S@{2}.json", Configuration.Config.Connection.SaveDataPath, DateTimeHelper.GetTimeStamp(), url.Substring(url.LastIndexOf("/kcsapi/") + 8).Replace("/", "@"));
 
 			using (var sw = new StreamWriter(tpath, false, Encoding.UTF8))
 			{
 				sw.Write(body);
 			}
-
 		}
 		catch (Exception ex)
 		{
-
 			ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
-
 		}
-
-
-
 	}
-
 }

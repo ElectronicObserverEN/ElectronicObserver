@@ -1,0 +1,96 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.UiBlocker.ConditionView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:resources="clr-namespace:ElectronicObserver.Avalonia.UiBlocker.Resources"
+	xmlns:tasks="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks"
+	xmlns:vm="clr-namespace:ElectronicObserver.Avalonia.UiBlocker"
+	x:DataType="vm:ConditionViewModel"
+	>
+
+	<Border
+		Margin="0 4"
+		Padding="4"
+		BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+		BorderThickness="1"
+		CornerRadius="4"
+		>
+
+		<StackPanel Spacing="4">
+
+			<Grid ColumnDefinitions="* Auto">
+				<StackPanel
+					Grid.Column="0"
+					Orientation="Horizontal"
+					Spacing="12"
+					>
+
+					<ComboBox
+						MinWidth="180"
+						VerticalAlignment="Center"
+						ItemsSource="{Binding Types}"
+						SelectedItem="{Binding Type}"
+						>
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Converter={x:Static vm:Converters.ConditionTypeToDisplayConverter}}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+
+					<CheckBox
+						VerticalAlignment="Center"
+						Content="{x:Static resources:UiBlockerResources.Invert}"
+						IsChecked="{Binding Invert}"
+						/>
+				</StackPanel>
+
+				<Button
+					Grid.Column="1"
+					Command="{Binding RemoveCommand}"
+					Content="✕"
+					/>
+			</Grid>
+
+			<ComboBox
+				IsVisible="{Binding ShowRank}"
+				ItemsSource="{Binding Ranks}"
+				SelectedItem="{Binding Rank}"
+				/>
+
+			<StackPanel IsVisible="{Binding ShowLocation}" Spacing="4">
+				<ComboBox
+					MinWidth="180"
+					ItemsSource="{Binding MapOptions}"
+					SelectedItem="{Binding SelectedMapOption}"
+					>
+					<ComboBox.ItemTemplate>
+						<DataTemplate x:DataType="tasks:MapInfoModel">
+							<TextBlock Text="{Binding Display, FallbackValue=*}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+
+				<StackPanel IsVisible="{Binding ShowNodes}" Spacing="4">
+					<TextBlock Opacity="0.7" Text="{x:Static resources:UiBlockerResources.NodeNote}" />
+					<ItemsControl ItemsSource="{Binding Nodes}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate x:DataType="vm:NodeOptionViewModel">
+								<CheckBox
+									Margin="0 0 12 0"
+									Content="{Binding Letter}"
+									IsChecked="{Binding IsChecked}"
+									/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</UserControl>

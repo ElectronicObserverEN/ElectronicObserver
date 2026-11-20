@@ -20,7 +20,6 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog.UiBlocker;
-using ElectronicObserver.Window.Dialog.UiBlocker.Taiha;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
 namespace ElectronicObserver.Utility;
@@ -2042,10 +2041,10 @@ public sealed class Configuration
 			TaihaBlocker = new()
 			{
 				IsEnabled = true,
-				DesiredTop = TaihaBlockerViewModel.DefaultDesiredTop,
-				DesiredLeft = TaihaBlockerViewModel.DefaultDesiredLeft,
-				DesiredWidth = TaihaBlockerViewModel.DefaultDesiredWidth,
-				DesiredHeight = TaihaBlockerViewModel.DefaultDesiredHeight,
+				DesiredTop = 270,
+				DesiredLeft = 330,
+				DesiredWidth = 190,
+				DesiredHeight = 210,
 			};
 
 			VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
