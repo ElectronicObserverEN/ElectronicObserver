@@ -117,40 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UiBlocker" xml:space="preserve">
-    <value>UI Blocker</value>
+  <data name="CanShipSink" xml:space="preserve">
+    <value>Can ship sink</value>
   </data>
-  <data name="Enabled" xml:space="preserve">
-    <value>Enabled</value>
+  <data name="DoubleLineTouch" xml:space="preserve">
+    <value>Double line touch</value>
   </data>
-  <data name="Top" xml:space="preserve">
-    <value>Top</value>
+  <data name="EchelonTouch" xml:space="preserve">
+    <value>Echelon touch</value>
   </data>
-  <data name="Left" xml:space="preserve">
-    <value>Left</value>
+  <data name="SecondPatrolFormationTouch" xml:space="preserve">
+    <value>Second patrol formation touch</value>
   </data>
-  <data name="Height" xml:space="preserve">
-    <value>Height</value>
+  <data name="FourthPatrolFormationTouch" xml:space="preserve">
+    <value>Fourth patrol formation touch</value>
   </data>
-  <data name="Width" xml:space="preserve">
-    <value>Width</value>
+  <data name="IsBattleNode" xml:space="preserve">
+    <value>Is battle node</value>
   </data>
-  <data name="Default" xml:space="preserve">
-    <value>Default</value>
+  <data name="IsBoss" xml:space="preserve">
+    <value>Is boss</value>
   </data>
-  <data name="Image" xml:space="preserve">
-    <value>Image</value>
+  <data name="IsEvent" xml:space="preserve">
+    <value>Is event</value>
   </data>
-  <data name="Background" xml:space="preserve">
-    <value>Background</value>
+  <data name="IsCombinedFleet" xml:space="preserve">
+    <value>Is combined fleet</value>
   </data>
-  <data name="Show" xml:space="preserve">
-    <value>Show</value>
+  <data name="BattleRankAtMost" xml:space="preserve">
+    <value>Battle rank at most</value>
   </data>
-  <data name="Taiha" xml:space="preserve">
-    <value>Taiha</value>
+  <data name="BattleRankAtLeast" xml:space="preserve">
+    <value>Battle rank at least</value>
   </data>
-  <data name="BlockerBypassToolTip" xml:space="preserve">
-    <value>You can bypass this blocker by holding ctrl while clicking.</value>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
   </data>
 </root>

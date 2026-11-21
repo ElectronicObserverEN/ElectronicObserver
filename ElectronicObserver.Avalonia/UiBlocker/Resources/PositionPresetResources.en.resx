@@ -117,40 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Enabled" xml:space="preserve">
-    <value>啟用</value>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
   </data>
-  <data name="UiBlocker" xml:space="preserve">
-    <value>UI攔截器</value>
+  <data name="Advance" xml:space="preserve">
+    <value>Advance/Do not pursue</value>
   </data>
-  <data name="Top" xml:space="preserve">
-    <value>上</value>
+  <data name="Retreat" xml:space="preserve">
+    <value>Retreat/Night battle</value>
   </data>
-  <data name="BlockerBypassToolTip" xml:space="preserve">
-    <value>出擊艦隊大破！按住 Ctrl 鍵並點擊以關閉UI攔截器。</value>
+  <data name="LineAhead" xml:space="preserve">
+    <value>Line Ahead</value>
   </data>
-  <data name="Taiha" xml:space="preserve">
-    <value>大破</value>
+  <data name="DoubleLine" xml:space="preserve">
+    <value>Double Line</value>
   </data>
-  <data name="Show" xml:space="preserve">
-    <value>測試</value>
+  <data name="Diamond" xml:space="preserve">
+    <value>Diamond</value>
   </data>
-  <data name="Background" xml:space="preserve">
-    <value>背景</value>
+  <data name="Echelon" xml:space="preserve">
+    <value>Echelon</value>
   </data>
-  <data name="Image" xml:space="preserve">
-    <value>圖片</value>
+  <data name="EchelonEvent" xml:space="preserve">
+    <value>Echelon (Event)</value>
   </data>
-  <data name="Default" xml:space="preserve">
-    <value>預設</value>
+  <data name="LineAbreast" xml:space="preserve">
+    <value>Line Abreast</value>
   </data>
-  <data name="Width" xml:space="preserve">
-    <value>寬度</value>
+  <data name="LineAbreastEvent" xml:space="preserve">
+    <value>Line Abreast (Event)</value>
   </data>
-  <data name="Height" xml:space="preserve">
-    <value>高度</value>
+  <data name="Vanguard" xml:space="preserve">
+    <value>Vanguard</value>
   </data>
-  <data name="Left" xml:space="preserve">
-    <value>左</value>
+  <data name="FirstPatrolFormation" xml:space="preserve">
+    <value>First Patrol Formation</value>
+  </data>
+  <data name="SecondPatrolFormation" xml:space="preserve">
+    <value>Second Patrol Formation</value>
+  </data>
+  <data name="ThirdPatrolFormation" xml:space="preserve">
+    <value>Third Patrol Formation</value>
+  </data>
+  <data name="FourthPatrolFormation" xml:space="preserve">
+    <value>Fourth Patrol Formation</value>
+  </data>
+  <data name="Fullscreen" xml:space="preserve">
+    <value>Fullscreen</value>
   </data>
 </root>

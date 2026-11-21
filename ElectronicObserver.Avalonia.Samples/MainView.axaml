@@ -9,12 +9,17 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:questTrackerManager2="clr-namespace:ElectronicObserver.Avalonia.QuestTrackerManager2;assembly=ElectronicObserver.Avalonia"
 	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.Samples.ShipGroup"
+	xmlns:uiBlocker="clr-namespace:ElectronicObserver.Avalonia.UiBlocker;assembly=ElectronicObserver.Avalonia"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	x:DataType="local:MainViewModel"
 	mc:Ignorable="d"
 	>
 	<TabControl>
+		<TabItem Header="Blockers">
+			<uiBlocker:UiBlockerManagerView DataContext="{Binding UiBlockerManager}" />
+		</TabItem>
+
 		<TabItem Header="Quest">
 			<questTrackerManager2:QuestTrackerManager2View DataContext="{Binding QuestTrackerManager2}" />
 		</TabItem>

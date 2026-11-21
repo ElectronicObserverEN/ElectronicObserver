@@ -14,6 +14,7 @@ using ElectronicObserver.Avalonia.Dialogs.EquipmentSelector;
 using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Avalonia.Translation;
+using ElectronicObserver.Avalonia.UiBlocker;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Services.Data;
@@ -31,6 +32,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
+using ElectronicObserver.Window.Dialog.UiBlocker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
@@ -354,6 +356,7 @@ public partial class App
 			.AddSingleton<EquipmentSelectorFactory>()
 			.AddSingleton<ITransportGaugeService, TransportGaugeService>()
 			.AddQuestTrackerManager2(db.Translation)
+			.AddSingleton<IGameStateProvider, GameStateProvider>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()

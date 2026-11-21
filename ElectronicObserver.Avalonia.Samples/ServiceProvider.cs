@@ -6,8 +6,10 @@ using ElectronicObserver.Avalonia.QuestTrackerManager2;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Conditions;
 using ElectronicObserver.Avalonia.QuestTrackerManager2.Tasks;
 using ElectronicObserver.Avalonia.Samples.QuestTrackerManager;
+using ElectronicObserver.Avalonia.Samples.UiBlocker;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Avalonia.Translation;
+using ElectronicObserver.Avalonia.UiBlocker;
 using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Data;
@@ -46,6 +48,10 @@ namespace ElectronicObserver.Avalonia.Samples;
 [Singleton<DataService>]
 [Singleton<MainViewModel>]
 [Singleton<IKCDatabase>(Factory = nameof(KcDatabaseFactory))]
+[Singleton<IMapInfoProvider, MapInfoProvider>]
+[Singleton<IUiBlockerService, UiBlockerService>]
+[Singleton<UiBlockerConfiguration>]
+[Singleton<UiBlockerManagerViewModel>]
 public sealed partial class ServiceProvider
 {
 	public IClipboardService ClipboardService { get; set; } = null!;
