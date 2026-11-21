@@ -19,12 +19,17 @@
 
 			<CheckBox Content="{x:Static resources:UiBlockerResources.Enabled}" IsChecked="{Binding IsEnabled}" />
 
-			<StackPanel IsEnabled="{Binding IsEditable}" Spacing="12">
+			<StackPanel Spacing="12">
 
-				<TextBox PlaceholderText="{x:Static resources:UiBlockerResources.Name}" Text="{Binding Name}" />
+				<TextBox
+					IsReadOnly="{Binding IsSystem}"
+					PlaceholderText="{x:Static resources:UiBlockerResources.Name}"
+					Text="{Binding Name}"
+					/>
 				<TextBox
 					MinHeight="48"
 					AcceptsReturn="True"
+					IsReadOnly="{Binding IsSystem}"
 					PlaceholderText="{x:Static resources:UiBlockerResources.Description}"
 					Text="{Binding Description}"
 					TextWrapping="Wrap"
@@ -34,9 +39,10 @@
 					Margin="0"
 					Command="{Binding AddUiElementCommand}"
 					Content="{x:Static resources:UiBlockerResources.AddElement}"
+					IsEnabled="{Binding IsEditable}"
 					/>
 
-				<ItemsControl ItemsSource="{Binding UiElements}">
+				<ItemsControl IsEnabled="{Binding IsEditable}" ItemsSource="{Binding UiElements}">
 					<ItemsControl.ItemTemplate>
 						<DataTemplate x:DataType="vm:UiElementViewModel">
 							<vm:UiElementView />

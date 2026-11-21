@@ -16,7 +16,11 @@
 		<WrapPanel Grid.Row="0" Margin="4">
 			<Button Command="{Binding NewBlockerCommand}" Content="{x:Static resources:UiBlockerResources.New}" />
 			<Button Command="{Binding DuplicateCommand}" Content="{x:Static resources:UiBlockerResources.Duplicate}" />
-			<Button Command="{Binding DeleteCommand}" Content="{x:Static resources:UiBlockerResources.Delete}" />
+			<Button
+				Command="{Binding DeleteCommand}"
+				Content="{x:Static resources:UiBlockerResources.Delete}"
+				Theme="{StaticResource RemoveButton}"
+				/>
 			<Button Command="{Binding CopySelectedCommand}" Content="{x:Static resources:UiBlockerResources.Copy}" />
 			<Button Command="{Binding CopyAllCommand}" Content="{x:Static resources:UiBlockerResources.CopyAll}" />
 			<Button Command="{Binding PasteFromClipboardCommand}" Content="{x:Static resources:UiBlockerResources.Paste}" />

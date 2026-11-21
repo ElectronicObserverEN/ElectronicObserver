@@ -196,6 +196,7 @@
 			Grid.Column="1"
 			Command="{Binding RemoveCommand}"
 			Content="✕"
+			Theme="{StaticResource RemoveButton}"
 			/>
 	</Grid>
 </UserControl>
