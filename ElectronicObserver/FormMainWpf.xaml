@@ -407,6 +407,22 @@
 					</Setter.Value>
 				</Setter>
 			</Style>
+
+			<!--
+				Copied from:
+				https://github.com/Dirkster99/AvalonDock/blob/d4f05a9b100f389cda49c1162fb5434d47734a7a/source/Components/AvalonDock.Themes.VS2013/Themes/Generic.xaml#L809
+				
+				removed MinWidth and MinHeight to hide the useless space
+			-->
+			<ControlTemplate x:Key="AvalonDockThemeVs2013AnchorSideTemplate" TargetType="{x:Type LayoutAnchorSideControl}">
+				<ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Children}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="{Binding Path=Model.Side, RelativeSource={RelativeSource AncestorType={x:Type LayoutAnchorSideControl}, Mode=FindAncestor}, Converter={AnchorSideToOrientationConverter}}" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+				</ItemsControl>
+			</ControlTemplate>
 		</ResourceDictionary>
 	</Window.Resources>
 
@@ -1143,6 +1159,7 @@
 			x:Name="DockingManager"
 			Grid.Row="1"
 			AllowMixedOrientation="True"
+			AnchorSideTemplate="{StaticResource AvalonDockThemeVs2013AnchorSideTemplate}"
 			AnchorablePaneControlStyle="{StaticResource AvalonDockThemeVs2013DocumentPaneControlStyle}"
 			AnchorablesSource="{Binding Views}"
 			GridSplitterHeight="{Binding GridSplitterSize}"
