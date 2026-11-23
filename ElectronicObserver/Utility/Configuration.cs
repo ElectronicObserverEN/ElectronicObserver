@@ -1979,9 +1979,6 @@ public sealed class Configuration
 		public ConfigWhitecap Whitecap { get; private set; }
 
 		[DataMember]
-		public UiBlockerConfiguration TaihaBlocker { get; private set; }
-
-		[DataMember]
 		public string Version
 		{
 			get { return SoftwareInformation.VersionEnglish; }
@@ -2037,15 +2034,6 @@ public sealed class Configuration
 			FleetImageGenerator = new ConfigFleetImageGenerator();
 			DataSubmission = new ConfigDataSubmission();
 			Whitecap = new ConfigWhitecap();
-
-			TaihaBlocker = new()
-			{
-				IsEnabled = true,
-				DesiredTop = 270,
-				DesiredLeft = 330,
-				DesiredWidth = 190,
-				DesiredHeight = 210,
-			};
 
 			VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
 		}

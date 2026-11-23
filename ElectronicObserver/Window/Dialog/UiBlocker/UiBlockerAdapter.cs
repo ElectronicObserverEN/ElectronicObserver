@@ -14,7 +14,7 @@ public class UiBlockerAdapter
 	private IGameStateProvider GameStateProvider { get; }
 	private IClipboardService ClipboardService { get; }
 
-	private Avalonia.UiBlocker.UiBlockerConfiguration UiBlockerConfiguration { get; set; }
+	private UiBlockerConfiguration UiBlockerConfiguration { get; set; }
 	public UiBlockerManagerViewModel UiBlockerManagerViewModel { get; private set; }
 
 	private static string UiBlockersPath => Path.Combine("Settings", "UiBlockers.json");
