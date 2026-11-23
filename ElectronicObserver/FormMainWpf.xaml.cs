@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using AvalonDock.Controls;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Settings.Window;
-using Application = System.Windows.Application;
 
 namespace ElectronicObserver;
 

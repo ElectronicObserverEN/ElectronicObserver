@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11116.177 d18.0
+VisualStudioVersion = 18.0.11116.177
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver", "ElectronicObserver\ElectronicObserver.csproj", "{A9ABEC50-1BFC-4C69-87AE-C68DB6004F68}"
 EndProject
@@ -22,8 +22,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.Core", "ElectronicObserver.Core\ElectronicObserver.Core.csproj", "{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KancolleProgress", "KancolleProgress\KancolleProgress.csproj", "{A3AAE51F-A61E-46ED-B84B-6F3AFD183BB5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvalonDock.Themes.VS2013", "AvalonDock.Themes.VS2013\AvalonDock.Themes.VS2013.csproj", "{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.TestData", "ElectronicObserver.TestData\ElectronicObserver.TestData.csproj", "{EED09122-C133-4195-8AFA-A2AB74BC06EA}"
 EndProject
@@ -132,18 +130,6 @@ Global
 		{A3AAE51F-A61E-46ED-B84B-6F3AFD183BB5}.Release|Any CPU.Build.0 = Release|x64
 		{A3AAE51F-A61E-46ED-B84B-6F3AFD183BB5}.Release|x64.ActiveCfg = Release|x64
 		{A3AAE51F-A61E-46ED-B84B-6F3AFD183BB5}.Release|x64.Build.0 = Release|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Browser Debug|Any CPU.ActiveCfg = Debug|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Browser Debug|Any CPU.Build.0 = Debug|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Browser Debug|x64.ActiveCfg = Debug|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Browser Debug|x64.Build.0 = Debug|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Debug|Any CPU.Build.0 = Debug|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Debug|x64.ActiveCfg = Debug|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Debug|x64.Build.0 = Debug|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|Any CPU.ActiveCfg = Release|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|Any CPU.Build.0 = Release|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|x64.ActiveCfg = Release|x64
-		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|x64.Build.0 = Release|x64
 		{EED09122-C133-4195-8AFA-A2AB74BC06EA}.Browser Debug|Any CPU.ActiveCfg = Debug|x64
 		{EED09122-C133-4195-8AFA-A2AB74BC06EA}.Browser Debug|Any CPU.Build.0 = Debug|x64
 		{EED09122-C133-4195-8AFA-A2AB74BC06EA}.Browser Debug|x64.ActiveCfg = Debug|x64
