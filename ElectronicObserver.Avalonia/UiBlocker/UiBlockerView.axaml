@@ -1,0 +1,55 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.UiBlocker.UiBlockerView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:resources="clr-namespace:ElectronicObserver.Avalonia.UiBlocker.Resources"
+	xmlns:vm="clr-namespace:ElectronicObserver.Avalonia.UiBlocker"
+	x:DataType="vm:UiBlockerViewModel"
+	>
+
+	<ScrollViewer>
+		<StackPanel Margin="4" Spacing="12">
+
+			<TextBlock
+				IsVisible="{Binding IsSystem}"
+				Opacity="0.7"
+				Text="{x:Static resources:UiBlockerResources.SystemBlockerNote}"
+				TextWrapping="Wrap"
+				/>
+
+			<CheckBox Content="{x:Static resources:UiBlockerResources.Enabled}" IsChecked="{Binding IsEnabled}" />
+
+			<StackPanel Spacing="12">
+
+				<TextBox
+					IsReadOnly="{Binding IsSystem}"
+					PlaceholderText="{x:Static resources:UiBlockerResources.Name}"
+					Text="{Binding Name}"
+					/>
+				<TextBox
+					MinHeight="48"
+					AcceptsReturn="True"
+					IsReadOnly="{Binding IsSystem}"
+					PlaceholderText="{x:Static resources:UiBlockerResources.Description}"
+					Text="{Binding Description}"
+					TextWrapping="Wrap"
+					/>
+
+				<Button
+					Margin="0"
+					Command="{Binding AddUiElementCommand}"
+					Content="{x:Static resources:UiBlockerResources.AddElement}"
+					IsEnabled="{Binding IsEditable}"
+					/>
+
+				<ItemsControl IsEnabled="{Binding IsEditable}" ItemsSource="{Binding UiElements}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate x:DataType="vm:UiElementViewModel">
+							<vm:UiElementView />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

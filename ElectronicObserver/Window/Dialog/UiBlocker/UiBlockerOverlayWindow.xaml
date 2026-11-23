@@ -5,15 +5,15 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.UiBlocker"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:translations="clr-namespace:ElectronicObserver.Translations"
-	d:DataContext="{d:DesignInstance local:UiBlockerViewModel}"
+	xmlns:uiBlocker="clr-namespace:ElectronicObserver.Avalonia.UiBlocker.Resources;assembly=ElectronicObserver.Avalonia"
+	d:DataContext="{d:DesignInstance local:UiBlockerOverlayViewModel}"
 	AllowsTransparency="True"
 	Background="Transparent"
 	ShowInTaskbar="False"
 	WindowStyle="None"
 	mc:Ignorable="d"
 	>
-	<Border Background="{Binding BackgroundColor, Converter={StaticResource HexToBrushConverter}, Mode=OneWay}" ToolTip="{x:Static translations:UiBlockerResources.BlockerBypassToolTip}">
+	<Border Background="{Binding BackgroundColor, Converter={StaticResource HexToBrushConverter}, Mode=OneWay}" ToolTip="{x:Static uiBlocker:UiBlockerResources.BlockerBypassToolTip}">
 		<Image
 			HorizontalAlignment="Center"
 			VerticalAlignment="Center"

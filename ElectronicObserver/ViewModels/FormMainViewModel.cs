@@ -77,7 +77,9 @@ using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Avalonia.ExpeditionCalculator;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 using AvalonDock.Controls;
+using ElectronicObserver.Avalonia.UiBlocker;
 using ElectronicObserver.Core;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Window.Dialog.UiBlocker;
 
@@ -93,7 +95,7 @@ public partial class FormMainViewModel : ObservableObject
 	private FormMainWpf Window { get; }
 	private DockingManager DockingManager { get; }
 	private Configuration.ConfigurationData Config { get; }
-	private UiBlockerManagerViewModel UiBlockerManager { get; }
+	private UiBlockerAdapter UiBlockerAdapter { get; }
 	public FormMainTranslationViewModel FormMain { get; }
 	private ToolService ToolService { get; }
 	private FileService FileService { get; }
@@ -203,11 +205,16 @@ public partial class FormMainViewModel : ObservableObject
 		Window = window;
 		DockingManager = dockingManager;
 
-		Config = Configuration.Config;
-		UiBlockerManager = new(new(DockingManager, Config), Config);
 		FormMain = Ioc.Default.GetRequiredService<FormMainTranslationViewModel>();
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 		FileService = Ioc.Default.GetRequiredService<FileService>();
+
+		IClipboardService clipboardService = Ioc.Default.GetRequiredService<IClipboardService>();
+		IGameStateProvider gameStateProvider = Ioc.Default.GetRequiredService<IGameStateProvider>();
+
+		Config = Configuration.Config;
+		UiBlockerService uiBlockerService = new(DockingManager, Config);
+		UiBlockerAdapter = new(uiBlockerService, gameStateProvider, clipboardService);
 
 		CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
 
@@ -922,7 +929,14 @@ public partial class FormMainViewModel : ObservableObject
 	[RelayCommand]
 	private void OpenUiBlockerManager()
 	{
-		UiBlockerWindow blocker = new(UiBlockerManager);
+		if (KCDatabase.Instance.MasterShips.Count == 0)
+		{
+			MessageBox.Show(GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButton.OK,
+				MessageBoxImage.Error);
+			return;
+		}
+
+		UiBlockerWindow blocker = new(UiBlockerAdapter);
 		blocker.Show(Window);
 	}
 

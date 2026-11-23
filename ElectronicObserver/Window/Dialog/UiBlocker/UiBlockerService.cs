@@ -5,6 +5,7 @@ using System.Windows;
 using AvalonDock;
 using AvalonDock.Controls;
 using AvalonDock.Layout;
+using ElectronicObserver.Avalonia.UiBlocker;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using GongSolutions.Wpf.DragDrop.Utilities;
@@ -12,20 +13,37 @@ using MahApps.Metro.Controls;
 
 namespace ElectronicObserver.Window.Dialog.UiBlocker;
 
-public class UiBlockerService(DockingManager dockingManager, Configuration.ConfigurationData configuration)
+public class UiBlockerService(
+	DockingManager dockingManager,
+	Configuration.ConfigurationData configuration) : IUiBlockerService
 {
 	private static Size KancolleSize { get; } = new(1200, 720);
 
 	private DockingManager DockingManager { get; } = dockingManager;
 	private Configuration.ConfigurationData Configuration { get; } = configuration;
 
-	private Dictionary<UiBlockerViewModel, UiBlockerOverlayWindow> Overlays { get; } = [];
+	private Dictionary<UiElementViewModel, UiBlockerOverlayWindow> Overlays { get; } = [];
 
-	public void ShowBlocker(UiBlockerViewModel uiBlockerViewModel)
+	public void ShowBlockers(IEnumerable<UiElementViewModel> elements)
 	{
 		if (GetBrowserControl(DockingManager) is not LayoutDocumentControl anchorableControl) return;
 		if (GetBrowserWindow(anchorableControl) is not System.Windows.Window browserWindow) return;
 
+		(double zoomRate, double browserTop, double browserLeft) = GetBrowserData(anchorableControl);
+
+		foreach (UiElementViewModel elementViewModel in elements)
+		{
+			// Recreate the overlay when the browser moves to a different host window.
+			UiBlockerOverlayWindow overlayWindow = GetOrCreateOverlay(elementViewModel, browserWindow);
+			overlayWindow.ViewModel.UpdateBrowserData(zoomRate, browserTop, browserLeft);
+
+			overlayWindow.Show();
+		}
+	}
+
+	private (double ZoomRate, double BrowserTop, double BrowserLeft) GetBrowserData(
+		LayoutDocumentControl anchorableControl)
+	{
 		Point topLeft = anchorableControl.PointToScreen(new Point(0, 0));
 		Size anchorableSize = new(anchorableControl.ActualWidth, anchorableControl.ActualHeight);
 
@@ -40,19 +58,17 @@ public class UiBlockerService(DockingManager dockingManager, Configuration.Confi
 		double browserTop = topLeft.Y + browserPosition.Y + toolbarTopOffset;
 		double browserLeft = topLeft.X + browserPosition.X + toolbarLeftOffset;
 
-		uiBlockerViewModel.UpdateBrowserData(zoomRate, browserTop, browserLeft);
-
-		// Recreate the overlay when the browser moves to a different host window.
-		UiBlockerOverlayWindow overlayWindow = GetOrCreateOverlay(uiBlockerViewModel, browserWindow);
-
-		overlayWindow.Show();
+		return (zoomRate, browserTop, browserLeft);
 	}
 
-	public void HideBlocker(UiBlockerViewModel uiBlockerViewModel)
+	public void HideBlockers(IEnumerable<UiElementViewModel> elements)
 	{
-		if (Overlays.TryGetValue(uiBlockerViewModel, out UiBlockerOverlayWindow? overlayWindow))
+		foreach (UiElementViewModel elementViewModel in elements)
 		{
-			overlayWindow.Hide();
+			if (Overlays.TryGetValue(elementViewModel, out UiBlockerOverlayWindow? overlayWindow))
+			{
+				overlayWindow.Hide();
+			}
 		}
 	}
 
@@ -90,12 +106,13 @@ public class UiBlockerService(DockingManager dockingManager, Configuration.Confi
 	private static System.Windows.Window? GetBrowserWindow(LayoutDocumentControl browserControl)
 		=> System.Windows.Window.GetWindow(browserControl);
 
-	private UiBlockerOverlayWindow GetOrCreateOverlay(UiBlockerViewModel uiBlockerViewModel, System.Windows.Window browserWindow)
+	private UiBlockerOverlayWindow GetOrCreateOverlay(UiElementViewModel uiElementViewModel,
+		System.Windows.Window browserWindow)
 	{
-		if (!Overlays.TryGetValue(uiBlockerViewModel, out UiBlockerOverlayWindow? overlayWindow))
+		if (!Overlays.TryGetValue(uiElementViewModel, out UiBlockerOverlayWindow? overlayWindow))
 		{
-			overlayWindow = CreateOverlay(uiBlockerViewModel, browserWindow);
-			Overlays[uiBlockerViewModel] = overlayWindow;
+			overlayWindow = CreateOverlay(uiElementViewModel, browserWindow);
+			Overlays[uiElementViewModel] = overlayWindow;
 			return overlayWindow;
 		}
 
@@ -111,18 +128,17 @@ public class UiBlockerService(DockingManager dockingManager, Configuration.Confi
 			// The previous owner may already have closed the old overlay.
 		}
 
-		overlayWindow = CreateOverlay(uiBlockerViewModel, browserWindow);
-		Overlays[uiBlockerViewModel] = overlayWindow;
+		overlayWindow = CreateOverlay(uiElementViewModel, browserWindow);
+		Overlays[uiElementViewModel] = overlayWindow;
 
 		return overlayWindow;
 	}
 
-	private static UiBlockerOverlayWindow CreateOverlay(UiBlockerViewModel uiBlockerViewModel, System.Windows.Window browserWindow)
+	private UiBlockerOverlayWindow CreateOverlay(UiElementViewModel uiElementViewModel,
+		System.Windows.Window browserWindow)
 	{
-		UiBlockerOverlayWindow overlayWindow = new(uiBlockerViewModel)
-		{
-			Owner = browserWindow,
-		};
+		UiBlockerOverlayViewModel overlayViewModel = new(uiElementViewModel);
+		UiBlockerOverlayWindow overlayWindow = new(overlayViewModel) { Owner = browserWindow, };
 
 		return overlayWindow;
 	}

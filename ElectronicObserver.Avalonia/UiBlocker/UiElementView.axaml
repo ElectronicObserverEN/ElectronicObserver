@@ -1,0 +1,202 @@
+<UserControl
+	x:Class="ElectronicObserver.Avalonia.UiBlocker.UiElementView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:resources="clr-namespace:ElectronicObserver.Avalonia.UiBlocker.Resources"
+	xmlns:vm="clr-namespace:ElectronicObserver.Avalonia.UiBlocker"
+	x:DataType="vm:UiElementViewModel"
+	>
+	<UserControl.DataTemplates>
+		<DataTemplate x:DataType="vm:UiTriggerOptionViewModel">
+			<CheckBox
+				Margin="0 0 12 0"
+				Content="{Binding Trigger, Converter={x:Static vm:Converters.UiBlockerTriggerToDisplayConverter}}"
+				IsChecked="{Binding IsChecked}"
+				/>
+		</DataTemplate>
+	</UserControl.DataTemplates>
+
+	<UserControl.Styles>
+		<Style Selector="NumericUpDown">
+			<Setter Property="Margin" Value="0 0 4 0" />
+		</Style>
+	</UserControl.Styles>
+
+	<Grid ColumnDefinitions="* Auto">
+
+		<Expander
+			Grid.Column="0"
+			Margin="0 4"
+			Padding="4"
+			HorizontalAlignment="Stretch"
+			BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+			BorderThickness="1"
+			CornerRadius="4"
+			Header="{Binding Display}"
+			>
+
+			<StackPanel Spacing="12">
+
+				<StackPanel Spacing="4">
+					<TextBlock Opacity="0.7" Text="{x:Static resources:UiBlockerResources.Position}" />
+
+					<StackPanel Orientation="Horizontal">
+						<ComboBox
+							MinWidth="180"
+							VerticalAlignment="Center"
+							ItemsSource="{Binding Presets}"
+							SelectedItem="{Binding Preset}"
+							>
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Converter={x:Static vm:Converters.PositionPresetToDisplayConverter}}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+
+						<Button
+							Margin="4 0"
+							Command="{Binding ApplyPresetCommand}"
+							Content="{x:Static resources:UiBlockerResources.Default}"
+							/>
+					</StackPanel>
+
+					<Grid ColumnDefinitions="* * * *" RowDefinitions="Auto Auto">
+						<TextBlock
+							Grid.Row="0"
+							Grid.Column="0"
+							Opacity="0.7"
+							Text="{x:Static resources:UiBlockerResources.Top}"
+							/>
+						<TextBlock
+							Grid.Row="0"
+							Grid.Column="1"
+							Opacity="0.7"
+							Text="{x:Static resources:UiBlockerResources.Left}"
+							/>
+						<TextBlock
+							Grid.Row="0"
+							Grid.Column="2"
+							Opacity="0.7"
+							Text="{x:Static resources:UiBlockerResources.Width}"
+							/>
+						<TextBlock
+							Grid.Row="0"
+							Grid.Column="3"
+							Opacity="0.7"
+							Text="{x:Static resources:UiBlockerResources.Height}"
+							/>
+
+						<NumericUpDown
+							Grid.Row="1"
+							Grid.Column="0"
+							FormatString="0.##"
+							Increment="1"
+							Maximum="10000"
+							Minimum="-10000"
+							Value="{Binding DesiredTop}"
+							/>
+						<NumericUpDown
+							Grid.Row="1"
+							Grid.Column="1"
+							FormatString="0.##"
+							Increment="1"
+							Maximum="10000"
+							Minimum="-10000"
+							Value="{Binding DesiredLeft}"
+							/>
+						<NumericUpDown
+							Grid.Row="1"
+							Grid.Column="2"
+							FormatString="0.##"
+							Increment="1"
+							Maximum="10000"
+							Minimum="1"
+							Value="{Binding DesiredWidth}"
+							/>
+						<NumericUpDown
+							Grid.Row="1"
+							Grid.Column="3"
+							FormatString="0.##"
+							Increment="1"
+							Maximum="10000"
+							Minimum="1"
+							Value="{Binding DesiredHeight}"
+							/>
+					</Grid>
+				</StackPanel>
+
+				<StackPanel Spacing="4">
+					<TextBlock Opacity="0.7" Text="{x:Static resources:UiBlockerResources.Background}" />
+
+					<ColorPicker
+						Width="100"
+						HorizontalAlignment="Left"
+						HexInputAlphaPosition="Leading"
+						Color="{Binding BackgroundColor}"
+						/>
+
+					<Grid ColumnDefinitions="* Auto">
+						<TextBox
+							Grid.Column="0"
+							PlaceholderText="{x:Static resources:UiBlockerResources.Image}"
+							Text="{Binding ImagePath}"
+							/>
+
+						<Button
+							Grid.Column="1"
+							Click="OnBrowseClick"
+							Content="..."
+							/>
+					</Grid>
+				</StackPanel>
+
+				<StackPanel Spacing="4">
+					<TextBlock Opacity="0.7" Text="{x:Static resources:UiBlockerResources.ShowTriggerNote}" />
+					<ItemsControl ItemsSource="{Binding ShowTriggers}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
+
+					<TextBlock Opacity="0.7" Text="{x:Static resources:UiBlockerResources.HideTriggerNote}" />
+					<ItemsControl ItemsSource="{Binding HideTriggers}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
+				</StackPanel>
+
+				<StackPanel Spacing="4">
+					<TextBlock Opacity="0.7" Text="{x:Static resources:UiBlockerResources.ShowConditionNote}" />
+
+					<ItemsControl ItemsSource="{Binding Conditions}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate x:DataType="vm:ConditionViewModel">
+								<vm:ConditionView />
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+
+					<Button
+						HorizontalAlignment="Left"
+						Command="{Binding AddConditionCommand}"
+						Content="{x:Static resources:UiBlockerResources.AddCondition}"
+						/>
+				</StackPanel>
+
+			</StackPanel>
+		</Expander>
+
+		<Button
+			Grid.Column="1"
+			Command="{Binding RemoveCommand}"
+			Content="✕"
+			Theme="{StaticResource RemoveButton}"
+			/>
+	</Grid>
+</UserControl>

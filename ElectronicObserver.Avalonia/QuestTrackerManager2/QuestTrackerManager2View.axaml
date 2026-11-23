@@ -34,24 +34,6 @@
 	x:DataType="questTrackerManager2:QuestTrackerManager2ViewModel"
 	mc:Ignorable="d"
 	>
-	<UserControl.Resources>
-		<ControlTheme
-			x:Key="RemoveButton"
-			BasedOn="{StaticResource {x:Type Button}}"
-			TargetType="Button"
-			>
-			<Setter Property="Background" Value="#DC2626" />
-
-			<Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-				<Setter Property="Background" Value="#EF4444" />
-			</Style>
-
-			<Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-				<Setter Property="Background" Value="#B91C1C" />
-			</Style>
-		</ControlTheme>
-	</UserControl.Resources>
-
 	<UserControl.Styles>
 		<Style Selector="Border.ConditionBorder">
 			<Setter Property="Margin" Value="2" />

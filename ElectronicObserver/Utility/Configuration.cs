@@ -20,7 +20,6 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog.UiBlocker;
-using ElectronicObserver.Window.Dialog.UiBlocker.Taiha;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
 namespace ElectronicObserver.Utility;
@@ -1980,9 +1979,6 @@ public sealed class Configuration
 		public ConfigWhitecap Whitecap { get; private set; }
 
 		[DataMember]
-		public UiBlockerConfiguration TaihaBlocker { get; private set; }
-
-		[DataMember]
 		public string Version
 		{
 			get { return SoftwareInformation.VersionEnglish; }
@@ -2038,15 +2034,6 @@ public sealed class Configuration
 			FleetImageGenerator = new ConfigFleetImageGenerator();
 			DataSubmission = new ConfigDataSubmission();
 			Whitecap = new ConfigWhitecap();
-
-			TaihaBlocker = new()
-			{
-				IsEnabled = true,
-				DesiredTop = TaihaBlockerViewModel.DefaultDesiredTop,
-				DesiredLeft = TaihaBlockerViewModel.DefaultDesiredLeft,
-				DesiredWidth = TaihaBlockerViewModel.DefaultDesiredWidth,
-				DesiredHeight = TaihaBlockerViewModel.DefaultDesiredHeight,
-			};
 
 			VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
 		}
