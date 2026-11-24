@@ -424,6 +424,12 @@
 				</ItemsControl>
 			</ControlTemplate>
 
+			<!--
+				Copied from:
+				https://github.com/Dirkster99/AvalonDock/blob/d4f05a9b100f389cda49c1162fb5434d47734a7a/source/Components/AvalonDock.Themes.VS2013/Themes/Generic.xaml#L847
+				
+				adjusted Bd margin
+			-->
 			<ControlTemplate x:Key="AvalonDockThemeVs2013AnchorTemplate" TargetType="{x:Type LayoutAnchorControl}">
 				<Border
 					x:Name="Bd"
