@@ -48,26 +48,6 @@
 
 			<viewModels:MainWindowBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
-			<Style x:Key="AvalonDockThemeVs2013ButtonStyle" TargetType="Button">
-				<Setter Property="Background" Value="Transparent" />
-				<Setter Property="BorderThickness" Value="1" />
-				<Setter Property="BorderBrush" Value="Transparent" />
-				<Setter Property="Padding" Value="0" />
-				<Setter Property="Template">
-					<Setter.Value>
-						<ControlTemplate TargetType="Button">
-							<Border
-								Background="{TemplateBinding Background}"
-								BorderBrush="{TemplateBinding BorderBrush}"
-								BorderThickness="{TemplateBinding BorderThickness}"
-								>
-								<ContentPresenter />
-							</Border>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-			</Style>
-
 			<Style BasedOn="{StaticResource DefaultToolTipStyleEO}" TargetType="ToolTip">
 				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
@@ -111,6 +91,26 @@
 				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			</Style>
+
+			<Style x:Key="AvalonDockThemeVs2013ButtonStyle" TargetType="Button">
+				<Setter Property="Background" Value="Transparent" />
+				<Setter Property="BorderThickness" Value="1" />
+				<Setter Property="BorderBrush" Value="Transparent" />
+				<Setter Property="Padding" Value="0" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="Button">
+							<Border
+								Background="{TemplateBinding Background}"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								>
+								<ContentPresenter />
+							</Border>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
 			</Style>
 
 			<ControlTemplate x:Key="AutoHideButtonTemplate" d:DataContext="{d:DesignInstance LayoutAnchorable}">
@@ -422,6 +422,43 @@
 						</ItemsPanelTemplate>
 					</ItemsControl.ItemsPanel>
 				</ItemsControl>
+			</ControlTemplate>
+
+			<ControlTemplate x:Key="AvalonDockThemeVs2013AnchorTemplate" TargetType="{x:Type LayoutAnchorControl}">
+				<Border
+					x:Name="Bd"
+					Margin="6 0"
+					Padding="0 6 0 4"
+					Background="{DynamicResource {x:Static reskeys:ResourceKeys.AutoHideTabDefaultBackground}}"
+					BorderBrush="{DynamicResource {x:Static reskeys:ResourceKeys.AutoHideTabDefaultBorder}}"
+					BorderThickness="0 0 0 6"
+					TextElement.Foreground="{DynamicResource {x:Static reskeys:ResourceKeys.AutoHideTabDefaultText}}"
+					TextOptions.TextFormattingMode="Display"
+					>
+					<ContentPresenter
+						Content="{Binding Model, RelativeSource={RelativeSource TemplatedParent}}"
+						ContentTemplate="{Binding AnchorableHeaderTemplate, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type DockingManager}, Mode=FindAncestor}}"
+						ContentTemplateSelector="{Binding AnchorableHeaderTemplateSelector, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type DockingManager}, Mode=FindAncestor}}"
+						/>
+				</Border>
+				<ControlTemplate.Triggers>
+					<Trigger Property="Side" Value="Right">
+						<Setter TargetName="Bd" Property="BorderThickness" Value="0 6 0 0" />
+						<Setter TargetName="Bd" Property="Padding" Value="0 3 0 7" />
+					</Trigger>
+
+					<Trigger Property="Side" Value="Top">
+						<Setter TargetName="Bd" Property="BorderThickness" Value="0 6 0 0" />
+						<Setter TargetName="Bd" Property="Padding" Value="0 3 0 7" />
+					</Trigger>
+
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static reskeys:ResourceKeys.AutoHideTabHoveredBackground}}" />
+						<Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource {x:Static reskeys:ResourceKeys.AutoHideTabHoveredBorder}}" />
+						<Setter TargetName="Bd" Property="TextElement.Foreground" Value="{DynamicResource {x:Static reskeys:ResourceKeys.AutoHideTabHoveredText}}" />
+					</Trigger>
+
+				</ControlTemplate.Triggers>
 			</ControlTemplate>
 		</ResourceDictionary>
 	</Window.Resources>
@@ -1160,6 +1197,7 @@
 			Grid.Row="1"
 			AllowMixedOrientation="True"
 			AnchorSideTemplate="{StaticResource AvalonDockThemeVs2013AnchorSideTemplate}"
+			AnchorTemplate="{StaticResource AvalonDockThemeVs2013AnchorTemplate}"
 			AnchorablePaneControlStyle="{StaticResource AvalonDockThemeVs2013DocumentPaneControlStyle}"
 			AnchorablesSource="{Binding Views}"
 			GridSplitterHeight="{Binding GridSplitterSize}"
