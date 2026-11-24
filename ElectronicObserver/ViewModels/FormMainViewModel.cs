@@ -131,7 +131,6 @@ public partial class FormMainViewModel : ObservableObject
 	public List<Theme> Themes { get; } =
 	[
 		new Vs2013LightTheme(),
-		new Vs2013BlueTheme(),
 		new Vs2013DarkTheme(),
 	];
 	public Theme CurrentTheme { get; set; }
@@ -1814,8 +1813,8 @@ public partial class FormMainViewModel : ObservableObject
 		CurrentTheme = Configuration.Config.UI.ThemeMode switch
 		{
 			0 => Themes[0], // light theme => light theme
-			1 => Themes[2], // dark theme => dark theme
-			_ => Themes[2], // custom theme => dark theme
+			1 => Themes[1], // dark theme => dark theme
+			_ => Themes[1], // custom theme => dark theme
 		};
 
 		ModernWpf.ThemeManager.Current.ApplicationTheme = Configuration.Config.UI.ThemeMode switch
