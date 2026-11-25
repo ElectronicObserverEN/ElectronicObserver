@@ -20,7 +20,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<NoWin32Manifest>true</NoWin32Manifest>
 		<StartupObject>ElectronicObserver.App</StartupObject>
 		<Title>Electronic Observer</Title>
 		<Description />
@@ -160,5 +159,6 @@
 		<ResXGenerator_NullForgivingOperators>true</ResXGenerator_NullForgivingOperators>
 		<ResXGenerator_StaticClass>true</ResXGenerator_StaticClass>
 		<ResXGenerator_StaticMembers>true</ResXGenerator_StaticMembers>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 </Project>
