@@ -14,13 +14,12 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using AvalonDock;
 using AvalonDock.Layout;
-using AvalonDock.Layout.Serialization;
+using AvalonDock.Serializer.Xml;
 using AvalonDock.Themes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
-using ElectronicObserver.Avalonia.QuestTrackerManager2;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Notifier;
@@ -129,12 +128,11 @@ public partial class FormMainViewModel : ObservableObject
 	public string DownloadProgressString { get; private set; } = "";
 	public Visibility DownloadProgressVisibility { get; private set; } = Visibility.Collapsed;
 
-	public List<Theme> Themes { get; } = new()
-	{
+	public List<Theme> Themes { get; } =
+	[
 		new Vs2013LightTheme(),
-		new Vs2013BlueTheme(),
 		new Vs2013DarkTheme(),
-	};
+	];
 	public Theme CurrentTheme { get; set; }
 	public Color BackgroundColor { get; set; }
 
@@ -1808,18 +1806,18 @@ public partial class FormMainViewModel : ObservableObject
 	private void SetTheme()
 	{
 		// todo switching themes doesn't update everything in runtime
-		Utility.Configuration.Instance.ApplyTheme();
+		Configuration.Instance.ApplyTheme();
 
 		BackgroundColor = Config.UI.BackColor.ToBrush().Color;
 
-		CurrentTheme = Utility.Configuration.Config.UI.ThemeMode switch
+		CurrentTheme = Configuration.Config.UI.ThemeMode switch
 		{
 			0 => Themes[0], // light theme => light theme
-			1 => Themes[2], // dark theme => dark theme
-			_ => Themes[2], // custom theme => dark theme
+			1 => Themes[1], // dark theme => dark theme
+			_ => Themes[1], // custom theme => dark theme
 		};
 
-		ThemeManager.Current.ApplicationTheme = Utility.Configuration.Config.UI.ThemeMode switch
+		ModernWpf.ThemeManager.Current.ApplicationTheme = Configuration.Config.UI.ThemeMode switch
 		{
 			0 => ApplicationTheme.Light, // light theme => light theme
 			1 => ApplicationTheme.Dark, // dark theme => dark theme
