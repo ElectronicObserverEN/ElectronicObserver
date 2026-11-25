@@ -57,7 +57,6 @@
 		<PackageReference Include="ModernWpfUI" Version="0.9.6" />
 		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
 		<PackageReference Include="Titanium.Web.Proxy" Version="3.2.0" />
 	</ItemGroup>
 
