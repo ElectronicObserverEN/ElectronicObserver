@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Windows;
+using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Avalonia.UiBlocker;
 
 namespace ElectronicObserver.Window.Dialog.UiBlocker;
@@ -56,8 +58,10 @@ public sealed partial class UiBlockerOverlayViewModel : ObservableObject
 
 	private void UpdateBlockerPosition()
 	{
-		Top = BrowserTop + UiElementViewModel.DesiredTop * ZoomRate;
-		Left = BrowserLeft + UiElementViewModel.DesiredLeft * ZoomRate;
+		DpiScale dpi = VisualTreeHelper.GetDpi(Application.Current.MainWindow);
+
+		Top = BrowserTop / dpi.DpiScaleY + UiElementViewModel.DesiredTop * ZoomRate;
+		Left = BrowserLeft / dpi.DpiScaleX + UiElementViewModel.DesiredLeft * ZoomRate;
 		Height = UiElementViewModel.DesiredHeight * ZoomRate;
 		Width = UiElementViewModel.DesiredWidth * ZoomRate;
 	}
