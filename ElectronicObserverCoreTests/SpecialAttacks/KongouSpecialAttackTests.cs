@@ -229,11 +229,11 @@ public class KongouSpecialAttackTests
 
 		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
 
-		Assert.Equal(2.4, specialAttacksHits[0].PowerModifier, 1);
-		Assert.Equal(2.4, specialAttacksHits[1].PowerModifier, 1);
+		Assert.Equal(2.6, specialAttacksHits[0].PowerModifier, 1);
+		Assert.Equal(2.7, specialAttacksHits[1].PowerModifier, 1);
 
-		Assert.Equal(Math.Floor(143 * 2.4), fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet), 3);
-		Assert.Equal(Math.Floor(145 * 2.4), fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
+		Assert.Equal(Math.Floor(Damage.Cap(143 * 2.6, Damage.NightAttackCap)), fleet.MembersInstance[0]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[0], fleet), 3);
+		Assert.Equal(Math.Floor(Damage.Cap(145 * 2.7, Damage.NightAttackCap)), fleet.MembersInstance[1]!.GetNightAttackPower(specialAttacks.First(), specialAttacksHits[1], fleet), 3);
 	}
 
 	[Fact(DisplayName = "Damage - Gun bonus")]
@@ -266,8 +266,8 @@ public class KongouSpecialAttackTests
 
 		List<SpecialAttackHit> specialAttacksHits = specialAttacks.First().GetAttacks();
 
-		Assert.Equal(2.66, specialAttacksHits[0].PowerModifier, 2);
-		Assert.Equal(2.76, specialAttacksHits[1].PowerModifier, 2);
+		Assert.Equal(2.89, specialAttacksHits[0].PowerModifier, 2);
+		Assert.Equal(3.1, specialAttacksHits[1].PowerModifier, 2);
 
 		// TODO : the damage value is not checked against any other tools yet
 	}
