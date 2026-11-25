@@ -493,7 +493,10 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	private static async Task SaveCsvFile<TMap, TElement>(string path, IEnumerable<TElement> data)
 		where TMap : CsvExportMap<TElement>, new()
 	{
-		CsvWriterOptions config = new();
+		CsvWriterOptions config = new()
+		{
+			FormatProvider = CultureInfo.CurrentCulture,
+		};
 
 		// UTF8 BOM so excel can recognize it
 		Encoding encoding = Encoding.UTF8;

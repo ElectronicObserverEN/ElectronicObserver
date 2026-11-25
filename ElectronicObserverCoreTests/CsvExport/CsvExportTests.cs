@@ -65,7 +65,10 @@ public class CsvExportTests
 	private static async Task<string> GenerateCsv<TMap, TElement>(IEnumerable<TElement> data)
 		where TMap : CsvExportMap<TElement>, new()
 	{
-		CsvWriterOptions config = new();
+		CsvWriterOptions config = new()
+		{
+			FormatProvider = CultureInfo.CurrentCulture,
+		};
 
 		await using StringWriter writer = new();
 		await using CsvWriter csv = CsvWriter.Create(writer, config);
