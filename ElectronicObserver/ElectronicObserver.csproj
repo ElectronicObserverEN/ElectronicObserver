@@ -81,7 +81,7 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-		<PackageReference Include="CsvHelper" Version="33.1.0" />
+		<PackageReference Include="CsvHelper" Version="34.1.0" />
 		<PackageReference Include="Dirkster.AvalonDock" Version="5.0.2" />
 		<PackageReference Include="Dirkster.AvalonDock.Serializer.Xml" Version="5.0.2" />
 		<PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="5.0.2" />

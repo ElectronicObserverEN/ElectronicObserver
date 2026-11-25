@@ -13,7 +13,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CsvHelper;
-using CsvHelper.Configuration;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Common.ContentDialogs;
@@ -427,7 +426,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		Func<ObservableCollection<SortieRecordViewModel>, ExportFilterViewModel?, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
 		ICommand cancellationCommand,
 		CancellationToken cancellationToken = default
-	) where TMap : ClassMap<TElement>
+	) where TMap : CsvExportMap<TElement>, new()
 	{
 		await App.Current!.Dispatcher.BeginInvoke(async () =>
 		{
@@ -492,9 +491,9 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	private static async Task SaveCsvFile<TMap, TElement>(string path, IEnumerable<TElement> data)
-		where TMap : ClassMap<TElement>
+		where TMap : CsvExportMap<TElement>, new()
 	{
-		CsvConfiguration config = new(CultureInfo.CurrentCulture);
+		CsvWriterOptions config = new();
 
 		// UTF8 BOM so excel can recognize it
 		Encoding encoding = Encoding.UTF8;
@@ -506,10 +505,11 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		};
 
 		await using StreamWriter writer = new(path, encoding, fileStreamOptions);
-		await using CsvWriter csv = new(writer, config);
+		await using CsvWriter csv = CsvWriter.Create(writer, config);
 
-		csv.Context.RegisterClassMap<TMap>();
+		CsvRecordWriter.Register(_ => new TMap());
 		await csv.WriteRecordsAsync(data);
+		await csv.FlushAsync();
 	}
 
 	[RelayCommand]

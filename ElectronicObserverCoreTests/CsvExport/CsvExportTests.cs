@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CsvHelper.Configuration;
 using CsvHelper;
 using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
@@ -64,15 +63,16 @@ public class CsvExportTests
 	}
 
 	private static async Task<string> GenerateCsv<TMap, TElement>(IEnumerable<TElement> data)
-		where TMap : ClassMap<TElement>
+		where TMap : CsvExportMap<TElement>, new()
 	{
-		CsvConfiguration config = new(CultureInfo.CurrentCulture);
+		CsvWriterOptions config = new();
 
 		await using StringWriter writer = new();
-		await using CsvWriter csv = new(writer, config);
+		await using CsvWriter csv = CsvWriter.Create(writer, config);
 
-		csv.Context.RegisterClassMap<TMap>();
+		CsvRecordWriter.Register(_ => new TMap());
 		await csv.WriteRecordsAsync(data);
+		await csv.FlushAsync();
 
 		return writer.ToString();
 	}
@@ -241,7 +241,7 @@ public class CsvExportTests
 	private static async Task<IReadOnlyList<string>> LoadEoLines<TMap, TElement>(
 		string fileName,
 		Func<ObservableCollection<SortieRecordViewModel>, ExportFilterViewModel?, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData
-	) where TMap : ClassMap<TElement>
+	) where TMap : CsvExportMap<TElement>, new()
 	{
 		Stream sortieRecordStream = File.OpenRead(Path.Join(BasePath, fileName));
 		List<SortieRecord>? sortieRecords = await JsonSerializer.DeserializeAsync<List<SortieRecord>>(sortieRecordStream);
