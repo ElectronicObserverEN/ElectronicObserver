@@ -111,7 +111,7 @@ public record KongouSpecialAttack : SpecialAttack
 			equipmentMods += 0.05;
 		}
 
-		return equipmentMods * 2.4;
+		return equipmentMods * (shipIndex is 0 ? 2.6 : 2.7);
 	}
 
 	private static bool IsKaiSanOrKaiYonGun(IEquipmentData? eq) =>
