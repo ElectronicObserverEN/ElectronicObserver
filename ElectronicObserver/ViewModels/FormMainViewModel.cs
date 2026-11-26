@@ -37,7 +37,6 @@ using ElectronicObserver.Window.Dialog.VersionInformation;
 using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Tools.AirDefense;
-using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 using ElectronicObserver.Window.Tools.DatabaseExplorer;
 using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
@@ -139,7 +138,6 @@ public partial class FormMainViewModel : ObservableObject
 	private WindowPosition Position { get; set; } = new();
 	// single instance hack
 	private EventLockPlannerWindow? EventLockPlannerWindow { get; set; }
-	private AutoRefreshWindow? AutoRefreshWindow { get; set; }
 
 	public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
@@ -897,25 +895,6 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		EventLockPlannerWindow.Show(Window);
-	}
-
-	[RelayCommand]
-	private void OpenAutoRefresh()
-	{
-		if (AutoRefreshWindow is not null) return;
-
-		AutoRefreshViewModel viewModel = Ioc.Default.GetRequiredService<AutoRefreshViewModel>();
-		viewModel.Areas = KCDatabase.Instance.MapArea.Values.ToList();
-		viewModel.Infos = KCDatabase.Instance.MapInfo.Values.ToList();
-
-		AutoRefreshWindow = new(viewModel);
-
-		AutoRefreshWindow.Closed += (sender, args) =>
-		{
-			AutoRefreshWindow = null;
-		};
-
-		AutoRefreshWindow.Show(Window);
 	}
 
 	[RelayCommand]

@@ -59,7 +59,6 @@ using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Settings.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
-using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
@@ -320,7 +319,6 @@ public partial class App
 			.AddSingleton<EventLockPlannerTranslationViewModel>()
 			.AddSingleton<ShipFilterTranslationViewModel>()
 			.AddSingleton<AirControlSimulatorTranslationViewModel>()
-			.AddSingleton<AutoRefreshTranslationViewModel>()
 			.AddSingleton<ExpeditionCheckTranslationViewModel>()
 			.AddSingleton<FleetImageGeneratorTranslationViewModel>()
 			.AddSingleton<ExpCheckerTranslationViewModel>()
@@ -332,7 +330,6 @@ public partial class App
 			.AddSingleton<BonodereSubmissionTranslationViewModel>()
 			.AddSingleton<SenkaLeaderboardTranslationViewModel>()
 			// tools
-			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
 			.AddSingleton<PhaseFactory>()
 			.AddSingleton<BattleFactory>()

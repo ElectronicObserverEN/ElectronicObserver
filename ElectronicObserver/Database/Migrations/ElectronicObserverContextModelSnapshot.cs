@@ -15,7 +15,7 @@ namespace ElectronicObserver.Database.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.15");
 
             modelBuilder.Entity("ElectronicObserver.Database.Expedition.ExpeditionRecord", b =>
                 {
@@ -157,28 +157,6 @@ namespace ElectronicObserver.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sorties");
-                });
-
-            modelBuilder.Entity("ElectronicObserver.Window.Tools.AutoRefresh.AutoRefreshModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsSingleMapMode")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Rules")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("SingleMapModeMap")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AutoRefresh");
                 });
 
             modelBuilder.Entity("ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment.EquipmentAssignmentItemModel", b =>

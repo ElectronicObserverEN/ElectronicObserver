@@ -10,7 +10,6 @@ public interface IBrowser
 	void OpenExtraBrowser();
 	void OpenAirControlSimulator(string url);
 	void OpenCompassPrediction();
-	void RequestAutoRefresh();
 	void RequestCompassPredictionFleetUpdate();
 	void RequestCompassPredictionMapUpdate(int area, int map);
 }

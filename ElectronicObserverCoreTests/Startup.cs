@@ -16,7 +16,6 @@ using ElectronicObserver.TestData;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
@@ -69,7 +68,6 @@ public class Startup
 		Ioc.Default.ConfigureServices(new ServiceCollection()
 			.AddSingleton<IKCDatabase>(kcdb)
 			.AddSingleton<ColorService>()
-			.AddSingleton<AutoRefreshTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			.AddSingleton<EquipmentUpgradePlannerTranslationViewModel>()
 			.AddSingleton<FormFleetTranslationViewModel>()
