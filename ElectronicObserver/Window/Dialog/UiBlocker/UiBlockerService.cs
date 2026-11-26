@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using AvalonDock;
 using AvalonDock.Controls;
 using AvalonDock.Layout;
@@ -44,6 +45,8 @@ public class UiBlockerService(
 	private (double ZoomRate, double BrowserTop, double BrowserLeft) GetBrowserData(
 		LayoutDocumentControl anchorableControl)
 	{
+		DpiScale dpi = VisualTreeHelper.GetDpi(Application.Current.MainWindow);
+
 		Point topLeft = anchorableControl.PointToScreen(new Point(0, 0));
 		Size anchorableSize = new(anchorableControl.ActualWidth, anchorableControl.ActualHeight);
 
@@ -55,8 +58,8 @@ public class UiBlockerService(
 		Size browserSize = new(KancolleSize.Width * zoomRate, KancolleSize.Height * zoomRate);
 		Point browserPosition = CalculateBrowserPosition(anchorableSize, browserSize, toolbarHeight, toolbarWidth);
 
-		double browserTop = topLeft.Y + browserPosition.Y + toolbarTopOffset;
-		double browserLeft = topLeft.X + browserPosition.X + toolbarLeftOffset;
+		double browserTop = topLeft.Y + browserPosition.Y + toolbarTopOffset * dpi.DpiScaleY;
+		double browserLeft = topLeft.X + browserPosition.X + toolbarLeftOffset * dpi.DpiScaleX;
 
 		return (zoomRate, browserTop, browserLeft);
 	}
