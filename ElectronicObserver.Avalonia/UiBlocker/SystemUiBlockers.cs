@@ -482,10 +482,10 @@ public static class SystemUiBlockers
 			new()
 			{
 				Preset = PositionPreset.Custom,
-				DesiredTop = 408,
-				DesiredLeft = 750,
-				DesiredHeight = 49,
-				DesiredWidth = 49,
+				DesiredTop = 407,
+				DesiredLeft = 749,
+				DesiredHeight = 50,
+				DesiredWidth = 50,
 				BackgroundColor = BlockerColor,
 				ShowTriggers = [UiBlockerTrigger.SortieAdvance],
 				HideTriggers = [UiBlockerTrigger.Port, UiBlockerTrigger.BattleStarted],
