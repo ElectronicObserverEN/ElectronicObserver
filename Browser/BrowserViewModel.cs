@@ -476,22 +476,6 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	protected abstract void RefreshBrowser(bool ignoreCache);
 
-	public void RequestAutoRefresh()
-	{
-		MessageBoxResult messageBoxResult = MessageBox.Show
-		(
-			Resources.AutoRefreshNotification,
-			FormBrowser.Confirmation,
-			MessageBoxButton.OKCancel,
-			MessageBoxImage.Exclamation,
-			MessageBoxResult.Cancel
-		);
-
-		if (messageBoxResult is not MessageBoxResult.OK) return;
-
-		RefreshBrowser();
-	}
-
 	public void RequestCompassPredictionFleetUpdate()
 	{
 		CompassPredictionViewModel.UpdateFleet();

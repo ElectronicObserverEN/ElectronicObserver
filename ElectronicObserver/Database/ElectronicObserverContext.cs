@@ -7,7 +7,6 @@ using ElectronicObserver.Database.Expedition;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.MapData;
 using ElectronicObserver.Database.Sortie;
-using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.EquipmentAssignment;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
@@ -27,7 +26,6 @@ namespace ElectronicObserver.Database;
 public class ElectronicObserverContext(bool inMemory = false) : DbContext
 {
 	public DbSet<EventLockPlannerModel> EventLockPlans => Set<EventLockPlannerModel>();
-	public DbSet<AutoRefreshModel> AutoRefresh => Set<AutoRefreshModel>();
 	public DbSet<WorldModel> Worlds => Set<WorldModel>();
 	public DbSet<MapModel> Maps => Set<MapModel>();
 	public DbSet<CellModel> Cells => Set<CellModel>();
@@ -78,17 +76,6 @@ public class ElectronicObserverContext(bool inMemory = false) : DbContext
 
 		modelBuilder.Entity<CellModel>()
 			.HasKey(n => n.Id);
-
-		modelBuilder.Entity<AutoRefreshModel>()
-			.HasKey(a => a.Id);
-
-		modelBuilder.Entity<AutoRefreshModel>()
-			.Property(a => a.SingleMapModeMap)
-			.HasConversion(JsonConverter<MapModel>());
-
-		modelBuilder.Entity<AutoRefreshModel>()
-			.Property(a => a.Rules)
-			.HasConversion(JsonConverter<List<AutoRefreshRuleModel>>());
 
 		modelBuilder.Entity<ApiFile>()
 			.HasKey(a => a.Id);

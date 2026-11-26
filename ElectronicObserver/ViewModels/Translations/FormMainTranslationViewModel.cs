@@ -88,8 +88,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Tool_ExtraBrowser => MainResources.Tool_ExtraBrowser.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_QuestTrackerManager => QuestTrackerManagerResources.Title;
 	public string EventLockPlannerTitle => EventLockPlannerResources.Title;
-	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlannerResources.Title; 
-	public string AutoRefreshTitle => AutoRefreshResources.Title;
+	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlannerResources.Title;
 	public string ExpeditionCalculatorTitle => ExpeditionCalculatorResources.Title;
 	public string UiBlocker => UiBlockerResources.UiBlocker;
 

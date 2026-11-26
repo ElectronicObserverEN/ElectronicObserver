@@ -1052,11 +1052,6 @@
 						<common:IconContentIcon Type="FormEquipmentUpgradePlanner" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Command="{Binding OpenAutoRefreshCommand}" Header="{Binding FormMain.AutoRefreshTitle}">
-					<MenuItem.Icon>
-						<common:IconContentIcon Type="BrowserRefresh" />
-					</MenuItem.Icon>
-				</MenuItem>
 				<MenuItem Command="{Binding OpenExpeditionCalculatorCommand}" Header="{Binding FormMain.ExpeditionCalculatorTitle}">
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FleetExpedition" />

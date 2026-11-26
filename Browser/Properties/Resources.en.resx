@@ -324,10 +324,6 @@ Open the download page?
   <data name="CacheCleared" xml:space="preserve">
     <value>Cache has been cleared.</value>
   </data>
-  <data name="AutoRefreshNotification" xml:space="preserve">
-    <value>You are about to advance to a cell forbidden by a rule in the auto refresh tool.
-Would you like to refresh?</value>
-  </data>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">
     <value>Failed to apply browser font.</value>
   </data>

@@ -10,12 +10,10 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrowserLibCore;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window.Tools.AutoRefresh;
 using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -32,8 +30,6 @@ public partial class FormBrowserHost : Form
 {
 	private static FormBrowserHost _instance;
 	public static FormBrowserHost Instance => _instance;
-
-	private AutoRefreshViewModel AutoRefresh { get; }
 
 	public static string BrowserExeName => "EOBrowser.exe";
 
@@ -95,9 +91,6 @@ public partial class FormBrowserHost : Form
 
 	public FormBrowserHost(object parent)
 	{
-		AutoRefresh = Ioc.Default.GetRequiredService<AutoRefreshViewModel>();
-		AutoRefresh.Loaded();
-
 		InitializeComponent();
 
 		_instance = this;
@@ -134,9 +127,6 @@ public partial class FormBrowserHost : Form
 
 	public void SubscribeToApis()
 	{
-		APIObserver.Instance.ApiReqMap_Start.ResponseReceived += RefreshIfAdvanceIsNotAllowed;
-		APIObserver.Instance.ApiReqMap_Next.ResponseReceived += RefreshIfAdvanceIsNotAllowed;
-
 		APIObserver.Instance.ApiReqHensei_Change.RequestReceived += RequestCompassPredictionFleetUpdate;
 		APIObserver.Instance.ApiReqKousyou_DestroyShip.RequestReceived += RequestCompassPredictionFleetUpdate;
 		APIObserver.Instance.ApiReqKaisou_Remodeling.RequestReceived += RequestCompassPredictionFleetUpdate;
@@ -155,16 +145,6 @@ public partial class FormBrowserHost : Form
 		APIObserver.Instance.ApiReqMap_Start.ResponseReceived += RequestCompassPredictionMapUpdate;
 	}
 
-	private void RefreshIfAdvanceIsNotAllowed(string apiname, object data)
-	{
-		CompassData compass = KCDatabase.Instance.Battle.Compass;
-
-		if (ShouldRefresh(compass.MapAreaID, compass.MapInfoID, compass.CellId, AutoRefresh))
-		{
-			Browser.RequestAutoRefresh();
-		}
-	}
-
 	private void RequestCompassPredictionFleetUpdate(string apiname, object data)
 	{
 		Browser.RequestCompassPredictionFleetUpdate();
@@ -175,31 +155,6 @@ public partial class FormBrowserHost : Form
 		CompassData compass = KCDatabase.Instance.Battle.Compass;
 
 		Browser.RequestCompassPredictionMapUpdate(compass.MapAreaID, compass.MapInfoID);
-	}
-
-	public static bool ShouldRefresh(int mapAreaId, int mapInfoId, int destination, AutoRefreshViewModel autoRefresh)
-	{
-		if (autoRefresh.IsSingleMapMode && autoRefresh.SelectedSingleMapModeMap is not null)
-		{
-			if (mapAreaId != autoRefresh.SelectedSingleMapModeMap.AreaId) return true;
-			if (mapInfoId != autoRefresh.SelectedSingleMapModeMap.InfoId) return true;
-		}
-
-		List<AutoRefreshRuleViewModel> enabledRules = autoRefresh.Rules
-			.Where(r => r.IsEnabled)
-			.ToList();
-
-		if (enabledRules.Count is 0) return false;
-
-		return !enabledRules.All(IsAllowed);
-
-		bool IsAllowed(AutoRefreshRuleViewModel rule)
-		{
-			if (mapAreaId != rule.Map.AreaId) return true;
-			if (mapInfoId != rule.Map.InfoId) return true;
-
-			return rule.AllowedCells.Select(c => c.Id).Contains(destination);
-		}
 	}
 
 	public void InitializeApiCompleted()

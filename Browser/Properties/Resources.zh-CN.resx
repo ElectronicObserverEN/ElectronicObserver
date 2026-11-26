@@ -306,10 +306,6 @@
   <data name="CacheCleared" xml:space="preserve">
     <value>缓存已删除完毕。</value>
   </data>
-  <data name="AutoRefreshNotification" xml:space="preserve">
-    <value>已进击到了设置中不想前往的点位。
-需要刷新吗？</value>
-  </data>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">
     <value>浏览器字体应用失败。</value>
   </data>

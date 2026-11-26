@@ -324,10 +324,6 @@ Microsoft Visual C++ 2019 Redistributable가 필요합니다.
   <data name="CacheCleared" xml:space="preserve">
     <value>캐시 삭제처리가 종료되었습니다.</value>
   </data>
-  <data name="AutoRefreshNotification" xml:space="preserve">
-    <value>진격을 거부하는 셀에 진행하려고 합니다.
-다시 불러오시겠습니까?</value>
-  </data>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">
     <value>브라우저 폰트 적용에 실패하였습니다.</value>
   </data>

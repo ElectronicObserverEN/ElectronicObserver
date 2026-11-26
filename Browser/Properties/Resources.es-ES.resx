@@ -324,10 +324,6 @@ Se requiere Microsoft Visual C++ 2019 Redistributable.
   <data name="CacheCleared" xml:space="preserve">
     <value>Cache has been cleared.</value>
   </data>
-  <data name="AutoRefreshNotification" xml:space="preserve">
-    <value>Estás a punto de avanzar a una celda prohibida por una regla en la herramienta de actualización automática.
-¿Te gustaría refrescar?</value>
-  </data>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">
     <value>Failed to apply browser font.</value>
   </data>

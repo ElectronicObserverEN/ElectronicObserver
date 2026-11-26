@@ -324,10 +324,6 @@
   <data name="CacheCleared" xml:space="preserve">
     <value>快取移除處理完成。</value>
   </data>
-  <data name="AutoRefreshNotification" xml:space="preserve">
-    <value>你即將前進到自動重整設定中禁止的節點。
-您想重新整理嗎？</value>
-  </data>
   <data name="FailedToApplyBrowserFont" xml:space="preserve">
     <value>套用瀏覽器字體失敗。</value>
   </data>
